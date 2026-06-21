@@ -1,5 +1,5 @@
 # Neo Geo Sengoku 2 Red Blood
-## Open source hack to turn the game to a blood bath
+## Open source hack to turn the game into a blood bath
 
 ## Why ?
 

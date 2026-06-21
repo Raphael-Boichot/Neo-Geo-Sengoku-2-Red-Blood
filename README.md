@@ -12,21 +12,21 @@ So just to summary,this hack represents a crazy amount of work, guesses and rese
 ## The steps
 - get the palette of every bleeding characters with MAME in debug mode, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully). This is long and tedious but does not require any intelligence.
 - Easy situation, there is yet a vibrant enough red in the palette, edit and inject the modified tileset with unchanged palette.
-- Moderate situation, there is no vibrant red in the tileset but there is no palette swap during the game so two colors close togenther will be merged to free an entry for red in the palette of the character. It would go completely unnoticed if you didn’t know.
-- Fucked situation, multiple palette swap: I have to cheat and force a red in each palette and a probably modified tileset. If red is shared with another area, it must appear the less weird as possible.
+- Moderate situation, there is no vibrant red in the tileset but there is no palette swap during the game so two colors close together can be discretely merged in the tileset to free an entry for red in the palette of the character. It would go completely unnoticed if you didn’t know.
+- Fucked situation, multiple palette swap for the same character: I have to cheat and force a red in each palette and a probably modified tileset. If red is shared with another area, it must appear the less weird as possible. It's a compromise, quite rare hopefully.
 
 ## My rules
-- Only human like characters and main heroes will be considered as blood filled. Anything else (pure demonic entities) will keep weird blood color if any.
+- Only human like characters and main heroes will be bleeding. Anything else (pure demonic entities) will keep their weird blood color if any.
 - My ultimate goal is to make a physical MVS version by hacking a repro, just for fun.
 
 ## How ?
 
 The old way :
-- MAME in debug mode to explore the palette ram after address 0x0400000. I basically hand modify the memory bytes until the tiles I want are changing color.
+- MAME in debug mode to explore the palette ram after address 0x0400000 of the 68k mapped memory. I basically hand modify the memory bytes until the tiles I want are changing color.
 - Custom codes to turn C roms to png and the inverse.
-- Gemini / Chatgpt in free version (the less stupid depending on the context) to make fast tools that would take me much longer to code.
+- Gemini / Chatgpt in free version (the less stupid depending on the context) to make tools that would render any automation task less tedious.
 - MS Paint to edit images because this is the best tool ever created.
-- Spriter ressources to check for inconsistencies in colors.
+- Spriter ressources to check for inconsistencies in colors and planning the work.
 
 ## Trivias
 - Palette are stored in the P rom as it and can easily be swapped (stored in 16 bits, big endian)

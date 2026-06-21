@@ -25,6 +25,10 @@ The old way :
 - Gemini / Chatgpt (the less stupid depending on the context) to make fast tools that would take me one day to code.
 - MS Paint because this is the best tool ever created.
 
+## Trivias
+- Palette are stored in the P rom as it and can easily be modified (stored in 16 bits, big endian)
+    Claude Yamamoto palette : [0x0010,0x7810,0x0C74,0x5FC9,0x5409,0x1A0F,0x1F9F,0x0800,0x0C00,0x4F93,0x0666,0x7AAA,0x0EEE,0x7334,0x4500,0x7111];
+
 ## Status
 
 For the moment I'm just documenting things and gathering enough data to rebuild both the program and character roms confidently.

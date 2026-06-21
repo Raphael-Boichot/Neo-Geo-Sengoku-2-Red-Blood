@@ -3,7 +3,7 @@
 
 ## Why ?
 
-Because I'm pissed not to find the NCI hack publically available. Because the pigeons buying NCI physical cartridges are not the kind of guys who opens their  toys to dump it and release the rom. So instead of having an expensive stuff to show on your shelves, you get a free hack here.
+Because I'm pissed not to find the NCI hack publically available. Because the pigeons buying NCI physical cartridges are not the kind of guys who opens their  toys to dump chips it and release the roms. So instead of having an expensive stuff to show on your shelves, you get a free hack here.
 
 Seeing at the tileset and palette, Sengoku 2 was never thought not programmed to be uncensored so it's quite a lenghty and complicated process.
 

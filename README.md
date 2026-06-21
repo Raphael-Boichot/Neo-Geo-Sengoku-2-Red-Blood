@@ -3,9 +3,19 @@
 
 ## Why ?
 
-Because I'm pissed not to find the NCI hack publically available. Because the pigeons buying the hack in physical cartridge are not the kind of people who opens their fucking treasure to dump it. So instead of having an expensive stuff to show on your shelves, you get a free hack here.
+Because I'm pissed not to find the NCI hack publically available. Because the pigeons buying NCI physical cartridge are not the kind of people who opens their fucking treasure to dump it and release the rom. So instead of having an expensive stuff to show on your shelves, you get a free hack here.
 
 Seeing at the tileset and palette, Sengoku 2 was never thought to be uncensored so it's quite a lenghty and complicated hack.
+
+## The steps
+- get the palette of every bleeding characters with MAME in debug mode. There is only one palette for each (hopefully).
+- Easy situation, there is a vibrant red in the palette, edit and inject the modified tileset with unchanged palette.
+- Moderate situation, there is no red in the tileset but there is no palette swap during the game so two colors close togenther will be merged to free a slot for red in the palette of the character. It would go completely unnoticed if you didn’t know.
+- Fucked situation, multiple palette swap: I have to cheat and force a red in each palette and a probably a modified tileset. If red is shared with another area, it must appear the less weird as possible.
+
+## The rules
+- Only human like characters and main heroes will be considered as blood filled. Anything else (pure demonic entities) will keep weird blood color if any.
+- My ultimate goal is to make a physical MVS version by hacking a repro, just for fun.
 
 ## How ?
 

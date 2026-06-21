@@ -8,7 +8,7 @@ Because I'm pissed not to find the NCI hack publically available. Because the pi
 Seeing at the tileset and palette, Sengoku 2 was never thought not programmed to be uncensored so it's quite a lenghty and complicated process.
 
 ## The steps
-- get the palette of every bleeding characters with MAME in debug mode, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully).
+- get the palette of every bleeding characters with MAME in debug mode, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully). This is long and tedious but does not require any intelligence.
 - Easy situation, there is yet a vibrant enough red in the palette, edit and inject the modified tileset with unchanged palette.
 - Moderate situation, there is no vibrant red in the tileset but there is no palette swap during the game so two colors close togenther will be merged to free an entry for red in the palette of the character. It would go completely unnoticed if you didn’t know.
 - Fucked situation, multiple palette swap: I have to cheat and force a red in each palette and a probably modified tileset. If red is shared with another area, it must appear the less weird as possible.

@@ -3,9 +3,11 @@
 
 ## Why ?
 
-Because I'm pissed not to find the NCI hack publically available. Because the pigeons buying NCI physical cartridges are not the kind of guys who opens their  toys to dump chips and release the roms. So instead of having an expensive stuff to show on your shelves, you get a free hack here.
+Because I'm pissed not to find the NCI hack publically available. Because the pigeons buying NCI physical cartridges are not the kind of guys who know how to dump chips and release the roms. So instead of having an expensive stuff to show on your shelves, you will get a free hack here.
 
-Seeing at the tileset and palette, Sengoku 2 was never thought not programmed to be uncensored so it's quite a lenghty and complicated process.
+Seeing at the tileset and palettes, Sengoku 2 was never thought nor programmed to be uncensored. Color palette of current "blood" is just shared  with other parts of the tiles so a simple palette swap is far from being satisfying.
+
+So just to summary,this hack represents a crazy amount of work, guesses and researches.
 
 ## The steps
 - get the palette of every bleeding characters with MAME in debug mode, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully). This is long and tedious but does not require any intelligence.

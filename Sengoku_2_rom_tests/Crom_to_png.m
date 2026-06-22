@@ -74,3 +74,16 @@ for y=1:size(sheet_indices,1)
 end
 imwrite(sheet(:,:,1:3), outputPng, 'Alpha', sheet(:,:,4));
 fprintf('Export complete.\n');
+
+%% 5. Export Palette to Text File
+paletteFid = fopen('Palette.txt', 'w');
+fprintf(paletteFid, 'Palette Export (RGB 0-255):\n');
+fprintf(paletteFid, 'Index | R | G | B\n');
+fprintf(paletteFid, '------------------\n');
+
+for i = 1:16
+    fprintf(paletteFid, '%02d    | %3d | %3d | %3d\n', ...
+        i-1, rgbPalette(i,1), rgbPalette(i,2), rgbPalette(i,3));
+end
+fclose(paletteFid);
+fprintf('Palette exported to Palette.txt\n');

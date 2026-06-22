@@ -4,7 +4,7 @@ clear;
 inputPgm = 'Tileset.pgm';
 oddRomOut = 'odd_crom.dat'; 
 evenRomOut = 'even_crom.dat';
-TILES_PER_ROW = 16;
+TILES_PER_ROW = 32;
 
 %% 1. Read PGM
 fid = fopen(inputPgm, 'rb'); 

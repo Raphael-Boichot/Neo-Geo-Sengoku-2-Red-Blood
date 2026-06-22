@@ -54,9 +54,9 @@ for tile = 0:numTiles-1
 end
 
 %% 4. Save
-fid = fopen(outputPgm, 'wb');
-fprintf(fid, 'P5\n%d %d\n15\n', size(sheet_indices, 2), size(sheet_indices, 1));
-fwrite(fid, sheet_indices', 'uint8'); fclose(fid);
+% fid = fopen(outputPgm, 'wb');
+% fprintf(fid, 'P5\n%d %d\n15\n', size(sheet_indices, 2), size(sheet_indices, 1));
+% fwrite(fid, sheet_indices', 'uint8'); fclose(fid);
 
 % Create visual PNG
 rgbPalette = zeros(16,3,'uint8');

@@ -68,6 +68,8 @@ I want to maximize the scripting to minimize errors and be able to come back on 
 
 ![](/Sengoku_2_rom_tests/Kirimaru_blue_Palette.png)
 
+
+
 - Puppet Warrior blue palette 68k memory map range: 0400940-0400950, values: [0x004A, 0x0660, 0x6AA0, 0x6FF0, 0x0157, 0x029D, 0x14FF, 0x6600, 0x0A10, 0x4F20, 0x3115, 0x6348, 0x558B, 0x59BC, 0x7FFF, 0x0000];
 
 ![](/Sengoku_2_rom_tests/Puppet_Warrior_blue_Palette.png)

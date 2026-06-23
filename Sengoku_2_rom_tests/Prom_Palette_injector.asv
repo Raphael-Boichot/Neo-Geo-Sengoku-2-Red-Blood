@@ -1,0 +1,29 @@
+clc;
+clear;
+PRomFile = '040-p1-P1';
+
+palette_old     = [0x0010,0x7810,0x0C74,0x5FC9,0x5409,0x1A0F,0x1F9F,0x0800,0x0C00,0x4F93,0x0666,0x7AAA,0x0EEE,0x7334,0x4500,0x7111];
+palette_new     = [0x0010,0x7810,0x0C74,0x5FC9,0x5409,0x1A0F,0x1F9F,0x0800,0x0C00,0x4F93,0x0666,0x7AAA,0x0EEE,0x7334,0x4500,0x7111];
+
+%calculate the CRC32 of PRomfile
+
+%search for palette vectior into PRomfile, indicate if found, check for
+%other locations, beware, the palette is littkle endian, the file big
+%endian
+%Inject the new palette instaed of the old one
+
+%check again for CRC32
+
+
+
+%% 4. Save and CRC Check
+function crc = calculateCRC32(data)
+    poly = uint32(hex2dec('EDB88320')); crc = uint32(hex2dec('FFFFFFFF'));
+    for i = 1:numel(data)
+        crc = bitxor(crc, uint32(data(i)));
+        for j = 1:8
+            if bitand(crc, 1), crc = bitxor(bitshift(crc, -1), poly); else, crc = bitshift(crc, -1); end
+        end
+    end
+    crc = bitcmp(crc);
+end

@@ -31,6 +31,8 @@ Seeing at the tileset and palettes, Sengoku 2 was never thought nor programmed t
 - Rince and repeat with all characters.
 - Make a final IPS script.
 
+I want to maximize the scripting to minimize errors and be able to come back on my own.
+
 ## Trivias
 
 - Palette are stored in the P rom as it and can easily be targeted and swapped (stored in 16 bits, big endian).

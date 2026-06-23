@@ -40,4 +40,6 @@ The old way :
 
 For the moment I'm just documenting things and gathering enough data to rebuild both the program and character roms confidently. I still wonder how to automate fully the process. I have several ideas though.
 
+## Acknowledgments
+- The [neogeodev community](https://wiki.neogeodev.org//index.php/Main_Page) in general and [Furrtek](https://github.com/furrtek) in particular. This project was only possible because I stood on the shoulders of giants.
 

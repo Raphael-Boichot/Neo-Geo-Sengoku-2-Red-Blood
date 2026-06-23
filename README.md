@@ -36,11 +36,17 @@ I want to maximize the scripting to minimize errors and be able to come back on 
 ## Trivias
 
 - Palette are stored in the P rom as it and can easily be targeted and swapped (stored in 16 bits, big endian).
-- Claude Yamamoto palette (little endian): 68k memory map range: 0400200-0400210, value: 0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111
+- Claude Yamamoto palette 68k memory map range: 0400200-0400210, values: [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111];
 
 ![](/Sengoku_2_rom_tests/Claude_Yamamoto_Palette.png)
 
-- Jack Stone palette: 68k memory map range: 0400220-0400230, value: 
+- Jack Stone palette 68k memory map range: 0400220-0400230, values: [0x0011, 0x7810, 0x0C74, 0x5FC9, 0x6640, 0x6B80, 0x6FF0, 0x3037, 0x638C, 0x3AFF, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4FA0, 0x7111];
+
+![](/Sengoku_2_rom_tests/Jack_Stone_Palette.png)
+
+- Puppet Warrior main palette 68k memory map range: 0400220-0400230, values: [0x004B, 0x1720, 0x5B62, 0x5FD8, 0x0443, 0x1887, 0x0BBA, 0x7232, 0x0565, 0x09B9, 0x6223, 0x7446, 0x677A, 0x1BBC, 0x1FFF, 0x0000];
+
+![](/Sengoku_2_rom_tests/Puppet_Warrior_main_Palette.png)
 
 ## Status
 

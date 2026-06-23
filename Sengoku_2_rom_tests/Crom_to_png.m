@@ -4,7 +4,7 @@ clear; clc;
 oddRomFile  = '040-c1.c1';
 evenRomFile = '040-c2.c2';
 outputPng   = 'Tileset.png';
-outputPgm   = 'Tileset.pgm';
+%outputPgm   = 'Tileset.pgm';
 palette     = [0x0010,0x7810,0x0C74,0x5FC9,0x5409,0x1A0F,0x1F9F,0x0800,0x0C00,0x4F93,0x0666,0x7AAA,0x0EEE,0x7334,0x4500,0x7111];
 TILES_PER_ROW = 32;
 

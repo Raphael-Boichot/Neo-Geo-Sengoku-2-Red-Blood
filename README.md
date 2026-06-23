@@ -21,15 +21,17 @@ So just to summary,this hack represents a crazy amount of work, guesses and rese
 
 ## How ?
 
-The old way :
-- MAME in debug mode to explore the palette ram after address 0x0400000 of the 68k mapped memory. I basically hand modify the memory bytes until the tiles I want are changing color.
-- Custom codes to turn C roms to png and the inverse.
+The "old" way :
+- MAME in debug mode to explore the palette ram after address 0x0400000 of the 68k mapped memory. I basically hand modify the memory bytes until the tiles I want are changing color. This is the only tedious step in absence of debuggers fully dedidacted to the Neo Geo.
+- Custom codes to turn C ROMs to png and the inverse.
+- Custom codes to swap palettes in P ROMs.
+- Custom codes to generate and chain IPS scripts.
 - Gemini / Chatgpt in free version (the less stupid depending on the context) to make tools that would render any automation task less tedious.
 - MS Paint to edit images because this is the best tool ever created.
 - Spriter ressources to check for inconsistencies in colors and planning the work.
 
 ## Trivias
-- Palette are stored in the P rom as it and can easily be swapped (stored in 16 bits, big endian)
+- Palette are stored in the P rom as it and can easily be targeted and swapped (stored in 16 bits, big endian).
 - Claude Yamamoto palette (little endian): 68k memory map range: 0400200-0400210, value: 0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111
 
 ![](/Sengoku_2_rom_tests/Claude_Yamamoto_Palette.png)

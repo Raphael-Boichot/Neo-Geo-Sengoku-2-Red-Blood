@@ -5,6 +5,8 @@ inputPng     = 'Tileset.png';
 paletteFile  = 'Palette.txt';
 oddRomOut    = '040-c1.c1.new';
 evenRomOut   = '040-c2.c2.new';
+% oddRomFile  = '040-c3.c3';
+% evenRomFile = '040-c4.c4';
 TILES_PER_ROW = 32;
 
 %% 1. Load Palette

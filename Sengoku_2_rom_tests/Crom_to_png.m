@@ -7,10 +7,10 @@ outputPng   = 'Tileset.png';
 %outputPgm   = 'Tileset.pgm';
 %palette = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, ...
 %           0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; %Claude Yamamoto (player 1)
-%palette = [0x0011, 0x7810, 0x0C74, 0x5FC9, 0x6640, 0x6B80, 0x6FF0, 0x3037, ...
-%           0x638C, 0x3AFF, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4FA0, 0x7111]; %Jack Stone (Player 2)
-palette =[0x004B, 0x1720, 0x5B62, 0x5FD8, 0x0443, 0x1887, 0x0BBA, 0x7232, ...
-          0x0565, 0x09B9, 0x6223, 0x7446, 0x677A, 0x1BBC, 0x1FFF, 0x0000]; %Puppet Warrior main
+palette = [0x0011, 0x7810, 0x0C74, 0x5FC9, 0x6640, 0x6B80, 0x6FF0, 0x3037, ...
+          0x638C, 0x3AFF, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4FA0, 0x7111]; %Jack Stone (Player 2)
+% palette =[0x004B, 0x1720, 0x5B62, 0x5FD8, 0x0443, 0x1887, 0x0BBA, 0x7232, ...
+%           0x0565, 0x09B9, 0x6223, 0x7446, 0x677A, 0x1BBC, 0x1FFF, 0x0000]; %Puppet Warrior main
 
 TILES_PER_ROW = 32;
 
@@ -95,13 +95,13 @@ fclose(paletteFid);
 fprintf('Palette exported to Palette.txt\n');
 
 %% 6. Export Palette to PNG (Visual Reference)
-% Create a 16x256 image (16 pixels high, 16 pixels per color block)
-palette_strip = zeros(16, 256, 3, 'uint8');
+% Create a 32x512 image (32 pixels high, 16 blocks of 32 pixels wide = 512 wide)
+palette_strip = zeros(32, 512, 3, 'uint8');
 
 for i = 1:16
-    % Calculate horizontal range for this color block
-    x_start = (i-1) * 16 + 1;
-    x_end = i * 16;
+    % Calculate horizontal range for this color block (32 pixels per block)
+    x_start = (i-1) * 32 + 1;
+    x_end = i * 32;
     
     % Fill the block with the corresponding RGB color
     palette_strip(:, x_start:x_end, 1) = rgbPalette(i, 1);
@@ -110,4 +110,4 @@ for i = 1:16
 end
 
 imwrite(palette_strip, 'Palette.png');
-fprintf('Visual palette exported to Palette_Visual.png\n');
+fprintf('Visual palette exported as 32x32 blocks to Palette.png\n');

@@ -1,6 +1,12 @@
 # Neo Geo Sengoku 2 Red Blood
 ## Open source hack to turn the game into a blood bath
 
+## Current state
+
+- Documenting the process
+- Writing the toolchain
+- Nothing to play with apart from Matlab codes
+
 ## Why ?
 
 Because I'm pissed not to find the NCI hack publically available. Because the buyers of NCI physical cartridges are not the kind of guys who know how to dump chips and share the roms.
@@ -89,10 +95,6 @@ I want to maximize the scripting in order to be able to easily come back on erro
 - Puppet Warrior gray palette 68k memory map range: 0400960-0400970, values: [0x004B, 0x1720, 0x5B62, 0x5FD8, 0x0443, 0x1887, 0x0BBA, 0x7232, 0x0565, 0x09B9, 0x6223, 0x7446, 0x677A, 0x1BBC, 0x1FFF, 0x0000];
 
 ![](/Sengoku_2_rom_tests/Puppet_Warrior_gray_Palette.png)
-
-## Status
-
-For the moment I'm just documenting things and gathering enough data to rebuild both the program and character roms confidently. I still wonder how to automate fully the process. I have several ideas though.
 
 ## Acknowledgments
 - The [neogeodev community](https://wiki.neogeodev.org//index.php/Main_Page) in general and [Furrtek](https://github.com/furrtek) in particular. This project made on spare time was only possible because I stood on the shoulders of giants.

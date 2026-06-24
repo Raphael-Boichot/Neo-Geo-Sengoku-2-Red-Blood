@@ -9,7 +9,7 @@ Seeing at the tileset and palettes, Sengoku 2 was never thought nor programmed t
 
 ## The steps
 
-- get the palette of every bleeding characters with MAME in debug mode, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully). This is long and tedious but does not require any intelligence. Just play, save, hack the RAM and reload.
+- get the palette of every bleeding characters with MAME in debug mode, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully). This is long and tedious but does not require any intelligence. Just play, save, hack the RAM, take notes and reload.
 - Easy situation, there is yet a vibrant enough red in the palette and no need for palette swap, edit and inject the modified tileset only on the C ROMs, with unchanged palette.
 - Moderate situation, there is no vibrant red in the tileset but a clever palette swap is not visually shocking, go with a palette swap only in the P ROM.
 - Fucked situation, multiple palette swap for the same character: I have to cheat and force a red in each palette at the same position and a modified tileset as well. The mod must stay pleasant to the eye and do not deteriorate too much the initial character design. It's an artistic compromise.
@@ -31,6 +31,10 @@ Seeing at the tileset and palettes, Sengoku 2 was never thought nor programmed t
 - Make a final IPS script.
 
 I want to maximize the scripting in order to be able to easily come back on errors / bad design later.
+
+## Identified flaws due to the 15 colors per tile limitation
+
+- Forcing a vibrant red in each character palette is not always relevant for color design. Thus the intensity of red may vary between characters. Just consider that like in nature, the color of hemoglobin also varies from one individual to another, depending on the oxygenation level.
 
 ## Trivias
 

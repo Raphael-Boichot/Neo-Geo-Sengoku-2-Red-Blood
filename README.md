@@ -10,18 +10,17 @@ Seeing at the tileset and palettes, Sengoku 2 was never thought nor programmed t
 ## The steps
 
 - get the palette of every bleeding characters with MAME in debug mode, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully). This is long and tedious but does not require any intelligence. Just play, save, hack the RAM and reload.
-- Easy situation, there is yet a vibrant enough red in the palette, edit and inject the modified tileset only on the C ROMs, with unchanged palette.
-- Moderate situation, there is no vibrant red in the tileset but a clever palette swap is not visually shocking, go with a palette swap in the P ROM.
-- Fucked situation, multiple palette swap for the same character: I have to cheat and force a red in each palette and a probably modified tileset as well. If red is shared with another area, it must appear the less weird as possible. It's a compromise that must not change the feeling when playing the game.
+- Easy situation, there is yet a vibrant enough red in the palette and no need for palette swap, edit and inject the modified tileset only on the C ROMs, with unchanged palette.
+- Moderate situation, there is no vibrant red in the tileset but a clever palette swap is not visually shocking, go with a palette swap only in the P ROM.
+- Fucked situation, multiple palette swap for the same character: I have to cheat and force a red in each palette at the same position and a modified tileset as well. The mod must stay pleasant to the eye and do not deteriorate too much the initial character design. It's an artistic compromise.
 
 ## My rules
 - Only human like characters and main heroes will be bleeding. Anything else (pure demonic entities) will keep their original blood color if any.
 - The least effort will always be prefered because I do this on my spare time, and basically my spare time is shared between a ton of other projects and non negociable duties. All the sources been given, more patient people can probably improve the hack.
-- Primary target: MVS version. AES not my priority (maybe one day).
 
 ## How ?
 
-- MAME in debug mode to explore the palette ram after address 0x0400000 of the 68k mapped memory. I basically hand modify the memory bytes until the tiles I want are changing color. This is the only tedious step in absence of debuggers fully dedidacted to the Neo Geo.
+- MAME in debug mode to explore the palette ram after address 0x0400000 of the 68k mapped memory. I basically hand modify the memory bytes until the tiles I want are changing color. This is the only tedious step in absence of scripted debuggers fully dedidacted to the Neo Geo.
 - Custom codes to turn C ROMs to png and the inverse. Tileset is edited from a png image with the current character palette, then turned back to C ROM.
 - Custom codes to swap palettes in P ROMs.
 - Custom codes to generate and chain IPS scripts.
@@ -31,7 +30,7 @@ Seeing at the tileset and palettes, Sengoku 2 was never thought nor programmed t
 - Rince and repeat with all characters.
 - Make a final IPS script.
 
-I want to maximize the scripting to minimize errors and be able to come back on my own.
+I want to maximize the scripting in order to be able to easily come back on errors / bad design later.
 
 ## Trivias
 

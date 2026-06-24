@@ -39,6 +39,9 @@ I want to maximize the scripting in order to be able to easily come back on erro
 ## Trivias
 
 - Palette are stored in the P rom as it and can easily be targeted and swapped (stored in 16 bits, big endian).
+
+## Regular palettes
+
 - Claude Yamamoto palette 68k memory map range: 0400200-0400210, values: [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111];
 
 ![](/Sengoku_2_rom_tests/Claude_Yamamoto_Palette.png)

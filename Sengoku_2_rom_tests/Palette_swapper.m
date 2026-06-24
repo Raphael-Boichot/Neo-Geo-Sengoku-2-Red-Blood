@@ -4,7 +4,7 @@ clear;
 inputPng     = 'Tileset.png';
 Old_palette  = 'Palette.txt';
 % Neo Geo new palette hex values
-rawHex = [0x0010,0x7810,0x0C74,0x5FC9,0x5409,0x1A0F,0x1F9F,0x0800,0x0C00,0x4F93,0x0666,0x7AAA,0x0EEE,0x7334,0x4500,0x7111];
+rawHex = [0x004B, 0x1720, 0x5B62, 0x5FD8, 0x0443, 0x1887, 0x0BBA, 0x4700, 0x8921, 0x3982, 0x6223, 0x7446, 0x677A, 0x1BBC, 0x1FFF, 0x0000];
 
 %% 1. Convert Neo Geo 16-bit to 8-bit RGB
 New_palette_RGB = zeros(16, 3, 'uint8');
@@ -68,3 +68,21 @@ for i = 0:15
     fprintf(fileID, '%02d    | %3d | %3d | %3d\n', i, New_palette_RGB(i+1, 1), New_palette_RGB(i+1, 2), New_palette_RGB(i+1, 3));
 end
 fclose(fileID);
+
+%% 6. Export Palette to PNG (Visual Reference)
+% Create a 32x512 image (32 pixels high, 16 blocks of 32 pixels wide = 512 wide)
+palette_strip = zeros(32, 512, 3, 'uint8');
+
+for i = 1:16
+    % Calculate horizontal range for this color block (32 pixels per block)
+    x_start = (i-1) * 32 + 1;
+    x_end = i * 32;
+    
+    % Fill the block with the corresponding RGB color
+    palette_strip(:, x_start:x_end, 1) = New_palette_RGB(i, 1);
+    palette_strip(:, x_start:x_end, 2) = New_palette_RGB(i, 2);
+    palette_strip(:, x_start:x_end, 3) = New_palette_RGB(i, 3);
+end
+
+imwrite(palette_strip, 'Palette.png');
+fprintf('Visual palette exported as 32x32 blocks to Palette.png\n');

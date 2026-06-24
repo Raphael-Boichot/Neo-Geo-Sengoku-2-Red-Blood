@@ -1,18 +1,14 @@
-clear;
+function png_to_Crom(oddRomOut, evenRomOut)
+
 warning off
-%% Configuration
+% Configuration
 inputPng     = 'Tileset.png';
 paletteFile  = 'Palette.txt';
-oddRomOut    = '.\roms_out\040-c1.c1.new';
-evenRomOut   = '.\roms_out\040-c2.c2.new';
-% oddRomFile  = '040-c3.c3';
-% evenRomFile = '040-c4.c4';
-
 mkdir('.\roms_out\')
 
 TILES_PER_ROW = 32;
 
-%% 1. Load Palette
+% 1. Load Palette
 % Reads the R, G, B values from the provided text file
 fileID = fopen(paletteFile, 'r');
 % Skip header lines
@@ -21,7 +17,7 @@ rawPal = fscanf(fileID, '%d | %d | %d | %d\n', [4, 16]);
 fclose(fileID);
 targetRGB = rawPal(2:4, :)'; % Extracts 16x3 matrix of RGB values
 
-%% 2. Load PNG and Convert to Index
+% 2. Load PNG and Convert to Index
 img = imread(inputPng);
 % Handle RGBA if necessary (stripping alpha)
 if size(img, 3) == 4, img = img(:,:,1:3); end
@@ -40,7 +36,7 @@ for y = 1:h
     end
 end
 
-%% 3. Encode to ROM format
+% 3. Encode to ROM format
 numTiles = floor(h/16) * floor(w/16);
 oddData  = zeros(numTiles*64, 1, 'uint8');
 evenData = zeros(numTiles*64, 1, 'uint8');
@@ -64,7 +60,7 @@ for tile = 0:numTiles-1
     end
 end
 
-%% 4. Save and CRC Check
+% 4. Save and CRC Check
 function crc = calculateCRC32(data)
     poly = uint32(hex2dec('EDB88320')); crc = uint32(hex2dec('FFFFFFFF'));
     for i = 1:numel(data)
@@ -81,3 +77,4 @@ fid = fopen(evenRomOut, 'wb'); fwrite(fid, evenData, 'uint8'); fclose(fid);
 
 fprintf('Rebuilt %s (CRC: %08X)\n', oddRomOut, calculateCRC32(oddData));
 fprintf('Rebuilt %s (CRC: %08X)\n', evenRomOut, calculateCRC32(evenData));
+end

@@ -1,13 +1,10 @@
-clear;
+function Palette_swapper(palette)
 
-%% Configuration
+% Configuration
 inputPng     = 'Tileset.png';
 Old_palette  = 'Palette.txt';
-% Neo Geo new palette hex values
-palette = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, ...
-          0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; % Claude Yamamoto (player 1)
 
-%% 1. Convert Neo Geo 16-bit to 8-bit RGB
+% 1. Convert Neo Geo 16-bit to 8-bit RGB
 New_palette_RGB = zeros(16, 3, 'uint8');
 for i = 1:16
     c = uint16(palette(i));
@@ -22,14 +19,14 @@ for i = 1:16
         bitor(bitshift(b, 1), dark)]) * 255 / 31));
 end
 
-%% 2. Load Old Palette
+% 2. Load Old Palette
 fileID = fopen(Old_palette, 'r');
 for i=1:3, fgetl(fileID); end % Skip header
 rawPal = fscanf(fileID, '%d | %d | %d | %d\n', [4, 16]);
 fclose(fileID);
 targetRGB = rawPal(2:4, :)'; 
 
-%% 3. Load PNG and Convert to Index
+% 3. Load PNG and Convert to Index
 img = imread(inputPng);
 % Handle RGBA if already present, or drop alpha for index matching
 if size(img, 3) == 4, img_rgb = img(:,:,1:3); else, img_rgb = img; end
@@ -46,7 +43,7 @@ for y = 1:h
     end
 end
 
-%% 4. Remap to New Palette with Transparency
+% 4. Remap to New Palette with Transparency
 new_img = zeros(h, w, 4, 'uint8');
 for i = 0:15
     mask = (sheet_indices == i);
@@ -62,7 +59,7 @@ end
 
 imwrite(new_img(:,:,1:3), inputPng, 'Alpha', new_img(:,:,4));
 
-%% 5. Regenerate Palette.txt
+% 5. Regenerate Palette.txt
 fileID = fopen(Old_palette, 'w');
 fprintf(fileID, 'Palette Export (RGB 0-255):\nIndex | R | G | B\n------------------\n');
 for i = 0:15
@@ -70,7 +67,7 @@ for i = 0:15
 end
 fclose(fileID);
 
-%% 6. Export Palette to PNG (Visual Reference)
+% 6. Export Palette to PNG (Visual Reference)
 % Create a 32x512 image (32 pixels high, 16 blocks of 32 pixels wide = 512 wide)
 palette_strip = zeros(32, 512, 3, 'uint8');
 
@@ -86,4 +83,4 @@ for i = 1:16
 end
 
 imwrite(palette_strip, 'Palette.png');
-fprintf('Visual palette exported as 32x32 blocks to Palette.png\n');
+fprintf('Swapped palette exported as 32x32 blocks to Palette.png\n');

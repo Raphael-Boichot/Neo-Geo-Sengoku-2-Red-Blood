@@ -50,51 +50,51 @@ I want to maximize the scripting in order to be able to easily come back on erro
 
 - Claude Yamamoto palette 68k memory map range: 0400200-0400210, values: [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111];
 
-![](/Sengoku_2_rom_tests/Claude_Yamamoto_Palette.png)
+![](/Palettes/Claude_Yamamoto_Palette.png)
 
 - Jack Stone palette 68k memory map range: 0400220-0400230, values: [0x0011, 0x7810, 0x0C74, 0x5FC9, 0x6640, 0x6B80, 0x6FF0, 0x3037, 0x638C, 0x3AFF, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4FA0, 0x7111];
 
-![](/Sengoku_2_rom_tests/Jack_Stone_Palette.png)
+![](/Palettes/Jack_Stone_Palette.png)
 
 -////////////////////////////////////////////////////////
 
 - Mike Walsh green (ninja) palette 68k memory map range: 0400240-0400250, values: [0x0012, 0x7810, 0x0C74, 0x5FC9, 0x1738, 0x5B8C, 0x3FCF, 0x4700, 0x0C00, 0x4F93, 0x0250, 0x2680, 0x0AD0, 0x6B80, 0x6FF0, 0x7111];
 
-![](/Sengoku_2_rom_tests/Mike_Walsh_green_Palette.png)
+![](/Palettes/Mike_Walsh_green_Palette.png)
 
 - Mike Walsh blue (ninja) palette 68k memory map range: 0400240-0400250, values: [0x0015, 0x7810, 0x0C74, 0x5FC9, 0x5204, 0x5309, 0x190F, 0x4700, 0x0C00, 0x4F93, 0x0045, 0x138B, 0x29EF, 0x1DA3, 0x6FFB, 0x7111];
 
-![](/Sengoku_2_rom_tests/Mike_Walsh_blue_Palette.png)
+![](/Palettes/Mike_Walsh_blue_Palette.png)
 
 -////////////////////////////////////////////////////////
 
 - Crow Tengu God red (stick man) palette 68k memory map range: 0400260-0400270, values: [0x0013, 0x7810, 0x0C74, 0x5FC9, 0x0800, 0x0D00, 0x4F64, 0x6551, 0x0AA4, 0x0FF8, 0x7555, 0x7999, 0x0EEE, 0x0A80, 0x2EC0, 0x7111];
 
-![](/Sengoku_2_rom_tests/Crow_Tengu_God_red_Palette.png)
+![](/Palettes/Crow_Tengu_God_red_Palette.png)
 
 - Crow Tengu God green (stick man) palette 68k memory map range: 04002C0-04002D0, values: [0x0016, 0x7810, 0x0C74, 0x5FC9, 0x3040, 0x6281, 0x54E2, 0x6253, 0x52A9, 0x3AFF, 0x7555, 0x7999, 0x0EEE, 0x6870, 0x2CC0, 0x7111];
 
-![](/Sengoku_2_rom_tests/Crow_Tengu_God_green_Palette.png)
+![](/Palettes/Crow_Tengu_God_green_Palette.png)
 
 -////////////////////////////////////////////////////////
 
 - Kirimaru red (dogo) 68k memory map range: 0400280-0400290, values: [0x0014, 0x4332, 0x4663, 0x4995, 0x3BA6, 0x3DC9, 0x4FFC, 0x0A00 0x0F00, 0x4F90, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111];
 
-![](/Sengoku_2_rom_tests/Kirimaru_red_Palette.png)
+![](/Palettes/Kirimaru_red_Palette.png)
 
 - Kirimaru blue (dogo) 68k memory map range: 04002E0-04002F0, values: [0x0017, 0x4332, 0x4663, 0x4995, 0x3BA6, 0x3DC9, 0x4FFC, 0x000C, 0x306E, 0x10DF, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111];
 
-![](/Sengoku_2_rom_tests/Kirimaru_blue_Palette.png)
+![](/Palettes/Kirimaru_blue_Palette.png)
 
 -////////////////////////////////////////////////////////
 
 - Puppet Warrior blue palette 68k memory map range: 0400940-0400950, values: [0x004A, 0x0660, 0x6AA0, 0x6FF0, 0x0157, 0x029D, 0x14FF, 0x6600, 0x0A10, 0x4F20, 0x3115, 0x6348, 0x558B, 0x59BC, 0x7FFF, 0x0000];
 
-![](/Sengoku_2_rom_tests/Puppet_Warrior_blue_Palette.png)
+![](/Palettes/Puppet_Warrior_blue_Palette.png)
 
 - Puppet Warrior gray palette 68k memory map range: 0400960-0400970, values: [0x004B, 0x1720, 0x5B62, 0x5FD8, 0x0443, 0x1887, 0x0BBA, 0x7232, 0x0565, 0x09B9, 0x6223, 0x7446, 0x677A, 0x1BBC, 0x1FFF, 0x0000];
 
-![](/Sengoku_2_rom_tests/Puppet_Warrior_gray_Palette.png)
+![](/Palettes/Puppet_Warrior_gray_Palette.png)
 
 ## Acknowledgments
 - The [neogeodev community](https://wiki.neogeodev.org//index.php/Main_Page) in general and [Furrtek](https://github.com/furrtek) in particular. This project made on spare time was only possible because I stood on the shoulders of giants.

@@ -1,7 +1,7 @@
 # Neo Geo Sengoku 2 Red Blood
 ## Open source hack to turn the game into a blood bath
 
-## Current state
+## Current state: WIP
 
 - Documenting the process
 - Writing the toolchain

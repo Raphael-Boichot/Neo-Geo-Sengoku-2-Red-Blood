@@ -54,8 +54,32 @@ function update_info(ax, h_img, swatch_img, txt_display)
     
     set(swatch_img, 'CData', reshape(rgb_float, [1, 1, 3]));
     
-    r = floor(rgb_255(1) / 8); g = floor(rgb_255(2) / 8); b = floor(rgb_255(3) / 8);
-    ng_hex = bitshift(r, 10) + bitshift(g, 5) + b;
+    % 1. Convert 8-bit to 5-bit (0-31 range)
+    r = floor(rgb_255(1) / 8);
+    g = floor(rgb_255(2) / 8);
+    b = floor(rgb_255(3) / 8);
+    
+    % 2. Extract the LSB (Dark bit) 
+    % A common approach is to use the LSB of the Red channel, 
+    % or define it based on total intensity.
+    dark_bit = bitand(r, 1); 
+    
+    % 3. Mask the MSBs (bits 4-1 of the 5-bit value)
+    r_msb = bitshift(r, -1);
+    g_msb = bitshift(g, -1);
+    b_msb = bitshift(b, -1);
+    
+    % 4. Pack into 16-bit format:
+    % Bit 15: Dark bit
+    % Bit 14: R0, Bit 13: G0, Bit 12: B0
+    % Bits 11-8: R4-R1, Bits 7-4: G4-G1, Bits 3-0: B4-B1
+    ng_hex = bitshift(dark_bit, 15) + ...
+             bitshift(bitand(r, 1), 14) + ...
+             bitshift(bitand(g, 1), 13) + ...
+             bitshift(bitand(b, 1), 12) + ...
+             bitshift(r_msb, 8) + ...
+             bitshift(g_msb, 4) + ...
+             bitshift(b_msb, 0);
     
     set(txt_display, 'String', sprintf('RGB: [%d, %d, %d] | Neo Geo: 0x%04X', ...
         rgb_255(1), rgb_255(2), rgb_255(3), ng_hex));

@@ -1,6 +1,4 @@
-function Crom_to_png(oddRomFile,evenRomFile,palette)
-
-outputPng   = 'Tileset.png';
+function Crom_to_png(oddRomFile,evenRomFile,palette,outputPng)
 TILES_PER_ROW = 32;
 
 % 1. CRC32 Check Function
@@ -19,9 +17,8 @@ TILES_PER_ROW = 32;
 fid1 = fopen(oddRomFile,'rb'); odd = fread(fid1,Inf,'uint8=>uint8'); fclose(fid1);
 fid2 = fopen(evenRomFile,'rb'); even = fread(fid2,Inf,'uint8=>uint8'); fclose(fid2);
 
-fprintf('Verifying ROMs:\n');
-fprintf('  %s CRC32: %08X\n', oddRomFile, calculateCRC32(odd));
-fprintf('  %s CRC32: %08X\n', evenRomFile, calculateCRC32(even));
+fprintf('  %s (CRC32: %08X)\n', oddRomFile, calculateCRC32(odd));
+fprintf('  %s (CRC32: %08X)\n', evenRomFile, calculateCRC32(even));
 
 % 3. Decode
 numTiles = numel(odd)/64;
@@ -63,7 +60,6 @@ for y=1:size(sheet_indices,1)
     end
 end
 imwrite(sheet(:,:,1:3), outputPng, 'Alpha', sheet(:,:,4));
-fprintf('Export complete.\n');
 
 % 6. Export Palette to Text File
 paletteFid = fopen('Palette.txt', 'w');
@@ -76,7 +72,6 @@ for i = 1:16
         i-1, rgbPalette(i,1), rgbPalette(i,2), rgbPalette(i,3));
 end
 fclose(paletteFid);
-fprintf('Palette exported to Palette.txt\n');
 
 % 7. Export Palette to PNG (Visual Reference)
 % Create a 32x512 image (32 pixels high, 16 blocks of 32 pixels wide = 512 wide)
@@ -94,5 +89,4 @@ for i = 1:16
 end
 
 imwrite(palette_strip, 'Palette.png');
-fprintf('Original palette exported as 32x32 blocks to Palette.png\n');
 end

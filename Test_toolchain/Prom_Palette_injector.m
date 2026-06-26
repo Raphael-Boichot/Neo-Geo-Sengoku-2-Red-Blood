@@ -1,5 +1,4 @@
 function Prom_Palette_injector(PRomFile,palette_old,palette_new)
-
 % 1. Load File
 fid = fopen(PRomFile, 'rb');
 if fid == -1, error('Could not open file: %s', PRomFile); end
@@ -27,7 +26,7 @@ end
 
 % 5. Save and Final CRC
 [~, name, ext] = fileparts(PRomFile);
-newFileName = ['.\roms_out\',name, ext, '.new' ];
+newFileName = ['.\roms_out\',name, ext];
 fid = fopen(newFileName, 'wb');
 fwrite(fid, data, 'uint8');
 fclose(fid);

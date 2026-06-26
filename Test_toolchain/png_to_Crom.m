@@ -1,12 +1,8 @@
-function png_to_Crom(oddRomOut, evenRomOut)
-
-warning off
+function png_to_Crom(oddRomOut, evenRomOut,inputPng)
+TILES_PER_ROW = 32;
 % Configuration
-inputPng     = 'Tileset.png';
 paletteFile  = 'Palette.txt';
 mkdir('.\roms_out\')
-
-TILES_PER_ROW = 32;
 
 % 1. Load Palette
 % Reads the R, G, B values from the provided text file
@@ -75,6 +71,6 @@ end
 fid = fopen(oddRomOut, 'wb'); fwrite(fid, oddData, 'uint8'); fclose(fid);
 fid = fopen(evenRomOut, 'wb'); fwrite(fid, evenData, 'uint8'); fclose(fid);
 
-fprintf('Rebuilt %s (CRC: %08X)\n', oddRomOut, calculateCRC32(oddData));
-fprintf('Rebuilt %s (CRC: %08X)\n', evenRomOut, calculateCRC32(evenData));
+fprintf('Rebuilt %s (CRC32: %08X)\n', oddRomOut, calculateCRC32(oddData));
+fprintf('Rebuilt %s (CRC32: %08X)\n', evenRomOut, calculateCRC32(evenData));
 end

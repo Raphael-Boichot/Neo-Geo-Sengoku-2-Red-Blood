@@ -1,7 +1,5 @@
-function Palette_swapper(palette)
-
+function Palette_swapper(palette,inputPng)
 % Configuration
-inputPng     = 'Tileset.png';
 Old_palette  = 'Palette.txt';
 
 % 1. Convert Neo Geo 16-bit to 8-bit RGB

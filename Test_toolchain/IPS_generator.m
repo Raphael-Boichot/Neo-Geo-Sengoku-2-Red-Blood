@@ -1,4 +1,5 @@
 function IPS_generator(originalFile,modifiedFile,ipsFile)
+mkdir .\IPS_scripts\
 % Read files
 f1 = fopen(originalFile, 'rb'); data1 = fread(f1, inf, 'uint8'); fclose(f1);
 f2 = fopen(modifiedFile, 'rb'); data2 = fread(f2, inf, 'uint8'); fclose(f2);

@@ -30,13 +30,12 @@ Seeing at the tileset and palettes, Sengoku 2 was never thought nor programmed t
 - Custom codes to turn C ROMs to png and the inverse. Tileset is edited from a png image with the current character palette, then turned back to C ROM.
 - Custom codes to swap palettes in P ROMs.
 - Custom codes to generate and chain IPS scripts.
-- Gemini / Chatgpt in free version (the less stupid depending on the context) to make tools that would render any automation task less tedious.
 - MS Paint to edit images because this is the best tool ever created.
 - Spriter ressources to check for inconsistencies in colors and planning the work.
 - Rince and repeat with all characters.
 - Make a final IPS script.
 
-I want to maximize the scripting in order to be able to easily come back on errors / bad design later.
+I want to maximize the scripting in order to be able to easily come back on errors / bad design later. Some codes or parts of codes were made with A.I. to speed up the process.
 
 ## Identified flaws due to the 15 colors per tile limitation
 

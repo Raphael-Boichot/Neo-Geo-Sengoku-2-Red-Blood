@@ -1,4 +1,4 @@
-function neogeo_color_picker()
+function Color_picker()
     % Generate a 512x512 matrix
     % Columns (X): Hue
     % Rows (Y): Saturation and Value combination for Black -> White -> Colors

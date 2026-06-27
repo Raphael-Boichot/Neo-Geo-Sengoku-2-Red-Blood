@@ -3,6 +3,7 @@ print("Neo Geo Ultra-Compact Color Ribbon Monitor Active")
 print("--------------------------------------------------")
 
 local main_mem = nil
+local frame_counter = 0  -- Global frame counter for the snapshot routine
 
 local function get_program_space()
     local cpu = manager.machine.devices[":maincpu"]
@@ -40,6 +41,8 @@ local function neogeo_to_argb(raw_word)
 end
 
 emu.register_frame_done(function()
+    frame_counter = frame_counter + 1  -- Increment counter every frame
+
     if not main_mem then
         main_mem = get_program_space()
         if not main_mem then return end
@@ -110,5 +113,10 @@ emu.register_frame_done(function()
                 end
             end
         end
+    end
+
+    -- Snapshot routine: Triggers every 20 frames using the standard MAME video system
+    if frame_counter % 20 == 0 then
+        manager.machine.video:snapshot()
     end
 end)

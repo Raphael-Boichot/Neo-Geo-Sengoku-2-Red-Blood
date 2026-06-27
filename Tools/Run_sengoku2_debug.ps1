@@ -1,0 +1,1 @@
+.\mame -debug -window -skip_gameinfo sengoku2

@@ -1,22 +1,30 @@
 print("--------------------------------------------------")
-print("Neo Geo Ultra-Compact Color Ribbon Monitor Active")
+print("Neo Geo Engine - Real-Time Tracking + Capture Engine")
 print("--------------------------------------------------")
 
 local main_mem = nil
-local frame_counter = 0  -- Global frame counter for the snapshot routine
+local frame_counter = 0
 
 local function get_program_space()
     local cpu = manager.machine.devices[":maincpu"]
     if cpu and cpu.spaces["program"] then
         return cpu.spaces["program"]
     end
-    return nil
 end
 
--- Official NeoGeoDev Wiki 16-bit color decoder
+--------------------------------------------------
+-- SAFE VRAM READ HELPER
+--------------------------------------------------
+local function read_vram(addr)
+    main_mem:write_u16(0x3C0000, addr)
+    return main_mem:read_u16(0x3C0002) or 0
+end
+
+--------------------------------------------------
+-- OFFICIAL NEOGEODEV WIKI 16-BIT COLOR DECODER
+--------------------------------------------------
 local function neogeo_to_argb(raw_word)
     local dark_bit = (raw_word >> 15) & 1
-
     local r0 = (raw_word >> 14) & 1
     local g0 = (raw_word >> 13) & 1
     local b0 = (raw_word >> 12) & 1
@@ -41,82 +49,121 @@ local function neogeo_to_argb(raw_word)
 end
 
 emu.register_frame_done(function()
-    frame_counter = frame_counter + 1  -- Increment counter every frame
+    frame_counter = frame_counter + 1
+    if frame_counter < 300 then return end
 
     if not main_mem then
         main_mem = get_program_space()
         if not main_mem then return end
     end
 
-    local active_palette_flags = {}
-    for p = 0, 255 do active_palette_flags[p] = false end
+    --------------------------------------------------
+    -- REAL-TIME DATA SCAN
+    --------------------------------------------------
+    local current_sprites = {}
+    local current_palettes = {}
+    local found_palettes = {}
+    
+    local active_x = 0
+    local active_y = 0
 
-    -- Fast scan of the active sprite allocation list in Work RAM
-    for addr = 0x100000, 0x107F00, 8 do
-        local status_word = main_mem:read_u16(addr)
-        local attr_word   = main_mem:read_u16(addr + 2)
-        local x_pos_word  = main_mem:read_u16(addr + 4)
-        local y_pos_word  = main_mem:read_u16(addr + 6)
+    for sprite_id = 1, 380 do
+        local scb3_word = read_vram(0x8200 + (sprite_id - 1))
+        local scb4_word = read_vram(0x8400 + (sprite_id - 1))
 
-        if status_word > 0 and status_word ~= 0xFFFF then
-            local raw_x = x_pos_word & 0x1FF
-            local raw_y = y_pos_word & 0x1FF
+        local tile_count = scb3_word & 0x3F
+        local is_linked = ((scb3_word >> 6) & 1) == 1
+        local y_reg_val = (scb3_word >> 7) & 0x1FF
+
+        if is_linked then
+            if #current_sprites > 0 then
+                active_x = current_sprites[#current_sprites].x1 + 16
+            else
+                active_x = active_x + 16
+            end
+        else
+            active_x = (scb4_word >> 7)
+            local y = (scb3_word >> 7) & 0x1FF
+            if y > 255 then y = y - 512 end
+            active_y = 496 - y
+        end
+
+        if tile_count > 0 and tile_count <= 32 and y_reg_val < 0x1F0 then
+            local hardware_palette_index = 0
+            local scb1_base = (sprite_id - 1) * 64
             
-            if raw_x > 0 and raw_x < 320 and raw_y > 0 and raw_y < 224 then
-                local palette_id = (attr_word >> 8) & 0xFF
-                active_palette_flags[palette_id] = true
+            for t = 0, (tile_count - 1) do
+                local scb1_attr = read_vram(scb1_base + (t * 2) + 1)
+                local check_pal = (scb1_attr >> 8) & 0xFF
+                if check_pal > 0 then
+                    hardware_palette_index = check_pal
+                    break
+                end
+            end
+            
+            if hardware_palette_index == 0 then
+                hardware_palette_index = (read_vram(scb1_base + 1) >> 8) & 0xFF
+            end
+
+            local palette_ram_addr = 0x400000 + (hardware_palette_index * 32)
+            local color_zero_word = main_mem:read_u16(palette_ram_addr)
+
+            local base_x = active_x
+            if base_x > 320 then base_x = base_x - 512 end
+            local base_y = active_y
+            if base_y > 224 then base_y = base_y - 512 end
+
+            if (base_x + 16) > 0 and base_x < 320 and (base_y + 16) > 0 and base_y < 224 then
+                found_palettes[hardware_palette_index] = true
+                table.insert(current_sprites, {
+                    x1 = base_x, y1 = base_y,
+                    text = string.format("0x%02X", color_zero_word & 0xFF)
+                })
             end
         end
     end
 
+    for pal_idx in pairs(found_palettes) do
+        table.insert(current_palettes, pal_idx)
+    end
+    table.sort(current_palettes)
+
+    --------------------------------------------------
+    -- RENDER ONSCREEN GRAPHICS
+    --------------------------------------------------
     for _, screen in pairs(manager.machine.screens) do
         if screen then
-            -- Ultra low-profile minimal header
-            screen:draw_text(10, 4, "68K ADDR  PALETTES", 0xff00ff00, 0xbb000000)
-            
-            local y_offset = 12
-            local lines_printed = 0
-            
-            -- Swatch dimensions optimized for dense merging
-            local swatch_w = 6
-            local swatch_h = 5
-            local start_x_swatches = 65
+            -- Sprite Labels: Black text on Cyan background (Aligned to x1, y1)
+            for _, spr in ipairs(current_sprites) do
+                screen:draw_box(spr.x1-2, spr.y1, spr.x1 + 16, spr.y1 + 8, 0xFF00FFFF, 0xFF00FFFF)
+                screen:draw_text(spr.x1, spr.y1, spr.text, 0xFF000000)
+            end
 
-            for pal_row = 0, 255 do
-                if active_palette_flags[pal_row] == true then
-                    local absolute_68k_addr = 0x400000 + (pal_row * 0x20)
-                    
-                    -- Render address tag
-                    local addr_str = string.format("0x%06X:", absolute_68k_addr)
-                    screen:draw_text(10, y_offset - 1, addr_str, 0xffffffff, 0xaa000000)
-                    
-                    for color_col = 0, 15 do
-                        local color_word_addr = absolute_68k_addr + (color_col * 2)
-                        local raw_color_hex = main_mem:read_u16(color_word_addr) or 0x0000
-                        
-                        local draw_color = neogeo_to_argb(raw_color_hex)
-                        
-                        -- Removing the blank padding multiplier merges the chips seamlessly
-                        local box_x1 = start_x_swatches + (color_col * swatch_w)
-                        local box_y1 = y_offset
-                        local box_x2 = box_x1 + swatch_w
-                        local box_y2 = box_y1 + swatch_h
-                        
-                        screen:draw_box(box_x1, box_y1, box_x2, box_y2, draw_color, draw_color)
-                    end
-                    
-                    -- Vertical stride dropped to 6 pixels for maximum text compression
-                    y_offset = y_offset + 6 
-                    lines_printed = lines_printed + 1
-                    
-                    if lines_printed >= 32 then break end
+            -- Palette matrix: Black text on Cyan background
+            local start_x = 4
+            local start_y = 4
+            local row_height = 8   
+            local square_size = 4  
+
+            for row_idx, pal_idx in ipairs(current_palettes) do
+                local grid_y = start_y + ((row_idx - 1) * row_height)
+                screen:draw_box(start_x-2, grid_y, start_x + 16, grid_y + 8, 0xFF00FFFF, 0xFF00FFFF)
+                screen:draw_text(start_x, grid_y, string.format("0x%02X:", pal_idx), 0xFF000000)
+
+                for color_idx = 0, 15 do
+                    local color_word = main_mem:read_u16(0x400000 + (pal_idx * 32) + (color_idx * 2))
+                    local draw_color = neogeo_to_argb(color_word)
+                    local sq_x1 = start_x + 22 + (color_idx * square_size)
+                    local sq_y1 = grid_y + 1
+                    local sq_x2 = sq_x1 + (square_size - 1)
+                    local sq_y2 = sq_y1 + (square_size * 1.5)
+                    screen:draw_box(sq_x1, sq_y1, sq_x2, sq_y2, draw_color, draw_color)
                 end
             end
         end
     end
 
-    -- Snapshot routine: Triggers every 20 frames using the standard MAME video system
-    if frame_counter % 20 == 0 then
+    if frame_counter % 60 == 0 then
         manager.machine.video:snapshot()
     end
 end)

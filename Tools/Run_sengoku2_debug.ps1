@@ -1,1 +1,1 @@
-.\mame -debug -window -skip_gameinfo sengoku2
+.\mame -debug -window -skip_gameinfo -snapsize 1600x1120 sengoku2

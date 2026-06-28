@@ -1,1 +1,3 @@
-.\mame -autoboot_script monitor.lua -window -skip_gameinfo -snapsize 1280x896 sengoku2
+.\mame -autoboot_script monitor.lua -window -skip_gameinfo -snapsize 1600x1120 -nofilter sengoku2
+
+

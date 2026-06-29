@@ -49,7 +49,7 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 - Claude Yamamoto (Player 1)
 
-- ![](/Palettes/Claude_Yamamoto_Palette.png)
+![](/Palettes/Claude_Yamamoto_Palette.png)
 
 - Jack Stone (Player 2)
 
@@ -58,18 +58,24 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 - Mike Walsh green (player 1) and blue (player 2)
 
 ![](/Palettes/Mike_Walsh_green_Palette.png)
+
 ![](/Palettes/Mike_Walsh_blue_Palette.png)
 
-- Crow Tengu God red       ![](/Palettes/Crow_Tengu_God_red_Palette.png)
-- Crow Tengu God green     ![](/Palettes/Crow_Tengu_God_green_Palette.png)
-- Kirimaru red (dogo)      ![](/Palettes/Kirimaru_red_Palette.png)
-- Kirimaru blue (dogo)     ![](/Palettes/Kirimaru_blue_Palette.png)
+- Crow Tengu God red (player 1) and green (player 2)
+
+![](/Palettes/Crow_Tengu_God_red_Palette.png)
+
+![](/Palettes/Crow_Tengu_God_green_Palette.png)
+
+- Kirimaru red (player 1) and blue (player 2)
+
+![](/Palettes/Kirimaru_red_Palette.png)
+
+![](/Palettes/Kirimaru_blue_Palette.png)
 
 ## Regular palettes, ennemies of interest
 
-- Puppet Warrior blue, memory range: 0400940-0400950, values: [0x004A, 0x0660, 0x6AA0, 0x6FF0, 0x0157, 0x029D, 0x14FF, 0x6600, 0x0A10, 0x4F20, 0x3115, 0x6348, 0x558B, 0x59BC, 0x7FFF, 0x0000];
-
-![](/Palettes/Puppet_Warrior_blue_Palette.png)
+- Puppet Warrior blue ![](/Palettes/Puppet_Warrior_blue_Palette.png)
 
 - Puppet Warrior gray, memory range: 0400960-0400970, values: [0x004B, 0x1720, 0x5B62, 0x5FD8, 0x0443, 0x1887, 0x0BBA, 0x7232, 0x0565, 0x09B9, 0x6223, 0x7446, 0x677A, 0x1BBC, 0x1FFF, 0x0000];
 

@@ -47,10 +47,19 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ## Regular palettes, main characters
 
-- Claude Yamamoto          ![](/Palettes/Claude_Yamamoto_Palette.png)
-- Jack Stone               ![](/Palettes/Jack_Stone_Palette.png)
-- Mike Walsh green (ninja) ![](/Palettes/Mike_Walsh_green_Palette.png)
-- Mike Walsh blue (ninja)  ![](/Palettes/Mike_Walsh_blue_Palette.png)
+- Claude Yamamoto (Player 1)
+
+- ![](/Palettes/Claude_Yamamoto_Palette.png)
+
+- Jack Stone (Player 2)
+
+![](/Palettes/Jack_Stone_Palette.png)
+
+- Mike Walsh green (player 1) and blue (player 2)
+
+![](/Palettes/Mike_Walsh_green_Palette.png)
+![](/Palettes/Mike_Walsh_blue_Palette.png)
+
 - Crow Tengu God red       ![](/Palettes/Crow_Tengu_God_red_Palette.png)
 - Crow Tengu God green     ![](/Palettes/Crow_Tengu_God_green_Palette.png)
 - Kirimaru red (dogo)      ![](/Palettes/Kirimaru_red_Palette.png)

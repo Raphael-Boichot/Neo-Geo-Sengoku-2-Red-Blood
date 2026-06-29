@@ -80,6 +80,10 @@ palette = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C0
 % palette = [0x0081, 0x6721, 0x1B73, 0x4FC8, 0x4600, 0x4A11, 0x4F33, 0x0143, 0x1383, 0x66D8, 0x0444, 0x7AAA, 0x7FFF, 0x4F66, 0x7FFC, 0x0000]; % Dark Monarch
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Bosses %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Alternative palettes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% palette = [0x0070, 0x2812, 0x2912, 0x6A12, 0x7C12, 0x3E12, 0x6E13, 0x5F23, 0x5F66, 0x7F77, 0x6F99, 0x5FBA, 0x6FCC, 0x5FED, 0x6FFF, 0x7222]; % stream of blood, gradation of intense reds
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Alternative palettes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 dummy_palette = [0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000];
 disp('Initialization completed')
 
@@ -88,14 +92,14 @@ disp('Initialization completed')
 disp('Building tileset in png from palette vector')
 Crom_to_png(oddRomFile_big,evenRomFile_big,palette, outpng_big)
 Crom_to_png(oddRomFile_small,evenRomFile_small,palette, outpng_small)
-% Here some manual editing of the png tileset is expected
 %///////////////section to comment to edit tileset//////////////////
 
 %% Neo Geo new palette hex values for testing
 disp('Swapping palettes from vector and updating palette.txt')
-alternate_palette = palette;
-Palette_swapper(alternate_palette,outpng_big)
-Palette_swapper(alternate_palette,outpng_small)
+alternative_palette = [0x0070, 0x2812, 0x2912, 0x6A12, 0x7C12, 0x3E12, 0x6E13, 0x5F23, 0x5F66, 0x7F77, 0x6F99, 0x5FBA, 0x6FCC, 0x5FED, 0x6FFF, 0x7222]; % stream of blood, gradation of intense reds
+Palette_swapper(alternative_palette,outpng_big)
+Palette_swapper(alternative_palette,outpng_small)
+% Here some manual editing of the png tileset is expected
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 disp('Building back C ROMs from png and palette.txt')
@@ -109,8 +113,8 @@ disp('Targeting and injecting new palette(s) in P ROM')
 copyfile('.\roms\040-p1.p1','.\roms_out\040-p1.p1');
 PRomFile = '.\roms_out\040-p1.p1';
 % Here some manual editing of the palette vector is expected
-palette_old = palette;
-palette_new = palette;
+palette_old = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; % Claude Yamamoto (player 1)
+palette_new = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; % Claude Yamamoto (player 1)
 Prom_Palette_injector(PRomFile,palette_old,palette_new)
 % CRC32 must be the same in test mode
 

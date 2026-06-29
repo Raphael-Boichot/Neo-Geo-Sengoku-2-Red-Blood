@@ -90,7 +90,6 @@ palette = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C0
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Alternative palettes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % palette = [0x0070, 0x2812, 0x2912, 0x6A12, 0x7C12, 0x3E12, 0x6E13, 0x5F23, 0x5F66, 0x7F77, 0x6F99, 0x5FBA, 0x6FCC, 0x5FED, 0x6FFF, 0x7222]; % stream of blood, gradation of intense reds
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Alternative palettes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 dummy_palette = [0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000];
 disp('Initialization completed')
 
@@ -103,7 +102,7 @@ Crom_to_png(oddRomFile_small,evenRomFile_small,palette, outpng_small, txt_exchan
 
 %% Neo Geo new palette hex values for testing
 disp('Swapping palettes from vector and updating palette.txt')
-alternative_palette = [0x0070, 0x2812, 0x2912, 0x6A12, 0x7C12, 0x3E12, 0x6E13, 0x5F23, 0x5F66, 0x7F77, 0x6F99, 0x5FBA, 0x6FCC, 0x5FED, 0x6FFF, 0x7222]; % stream of blood, gradation of intense reds
+alternative_palette = [0x0012, 0x7810, 0x0C74, 0x5FC9, 0x1738, 0x5B8C, 0x3FCF, 0x4700, 0x0C00, 0x4F93, 0x0250, 0x2680, 0x0AD0, 0x6B80, 0x6FF0, 0x7111]; % Mike Walsh (green, player 1)
 Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % Here some manual editing of the png tileset is expected

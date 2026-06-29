@@ -85,13 +85,13 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ![](/Palettes/Puppet_Warrior_orange_Palette.png)
 
-- Ninja Monk violet, memory range: 0400560-0400570, values: [0x002B, 0x4730, 0x7B32, 0x5F85, 0x2464, 0x28A8, 0x7EFE, 0x4430, 0x4860, 0x4FA0, 0x5323, 0x7626, 0x2B2B, 0x7E6E, 0x6FC8, 0x7202];
+- Ninja Monk violet, gray and red
 
 ![](/Palettes/Ninka_Monk_violet_Palette.png)
 
-- Ninja Monk gray, memory range: 0400920-0400930, values: [0x0049, 0x6721, 0x2C53, 0x0F95, 0x2555, 0x3999, 0x7FFF, 0x6610, 0x4B20, 0x4F50, 0x6336, 0x6669, 0x7BBE, 0x7EEF, 0x4FE8, 0x0003];
-
 ![](/Palettes/Ninka_Monk_gray_Palette.png)
+
+![](/Palettes/Ninka_Monk_red_Palette.png)
 
 ## Acknowledgments
 - The [neogeodev community](https://wiki.neogeodev.org//index.php/Main_Page) in general and [Furrtek](https://github.com/furrtek) in particular. This project made on spare time was only possible because I stood on the shoulders of giants.

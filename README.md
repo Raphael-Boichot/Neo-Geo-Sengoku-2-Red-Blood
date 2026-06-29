@@ -93,6 +93,16 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ![](/Palettes/Ninka_Monk_red_Palette.png)
 
+- Sword Guard white, blue, violet and brown
+
+![](/Palettes/Sword_Guard_white_palette.png)
+
+![](/Palettes/Sword_Guard_blue_palette.png)
+
+![](/Palettes/Sword_Guard_violet_palette.png)
+
+![](/Palettes/Sword_Guard_brown_palette.png)
+
 ## Acknowledgments
 - The [neogeodev community](https://wiki.neogeodev.org//index.php/Main_Page) in general and [Furrtek](https://github.com/furrtek) in particular. This project made on spare time was only possible because I stood on the shoulders of giants.
 - [Matt Greer](https://www.mattgreer.dev/about/) for sharing [hacks and usefull codes](https://github.com/city41/rotary-bobble) about Neo Geo hacking and the very usefull [sprite viewer](https://neospriteviewer.mattgreer.dev/).

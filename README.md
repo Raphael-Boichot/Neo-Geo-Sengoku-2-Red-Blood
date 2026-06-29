@@ -75,11 +75,15 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ## Regular palettes, ennemies of interest
 
-- Puppet Warrior blue ![](/Palettes/Puppet_Warrior_blue_Palette.png)
+- Puppet Warrior blue, gray, blue and red (+ horse) and orange
 
-- Puppet Warrior gray, memory range: 0400960-0400970, values: [0x004B, 0x1720, 0x5B62, 0x5FD8, 0x0443, 0x1887, 0x0BBA, 0x7232, 0x0565, 0x09B9, 0x6223, 0x7446, 0x677A, 0x1BBC, 0x1FFF, 0x0000];
+![](/Palettes/Puppet_Warrior_blue_Palette.png)
 
 ![](/Palettes/Puppet_Warrior_gray_Palette.png)
+
+![](/Palettes/Puppet_Warrior_blue_red_Palette.png)
+
+![](/Palettes/Puppet_Warrior_orange_Palette.png)
 
 - Ninja Monk violet, memory range: 0400560-0400570, values: [0x002B, 0x4730, 0x7B32, 0x5F85, 0x2464, 0x28A8, 0x7EFE, 0x4430, 0x4860, 0x4FA0, 0x5323, 0x7626, 0x2B2B, 0x7E6E, 0x6FC8, 0x7202];
 

@@ -47,6 +47,10 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ## Regular palettes, main characters
 
+- Stream of blood (boring)
+
+![](/Palettes/Stream_of_blood_Palette.png)
+
 - Claude Yamamoto (Player 1)
 
 ![](/Palettes/Claude_Yamamoto_Palette.png)

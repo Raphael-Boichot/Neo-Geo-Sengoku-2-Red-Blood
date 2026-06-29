@@ -8,6 +8,11 @@ disp('If test is good, checksums before and after must coincide')
 disp('Just ignore this message in case you''re doing modifications')
 
 %% Init section
+
+% general settings
+mkdir('.\roms_out\');
+mkdir('.\IPS_scripts\');
+
 % Original roms
 oddRomFile_big  = '.\roms\040-c1.c1';
 evenRomFile_big = '.\roms\040-c2.c2';
@@ -25,6 +30,8 @@ modified_prog = '.\roms_out\040-p1.p1';
 
 outpng_big ='Tileset_big.png';
 outpng_small ='Tileset_small.png';
+txt_exchange_palette_big = 'txt_exchange_palette_big.txt';
+txt_exchange_palette_small = 'txt_exchange_palette_small.txt';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main characters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 palette = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; % Claude Yamamoto (player 1)
@@ -39,7 +46,7 @@ palette = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C0
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% regular foes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % palette = [0x0001, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF]; % general flashing effect when hit
-% palette = [0x0070, 0x0660, 0x6AA0, 0x0DD0, 0x6EE0, 0x7FF4, 0x6FFA, 0x7FFF, 0x0000, 0x7154, 0x3275, 0x2398, 0x36B9, 0x47EB, 0x7BFE, 0x7FFF]; % stream of blood, many ennemies
+% palette = [0x0070, 0x0660, 0x6AA0, 0x0DD0, 0x6EE0, 0x7FF4, 0x6FFA, 0x7FFF, 0x0000, 0x7154, 0x3275, 0x2398, 0x36B9, 0x47EB, 0x7BFE, 0x7FFF]; % stream of boring blood, many ennemies
 % palette = [0x0032, 0x3741, 0x2C85, 0x4FC9, 0x0520, 0x4A30, 0x1D74, 0x3132, 0x3375, 0x67A8, 0x7555, 0x0AAA, 0x7FFF, 0x2069, 0x00EE, 0x7111]; % Sword guard, white
 % palette = [0x0038, 0x3741, 0x2C85, 0x4FC9, 0x6550, 0x6B90, 0x6FE0, 0x0555, 0x0AAA, 0x0FFF, 0x7335, 0x7669, 0x699D, 0x2085, 0x30FC, 0x7111]; % Sword guard, blue
 % palette = [0x0039, 0x3741, 0x2C85, 0x4FC9, 0x2029, 0x106F, 0x10DF, 0x4600, 0x2B50, 0x4F90, 0x6424, 0x7846, 0x1DAB, 0x2980, 0x6ED0, 0x7111]; % Sword guard, violet
@@ -90,25 +97,25 @@ disp('Initialization completed')
 %% Transforms the pair of roms in png tileset + palette image to ckeck
 %///////////////section to comment to edit tileset//////////////////
 disp('Building tileset in png from palette vector')
-Crom_to_png(oddRomFile_big,evenRomFile_big,palette, outpng_big)
-Crom_to_png(oddRomFile_small,evenRomFile_small,palette, outpng_small)
+Crom_to_png(oddRomFile_big,evenRomFile_big,palette, outpng_big, txt_exchange_palette_big)
+Crom_to_png(oddRomFile_small,evenRomFile_small,palette, outpng_small, txt_exchange_palette_small)
 %///////////////section to comment to edit tileset//////////////////
 
 %% Neo Geo new palette hex values for testing
 disp('Swapping palettes from vector and updating palette.txt')
-alternative_palette = [0x0012, 0x7810, 0x0C74, 0x5FC9, 0x1738, 0x5B8C, 0x3FCF, 0x4700, 0x0C00, 0x4F93, 0x0250, 0x2680, 0x0AD0, 0x6B80, 0x6FF0, 0x7111]; % Mike Walsh (green, player 1)
-Palette_swapper(alternative_palette,outpng_big)
-Palette_swapper(alternative_palette,outpng_small)
+alternative_palette = [0x0070, 0x2812, 0x2912, 0x6A12, 0x7C12, 0x3E12, 0x6E13, 0x5F23, 0x5F66, 0x7F77, 0x6F99, 0x5FBA, 0x6FCC, 0x5FED, 0x6FFF, 0x7222]; % stream of blood, gradation of intense reds
+Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
+Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % Here some manual editing of the png tileset is expected
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 disp('Building back C ROMs from png and palette.txt')
-png_to_Crom(oddRomOut_big, evenRomOut_big,outpng_big)
-png_to_Crom(oddRomOut_small, evenRomOut_small,outpng_small)
+png_to_Crom(oddRomOut_big, evenRomOut_big,outpng_big,txt_exchange_palette_big)
+png_to_Crom(oddRomOut_small, evenRomOut_small,outpng_small,txt_exchange_palette_small)
 % CRC32 must be the same in test mode
 
-visdiff(oddRomFile_small,oddRomOut_small)
-visdiff(evenRomFile_small,evenRomOut_small)
+% visdiff(oddRomFile_small,oddRomOut_small)
+% visdiff(evenRomFile_small,evenRomOut_small)
 
 %% Injects new palettes in P ROMs
 % Here some manual editing of the new palette
@@ -116,12 +123,12 @@ disp('Targeting and injecting new palette(s) in P ROM')
 copyfile('.\roms\040-p1.p1','.\roms_out\040-p1.p1');
 PRomFile = '.\roms_out\040-p1.p1';
 % Here some manual editing of the palette vector is expected
-palette_old = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; % Claude Yamamoto (player 1)
-palette_new = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; % Claude Yamamoto (player 1)
+palette_old = [0x0070, 0x0660, 0x6AA0, 0x0DD0, 0x6EE0, 0x7FF4, 0x6FFA, 0x7FFF, 0x0000, 0x7154, 0x3275, 0x2398, 0x36B9, 0x47EB, 0x7BFE, 0x7FFF]; % stream of boring blood, many ennemies
+palette_new = [0x0070, 0x2812, 0x2912, 0x6A12, 0x7C12, 0x3E12, 0x6E13, 0x5F23, 0x5F66, 0x7F77, 0x6F99, 0x5FBA, 0x6FCC, 0x5FED, 0x6FFF, 0x7222]; % stream of blood, gradation of intense reds
 Prom_Palette_injector(PRomFile,palette_old,palette_new)
 % CRC32 must be the same in test mode
 
-%% Generate IPF file for these modifications
+%% Generate IPF files for all these modifications
 disp('Generating IPS script')
 ipsFile='.\IPS_scripts\040-c1.c1.ips';
 IPS_generator(oddRomFile_big,oddRomOut_big,ipsFile)

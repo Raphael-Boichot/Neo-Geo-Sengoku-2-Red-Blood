@@ -1,7 +1,5 @@
-function png_to_Crom(oddRomOut, evenRomOut,inputPng)
+function png_to_Crom(oddRomOut, evenRomOut,inputPng, paletteFile)
 TILES_PER_ROW = 32;
-% Configuration
-paletteFile  = 'Palette.txt';
 
 % 1. Load Palette
 fileID = fopen(paletteFile, 'r');

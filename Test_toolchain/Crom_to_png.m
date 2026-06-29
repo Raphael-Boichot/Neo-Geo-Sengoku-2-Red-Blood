@@ -1,4 +1,4 @@
-function Crom_to_png(oddRomFile,evenRomFile,palette,outputPng)
+function Crom_to_png(oddRomFile,evenRomFile,palette,outputPng, outputPalette)
 TILES_PER_ROW = 32;
 
 % 1. CRC32 Check Function
@@ -17,8 +17,8 @@ TILES_PER_ROW = 32;
 fid1 = fopen(oddRomFile,'rb'); odd = fread(fid1,Inf,'uint8=>uint8'); fclose(fid1);
 fid2 = fopen(evenRomFile,'rb'); even = fread(fid2,Inf,'uint8=>uint8'); fclose(fid2);
 
-fprintf('  %s (CRC32: %08X)\n', oddRomFile, calculateCRC32(odd));
-fprintf('  %s (CRC32: %08X)\n', evenRomFile, calculateCRC32(even));
+fprintf('Source  %s (CRC32: %08X)\n', oddRomFile, calculateCRC32(odd));
+fprintf('Source  %s (CRC32: %08X)\n', evenRomFile, calculateCRC32(even));
 
 % 3. Decode
 numTiles = numel(odd)/64;
@@ -66,7 +66,7 @@ end
 imwrite(sheet(:,:,1:3), outputPng, 'Alpha', sheet(:,:,4));
 
 % 6. Export Palette to Text File
-paletteFid = fopen('Palette.txt', 'w');
+paletteFid = fopen(outputPalette, 'w');
 fprintf(paletteFid, 'Palette Export (RGB 0-255):\n');
 fprintf(paletteFid, 'Index | R | G | B\n');
 fprintf(paletteFid, '------------------\n');

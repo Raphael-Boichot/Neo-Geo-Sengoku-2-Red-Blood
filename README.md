@@ -47,37 +47,14 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ## Regular palettes, main characters
 
-- Claude Yamamoto ![](/Palettes/Claude_Yamamoto_Palette.png)
-
-- Jack Stone, memory range: 0400220-0400230, values: [0x0011, 0x7810, 0x0C74, 0x5FC9, 0x6640, 0x6B80, 0x6FF0, 0x3037, 0x638C, 0x3AFF, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4FA0, 0x7111];
-
-![](/Palettes/Jack_Stone_Palette.png)
-
-- Mike Walsh green (ninja), memory range: 0400240-0400250, values: [0x0012, 0x7810, 0x0C74, 0x5FC9, 0x1738, 0x5B8C, 0x3FCF, 0x4700, 0x0C00, 0x4F93, 0x0250, 0x2680, 0x0AD0, 0x6B80, 0x6FF0, 0x7111];
-
-![](/Palettes/Mike_Walsh_green_Palette.png)
-
-- Mike Walsh blue (ninja), memory range: 0400240-0400250, values: [0x0015, 0x7810, 0x0C74, 0x5FC9, 0x5204, 0x5309, 0x190F, 0x4700, 0x0C00, 0x4F93, 0x0045, 0x138B, 0x29EF, 0x1DA3, 0x6FFB, 0x7111];
-
-![](/Palettes/Mike_Walsh_blue_Palette.png)
-
-
-- Crow Tengu God red (stick man), memory range: 0400260-0400270, values: [0x0013, 0x7810, 0x0C74, 0x5FC9, 0x0800, 0x0D00, 0x4F64, 0x6551, 0x0AA4, 0x0FF8, 0x7555, 0x7999, 0x0EEE, 0x0A80, 0x2EC0, 0x7111];
-
-![](/Palettes/Crow_Tengu_God_red_Palette.png)
-
-- Crow Tengu God green (stick man), memory range: 04002C0-04002D0, values: [0x0016, 0x7810, 0x0C74, 0x5FC9, 0x3040, 0x6281, 0x54E2, 0x6253, 0x52A9, 0x3AFF, 0x7555, 0x7999, 0x0EEE, 0x6870, 0x2CC0, 0x7111];
-
-![](/Palettes/Crow_Tengu_God_green_Palette.png)
-
-
-- Kirimaru red (dogo), memory range: 0400280-0400290, values: [0x0014, 0x4332, 0x4663, 0x4995, 0x3BA6, 0x3DC9, 0x4FFC, 0x0A00 0x0F00, 0x4F90, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111];
-
-![](/Palettes/Kirimaru_red_Palette.png)
-
-- Kirimaru blue (dogo), memory range: 04002E0-04002F0, values: [0x0017, 0x4332, 0x4663, 0x4995, 0x3BA6, 0x3DC9, 0x4FFC, 0x000C, 0x306E, 0x10DF, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111];
-
-![](/Palettes/Kirimaru_blue_Palette.png)
+- Claude Yamamoto          ![](/Palettes/Claude_Yamamoto_Palette.png)
+- Jack Stone               ![](/Palettes/Jack_Stone_Palette.png)
+- Mike Walsh green (ninja) ![](/Palettes/Mike_Walsh_green_Palette.png)
+- Mike Walsh blue (ninja)  ![](/Palettes/Mike_Walsh_blue_Palette.png)
+- Crow Tengu God red       ![](/Palettes/Crow_Tengu_God_red_Palette.png)
+- Crow Tengu God green     ![](/Palettes/Crow_Tengu_God_green_Palette.png)
+- Kirimaru red (dogo)      ![](/Palettes/Kirimaru_red_Palette.png)
+- Kirimaru blue (dogo)     ![](/Palettes/Kirimaru_blue_Palette.png)
 
 ## Regular palettes, ennemies of interest
 

@@ -5,16 +5,20 @@ Old_palette  = 'Palette.txt';
 % 1. Convert Neo Geo 16-bit to 8-bit RGB
 New_palette_RGB = zeros(16, 3, 'uint8');
 for i = 1:16
-    c = uint16(palette(i));
-    dark = bitget(c, 16);
-    r = bitshift(bitand(c, hex2dec('0F00')), -8);
-    g = bitshift(bitand(c, hex2dec('00F0')), -4);
-    b = bitand(c, hex2dec('000F'));
-    
-    New_palette_RGB(i, :) = uint8(round(double([ ...
-        bitor(bitshift(r, 1), dark), ...
-        bitor(bitshift(g, 1), dark), ...
-        bitor(bitshift(b, 1), dark)]) * 255 / 31));
+    if i == 1
+        New_palette_RGB(i, :) = [0 0 0];
+    else
+        c = uint16(palette(i));
+        dark = bitget(c, 16);
+        r = bitshift(bitand(c, hex2dec('0F00')), -8);
+        g = bitshift(bitand(c, hex2dec('00F0')), -4);
+        b = bitand(c, hex2dec('000F'));
+        
+        New_palette_RGB(i, :) = uint8(round(double([ ...
+            bitor(bitshift(r, 1), dark), ...
+            bitor(bitshift(g, 1), dark), ...
+            bitor(bitshift(b, 1), dark)]) * 255 / 31));
+    end
 end
 
 % 2. Load Old Palette
@@ -67,18 +71,24 @@ fclose(fileID);
 
 % 6. Export Palette to PNG (Visual Reference)
 % Create a 32x512 image (32 pixels high, 16 blocks of 32 pixels wide = 512 wide)
-palette_strip = zeros(32, 512, 3, 'uint8');
+palette_strip = zeros(32, 512, 4, 'uint8');
 
 for i = 1:16
     % Calculate horizontal range for this color block (32 pixels per block)
     x_start = (i-1) * 32 + 1;
     x_end = i * 32;
     
-    % Fill the block with the corresponding RGB color
-    palette_strip(:, x_start:x_end, 1) = New_palette_RGB(i, 1);
-    palette_strip(:, x_start:x_end, 2) = New_palette_RGB(i, 2);
-    palette_strip(:, x_start:x_end, 3) = New_palette_RGB(i, 3);
+    % Fill the block
+    if i == 1
+        palette_strip(:, x_start:x_end, :) = 0; % Transparent
+    else
+        palette_strip(:, x_start:x_end, 1) = New_palette_RGB(i, 1);
+        palette_strip(:, x_start:x_end, 2) = New_palette_RGB(i, 2);
+        palette_strip(:, x_start:x_end, 3) = New_palette_RGB(i, 3);
+        palette_strip(:, x_start:x_end, 4) = 255; % Opaque
+    end
 end
 
-imwrite(palette_strip, 'Palette.png');
+imwrite(palette_strip(:,:,1:3), 'Palette.png', 'Alpha', palette_strip(:,:,4));
 fprintf('Swapped palette exported as 32x32 blocks to Palette.png\n');
+end

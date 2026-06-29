@@ -2,33 +2,41 @@ function png_to_Crom(oddRomOut, evenRomOut,inputPng)
 TILES_PER_ROW = 32;
 % Configuration
 paletteFile  = 'Palette.txt';
-mkdir('.\roms_out\')
 
 % 1. Load Palette
-% Reads the R, G, B values from the provided text file
 fileID = fopen(paletteFile, 'r');
-% Skip header lines
+if fileID == -1, error('Could not open palette file: %s', paletteFile); end
 for i=1:3, fgetl(fileID); end
 rawPal = fscanf(fileID, '%d | %d | %d | %d\n', [4, 16]);
 fclose(fileID);
-targetRGB = rawPal(2:4, :)'; % Extracts 16x3 matrix of RGB values
+targetRGB = rawPal(2:4, :)'; 
 
 % 2. Load PNG and Convert to Index
 img = imread(inputPng);
-% Handle RGBA if necessary (stripping alpha)
-if size(img, 3) == 4, img = img(:,:,1:3); end
+if size(img, 3) == 4
+    alpha = img(:,:,4);
+    img_rgb = img(:,:,1:3);
+else
+    alpha = ones(size(img,1), size(img,2), 'uint8') * 255;
+    img_rgb = img;
+end
 
-[h, w, ~] = size(img);
+[h, w, ~] = size(img_rgb);
 sheet_indices = zeros(h, w, 'uint8');
 
-% Map each RGB pixel to the closest palette index
 for y = 1:h
     for x = 1:w
-        pixel = double(reshape(img(y,x,:), 1, 3));
-        % Find Euclidean distance to all palette colors
-        dist = sum((targetRGB - pixel).^2, 2);
-        [~, minIdx] = min(dist);
-        sheet_indices(y, x) = minIdx - 1; % 0-15
+        if alpha(y, x) == 0
+            sheet_indices(y, x) = 0;
+        else
+            pixel = reshape(img_rgb(y,x,:), 1, 3);
+            matchIdx = find(all(targetRGB == pixel, 2));
+            if ~isempty(matchIdx)
+                sheet_indices(y, x) = matchIdx(1) - 1;
+            else
+                error('Error: Pixel at coordinates (%d, %d) does not match any color in the provided palette.', x, y);
+            end
+        end
     end
 end
 
@@ -46,7 +54,6 @@ for tile = 0:numTiles-1
             for col = 0:7
                 idx = tileIdx(blockY(b+1)+row+1, blockX(b+1)+col+1);
                 bIdx = tile*64 + b*16 + row*2; p = 7-col;
-                % Bit-packing
                 oddData(bIdx+1) = bitset(oddData(bIdx+1), p+1, bitget(idx, 1));
                 oddData(bIdx+2) = bitset(oddData(bIdx+2), p+1, bitget(idx, 2));
                 evenData(bIdx+1) = bitset(evenData(bIdx+1), p+1, bitget(idx, 3));
@@ -68,9 +75,17 @@ function crc = calculateCRC32(data)
     crc = bitcmp(crc);
 end
 
-fid = fopen(oddRomOut, 'wb'); fwrite(fid, oddData, 'uint8'); fclose(fid);
-fid = fopen(evenRomOut, 'wb'); fwrite(fid, evenData, 'uint8'); fclose(fid);
+% Save files directly to provided paths
+fileNames = {oddRomOut, evenRomOut};
+dataSets = {oddData, evenData};
 
-fprintf('Rebuilt %s (CRC32: %08X)\n', oddRomOut, calculateCRC32(oddData));
-fprintf('Rebuilt %s (CRC32: %08X)\n', evenRomOut, calculateCRC32(evenData));
+for i = 1:2
+    fid = fopen(fileNames{i}, 'wb');
+    if fid == -1
+        error('Failed to open file for writing: %s. Ensure the directory exists and is writable.', fileNames{i});
+    end
+    fwrite(fid, dataSets{i}, 'uint8');
+    fclose(fid);
+    fprintf('Rebuilt %s (CRC32: %08X)\n', fileNames{i}, calculateCRC32(dataSets{i}));
+end
 end

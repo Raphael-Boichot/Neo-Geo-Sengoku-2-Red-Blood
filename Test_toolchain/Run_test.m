@@ -96,7 +96,7 @@ Crom_to_png(oddRomFile_small,evenRomFile_small,palette, outpng_small)
 
 %% Neo Geo new palette hex values for testing
 disp('Swapping palettes from vector and updating palette.txt')
-alternative_palette = [0x0070, 0x2812, 0x2912, 0x6A12, 0x7C12, 0x3E12, 0x6E13, 0x5F23, 0x5F66, 0x7F77, 0x6F99, 0x5FBA, 0x6FCC, 0x5FED, 0x6FFF, 0x7222]; % stream of blood, gradation of intense reds
+alternative_palette = [0x0012, 0x7810, 0x0C74, 0x5FC9, 0x1738, 0x5B8C, 0x3FCF, 0x4700, 0x0C00, 0x4F93, 0x0250, 0x2680, 0x0AD0, 0x6B80, 0x6FF0, 0x7111]; % Mike Walsh (green, player 1)
 Palette_swapper(alternative_palette,outpng_big)
 Palette_swapper(alternative_palette,outpng_small)
 % Here some manual editing of the png tileset is expected
@@ -106,6 +106,9 @@ disp('Building back C ROMs from png and palette.txt')
 png_to_Crom(oddRomOut_big, evenRomOut_big,outpng_big)
 png_to_Crom(oddRomOut_small, evenRomOut_small,outpng_small)
 % CRC32 must be the same in test mode
+
+visdiff(oddRomFile_small,oddRomOut_small)
+visdiff(evenRomFile_small,evenRomOut_small)
 
 %% Injects new palettes in P ROMs
 % Here some manual editing of the new palette
@@ -132,7 +135,9 @@ ipsFile='.\IPS_scripts\040-p1.p1.ips';
 IPS_generator(original_prog,modified_prog,ipsFile)
 toc
 
-% This is the dump of the palette RAM during first level. Hopefully the palettes do not change much during levels
+% This is the dump of the palette RAM during first level. Hopefully the
+% characters palettes do not change much in the different levels contrary
+% to the fix background palettes
 %%%%%%%%%%%%%%%%%%%%%%%%% All 256 palettes from MAME debugger%%%%%%%%%%%%%%
 % address_400000_400010 = [0x0000, 0x6FF0, 0x7FFF, 0x2FC0, 0x6FF0, 0x307F, 0x6FF0, 0x7FFF, 0x108F, 0x10CF, 0x7FFF, 0x6FF0, 0x0008, 0x7FFF, 0x0000, 0x7FFF];
 % address_400020_400030 = [0x0001, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF];

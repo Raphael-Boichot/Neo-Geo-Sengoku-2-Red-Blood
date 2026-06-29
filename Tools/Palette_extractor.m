@@ -5,6 +5,10 @@ inputFile  = 'Sengoku2_dump.bin';
 outputM    = 'parsed_dump_exact.m';
 outputTxt  = 'Palettes_Data.txt';
 outputPng  = 'All_Palettes.png';
+outputPngFolder = '.\All_palettes\';
+
+% --- Ensure folder exists ---
+if ~exist(outputPngFolder, 'dir'), mkdir(outputPngFolder); end
 
 fin  = fopen(inputFile, 'rt');
 foutM = fopen(outputM, 'wt');
@@ -13,7 +17,7 @@ foutT = fopen(outputTxt, 'wt');
 if fin == -1, error('Could not open file: %s', inputFile); end
 
 all_rgb = []; 
-all_labels = {}; % Store labels for each palette
+all_labels = {};
 paletteCount = 0;
 
 % --- Font Definition ---
@@ -50,11 +54,10 @@ while ~feof(fin)
         addrName = [addr1{1}{1}, '_', addr2{1}{1}];
         
         rawHex = [words1(2:9), words2(2:9)];
+        label = [addrName, '_', upper(rawHex{1})];
+        all_labels{end+1} = label;
         
-        % Store label: Address + "_" + First Word
-        all_labels{end+1} = [addrName, '_', upper(rawHex{1})];
-        
-        % Write M and TXT...
+        % Write M and TXT
         fprintf(foutM, 'address_%s = [', addrName);
         for k = 1:numel(rawHex)
             fprintf(foutM, '0x%s%s', upper(rawHex{k}), ifThenElse(k < numel(rawHex), ", ", ""));
@@ -77,22 +80,29 @@ while ~feof(fin)
         
         all_rgb = [all_rgb; rgbValues];
         paletteCount = paletteCount + 1;
+
+        % --- ADDED FEATURE: Extract Individual Palette PNG ---
+        singleImg = zeros(32, 16 * 32, 3, 'uint8');
+        for i = 1:16
+            singleImg(1:32, ((i-1)*32 + 1) : (i*32), :) = repmat(reshape(rgbValues(i, :), [1, 1, 3]), [32, 32, 1]);
+        end
+        imwrite(singleImg, fullfile(outputPngFolder, [label, '.png']));
     end
 end
 
 fclose(fin); fclose(foutM); fclose(foutT);
 
-% --- PNG Generation ---
+% --- PNG Generation (Master Image) ---
 img = zeros(paletteCount * 32, 16 * 32, 3, 'uint8');
 for p = 1:paletteCount
-    % Draw colors
+    p_start = (p-1)*32 + 1;
     for i = 1:16
-        img(((p-1)*32 + 1) : (p*32), ((i-1)*32 + 1) : (i*32), :) = repmat(reshape(all_rgb((p-1)*16 + i, :), [1, 1, 3]), [32, 32, 1]);
+        img(p_start : p_start+31, ((i-1)*32 + 1) : (i*32), :) = repmat(reshape(all_rgb((p-1)*16 + i, :), [1, 1, 3]), [32, 32, 1]);
     end
     
     % Draw Labels
     str = all_labels{p};
-    startX = 6; startY = ((p - 1) * 32) + 12;
+    startX = 6; startY = p_start + 11;
     img(startY-3:startY+9, startX-2:startX+(length(str)*6)+4, :) = 20;
     for c = 1:length(str)
         idx = find(font.Chars == str(c), 1);
@@ -107,7 +117,7 @@ for p = 1:paletteCount
 end
 
 imwrite(img, outputPng);
-disp('Parsing complete.');
+disp('Parsing complete. Individual palettes saved to folder.');
 
 function val = ifThenElse(condition, trueVal, falseVal)
     if condition, val = trueVal; else, val = falseVal; end

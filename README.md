@@ -132,6 +132,12 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ![](/Palettes/Spearman_green_palette.png)
 
+- Small and big fishes
+
+![](/Palettes/Small_fish_palette.png)
+
+![](/Palettes/Big_fish__palette.png)
+
 ## Regular palettes, bosses
 
 Kojiro blue (Boss level 1) and green (anywhere else)

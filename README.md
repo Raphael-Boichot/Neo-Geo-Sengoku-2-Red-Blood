@@ -162,6 +162,17 @@ Yoshitsune (Boss level 3)
 
 ![](/Palettes/Yoshitsune_palette.png)
 
+General and Dark Monarch (Bosses level 4)
+
+![](/Palettes/General_palette.png)
+
+![](/Palettes/Dark_Monarch_palette.png)
+
+Puppets (Final boss)
+
+![](/Palettes/Puppet_1_palette.png)
+
+![](/Palettes/Puppet_2_palette.png)
 
 ## Acknowledgments
 - The [neogeodev community](https://wiki.neogeodev.org//index.php/Main_Page) in general and [Furrtek](https://github.com/furrtek) in particular. This project made on spare time was only possible because I stood on the shoulders of giants.

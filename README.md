@@ -110,9 +110,9 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 - Giant Blue and red
 
--[](/Palettes/Giant_blue_palette.png)
+![](/Palettes/Giant_blue_palette.png)
 
--[](/Palettes/Giant_red_palette.png)
+![](/Palettes/Giant_red_palette.png)
 
 ## Regular palettes, bosses
 

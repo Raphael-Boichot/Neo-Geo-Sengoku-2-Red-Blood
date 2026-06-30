@@ -136,7 +136,7 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ![](/Palettes/Small_fish_palette.png)
 
-![](/Palettes/Big_fish__palette.png)
+![](/Palettes/Big_fish_palette.png)
 
 ## Regular palettes, bosses
 

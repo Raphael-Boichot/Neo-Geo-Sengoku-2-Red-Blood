@@ -39,7 +39,7 @@ I want to maximize the scripting in order to be able to easily come back on erro
 
 ## Identified flaws due to the 15 colors per tile limitation
 
-- The redness of blood may vary depending on the compromises when when juggling with palette swap, yet existing satisfying reds, my artistic perception but most of all, my laziness.
+- The redness of blood may vary depending on the compromises made when juggling with palette swap, yet existing satisfying reds, my artistic perception but most of all, my laziness.
 
 ## Trivias
 

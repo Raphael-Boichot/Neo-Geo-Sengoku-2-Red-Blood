@@ -114,7 +114,7 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ![](/Palettes/Giant_red_palette.png)
 
-- Kunoichio violet and green
+- Kunoichi violet and green
 
 ![](/Palettes/Kunoichi_violet_palette.png)
 

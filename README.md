@@ -112,9 +112,9 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 Kojiro blue (Boss level 1) and green (anywhere else)
 
-![](Kojiro_blue_palette.png)
+![](/Palettes/Kojiro_blue_palette.png)
 
-![](Kojiro_green_palette.png)
+![](/Palettes/Kojiro_green_palette.png)
 
 ## Acknowledgments
 - The [neogeodev community](https://wiki.neogeodev.org//index.php/Main_Page) in general and [Furrtek](https://github.com/furrtek) in particular. This project made on spare time was only possible because I stood on the shoulders of giants.

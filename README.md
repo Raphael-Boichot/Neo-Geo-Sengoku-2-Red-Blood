@@ -21,6 +21,7 @@ Seeing at the tileset and palettes, it is clear that Sengoku 2 was never thought
 - Fucked situation, multiple palette swap for the same character: I have to cheat and force a red in each palette at the same position and a modified tileset as well. The mod must stay pleasant to the eye and do not deteriorate too much the initial character design. It's an artistic compromise.
 
 ## My rules
+
 - Only human like characters and main heroes will be bleeding. Anything else (pure demonic entities) will keep their original blood color if any.
 - The least effort will always be prefered because I do this on my spare time, and basically my spare time is shared between a ton of other projects and non negociable family duties. All the sources been given, more patient people can probably improve the hack.
 
@@ -41,9 +42,9 @@ I want to maximize the scripting in order to be able to easily come back on erro
 
 - The redness of blood may vary depending on the compromises made when juggling with palette swap, yet existing satisfying reds, my artistic perception but most of all, my laziness.
 
-## Trivias
+## The story
 
-Palette are stored in the P rom as it and can easily be targeted and swapped (stored in 16 bits, big endian). Next list gives the palette position and value as seen in the 68k memory map of the Neo Geo. Beware, address range of two palettes for the same character are not always close.
+Palette are stored in the P rom as it and can easily be targeted and swapped (stored in 16 bits, big endian). Next is the whole list of (non chronogical) modifications made.
 
 ## Regular palettes, main characters
 

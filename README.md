@@ -120,6 +120,12 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ![](/Palettes/Kunoichi_green_palette.png)
 
+- Axeman red and green
+
+![](/Palettes/Axeman_red_palette.png)
+
+![](/Palettes/Axeman_green_palette.png)
+
 ## Regular palettes, bosses
 
 Kojiro blue (Boss level 1) and green (anywhere else)

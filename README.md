@@ -114,6 +114,12 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ![](/Palettes/Giant_red_palette.png)
 
+- Kunoichio violet and green
+
+![](/Palettes/Kunoichi_violet_palette.png)
+
+![](/Palettes/Kunoichi_green_palette.png)
+
 ## Regular palettes, bosses
 
 Kojiro blue (Boss level 1) and green (anywhere else)
@@ -121,6 +127,7 @@ Kojiro blue (Boss level 1) and green (anywhere else)
 ![](/Palettes/Kojiro_blue_palette.png)
 
 ![](/Palettes/Kojiro_green_palette.png)
+
 
 ## Acknowledgments
 - The [neogeodev community](https://wiki.neogeodev.org//index.php/Main_Page) in general and [Furrtek](https://github.com/furrtek) in particular. This project made on spare time was only possible because I stood on the shoulders of giants.

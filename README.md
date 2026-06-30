@@ -138,6 +138,10 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ![](/Palettes/Big_fish_palette.png)
 
+- Soldier
+
+![](/Palettes/Soldier_palette.png)
+
 ## Regular palettes, bosses
 
 Kojiro blue (Boss level 1) and green (anywhere else)

@@ -126,6 +126,12 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ![](/Palettes/Axeman_green_palette.png)
 
+- Spearman red and green
+
+![](/Palettes/Spearman_red_palette.png)
+
+![](/Palettes/Spearman_green_palette.png)
+
 ## Regular palettes, bosses
 
 Kojiro blue (Boss level 1) and green (anywhere else)

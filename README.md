@@ -11,26 +11,26 @@
 
 Because I'm pissed not to find the NCI hack publically available. Because the buyers of NCI physical cartridges are not the kind of guys who know how to dump chips and share the roms.
 
-Seeing at the tileset and palettes, Sengoku 2 was never thought nor programmed to be uncensored. Color palette of current "blood" is just shared with other parts of the tiles so a simple palette swap is far from being enough. There is no single magic byte in the code to shift to a blood mode.
+Seeing at the tileset and palettes, it is clear that Sengoku 2 was never thought nor programmed to be easily uncensored. Color palette of current "blood" is just shared with other parts of the tiles so simple palette swaps are far from being enough. There is no single magic byte in the code to shift to a blood mode.
 
 ## The steps
 
-- get the palette of every bleeding characters with MAME in debug mode, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully). This is long and tedious but does not require any intelligence. Just play, save, hack the RAM, take notes and reload.
+- get the palette of every bleeding characters with MAME in debug mode and with a LUA script, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully). This is long and tedious but does not require any intelligence. Just play, save, check the LUA outputs, hack the RAM, take notes and reload.
 - Easy situation, there is yet a vibrant enough red in the palette and no need for palette swap, edit and inject the modified tileset only on the C ROMs, with unchanged palette.
 - Moderate situation, there is no vibrant red in the tileset but a clever palette swap is not visually shocking, go with a palette swap only in the P ROM.
 - Fucked situation, multiple palette swap for the same character: I have to cheat and force a red in each palette at the same position and a modified tileset as well. The mod must stay pleasant to the eye and do not deteriorate too much the initial character design. It's an artistic compromise.
 
 ## My rules
 - Only human like characters and main heroes will be bleeding. Anything else (pure demonic entities) will keep their original blood color if any.
-- The least effort will always be prefered because I do this on my spare time, and basically my spare time is shared between a ton of other projects and non negociable duties. All the sources been given, more patient people can probably improve the hack.
+- The least effort will always be prefered because I do this on my spare time, and basically my spare time is shared between a ton of other projects and non negociable family duties. All the sources been given, more patient people can probably improve the hack.
 
 ## How ?
 
-- MAME in debug mode to explore the palette ram after address 0x0400000 of the 68k mapped memory. I basically hand modify the memory bytes until the tiles I want are changing color. This is the only tedious step in absence of scripted debuggers fully dedidacted to the Neo Geo.
+- MAME in debug mode and helped with LUA scripts to explore the palette ram while playing. This is the only tedious step in absence of scripted debuggers fully dedidacted to the Neo Geo (or I guess ?).
 - Custom codes to turn C ROMs to png and the inverse. Tileset is edited from a png image with the current character palette, then turned back to C ROM.
 - Custom codes to swap palettes in P ROMs.
 - Custom codes to generate and chain IPS scripts.
-- MS Paint to edit images because this is the best tool ever created.
+- MS Paint to edit tilesets because this is the best tool ever created.
 - Spriter ressources to check for inconsistencies in colors and planning the work.
 - Rince and repeat with all characters.
 - Make a final IPS script.

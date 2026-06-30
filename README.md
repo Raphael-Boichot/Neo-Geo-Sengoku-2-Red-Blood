@@ -154,6 +154,14 @@ Kojiro blue (Boss level 1) and green (anywhere else)
 
 ![](/Palettes/Kojiro_green_palette.png)
 
+Kitsune (Boss level 2)
+
+![](/Palettes/Kitsune_palette.png)
+
+Yoshitsune (Boss level 3)
+
+![](/Palettes/Yoshitsune_palette.png)
+
 
 ## Acknowledgments
 - The [neogeodev community](https://wiki.neogeodev.org//index.php/Main_Page) in general and [Furrtek](https://github.com/furrtek) in particular. This project made on spare time was only possible because I stood on the shoulders of giants.

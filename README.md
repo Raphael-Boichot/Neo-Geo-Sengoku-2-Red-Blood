@@ -48,9 +48,13 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ## Regular palettes, main characters
 
-- Stream of blood (boring) **--> TO DO**
+- Stream of blood (boring) **--> DONE**
 
 ![](/Palettes/Stream_of_blood_Palette.png)
+
+Stream of blood (intense alternate palette)
+
+![](/Palettes/Stream_of_blood_Palette_alternate.png)
 
 - Claude Yamamoto (Player 1) **--> TO DO**
 

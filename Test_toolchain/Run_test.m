@@ -88,31 +88,33 @@ palette = [0x0076, 0x2A31, 0x2D85, 0x4FC8, 0x0830, 0x0C40, 0x4F60, 0x5131, 0x224
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Alternative palettes %%%%%%%%%%
 % palette = [0x0070, 0x2812, 0x2912, 0x6A12, 0x7C12, 0x3E12, 0x6E13, 0x5F23, 0x5F66, 0x7F77, 0x6F99, 0x5FBA, 0x6FCC, 0x5FED, 0x6FFF, 0x7222]; % stream of blood, gradation of intense reds
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Alternative palettes %%%%%%%%%%
+dummy_palette_jet =[0x1005, 0x1008, 0x100D, 0x303F, 0x308F, 0x30DF, 0xF3FB, 0xF7F7, 0xFCF2, 0xEFF0, 0xEFA0, 0xEF50, 0xEF00, 0xCB00, 0xC700, 0xC400];
 dummy_palette = [0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000];
 disp('Initialization completed')
 
 %% Transforms the pair of roms in png tileset + palette image to ckeck
 %///////////////section to comment to edit tileset//////////////////
 disp('Building tileset in png from palette vector')
-Crom_to_png(oddRomFile_big,evenRomFile_big,palette, outpng_big, txt_exchange_palette_big)
+%Crom_to_png(oddRomFile_big,evenRomFile_big,palette, outpng_big, txt_exchange_palette_big)
 Crom_to_png(oddRomFile_small,evenRomFile_small,palette, outpng_small, txt_exchange_palette_small)
 %///////////////section to comment to edit tileset//////////////////
 
 %% Neo Geo new palette hex values for testing
-disp('Swapping palettes from vector and updating palette.txt')
-% alternative_palette = [0x0076, 0x2A31, 0x2D85, 0x4FC8, 0x0830, 0x0C40, 0x4F60, 0x5131, 0x2242, 0x0494, 0x08B0, 0x6BB0, 0x6FF0, 0x07C7, 0x2AFA, 0x0000];
+% disp('Swapping palettes from vector and updating palette.txt')
+alternative_palette = dummy_palette_jet;
 % Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
-% Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
+Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % Here some manual editing of the png tileset is expected
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 disp('Building back C ROMs from png and palette.txt')
-png_to_Crom(oddRomOut_big, evenRomOut_big,outpng_big,txt_exchange_palette_big)
+%png_to_Crom(oddRomOut_big, evenRomOut_big,outpng_big,txt_exchange_palette_big)
 png_to_Crom(oddRomOut_small, evenRomOut_small,outpng_small,txt_exchange_palette_small)
 % CRC32 must be the same in test mode
 
-% visdiff(oddRomFile_small,oddRomOut_small)
-% visdiff(evenRomFile_small,evenRomOut_small)
+%% Debug step if necessary
+%Crom_to_png(oddRomOut_big,evenRomOut_big,palette, 'debug_big.png', 'debug_big.txt')
+Crom_to_png(oddRomOut_small,evenRomOut_small,palette, 'debug_small.png', 'debug_small.txt')
 
 %% Injects new palettes in P ROMs
 % Here some manual editing of the new palette

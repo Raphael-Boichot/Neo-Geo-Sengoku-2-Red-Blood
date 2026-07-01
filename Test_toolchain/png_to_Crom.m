@@ -10,29 +10,40 @@ fclose(fileID);
 targetRGB = rawPal(2:4, :)'; 
 
 % 2. Load PNG and Convert to Index
-img = imread(inputPng);
-if size(img, 3) == 4
-    alpha = img(:,:,4);
-    img_rgb = img(:,:,1:3);
-else
-    alpha = ones(size(img,1), size(img,2), 'uint8') * 255;
-    img_rgb = img;
+[img, ~, alpha] = imread(inputPng);
+% Ensure alpha is 2D if the input was an indexed image
+if size(alpha, 3) > 1, alpha = alpha(:,:,4); end 
+
+% Convert indexed images to RGB if necessary
+if ~isempty(find(size(img) > 0, 1)) && size(img, 3) ~= 3
+    img = ind2rgb(img, map);
+    img = uint8(img * 255);
 end
 
-[h, w, ~] = size(img_rgb);
+[h, w, ~] = size(img);
 sheet_indices = zeros(h, w, 'uint8');
+
+% targetRGB is 16x3. 
+% We want to search for solid colors only in rows 2 to 16 (indices 1 to 15)
+solidPalette = targetRGB(2:16, :); 
 
 for y = 1:h
     for x = 1:w
+        % Rule: If fully transparent, index is 0
         if alpha(y, x) == 0
             sheet_indices(y, x) = 0;
         else
-            pixel = reshape(img_rgb(y,x,:), 1, 3);
-            matchIdx = find(all(targetRGB == pixel, 2));
+            pixel = reshape(img(y, x, :), 1, 3);
+            
+            % Rule: Search only among the 15 non-transparent palette entries
+            matchIdx = find(all(solidPalette == pixel, 2));
+            
             if ~isempty(matchIdx)
-                sheet_indices(y, x) = matchIdx(1) - 1;
+                % matchIdx is 1-15, which corresponds to the correct ROM index
+                sheet_indices(y, x) = matchIdx(1); 
             else
-                error('Error: Pixel at coordinates (%d, %d) does not match any color in the provided palette.', x, y);
+                error('Error: Pixel at (%d, %d) [RGB: %d,%d,%d] does not match any valid non-transparent palette entry.', ...
+                    x, y, pixel(1), pixel(2), pixel(3));
             end
         end
     end

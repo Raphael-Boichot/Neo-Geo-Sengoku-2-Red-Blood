@@ -16,8 +16,8 @@ Seeing at the tileset and palettes, it is clear that Sengoku 2 was never thought
 ## The steps
 
 - get the palette of every bleeding characters with MAME in debug mode and with a LUA script, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully). This is long and tedious but does not require any intelligence. Just play, save, check the LUA outputs, hack the RAM, take notes and reload.
-- Easy situation, there is yet a vibrant enough red in the palette and no need for palette swap, edit and inject the modified tileset only on the C ROMs, with unchanged palette.
-- Moderate situation, there is no vibrant red in the tileset but a clever palette swap is not visually shocking, go with a palette swap only in the P ROM.
+- Easy situation, there is no vibrant red in the tileset but a clever palette swap is not visually shocking, go with a palette swap only in the P ROM only.
+- Moderate situation, there is yet a vibrant enough red in the palette and no need for palette swap, edit and inject the modified tileset only on the C ROMs, with unchanged palette.
 - Fucked situation, multiple palette swap for the same character: I have to cheat and force a red in each palette at the same position and a modified tileset as well. The mod must stay pleasant to the eye and do not deteriorate too much the initial character design. It's an artistic compromise.
 
 ## My rules
@@ -48,31 +48,31 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ## Regular palettes, main characters
 
-- Stream of blood (boring)
+- Stream of blood (boring) - TO DO
 
 ![](/Palettes/Stream_of_blood_Palette.png)
 
-- Claude Yamamoto (Player 1)
+- Claude Yamamoto (Player 1) - TO DO
 
 ![](/Palettes/Claude_Yamamoto_Palette.png)
 
-- Jack Stone (Player 2)
+- Jack Stone (Player 2) - TO DO
 
 ![](/Palettes/Jack_Stone_Palette.png)
 
-- Mike Walsh green (player 1) and blue (player 2)
+- Mike Walsh green (player 1) and blue (player 2) - TO DO
 
 ![](/Palettes/Mike_Walsh_green_Palette.png)
 
 ![](/Palettes/Mike_Walsh_blue_Palette.png)
 
-- Crow Tengu God red (player 1) and green (player 2)
+- Crow Tengu God red (player 1) and green (player 2) - TO DO
 
 ![](/Palettes/Crow_Tengu_God_red_Palette.png)
 
 ![](/Palettes/Crow_Tengu_God_green_Palette.png)
 
-- Kirimaru red (player 1) and blue (player 2)
+- Kirimaru red (player 1) and blue (player 2) - TO DO
 
 ![](/Palettes/Kirimaru_red_Palette.png)
 
@@ -80,7 +80,7 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ## Regular palettes, ennemies of interest
 
-- Puppet Warrior blue, gray, blue and red (+ horse) and orange
+- Puppet Warrior blue, gray, blue and red (+ horse) and orange - TO DO
 
 ![](/Palettes/Puppet_Warrior_blue_Palette.png)
 
@@ -90,7 +90,7 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ![](/Palettes/Puppet_Warrior_orange_Palette.png)
 
-- Ninja Monk violet, gray and red
+- Ninja Monk violet, gray and red - TO DO
 
 ![](/Palettes/Ninka_Monk_violet_Palette.png)
 
@@ -98,7 +98,7 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ![](/Palettes/Ninka_Monk_red_Palette.png)
 
-- Sword Guard white, blue, violet and brown
+- Sword Guard white, blue, violet and brown - TO DO
 
 ![](/Palettes/Sword_Guard_white_palette.png)
 
@@ -108,67 +108,67 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ![](/Palettes/Sword_Guard_brown_palette.png)
 
-- Giant Blue and red
+- Giant Blue and red - TO DO
 
 ![](/Palettes/Giant_blue_palette.png)
 
 ![](/Palettes/Giant_red_palette.png)
 
-- Kunoichi violet and green
+- Kunoichi violet and green - TO DO
 
 ![](/Palettes/Kunoichi_violet_palette.png)
 
 ![](/Palettes/Kunoichi_green_palette.png)
 
-- Axeman red and green
+- Axeman red and green - TO DO
 
 ![](/Palettes/Axeman_red_palette.png)
 
 ![](/Palettes/Axeman_green_palette.png)
 
-- Spearman red and green
+- Spearman red and green - TO DO
 
 ![](/Palettes/Spearman_red_palette.png)
 
 ![](/Palettes/Spearman_green_palette.png)
 
-- Small and big fishes
+- Small and big fishes - TO DO
 
 ![](/Palettes/Small_fish_palette.png)
 
 ![](/Palettes/Big_fish_palette.png)
 
-- Soldier
+- Soldier - TO DO
 
 ![](/Palettes/Soldier_palette.png)
 
-- Dragon (last level)
+- Dragon (last level) - TO DO
 
 ![](/Palettes/Dragon_palette.png)
 
 ## Regular palettes, bosses
 
-Kojiro blue (Boss level 1) and green (anywhere else)
+Kojiro blue (Boss level 1) and green (anywhere else) - TO DO
 
 ![](/Palettes/Kojiro_blue_palette.png)
 
 ![](/Palettes/Kojiro_green_palette.png)
 
-Kitsune (Boss level 2)
+Kitsune (Boss level 2) - TO DO
 
 ![](/Palettes/Kitsune_palette.png)
 
-Yoshitsune (Boss level 3)
+Yoshitsune (Boss level 3) - TO DO
 
 ![](/Palettes/Yoshitsune_palette.png)
 
-General and Dark Monarch (Bosses level 4)
+General and Dark Monarch (Bosses level 4) - TO DO
 
 ![](/Palettes/General_palette.png)
 
 ![](/Palettes/Dark_Monarch_palette.png)
 
-Puppets (Final boss)
+Puppets (Final boss) - TO DO
 
 ![](/Palettes/Puppet_1_palette.png)
 

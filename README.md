@@ -48,31 +48,31 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ## Regular palettes, main characters
 
-- Stream of blood (boring) - TO DO
+- Stream of blood (boring) **--> TO DO**
 
 ![](/Palettes/Stream_of_blood_Palette.png)
 
-- Claude Yamamoto (Player 1) - TO DO
+- Claude Yamamoto (Player 1) **--> TO DO**
 
 ![](/Palettes/Claude_Yamamoto_Palette.png)
 
-- Jack Stone (Player 2) - TO DO
+- Jack Stone (Player 2) **--> TO DO**
 
 ![](/Palettes/Jack_Stone_Palette.png)
 
-- Mike Walsh green (player 1) and blue (player 2) - TO DO
+- Mike Walsh green (player 1) and blue (player 2) **--> TO DO**
 
 ![](/Palettes/Mike_Walsh_green_Palette.png)
 
 ![](/Palettes/Mike_Walsh_blue_Palette.png)
 
-- Crow Tengu God red (player 1) and green (player 2) - TO DO
+- Crow Tengu God red (player 1) and green (player 2) **--> TO DO**
 
 ![](/Palettes/Crow_Tengu_God_red_Palette.png)
 
 ![](/Palettes/Crow_Tengu_God_green_Palette.png)
 
-- Kirimaru red (player 1) and blue (player 2) - TO DO
+- Kirimaru red (player 1) and blue (player 2) **--> TO DO**
 
 ![](/Palettes/Kirimaru_red_Palette.png)
 
@@ -80,7 +80,7 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ## Regular palettes, ennemies of interest
 
-- Puppet Warrior blue, gray, blue and red (+ horse) and orange - TO DO
+- Puppet Warrior blue, gray, blue and red (+ horse) and orange **--> TO DO**
 
 ![](/Palettes/Puppet_Warrior_blue_Palette.png)
 
@@ -90,7 +90,7 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ![](/Palettes/Puppet_Warrior_orange_Palette.png)
 
-- Ninja Monk violet, gray and red - TO DO
+- Ninja Monk violet, gray and red **--> TO DO**
 
 ![](/Palettes/Ninka_Monk_violet_Palette.png)
 
@@ -98,7 +98,7 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ![](/Palettes/Ninka_Monk_red_Palette.png)
 
-- Sword Guard white, blue, violet and brown - TO DO
+- Sword Guard white, blue, violet and brown **--> TO DO**
 
 ![](/Palettes/Sword_Guard_white_palette.png)
 
@@ -108,67 +108,67 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ![](/Palettes/Sword_Guard_brown_palette.png)
 
-- Giant Blue and red - TO DO
+- Giant Blue and red **--> TO DO**
 
 ![](/Palettes/Giant_blue_palette.png)
 
 ![](/Palettes/Giant_red_palette.png)
 
-- Kunoichi violet and green - TO DO
+- Kunoichi violet and green **--> TO DO**
 
 ![](/Palettes/Kunoichi_violet_palette.png)
 
 ![](/Palettes/Kunoichi_green_palette.png)
 
-- Axeman red and green - TO DO
+- Axeman red and green **--> TO DO**
 
 ![](/Palettes/Axeman_red_palette.png)
 
 ![](/Palettes/Axeman_green_palette.png)
 
-- Spearman red and green - TO DO
+- Spearman red and green **--> TO DO**
 
 ![](/Palettes/Spearman_red_palette.png)
 
 ![](/Palettes/Spearman_green_palette.png)
 
-- Small and big fishes - TO DO
+- Small and big fishes **--> TO DO**
 
 ![](/Palettes/Small_fish_palette.png)
 
 ![](/Palettes/Big_fish_palette.png)
 
-- Soldier - TO DO
+- Soldier **--> TO DO**
 
 ![](/Palettes/Soldier_palette.png)
 
-- Dragon (last level) - TO DO
+- Dragon (last level) **--> TO DO**
 
 ![](/Palettes/Dragon_palette.png)
 
 ## Regular palettes, bosses
 
-Kojiro blue (Boss level 1) and green (anywhere else) - TO DO
+Kojiro blue (Boss level 1) and green (anywhere else) **--> TO DO**
 
 ![](/Palettes/Kojiro_blue_palette.png)
 
 ![](/Palettes/Kojiro_green_palette.png)
 
-Kitsune (Boss level 2) - TO DO
+Kitsune (Boss level 2) **--> TO DO**
 
 ![](/Palettes/Kitsune_palette.png)
 
-Yoshitsune (Boss level 3) - TO DO
+Yoshitsune (Boss level 3) **--> TO DO**
 
 ![](/Palettes/Yoshitsune_palette.png)
 
-General and Dark Monarch (Bosses level 4) - TO DO
+General and Dark Monarch (Bosses level 4) **--> TO DO**
 
 ![](/Palettes/General_palette.png)
 
 ![](/Palettes/Dark_Monarch_palette.png)
 
-Puppets (Final boss) - TO DO
+Puppets (Final boss) **--> TO DO**
 
 ![](/Palettes/Puppet_1_palette.png)
 

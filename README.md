@@ -52,7 +52,7 @@ Palette are stored in the P rom as it and can easily be targeted and swapped (st
 
 ![](/Palettes/Stream_of_blood_Palette.png)
 
-Stream of blood (intense alternate palette)
+Alternate palette:
 
 ![](/Palettes/Stream_of_blood_Palette_alternate.png)
 
@@ -102,7 +102,7 @@ Stream of blood (intense alternate palette)
 
 ![](/Palettes/Ninka_Monk_red_Palette.png)
 
-- Sword Guard white, blue, violet and brown **--> TO DO**
+- Sword Guard white, blue, violet and brown **--> DONE**
 
 ![](/Palettes/Sword_Guard_white_palette.png)
 
@@ -111,6 +111,16 @@ Stream of blood (intense alternate palette)
 ![](/Palettes/Sword_Guard_violet_palette.png)
 
 ![](/Palettes/Sword_Guard_brown_palette.png)
+
+Alternate palettes:
+
+![](/Palettes/Sword_Guard_white_palette_alternate.png)
+
+![](/Palettes/Sword_Guard_blue_palette_alternate.png)
+
+![](/Palettes/Sword_Guard_violet_palette_alternate.png)
+
+![](/Palettes/Sword_Guard_brown_palette_alternate.png)
 
 - Giant Blue and red **--> TO DO**
 

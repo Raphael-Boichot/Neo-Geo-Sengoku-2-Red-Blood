@@ -6,6 +6,7 @@ tic
 
 disp('If test is good, checksums before and after must coincide')
 disp('Just ignore this message in case you''re doing modifications')
+disp('A PALETTE MUST NEVER SHARE TWO TIMES THE SAME COLOR !')
 
 %% Init section
 
@@ -95,26 +96,26 @@ disp('Initialization completed')
 %% Transforms the pair of roms in png tileset + palette image to ckeck
 %///////////////section to comment to edit tileset//////////////////
 disp('Building tileset in png from palette vector')
-%Crom_to_png(oddRomFile_big,evenRomFile_big,palette, outpng_big, txt_exchange_palette_big)
+Crom_to_png(oddRomFile_big,evenRomFile_big,palette, outpng_big, txt_exchange_palette_big)
 Crom_to_png(oddRomFile_small,evenRomFile_small,palette, outpng_small, txt_exchange_palette_small)
 %///////////////section to comment to edit tileset//////////////////
 
 %% Neo Geo new palette hex values for testing
-% disp('Swapping palettes from vector and updating palette.txt')
+disp('Swapping palettes from vector and updating palette.txt')
 alternative_palette = dummy_palette_jet;
-% Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
+Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % Here some manual editing of the png tileset is expected
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 disp('Building back C ROMs from png and palette.txt')
-%png_to_Crom(oddRomOut_big, evenRomOut_big,outpng_big,txt_exchange_palette_big)
+png_to_Crom(oddRomOut_big, evenRomOut_big,outpng_big,txt_exchange_palette_big)
 png_to_Crom(oddRomOut_small, evenRomOut_small,outpng_small,txt_exchange_palette_small)
 % CRC32 must be the same in test mode
 
 %% Debug step if necessary
 %Crom_to_png(oddRomOut_big,evenRomOut_big,palette, 'debug_big.png', 'debug_big.txt')
-Crom_to_png(oddRomOut_small,evenRomOut_small,palette, 'debug_small.png', 'debug_small.txt')
+%Crom_to_png(oddRomOut_small,evenRomOut_small,palette, 'debug_small.png', 'debug_small.txt')
 
 %% Injects new palettes in P ROMs
 % Here some manual editing of the new palette

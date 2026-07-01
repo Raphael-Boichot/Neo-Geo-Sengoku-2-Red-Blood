@@ -27,36 +27,54 @@ fclose(fileID);
 targetRGB = rawPal(2:4, :)'; 
 
 % 3. Load PNG and Convert to Index
-img = imread(inputPng);
-% Handle RGBA if already present, or drop alpha for index matching
-if size(img, 3) == 4, img_rgb = img(:,:,1:3); else, img_rgb = img; end
+[img, ~, alpha] = imread(inputPng);
 
-[h, w, ~] = size(img_rgb);
-sheet_indices = zeros(h, w, 'uint8');
+% If the image is RGB but has an alpha channel, combine them
+if size(img, 3) == 3 && ~isempty(alpha)
+    img = cat(3, img, alpha);
+end
+
+[h, w, d] = size(img);
+hasAlpha = (d == 4);
 
 for y = 1:h
     for x = 1:w
-        pixel = double(reshape(img_rgb(y,x,:), 1, 3));
-        dist = sum((targetRGB - pixel).^2, 2);
-        [~, minIdx] = min(dist);
-        sheet_indices(y, x) = minIdx - 1; 
+        % Check Alpha channel first
+        if hasAlpha && img(y, x, 4) < 128 % Threshold for transparency
+            sheet_indices(y, x) = 0;
+        else
+            % Perform matching against indices 1 through 15 only
+            pixel = double(reshape(img(y,x,1:3), 1, 3));
+            % Only compare against targetRGB rows 2-16 (ignoring the entry 0 color)
+            dist = sum((targetRGB(2:16, :) - pixel).^2, 2);
+            [~, minIdx] = min(dist);
+            sheet_indices(y, x) = minIdx; % This now maps to 1-15
+        end
     end
 end
 
-% 4. Remap to New Palette with Transparency
-new_img = zeros(h, w, 4, 'uint8');
-for i = 0:15
-    mask = (sheet_indices == i);
-    if i == 0
-        new_img(:,:,4) = new_img(:,:,4) + uint8(mask) * 0; % Transparent
-    else
-        new_img(:,:,1) = new_img(:,:,1) + uint8(mask) * New_palette_RGB(i+1, 1);
-        new_img(:,:,2) = new_img(:,:,2) + uint8(mask) * New_palette_RGB(i+1, 2);
-        new_img(:,:,3) = new_img(:,:,3) + uint8(mask) * New_palette_RGB(i+1, 3);
-        new_img(:,:,4) = new_img(:,:,4) + uint8(mask) * 255; % Opaque
+% 4. Substitute colors only for solid pixels
+new_img = img; % Start with a copy of the original image to keep alpha intact
+
+for y = 1:h
+    for x = 1:w
+        % Only process pixels that are NOT transparent
+        if hasAlpha && img(y, x, 4) < 128
+            % Do nothing: keep the original pixel (transparency/attributes preserved)
+        else
+            % Identify which palette index this pixel belongs to (1-15)
+            % We use the sheet_indices logic we already calculated
+            idx = sheet_indices(y, x);
+            
+            % If it matched a palette entry, replace the color
+            if idx > 0
+                new_img(y, x, 1) = New_palette_RGB(idx+1, 1);
+                new_img(y, x, 2) = New_palette_RGB(idx+1, 2);
+                new_img(y, x, 3) = New_palette_RGB(idx+1, 3);
+            end
+        end
     end
 end
-
 imwrite(new_img(:,:,1:3), inputPng, 'Alpha', new_img(:,:,4));
 
 % 5. Regenerate Palette.txt

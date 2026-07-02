@@ -16,12 +16,10 @@ mkdir('.\IPS_scripts\');
 
 % Original roms
 Crom_1_in  = '.\NGCD_track_1\JOUCHU.SPR';
-
 original_prog ='.\NGCD_track_1\P040.PRG';
 
 % modified roms
-Crom_1_out    = '.\roms_out\AREA3.SPR';
-
+Crom_1_out    = '.\roms_out\JOUCHU.SPR';
 modified_prog = '.\roms_out\P040.PRG';
 
 outpng ='Tileset.png';
@@ -123,8 +121,8 @@ PRG_Palette_injector(PRomFile,palette_old,palette_new)
 disp('Generating IPS script')
 ipsFile='.\IPS_scripts\P040.PRG.ips';
 IPS_generator(original_prog,modified_prog,ipsFile)
-% ipsFile='.\IPS_scripts\040-c2.c2.ips';
-% IPS_generator(evenRomFile_big,evenRomOut_big,ipsFile)
+ipsFile='.\IPS_scripts\JOUCHU.SPR.ips';
+IPS_generator(Crom_1_in,Crom_1_out,ipsFile)
 % ipsFile='.\IPS_scripts\040-c3.c3.ips';
 % IPS_generator(oddRomFile_small,oddRomOut_small,ipsFile)
 % ipsFile='.\IPS_scripts\040-c4.c4.ips';

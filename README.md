@@ -65,11 +65,11 @@ Alternate palette:
 
 ![](/Palettes/Stream_of_blood_Palette_alternate.png)
 
-- Claude Yamamoto (Player 1) **--> TO DO**
+- Claude Yamamoto (Player 1) **--> Palette: DONE, Tilset: TO DO**
 
 ![](/Palettes/Claude_Yamamoto_Palette.png)
 
-- Jack Stone (Player 2) **--> TO DO**
+- Jack Stone (Player 2) **--> Palette: DONE, Tilset: TO DO**
 
 ![](/Palettes/Jack_Stone_Palette.png)
 

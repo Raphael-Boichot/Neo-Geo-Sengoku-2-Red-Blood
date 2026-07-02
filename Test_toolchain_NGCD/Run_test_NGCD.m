@@ -15,7 +15,7 @@ mkdir('.\roms_out\');
 mkdir('.\IPS_scripts\');
 
 % Original roms
-Crom_1_in  = '.\NGCD_track_1\JOUCHU.SPR';
+Crom_1_in  = '.\NGCD_track_1\STAFF.SPR';
 
 original_prog ='.\NGCD_track_1\P040.PRG';
 
@@ -89,19 +89,18 @@ disp('Initialization completed')
 %% Transforms the pair of roms in png tileset + palette image to ckeck
 %///////////////section to comment to edit tileset//////////////////
 disp('Building tileset in png from palette vector')
-Cspr_to_png(Crom_1_in,dummy_palette_jet, outpng, txt_exchange_palette)
+Cspr_to_png(Crom_1_in,palette, outpng, txt_exchange_palette)
 %///////////////section to comment to edit tileset//////////////////
 
 %% Neo Geo new palette hex values for testing
-% disp('Swapping palettes from vector and updating palette.txt')
-% alternative_palette = dummy_palette_jet;
-% Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
-% Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
+disp('Swapping palettes from vector and updating palette.txt')
+alternative_palette = dummy_palette_jet;
+Palette_swapper(alternative_palette,outpng,txt_exchange_palette)
 % Here some manual editing of the png tileset is expected
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 % disp('Building back C ROMs from png and palette.txt')
-png_to_Cspr(modified_prog,outpng,txt_exchange_palette)
+png_to_Cspr(Crom_1_out,outpng,txt_exchange_palette)
 % png_to_Crom(oddRomOut_small, evenRomOut_small,outpng_small,txt_exchange_palette_small)
 % CRC32 must be the same in test mode
 
@@ -111,19 +110,19 @@ png_to_Cspr(modified_prog,outpng,txt_exchange_palette)
 
 %% Injects new palettes in P ROMs
 % Here some manual editing of the new palette
-% disp('Targeting and injecting new palette(s) in P ROM')
-% copyfile('.\roms\040-p1.p1','.\roms_out\040-p1.p1');
-% PRomFile = '.\roms_out\040-p1.p1';
-% Here some manual editing of the palette vector is expected
-% palette_old = [0x0070, 0x0660, 0x6AA0, 0x0DD0, 0x6EE0, 0x7FF4, 0x6FFA, 0x7FFF, 0x0000, 0x7154, 0x3275, 0x2398, 0x36B9, 0x47EB, 0x7BFE, 0x7FFF]; % stream of boring blood, many ennemies
-% palette_new = [0x0070, 0x0660, 0x6AA0, 0x0DD0, 0x6EE0, 0x7FF4, 0x6FFA, 0x7FFF, 0x0000, 0x7154, 0x3275, 0x2398, 0x36B9, 0x47EB, 0x7BFE, 0x7FFF]; % stream of boring blood, many ennemies
-% Prom_Palette_injector(PRomFile,palette_old,palette_new)
+disp('Targeting and injecting new palette(s) in P ROM')
+copyfile('.\NGCD_track_1\P040.PRG','.\roms_out\P040.PRG');
+PRomFile = '.\roms_out\P040.PRG';
+%Here some manual editing of the palette vector is expected
+palette_old = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; % Claude Yamamoto (player 1)
+palette_new = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; % Claude Yamamoto (player 1)
+PRG_Palette_injector(PRomFile,palette_old,palette_new)
 % CRC32 must be the same in test mode
 
 %% Generate IPF files for all these modifications
-% disp('Generating IPS script')
-% ipsFile='.\IPS_scripts\040-c1.c1.ips';
-% IPS_generator(oddRomFile_big,oddRomOut_big,ipsFile)
+disp('Generating IPS script')
+ipsFile='.\IPS_scripts\P040.PRG.ips';
+IPS_generator(original_prog,modified_prog,ipsFile)
 % ipsFile='.\IPS_scripts\040-c2.c2.ips';
 % IPS_generator(evenRomFile_big,evenRomOut_big,ipsFile)
 % ipsFile='.\IPS_scripts\040-c3.c3.ips';

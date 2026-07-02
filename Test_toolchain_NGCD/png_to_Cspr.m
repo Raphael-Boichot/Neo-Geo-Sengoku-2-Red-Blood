@@ -16,44 +16,50 @@ TILES_PER_ROW = 32;
 % 2. Load Palette
 fileID = fopen(paletteFile, 'r');
 if fileID == -1, error('Could not open palette file: %s', paletteFile); end
+line1 = fgetl(fileID);
+totalTiles = sscanf(line1, 'Total Tiles: %d'); 
 for i=1:3, fgetl(fileID); end 
 rawPal = fscanf(fileID, '%d | %d | %d | %d\n', [4, 16]);
 fclose(fileID);
 targetRGB = rawPal(2:4, :)'; 
 
-% 3. Load PNG and Convert to Index
+% 3. Load PNG
 [img, ~, alpha] = imread(inputPng);
 if size(alpha, 3) > 1, alpha = alpha(:,:,4); end 
 
-[h, w, ~] = size(img);
-sheet_indices = zeros(h, w, 'uint8');
-solidPalette = targetRGB(2:16, :); 
+% 4. Encode to .spr
+sprData = zeros(totalTiles*128, 1, 'uint8');
+solidPalette = targetRGB(2:16, :); % Indices 1-15
+blockX = [8 8 0 0]; blockY = [0 8 0 8];
 
-for y = 1:h
-    for x = 1:w
-        if alpha(y, x) == 0
-            sheet_indices(y, x) = 0;
-        else
-            pixel = reshape(img(y, x, :), 1, 3);
-            matchIdx = find(all(solidPalette == pixel, 2));
-            if ~isempty(matchIdx)
-                sheet_indices(y, x) = matchIdx(1); 
+for tile = 0:totalTiles-1
+    tx = mod(tile, TILES_PER_ROW); ty = floor(tile/TILES_PER_ROW);
+    pixelY_start = ty * 16 + 1;
+    pixelX_start = tx * 16 + 1;
+    
+    tileIdx = zeros(16, 16, 'uint8');
+    for py = 0:15
+        for px = 0:15
+            y = pixelY_start + py; x = pixelX_start + px;
+            
+            % Enforce transparency for Alpha=0
+            if alpha(y, x) == 0
+                tileIdx(py+1, px+1) = 0;
             else
-                error('Pixel at (%d, %d) does not match palette.', x, y);
+                % Match opaque pixels against solid palette (1-15)
+                pixel = reshape(img(y, x, :), 1, 3);
+                matchIdx = find(all(solidPalette == pixel, 2));
+                
+                if ~isempty(matchIdx)
+                    tileIdx(py+1, px+1) = uint8(matchIdx(1)); 
+                else
+                    error('Opaque pixel at (%d, %d) [RGB: %d,%d,%d] not in palette (1-15).', x, y, pixel(1), pixel(2), pixel(3));
+                end
             end
         end
     end
-end
-
-% 4. Encode to .spr
-numTiles = floor(h/16) * floor(w/16);
-sprData = zeros(numTiles*128, 1, 'uint8');
-blockX = [8 8 0 0]; blockY = [0 8 0 8];
-
-for tile = 0:numTiles-1
-    tx = mod(tile, TILES_PER_ROW); ty = floor(tile/TILES_PER_ROW);
-    tileIdx = sheet_indices(ty*16+(1:16), tx*16+(1:16));
     
+    % Encode tile
     for b = 0:3
         blockBase = tile*128 + b*32;
         for row = 0:7
@@ -61,10 +67,10 @@ for tile = 0:numTiles-1
             p1 = 0; p0 = 0; p3 = 0; p2 = 0;
             for col = 0:7
                 val = rowBits(col+1);
-                p0 = bitset(p0, 8-col, bitget(val, 1));
-                p1 = bitset(p1, 8-col, bitget(val, 2));
-                p2 = bitset(p2, 8-col, bitget(val, 3));
-                p3 = bitset(p3, 8-col, bitget(val, 4));
+                p0 = bitset(p0, col+1, bitget(val, 1));
+                p1 = bitset(p1, col+1, bitget(val, 2));
+                p2 = bitset(p2, col+1, bitget(val, 3));
+                p3 = bitset(p3, col+1, bitget(val, 4));
             end
             rowOffset = blockBase + row*4;
             sprData(rowOffset+1) = p1;

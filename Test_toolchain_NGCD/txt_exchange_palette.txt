@@ -1,3 +1,4 @@
+Total Tiles: 406
 Palette Export (RGB 0-255):
 Index | R | G | B
 ------------------

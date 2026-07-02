@@ -73,6 +73,10 @@ Alternate palette:
 
 ![](/Palettes/Jack_Stone_Palette.png)
 
+Alternate palette:
+
+![](/Palettes/Jack_Stone_Palette_alternate.png)
+
 - Mike Walsh green (player 1) and blue (player 2) **--> TO DO**
 
 ![](/Palettes/Mike_Walsh_green_Palette.png)

@@ -15,12 +15,12 @@ mkdir('.\roms_out\');
 mkdir('.\IPS_scripts\');
 
 % Original roms
-Crom_1_in  = '.\NGCD_track_1\STAFF.SPR';
+Crom_1_in  = '.\NGCD_track_1\JOUCHU.SPR';
 
 original_prog ='.\NGCD_track_1\P040.PRG';
 
 % modified roms
-Crom_1_out    = '.\roms_out\STAFF.SPR';
+Crom_1_out    = '.\roms_out\AREA3.SPR';
 
 modified_prog = '.\roms_out\P040.PRG';
 

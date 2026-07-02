@@ -9,20 +9,22 @@
 
 ## Why ?
 
-Because I'm pissed not to find the NCI hack publically available. Because the buyers of NCI physical cartridges are not the kind of guys who know how to dump chips and share the roms.
+Because I'm just pissed not to find the NCI hack publically available and I've always though that this game deserved uncensored mode since I bought it in 1994.
 
-Seeing at the tileset and palettes, it is clear that Sengoku 2 was never thought nor programmed to be easily uncensored. Color palette of current "blood" is just shared with other parts of the tiles so simple palette swaps are far from being enough. There is no single magic byte in the code to shift to a blood mode.
+Seeing at the tileset and palettes, it is clear that Sengoku 2 is not programmed to be easily uncensored like with a magic byte. Color palette of current "blood" is frequently shared with other parts of the tiles so simple palette swaps are far from being satisfying.
+
+I'm just a tinkerer so code disassembly was just not on option. In the other hand I'm educated enough to hack video games in a top-down approach by diving into the RAMs / ROMs structure.
 
 ## The steps
 
-- get the palette of every bleeding characters with MAME in debug mode and with a LUA script, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully). This is long and tedious but does not require any intelligence. Just play, save, check the LUA outputs, hack the RAM, take notes and reload.
-- Easy situation, there is no vibrant red in the tileset but a clever palette swap is not visually shocking, go with a palette swap only in the P ROM only.
+- get the palette of every bleeding characters with MAME in debug mode and with a LUA script, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully). This is long and tedious but does not require any intelligence. Just play, check the LUA outputs, look at the RAM in debug mode to confirm, take notes and reload.
+- Easy situation, there is no vibrant red in the tileset but a clever palette swap is not visually shocking, go with a palette swap and target the P ROM only.
 - Moderate situation, there is yet a vibrant enough red in the palette and no need for palette swap, edit and inject the modified tileset only on the C ROMs, with unchanged palette.
-- Fucked situation, multiple palette swap for the same character: I have to cheat and force a red in each palette at the same position and a modified tileset as well. The mod must stay pleasant to the eye and do not deteriorate too much the initial character design. It's an artistic compromise.
+- Fucked situation, multiple palette swap for the same character and non consistent color to turn to red: I have to cheat and force a red in each palette at the same position and a modified tileset as well. The mod must stay pleasant to the eye and do not deteriorate too much the initial character design. It's an artistic compromise.
 
 ## My rules
 
-- Only human like characters and main heroes will be bleeding. Anything else (pure demonic entities) will keep their original blood color if any.
+- Anything looking (even partly) human has red blood.
 - The least effort will always be prefered because I do this on my spare time, and basically my spare time is shared between a ton of other projects and non negociable family duties. All the sources been given, more patient people can probably improve the hack.
 
 ## How ?
@@ -36,7 +38,9 @@ Seeing at the tileset and palettes, it is clear that Sengoku 2 was never thought
 - Rince and repeat with all characters.
 - Make a final IPS script.
 
-I want to maximize the scripting in order to be able to easily come back on errors / bad design later. Some codes or parts of codes were made with A.I. to speed up the process.
+I want to maximize the scripting in order to be able to easily come back on errors / bad design later. Some codes or parts of codes were made with A.I. to speed up the process. Basically there is no rocket science here but I must admit that A.I. was precious to circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a niche market here  
+
+The Neo Geo CD hack was made in parallel to the MVS version as it is not more difficult to do on any of the systems.
 
 ## Identified flaws due to the 15 colors per tile limitation
 
@@ -44,7 +48,7 @@ I want to maximize the scripting in order to be able to easily come back on erro
 
 ## The story
 
-Palette are stored in the P rom as it and can easily be targeted and swapped (stored in 16 bits, big endian). Next is the whole list of (non chronogical) modifications made.
+Palette are stored in the P rom as it and can easily be targeted and swapped with a basic code (stored in 16 bits, big endian). Next is the whole list of (non chronogical) modifications made.
 
 ## Regular palettes, main characters
 

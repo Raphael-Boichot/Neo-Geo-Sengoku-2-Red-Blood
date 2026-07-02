@@ -35,7 +35,7 @@ txt_exchange_palette_big = 'txt_exchange_palette_big.txt';
 txt_exchange_palette_small = 'txt_exchange_palette_small.txt';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main characters %%%%%%%%%%%%%%%%%%%%%%%%%
-palette = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; % Claude Yamamoto (player 1)
+% palette = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; % Claude Yamamoto (player 1)
 % palette = [0x0012, 0x7810, 0x0C74, 0x5FC9, 0x1738, 0x5B8C, 0x3FCF, 0x4700, 0x0C00, 0x4F93, 0x0250, 0x2680, 0x0AD0, 0x6B80, 0x6FF0, 0x7111]; % Mike Walsh (green, player 1)
 % palette = [0x0013, 0x7810, 0x0C74, 0x5FC9, 0x0800, 0x0D00, 0x4F64, 0x6551, 0x0AA4, 0x0FF8, 0x7555, 0x7999, 0x0EEE, 0x0A80, 0x2EC0, 0x7111]; % Crow Tengu God (red, player 1)
 % palette = [0x0014, 0x4332, 0x4663, 0x4995, 0x3BA6, 0x3DC9, 0x4FFC, 0x0A00, 0x0F00, 0x4F90, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (doggo, red, player 1)
@@ -92,22 +92,22 @@ disp('Initialization completed')
 
 %% Transforms the pair of roms in png tileset + palette image to ckeck
 %///////////////section to comment to edit tileset//////////////////
-disp('Building tileset in png from palette vector')
-Crom_to_png(oddRomFile_big,evenRomFile_big,palette, outpng_big, txt_exchange_palette_big)
-Crom_to_png(oddRomFile_small,evenRomFile_small,palette, outpng_small, txt_exchange_palette_small)
+% disp('Building tileset in png from palette vector')
+% Crom_to_png(oddRomFile_big,evenRomFile_big,palette, outpng_big, txt_exchange_palette_big)
+% Crom_to_png(oddRomFile_small,evenRomFile_small,palette, outpng_small, txt_exchange_palette_small)
 %///////////////section to comment to edit tileset//////////////////
 
 %% Neo Geo new palette hex values for testing
 disp('Swapping palettes from vector and updating palette.txt')
-alternative_palette = [0x0070, 0x2812, 0x2912, 0x6A12, 0x7C12, 0x3E12, 0x6E13, 0x5F23, 0x0000, 0x7154, 0x3275, 0x2398, 0x36B9, 0x47EB, 0x7BFE, 0x7FFF]; % stream of blood, gradation of intense reds
+alternative_palette = [0x0070, 0x2812, 0x2912, 0x6A12, 0x0B00, 0x0C00, 0x0D00, 0x0E00, 0x0000, 0x7154, 0x3275, 0x2398, 0x36B9, 0x47EB, 0x7BFE, 0x7FFF]; % stream of blood, gradation of intense reds
 Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % Here some manual editing of the png tileset is expected
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 disp('Building back C ROMs from png and palette.txt')
-png_to_Crom(oddRomOut_big, evenRomOut_big,outpng_big,txt_exchange_palette_big)
-png_to_Crom(oddRomOut_small, evenRomOut_small,outpng_small,txt_exchange_palette_small)
+% png_to_Crom(oddRomOut_big, evenRomOut_big,outpng_big,txt_exchange_palette_big)
+% png_to_Crom(oddRomOut_small, evenRomOut_small,outpng_small,txt_exchange_palette_small)
 % CRC32 must be the same in test mode
 
 %% Debug step if necessary
@@ -121,7 +121,7 @@ copyfile('.\roms\040-p1.p1','.\roms_out\040-p1.p1');
 PRomFile = '.\roms_out\040-p1.p1';
 % Boring blood vs vibrant blood, several foes
 palette_old = [0x0070, 0x0660, 0x6AA0, 0x0DD0, 0x6EE0, 0x7FF4, 0x6FFA, 0x7FFF, 0x0000, 0x7154, 0x3275, 0x2398, 0x36B9, 0x47EB, 0x7BFE, 0x7FFF]; % stream of boring blood, many ennemies
-palette_new = [0x0070, 0x2812, 0x2912, 0x6A12, 0x7C12, 0x3E12, 0x6E13, 0x5F23, 0x0000, 0x7154, 0x3275, 0x2398, 0x36B9, 0x47EB, 0x7BFE, 0x7FFF]; % stream of blood, gradation of intense reds
+palette_new = [0x0070, 0x2812, 0x2912, 0x6A12, 0x0B00, 0x0C00, 0x0D00, 0x0E00, 0x0000, 0x7154, 0x3275, 0x2398, 0x36B9, 0x47EB, 0x7BFE, 0x7FFF]; % stream of blood, gradation of intense reds
 Prom_Palette_injector(PRomFile,palette_old,palette_new)
 
 % Sword guards, just a palette swap (color of masks is used for blood)

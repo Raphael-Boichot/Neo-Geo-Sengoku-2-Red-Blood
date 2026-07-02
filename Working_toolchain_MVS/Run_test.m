@@ -99,7 +99,7 @@ Crom_to_png(oddRomFile_small,evenRomFile_small,palette, outpng_small, txt_exchan
 
 %% Neo Geo new palette hex values for testing
 disp('Swapping palettes from vector and updating palette.txt')
-alternative_palette = dummy_palette_jet;
+alternative_palette = [0x0070, 0x2812, 0x2912, 0x6A12, 0x7C12, 0x3E12, 0x6E13, 0x5F23, 0x0000, 0x7154, 0x3275, 0x2398, 0x36B9, 0x47EB, 0x7BFE, 0x7FFF]; % stream of blood, gradation of intense reds
 Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % Here some manual editing of the png tileset is expected
@@ -121,7 +121,7 @@ copyfile('.\roms\040-p1.p1','.\roms_out\040-p1.p1');
 PRomFile = '.\roms_out\040-p1.p1';
 % Boring blood vs vibrant blood, several foes
 palette_old = [0x0070, 0x0660, 0x6AA0, 0x0DD0, 0x6EE0, 0x7FF4, 0x6FFA, 0x7FFF, 0x0000, 0x7154, 0x3275, 0x2398, 0x36B9, 0x47EB, 0x7BFE, 0x7FFF]; % stream of boring blood, many ennemies
-palette_new = [0x0070, 0x2812, 0x2912, 0x6A12, 0x7C12, 0x3E12, 0x6E13, 0x5F23, 0x5F66, 0x7F77, 0x6F99, 0x5FBA, 0x6FCC, 0x5FED, 0x6FFF, 0x7222]; % stream of blood, gradation of intense reds
+palette_new = [0x0070, 0x2812, 0x2912, 0x6A12, 0x7C12, 0x3E12, 0x6E13, 0x5F23, 0x0000, 0x7154, 0x3275, 0x2398, 0x36B9, 0x47EB, 0x7BFE, 0x7FFF]; % stream of blood, gradation of intense reds
 Prom_Palette_injector(PRomFile,palette_old,palette_new)
 
 % Sword guards, just a palette swap (color of masks is used for blood)

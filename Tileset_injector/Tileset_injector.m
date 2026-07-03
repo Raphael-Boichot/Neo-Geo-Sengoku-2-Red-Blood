@@ -31,43 +31,56 @@ for i = 0:total_tiles-1
     end
 end
 
-% Output the list of differences
 fprintf('Tiles with differences in Modified: %s\n', mat2str(diff_indices));
+fprintf('Total number of different tiles to find in NGCD: %d\n\n', length(diff_indices));
 
-% 4. Search for identical tiles in NGCD with transformations
-fprintf('\nSearching for reference tiles in NGCD (including rotations/flips)...\n');
+% 4. Search for identical tiles in NGCD with live updates
+found_count = 0;
+found_indices = []; 
+
+fprintf('Starting live search in NGCD...\n');
 
 for idx = diff_indices'
     r_start = floor((idx-1) / tiles_per_row) * tile_size + 1;
     c_start = mod(idx-1, tiles_per_row) * tile_size + 1;
     tile_ref = ref(r_start:r_start+15, c_start:c_start+15, :);
     
-    % Generate all 8 possible transformations
-    candidates = cell(8, 1);
-    candidates{1} = tile_ref;                            % Original
-    candidates{2} = rot90(tile_ref, 1);                  % 90 deg
-    candidates{3} = rot90(tile_ref, 2);                  % 180 deg
-    candidates{4} = rot90(tile_ref, 3);                  % 270 deg
-    candidates{5} = flip(tile_ref, 2);                   % Horizontal Flip
-    candidates{6} = flip(tile_ref, 1);                   % Vertical Flip
-    candidates{7} = flip(rot90(tile_ref, 1), 2);         % Transpose
-    candidates{8} = flip(rot90(tile_ref, 1), 1);         % Anti-transpose
+    candidates = {tile_ref, rot90(tile_ref, 1), rot90(tile_ref, 2), rot90(tile_ref, 3), ...
+                  flip(tile_ref, 2), flip(tile_ref, 1), flip(rot90(tile_ref, 1), 2), flip(rot90(tile_ref, 1), 1)};
     
     [ngcd_h, ngcd_w, ~] = size(ngcd);
-    found = false;
+    tile_found_for_this_idx = false;
     
-    % Scan NGCD for any match
+    % Search through NGCD
     for row = 1:tile_size:(ngcd_h - tile_size + 1)
         for col = 1:tile_size:(ngcd_w - tile_size + 1)
             tile_ngcd = ngcd(row:row+15, col:col+15, :);
             
             for k = 1:8
                 if isequal(candidates{k}, tile_ngcd)
-                    fprintf('Reference Tile Index %d matches NGCD at Row: %d, Col: %d (Transformation #%d)\n', ...
-                        idx, row, col, k);
-                    found = true;
+                    if ~tile_found_for_this_idx
+                        fprintf('Found Index %d at NGCD Row: %d, Col: %d (Transform %d)\n', idx, row, col, k);
+                        found_count = found_count + 1;
+                        tile_found_for_this_idx = true;
+                        found_indices = [found_indices; idx];
+                    end
                 end
             end
         end
     end
+    
+    if ~tile_found_for_this_idx
+        fprintf('Searching... Tile index %d not found yet.\n', idx);
+    end
+end
+
+% 5. Summary Report
+fprintf('\n--- Final Summary ---\n');
+fprintf('Different tiles successfully located in NGCD: %d / %d\n', found_count, length(diff_indices));
+
+missing_tiles = setdiff(diff_indices, found_indices);
+if ~isempty(missing_tiles)
+    fprintf('Tiles still missing from NGCD: %s\n', mat2str(missing_tiles));
+else
+    fprintf('All different tiles were successfully located in NGCD.\n');
 end

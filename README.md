@@ -95,6 +95,10 @@ Alternate palette:
 
 ![](/Palettes/Crow_Tengu_God_green_Palette.png)
 
+Crow Tengu (player 2) alternate palette
+
+![](/Palettes/Crow_Tengu_God_green_Palette_alternate.png)
+
 - Kirimaru red (player 1) and blue (player 2) **--> TO DO**
 
 ![](/Palettes/Kirimaru_red_Palette.png)

@@ -101,6 +101,10 @@ Alternate palette:
 
 ![](/Palettes/Kirimaru_blue_Palette.png)
 
+Kirimaru (player 2) alternate palette
+
+![](/Palettes/Kirimaru_blue_Palette_alternate.png)
+
 ## Regular palettes, ennemies of interest
 
 - Puppet Warrior blue, gray, blue and red (+ horse) and orange **--> TO DO**

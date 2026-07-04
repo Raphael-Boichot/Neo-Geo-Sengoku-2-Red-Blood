@@ -137,6 +137,14 @@ Puppet warriors alternate palettes
 
 ![](/Palettes/Ninka_Monk_red_Palette.png)
 
+Ninka monks alternate palettes
+
+![](/Palettes/Ninka_Monk_violet_Palette_alternate.png)
+
+![](/Palettes/Ninka_Monk_gray_Palette_alternate.png)
+
+![](/Palettes/Ninka_Monk_red_Palette_alternate.png)
+
 - Sword Guard white, blue, violet and brown **--> DONE**
 
 ![](/Palettes/Sword_Guard_white_palette.png)

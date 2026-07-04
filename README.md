@@ -193,6 +193,12 @@ Alternate palettes
 
 ![](/Palettes/Axeman_green_palette.png)
 
+Alternate palettes
+
+![](/Palettes/Axeman_red_palette_alternate.png)
+
+![](/Palettes/Axeman_green_palette_alternate.png)
+
 - Spearman red and green **--> TO DO**
 
 ![](/Palettes/Spearman_red_palette.png)

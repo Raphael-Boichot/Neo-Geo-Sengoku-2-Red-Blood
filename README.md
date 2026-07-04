@@ -11,9 +11,9 @@
 
 Sometimes you get pissed. I mean really.
 
-Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's fucking CENSORED. The issue is that I could deal with that in my life until I heard the existence of a red blood hack. That's a pretty good idea said I to me, let's download the rom...
+Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's fucking CENSORED. The issue is that I could deal with that in my life until I heard the existence of a red blood hack. That’s a pretty good idea, I thought to myself. Let’s download the ROM !
 
-You know the answer. This is was a "scammers only" version not released in the public domain. Said scammers not being equipped with screwdrivers and EPROM readers apparently.
+You know the answer. The NCI hack was a "scammers only" version not released in the public domain. Said scammers not being equipped with screwdrivers and EPROM readers apparently.
 
 SO, armed with years of hacking Game Boy games and hardware, the marvelous Matlab software that does coffee and Neogeodev documentations, it's was just a matter of time to cook a public version. Basically I began thinking doing the hack in June 2026 and was able to release the first version in July.
 

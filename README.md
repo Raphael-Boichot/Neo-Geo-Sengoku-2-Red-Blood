@@ -11,15 +11,15 @@
 
 Sometimes you get pissed. I mean really.
 
-Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's fucking CENSORED. The issue is that I could deal with that in my life until I heard the existence of a red blood hack. That’s a pretty good idea, I thought to myself. Let’s download the ROM !
+Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's fucking CENSORED. The issue is that I could deal with that in my life until I heard the existence of a red blood hack. That’s a pretty good idea, I thought to myself. Let’s download the ROM have have fun!
 
-You know the answer. The NCI hack was a "scammers only" version not released in the public domain. Said scammers not being equipped with screwdrivers and EPROM readers apparently.
+My fun hit a wall rapidely. The NCI blood hack was a "scammers only" version not released in the public domain and VERY expensive for what it is (probably a 40€ revamped Aliexpress cartridge). Said scammers not being equipped with screwdrivers and EPROM readers apparently.
 
-SO, armed with years of hacking Game Boy games and hardware, the marvelous Matlab software that does coffee and Neogeodev documentations, it's was just a matter of time to cook a public version. Basically I began thinking doing the hack in June 2026 and was able to release the first version in July.
+SO, armed with years of hacking Game Boy games and hardware, the marvelous Matlab software that does coffee and Neogeodev documentations, it's was just a matter of time and effort to cook a public version. Basically I began thinking doing the hack seriously in June 2026 and was able to release the first version in July.
 
 Seeing at the tileset and palettes, it is clear that Sengoku 2 is not programmed to be easily uncensored like with a magic byte. Color palette of current "blood" is frequently shared with other parts of the tiles so simple palette swaps are far from being satisfying.
 
-I'm just a tinkerer so code disassembly was just not on option. In the other hand I'm educated enough to hack video games in a top-down approach by diving into the RAMs / ROMs structure.
+I'm just a tinkerer so code disassembly was just not on option. In the other hand I'm educated enough to hack video games in a top-down approach by diving into the RAMs / ROMs structure. Just a bootlegger job basically.
 
 ## The steps (or how being ambitious when you have no time)
 

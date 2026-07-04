@@ -215,6 +215,10 @@ Alternate palette (red)
 
 ![](/Palettes/Big_fish_palette.png)
 
+Alternate palette (big fish)
+
+![](/Palettes/Big_fish_palette_alternate.png)
+
 - Soldier **--> TO DO**
 
 ![](/Palettes/Soldier_palette.png)

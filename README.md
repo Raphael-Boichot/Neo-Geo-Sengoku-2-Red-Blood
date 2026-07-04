@@ -223,6 +223,10 @@ Alternate palette (big fish)
 
 ![](/Palettes/Soldier_palette.png)
 
+Alternate palette
+
+![](/Palettes/Soldier_palette_alternate.png)
+
 - Dragon (last level) **--> TO DO**
 
 ![](/Palettes/Dragon_palette.png)

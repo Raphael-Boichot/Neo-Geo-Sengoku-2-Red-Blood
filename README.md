@@ -255,11 +255,15 @@ Alternate palette
 
 ![](/Palettes/Yoshitsune_palette_alternate.png)
 
-General and Dark Monarch (Bosses level 4) **--> TO DO**
+Dark Monarch and General (Bosses level 4) **--> TO DO**
+
+![](/Palettes/Dark_Monarch_palette.png)
 
 ![](/Palettes/General_palette.png)
 
-![](/Palettes/Dark_Monarch_palette.png)
+Aternate palette (General)
+
+![](/Palettes/General_palette_alternate.png)
 
 Puppets (Final boss) **--> TO DO**
 

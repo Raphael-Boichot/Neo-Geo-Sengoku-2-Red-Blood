@@ -65,11 +65,11 @@ Palette are stored in the P rom as it and can easily be targeted and swapped wit
 
 - Flashing effect when hit (boring) **--> DONE**
 
-![](/Palettes/Flashing_effect_Palette.png)
+![](/Palettes/Flashing_Effect_Palette.png)
 
 Alternate palette:
 
-![](/Palettes/Flashing_effect_Palette_alternate.png)
+![](/Palettes/Flashing_Effect_Palette_alternate.png)
 
 ## Regular and modified palettes, main characters
 

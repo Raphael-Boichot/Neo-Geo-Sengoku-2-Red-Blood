@@ -181,6 +181,12 @@ Giant blue alternate palette
 
 ![](/Palettes/Kunoichi_green_palette.png)
 
+Alternate palettes
+
+![](/Palettes/Kunoichi_violet_palette_alternate.png)
+
+![](/Palettes/Kunoichi_green_palette_alternate.png)
+
 - Axeman red and green **--> TO DO**
 
 ![](/Palettes/Axeman_red_palette.png)

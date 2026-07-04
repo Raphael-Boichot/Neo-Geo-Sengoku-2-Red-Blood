@@ -103,7 +103,7 @@ Alternate palette:
 
 Kirimaru (player 2) alternate palette
 
-![](/Palettes/Kirimaru_blue_Palette_alternate.png)
+![](/Palettes/Kirimaru_blue_palette_alternate.png)
 
 ## Regular palettes, ennemies of interest
 

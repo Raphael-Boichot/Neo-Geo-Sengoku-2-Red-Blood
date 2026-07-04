@@ -123,7 +123,7 @@ Kirimaru (player 2) alternate palette
 
 Puppet warriors alternate palettes
 
-![](/Palettes/Puppet_Warrior_blue_Palette_altetnate.png)
+![](/Palettes/Puppet_Warrior_blue_Palette_alternate.png)
 
 ![](/Palettes/Puppet_Warrior_gray_Palette_alternate.png)
 

@@ -251,6 +251,10 @@ Yoshitsune (Boss level 3) **--> TO DO**
 
 ![](/Palettes/Yoshitsune_palette.png)
 
+Alternate palette
+
+![](/Palettes/Yoshitsune_palette_alternate.png)
+
 General and Dark Monarch (Bosses level 4) **--> TO DO**
 
 ![](/Palettes/General_palette.png)

@@ -61,7 +61,17 @@ The Neo Geo CD hack was made in parallel to the MVS version as it is not more di
 
 Palette are stored in the P rom as it and can easily be targeted and swapped with a basic code (stored in 16 bits, big endian). Next is the whole list of (non chronogical) modifications made.
 
-## Regular palettes, main characters
+## Regular and modified palettes, main effects
+
+- Flashing effect when hit (boring) **--> DONE**
+
+![](/Palettes/Flashing_effect_Palette.png)
+
+Alternate palette:
+
+![](/Palettes/Flashing_effect_Palette_alternate.png)
+
+## Regular and modified palettes, main characters
 
 - Stream of blood (boring) **--> DONE**
 
@@ -109,7 +119,7 @@ Kirimaru (player 2) alternate palette
 
 ![](/Palettes/Kirimaru_blue_palette_alternate.png)
 
-## Regular palettes, ennemies of interest
+## Regular and modified palettes, ennemies of interest
 
 - Puppet Warrior blue, gray, blue and red (+ horse) and orange **--> TO DO**
 
@@ -231,7 +241,7 @@ Alternate palette
 
 ![](/Palettes/Dragon_palette.png)
 
-## Regular palettes, bosses
+## Regular and modified palettes, bosses
 
 Kojiro blue (Boss level 1) and green (anywhere else) **--> TO DO**
 

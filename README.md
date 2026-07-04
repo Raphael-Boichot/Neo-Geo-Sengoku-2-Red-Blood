@@ -165,11 +165,15 @@ Alternate palettes:
 
 ![](/Palettes/Sword_Guard_brown_palette_alternate.png)
 
-- Giant Blue and red **--> TO DO**
+- Giant red and blue **--> TO DO**
+
+![](/Palettes/Giant_red_palette.png)
 
 ![](/Palettes/Giant_blue_palette.png)
 
-![](/Palettes/Giant_red_palette.png)
+Giant blue alternate palette
+
+![](/Palettes/Giant_blue_palette_alternate.png)
 
 - Kunoichi violet and green **--> TO DO**
 

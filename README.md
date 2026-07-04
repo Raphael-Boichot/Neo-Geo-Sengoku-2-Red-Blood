@@ -9,15 +9,21 @@
 
 ## Why ?
 
-Because I'm just pissed not to find the NCI hack publically available and I've always though that this game deserved uncensored mode since I bought it in 1994.
+Sometimes you get pissed. I mean really.
+
+Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's fucking CENSORED. The issue is that I could deal with that in my life until I heard the existence of a red blood hack. That's a pretty good idea said I to me, let's download the rom...
+
+You know the answer. This is was a "scammers only" version not released in the public domain. Said scammers not being equipped with screwdrivers and EPROM readers apparently.
+
+SO, armed with years of hacking Game Boy games and hardware, the marvelous Matlab software that does coffee and Neogeodev documentations, it's was just a matter of time to cook a public version. Basically I began thinking doing the hack in June 2026 and was able to release the first version in July.
 
 Seeing at the tileset and palettes, it is clear that Sengoku 2 is not programmed to be easily uncensored like with a magic byte. Color palette of current "blood" is frequently shared with other parts of the tiles so simple palette swaps are far from being satisfying.
 
 I'm just a tinkerer so code disassembly was just not on option. In the other hand I'm educated enough to hack video games in a top-down approach by diving into the RAMs / ROMs structure.
 
-## The steps (when you have no time)
+## The steps (or how being ambitious when you have no time)
 
-Doing ambitious hacks with work and family necessitates some planning. I've sliced the hack in many sub steps in order to be able to work on it by slots of about one hour maximum and easily reverse a fucked situation.
+Doing ambitious hacks with work and family necessitates some planning and building a toolchain. I've sliced the hack in many sub steps in order to be able to work on it by slots of about one hour maximum and easily reverse a fucked situation.
 
 Here are the main steps used in a nutshell:
 

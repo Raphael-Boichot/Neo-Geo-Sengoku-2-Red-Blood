@@ -271,6 +271,10 @@ Puppets (Final boss) **--> TO DO**
 
 ![](/Palettes/Puppet_2_palette.png)
 
+Aternate palette (puppet 2)
+
+![](/Palettes/Puppet_2_palette_alternate.png)
+
 ## Acknowledgments
 - The [neogeodev community](https://wiki.neogeodev.org//index.php/Main_Page) in general and [Furrtek](https://github.com/furrtek) in particular. This project made on spare time was only possible because I stood on the shoulders of giants.
 - [Matt Greer](https://www.mattgreer.dev/about/) for sharing [hacks and usefull codes](https://github.com/city41/rotary-bobble) about Neo Geo hacking and the very usefull [sprite viewer](https://neospriteviewer.mattgreer.dev/).

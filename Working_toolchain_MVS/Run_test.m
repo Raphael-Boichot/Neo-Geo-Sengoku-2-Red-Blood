@@ -35,7 +35,7 @@ txt_exchange_palette_big = 'txt_exchange_palette_big.txt';
 txt_exchange_palette_small = 'txt_exchange_palette_small.txt';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main characters %%%%%%%%%%%%%%%%%%%%%%%%%
-% palette = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; % Claude Yamamoto (player 1)
+palette = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; % Claude Yamamoto (player 1)
 % palette = [0x0012, 0x7810, 0x0C74, 0x5FC9, 0x1738, 0x5B8C, 0x3FCF, 0x4700, 0x0C00, 0x4F93, 0x0250, 0x2680, 0x0AD0, 0x6B80, 0x6FF0, 0x7111]; % Mike Walsh (green, player 1)
 % palette = [0x0013, 0x7810, 0x0C74, 0x5FC9, 0x0800, 0x0D00, 0x4F64, 0x6551, 0x0AA4, 0x0FF8, 0x7555, 0x7999, 0x0EEE, 0x0A80, 0x2EC0, 0x7111]; % Crow Tengu God (red, player 1)
 % palette = [0x0014, 0x4332, 0x4663, 0x4995, 0x3BA6, 0x3DC9, 0x4FFC, 0x0A00, 0x0F00, 0x4F90, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (doggo, red, player 1)
@@ -92,27 +92,27 @@ disp('Initialization completed')
 
 %% Transforms the pair of roms in png tileset + palette image to ckeck
 %///////////////section to comment to edit tileset//////////////////
-% disp('Building tileset in png from palette vector')
-% Crom_to_png(oddRomFile_big,evenRomFile_big,palette, outpng_big, txt_exchange_palette_big)
-% Crom_to_png(oddRomFile_small,evenRomFile_small,palette, outpng_small, txt_exchange_palette_small)
+disp('Building tileset in png from palette vector')
+Crom_to_png(oddRomFile_big,evenRomFile_big,palette, outpng_big, txt_exchange_palette_big)
+Crom_to_png(oddRomFile_small,evenRomFile_small,palette, outpng_small, txt_exchange_palette_small)
 %///////////////section to comment to edit tileset//////////////////
 
 %% Neo Geo new palette hex values for testing
 disp('Swapping palettes from vector and updating palette.txt')
-alternative_palette = [0x1005, 0x1008, 0x100D, 0x303F, 0x308F, 0x30DF, 0xF3FB, 0xF7F7, 0xFCF2, 0xEFF0, 0xEFA0, 0xEF50, 0xEF00, 0xCB00, 0xC700, 0xC400];
+alternative_palette = [0x0078, 0x3720, 0x2B52, 0x3E94, 0x4700, 0x4B00, 0x4F00, 0x3023, 0x3046, 0x2069, 0x0885, 0x6BB9, 0x7FFC, 0x109B, 0x10DF, 0x0000]; % Puppet 2 with reds from puppet 1
 Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % Here some manual editing of the png tileset is expected
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 disp('Building back C ROMs from png and palette.txt')
-% png_to_Crom(oddRomOut_big, evenRomOut_big,outpng_big,txt_exchange_palette_big)
-% png_to_Crom(oddRomOut_small, evenRomOut_small,outpng_small,txt_exchange_palette_small)
+png_to_Crom(oddRomOut_big, evenRomOut_big,outpng_big,txt_exchange_palette_big)
+png_to_Crom(oddRomOut_small, evenRomOut_small,outpng_small,txt_exchange_palette_small)
 % CRC32 must be the same in test mode
 
 %% Debug step if necessary
-%Crom_to_png(oddRomOut_big,evenRomOut_big,palette, 'debug_big.png', 'debug_big.txt')
-%Crom_to_png(oddRomOut_small,evenRomOut_small,palette, 'debug_small.png', 'debug_small.txt')
+% Crom_to_png(oddRomOut_big,evenRomOut_big,palette, 'debug_big.png', 'debug_big.txt')
+% Crom_to_png(oddRomOut_small,evenRomOut_small,palette, 'debug_small.png', 'debug_small.txt')
 
 %% Injects new palettes in P ROMs
 % Here some manual editing of the new palette
@@ -160,7 +160,7 @@ palette_new = [0x0056, 0x3741, 0x2C85, 0x4FC9, 0x6550, 0x6B90, 0x6FE0, 0x4544, 0
 Prom_Palette_injector(PRomFile,palette_old,palette_new)
 
 % puppet warriors, lotta red !
-disp('------------Swapping Pupper Warriors palette---------------------')
+disp('------------Swapping Puppet Warriors palette---------------------')
 palette_old = [0x002F, 0x1720, 0x5B62, 0x5FD8, 0x3844, 0x4F88, 0x4FDD, 0x2B60, 0x6FB0, 0x4FE0, 0x7113, 0x033D, 0x257D, 0x49CF, 0x7FFF, 0x0111]; % Puppet Warrior blue
 palette_new = [0x002F, 0x1720, 0x5B62, 0x5FD8, 0x3844, 0x4F88, 0x4FDD, 0x6600, 0x0A10, 0x4F20, 0x7113, 0x033D, 0x257D, 0x49CF, 0x7FFF, 0x0111]; % Puppet Warrior blue with red
 Prom_Palette_injector(PRomFile,palette_old,palette_new)
@@ -212,6 +212,31 @@ Prom_Palette_injector(PRomFile,palette_old,palette_new)
 disp('-----------------------Big fish with legs palette------------')
 palette_old = [0x0055, 0x302A, 0x504F, 0x716F, 0x6430, 0x6980, 0x1DD2, 0x0731, 0x0A53, 0x5D84, 0x0016, 0x7FB7, 0x6FFC, 0x248E, 0x37CF, 0x0000]; % big blue fish
 palette_new = [0x0055, 0x4A10, 0x0E20, 0x2F50, 0x6430, 0x6980, 0x1DD2, 0x0731, 0x0A53, 0x5D84, 0x6610, 0x7FB7, 0x6FFC, 0x6E80, 0x4FB0, 0x0000]; % big blue fish, now red
+Prom_Palette_injector(PRomFile,palette_old,palette_new)
+
+disp('---------------------------Soldier palette--------------------')% this one was lucky, I have a free entry in palette !
+palette_old = [0x0065, 0x3941, 0x3E93, 0x4FE7, 0x0140, 0x0480, 0x08C0, 0x0720, 0x4B60, 0x1037, 0x518A, 0x26CF, 0x7EFF, 0x7DF4, 0x20F4, 0x0000]; % Soldier palette 2
+palette_new = [0x0065, 0x3941, 0x3E93, 0x4FE7, 0x0140, 0x0480, 0x08C0, 0x0720, 0x4B60, 0x1037, 0x518A, 0x26CF, 0x7EFF, 0x7DF4, 0x4F00, 0x0000]; % Soldier palette with red injected;
+Prom_Palette_injector(PRomFile,palette_old,palette_new)
+
+disp('---------------------------Kojiro-----------------------------')
+palette_old = [0x004E, 0x2830, 0x2C73, 0x6FC8, 0x5151, 0x4595, 0x79F9, 0x0960, 0x6FB0, 0x30DF, 0x0559, 0x799C, 0x1FFF, 0x5606, 0x5C0C, 0x0000]; % Kojiro (anywhere else, green)
+palette_new = [0x004E, 0x2830, 0x2C73, 0x6FC8, 0x5151, 0x4595, 0x79F9, 0x0960, 0x6FB0, 0x30DF, 0x0559, 0x799C, 0x1FFF, 0x4A00, 0x4F00, 0x0000]; % Kojiro (anywhere else, green but a bit of red instead of purple)
+Prom_Palette_injector(PRomFile,palette_old,palette_new)
+
+disp('---------------------------Yoshitsune-------------------------')
+palette_old = [0x0068, 0x3005, 0x202C, 0x306F, 0x1426, 0x393A, 0x5C5F, 0x0360, 0x04A0, 0x6AF0, 0x0777, 0x7BBB, 0x7FFF, 0x4A10, 0x6F40, 0x0000]; % Yoshitsune (boss 3)
+palette_new = [0x0068, 0x3005, 0x202C, 0x306F, 0x1426, 0x393A, 0x5C5F, 0x0360, 0x04A0, 0x6AF0, 0x0777, 0x7BBB, 0x7FFF, 0x4A00, 0x4F00, 0x0000]; % Yoshitsune (boss 3), vivid reds
+Prom_Palette_injector(PRomFile,palette_old,palette_new)
+
+disp('----------------------------General---------------------------')
+palette_old = [0x0076, 0x2A31, 0x2D85, 0x4FC8, 0x0830, 0x0C40, 0x4F60, 0x5131, 0x2242, 0x0494, 0x08B0, 0x6BB0, 0x6FF0, 0x07C7, 0x2AFA, 0x0000]; % Adolfo Ramirez
+palette_new = [0x0076, 0x2A31, 0x2D85, 0x4FC8, 0x4600, 0x4A11, 0x4F33, 0x5131, 0x2242, 0x0494, 0x08B0, 0x6BB0, 0x6FF0, 0x07C7, 0x2AFA, 0x0000]; % Adolfo Ramirez, vivid reds
+Prom_Palette_injector(PRomFile,palette_old,palette_new)
+
+disp('----------------------------Puppet number 2-------------------')
+palette_old = [0x0078, 0x3720, 0x2B52, 0x3E94, 0x5606, 0x5A0A, 0x5F0F, 0x3023, 0x3046, 0x2069, 0x0885, 0x6BB9, 0x7FFC, 0x109B, 0x10DF, 0x0000]; % Puppet 2
+palette_new = [0x0078, 0x3720, 0x2B52, 0x3E94, 0x4700, 0x4B00, 0x4F00, 0x3023, 0x3046, 0x2069, 0x0885, 0x6BB9, 0x7FFC, 0x109B, 0x10DF, 0x0000]; % Puppet 2 with reds from puppet 1
 Prom_Palette_injector(PRomFile,palette_old,palette_new)
 
 % CRC32 must be the same in test mode

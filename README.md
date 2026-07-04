@@ -121,6 +121,14 @@ Kirimaru (player 2) alternate palette
 
 ![](/Palettes/Puppet_Warrior_orange_Palette.png)
 
+Puppet warriors alternate palettes
+
+![](/Palettes/Puppet_Warrior_blue_Palette_altetnate.png)
+
+![](/Palettes/Puppet_Warrior_gray_Palette_alternate.png)
+
+![](/Palettes/Puppet_Warrior_orange_Palette_alternate.png)
+
 - Ninja Monk violet, gray and red **--> TO DO**
 
 ![](/Palettes/Ninka_Monk_violet_Palette.png)

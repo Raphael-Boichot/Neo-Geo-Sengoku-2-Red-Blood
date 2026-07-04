@@ -239,6 +239,10 @@ Kojiro blue (Boss level 1) and green (anywhere else) **--> TO DO**
 
 ![](/Palettes/Kojiro_green_palette.png)
 
+Alternate palette
+
+![](/Palettes/Kojiro_green_palette_alternate.png)
+
 Kitsune (Boss level 2) **--> TO DO**
 
 ![](/Palettes/Kitsune_palette.png)

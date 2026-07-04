@@ -49,7 +49,7 @@ Here are the main steps used in a nutshell:
 - Rince and repeat with all characters.
 - Make a final IPS script.
 
-I wanted to maximize the scripting in order to be able to easily come back on errors / bad design later. Some codes or parts of codes were made with A.I. to speed up the process. Basically there is no rocket science here but I must admit that A.I. was precious to circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a niche market here. 
+I wanted to maximize the scripting in order to be able to easily come back on errors / bad design later. Some codes or parts of codes were made with A.I. to speed up the process. Basically there is no rocket science here but I must admit that A.I. was precious to circumvent the scarcity of Neo Geo dedicated editing tool (Yeah, I know, it’s evil, the planet and all that). We are clearly addressing a niche market here. 
 
 The Neo Geo CD hack was made in parallel to the MVS version as it is not more difficult to do on any of the systems. Except that the Neo Geo CD is even less documented so I was basically on my own all time.
 

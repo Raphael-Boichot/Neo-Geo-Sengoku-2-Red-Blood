@@ -199,11 +199,15 @@ Alternate palettes
 
 ![](/Palettes/Axeman_green_palette_alternate.png)
 
-- Spearman red and green **--> TO DO**
+- Spearman green and red **--> TO DO**
+
+![](/Palettes/Spearman_green_palette.png)
 
 ![](/Palettes/Spearman_red_palette.png)
 
-![](/Palettes/Spearman_green_palette.png)
+Alternate palette (red)
+
+![](/Palettes/Spearman_red_palette_alternate.png)
 
 - Small and big fishes **--> TO DO**
 

@@ -8,7 +8,7 @@
 
 ## Why ?
 
-Sometimes you get pissed. I mean really.
+Sometimes, as a player, you get pissed. I mean really.
 
 Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's fucking **CENSORED**. The issue is that I could deal with that in my life until I heard the existence of a red blood hack. That’s a pretty good idea, I thought to myself. Let’s download the ROM and have fun!
 

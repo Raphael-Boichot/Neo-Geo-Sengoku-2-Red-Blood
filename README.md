@@ -66,7 +66,7 @@ Palette are stored in the P rom as it and can easily be targeted and swapped wit
 
 Do not mind the first color rendered here, it is the transparent layer but it also contains the palette number as displayed in RAM (which was very practical for the LUA script). It is rendered as a color or transparency depending on the tool I used to render the palette strip in the repository.
 
-- Flashing effect when hit (boring) **--> DONE**
+- Flashing effect when hit (boring) **--> Just a palette swap**
 
 ![](/Palettes/Flashing_Effect_Palette.png)
 
@@ -76,7 +76,7 @@ Alternate palette:
 
 ## Regular and modified palettes, main characters
 
-- Stream of blood (boring) **--> DONE**
+- Stream of blood (boring) **--> Just a palette swap**
 
 ![](/Palettes/Stream_of_blood_Palette.png)
 
@@ -158,7 +158,7 @@ Ninka monks alternate palettes
 
 ![](/Palettes/Ninka_Monk_red_Palette_alternate.png)
 
-- Sword Guard white, blue, violet and brown **--> DONE**
+- Sword Guard white, blue, violet and brown **--> Just a palette swap**
 
 ![](/Palettes/Sword_Guard_white_palette.png)
 

@@ -1,7 +1,6 @@
 # Red Blood hack for Sengoku 2, Neo Geo AES/MVS and NGCD
-## Open source hack to turn the game into a blood bath
 
-## Current state: WIP
+## Current state: work in progress...
 
 - Documenting the process
 - Writing the toolchain

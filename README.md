@@ -65,9 +65,9 @@ It fits well with the game anyways.
 
 Palette are stored in the P rom as it and can easily be targeted and swapped with a basic code (stored in 16 bits, big endian). Next is the whole list of (non chronogical) modifications made.
 
-Do not mind the first color, it is the transparent layer but it contains the palette number (which was very practical). It is rendered as a color or transparency depending on the tool I used to render the palette strip.
-
 ## Regular and modified palettes, main effects
+
+Do not mind the first color rendered here, it is the transparent layer but it also contains the palette number as displayed in RAM (which was very practical for the LUA script). It is rendered as a color or transparency depending on the tool I used to render the palette strip in the repository.
 
 - Flashing effect when hit (boring) **--> DONE**
 

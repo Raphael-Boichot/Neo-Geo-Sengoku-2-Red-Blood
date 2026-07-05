@@ -1,4 +1,4 @@
-# Red Blood hack for SenGoku 2, Neo Geo AES/MVS and NGCD
+# Red Blood hack for Sengoku 2, Neo Geo AES/MVS and NGCD
 ## Open source hack to turn the game into a blood bath
 
 ## Current state: WIP
@@ -51,7 +51,7 @@ Here are the main steps used in a nutshell:
 
 I wanted to maximize the scripting in order to be able to easily come back on errors / bad design later. Some codes or parts of codes were made with A.I. to speed up the process (Gemini mainly, a pinch of Claude too for the most tricky parts). Basically there is no rocket science here but I must admit that A.I. was precious to circumvent the scarcity of Neo Geo dedicated editing tool (Yeah, I know, it’s evil, it kills the planet and all of that). We are clearly addressing a niche market here. 
 
-The Neo Geo CD hack was made in parallel to the MVS version as it is not more difficult to do on any of the systems. Except that the Neo Geo CD is scarcely documented so I was basically on my own most of the time.
+The Neo Geo CD hack was made in parallel to the MVS version as it is not more difficult to do on any of the systems. Except that the Neo Geo CD is scarcely documented (The only interesting source is a [Neo Geo CD World article](https://www.neogeocdworld.info/html/fiche/hard.htm) by Furrtek), so I was basically on my own most of the time.
 
 ## Identified flaws due to the 15 colors per tile limitation
 

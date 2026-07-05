@@ -66,7 +66,7 @@ Palette are stored in the P rom as it and can easily be targeted and swapped wit
 
 Do not mind the first color rendered here, it is the transparent layer but it also contains the palette number as displayed in RAM (which was very practical for the LUA script). It is rendered as a color or transparency depending on the tool I used to render the palette strip in the repository.
 
-- Flashing effect when hit (boring) **--> Just a palette swap**
+- Flashing effect when hit (boring) **--> Palette swap only**
 
 ![](/Palettes/Flashing_Effect_Palette.png)
 
@@ -76,7 +76,7 @@ Alternate palette:
 
 ## Regular and modified palettes, main characters
 
-- Stream of blood (boring) **--> Just a palette swap**
+- Stream of blood (boring) **--> Palette swap only**
 
 ![](/Palettes/Stream_of_blood_Palette.png)
 
@@ -84,11 +84,11 @@ Alternate palette:
 
 ![](/Palettes/Stream_of_blood_Palette_alternate.png)
 
-- Claude Yamamoto (Player 1) **--> Palette: DONE, Tilset: TO DO**
+- Claude Yamamoto (Player 1) **--> Tileset editing only**
 
 ![](/Palettes/Claude_Yamamoto_Palette.png)
 
-- Jack Stone (Player 2) **--> Palette: DONE, Tilset: TO DO**
+- Jack Stone (Player 2) **--> Palette swap and tileset editing**
 
 ![](/Palettes/Jack_Stone_Palette.png)
 
@@ -96,13 +96,13 @@ Alternate palette:
 
 ![](/Palettes/Jack_Stone_Palette_alternate.png)
 
-- Mike Walsh green (player 1) and blue (player 2) **--> TO DO**
+- Mike Walsh green (player 1) and blue (player 2) **--> Tileset editing only**
 
 ![](/Palettes/Mike_Walsh_green_Palette.png)
 
 ![](/Palettes/Mike_Walsh_blue_Palette.png)
 
-- Crow Tengu God red (player 1) and green (player 2) **--> TO DO**
+- Crow Tengu God red (player 1) and green (player 2) **--> Palette swap and tileset editing**
 
 ![](/Palettes/Crow_Tengu_God_red_Palette.png)
 
@@ -112,7 +112,7 @@ Crow Tengu (player 2) alternate palette
 
 ![](/Palettes/Crow_Tengu_God_green_Palette_alternate.png)
 
-- Kirimaru red (player 1) and blue (player 2) **--> TO DO**
+- Kirimaru red (player 1) and blue (player 2) **--> Palette swap and tileset editing**
 
 ![](/Palettes/Kirimaru_red_Palette.png)
 
@@ -124,7 +124,7 @@ Kirimaru (player 2) alternate palette
 
 ## Regular and modified palettes, ennemies of interest
 
-- Puppet Warrior blue, gray, blue and red (+ horse) and orange **--> TO DO**
+- Puppet Warrior blue, gray, blue and red (+ horse) and orange **--> Palette swap and tileset editing**
 
 ![](/Palettes/Puppet_Warrior_blue_Palette.png)
 
@@ -142,7 +142,7 @@ Puppet warriors alternate palettes
 
 ![](/Palettes/Puppet_Warrior_orange_Palette_alternate.png)
 
-- Ninja Monk violet, gray and red **--> TO DO**
+- Ninja Monk violet, gray and red **--> Palette swap and tileset editing**
 
 ![](/Palettes/Ninka_Monk_violet_Palette.png)
 
@@ -158,7 +158,7 @@ Ninka monks alternate palettes
 
 ![](/Palettes/Ninka_Monk_red_Palette_alternate.png)
 
-- Sword Guard white, blue, violet and brown **--> Just a palette swap**
+- Sword Guard white, blue, violet and brown **--> Palette swap only**
 
 ![](/Palettes/Sword_Guard_white_palette.png)
 
@@ -178,7 +178,7 @@ Alternate palettes:
 
 ![](/Palettes/Sword_Guard_brown_palette_alternate.png)
 
-- Giant red and blue **--> TO DO**
+- Giant red and blue **--> Palette swap and tileset editing**
 
 ![](/Palettes/Giant_red_palette.png)
 
@@ -188,7 +188,7 @@ Giant blue alternate palette
 
 ![](/Palettes/Giant_blue_palette_alternate.png)
 
-- Kunoichi violet and green **--> TO DO**
+- Kunoichi violet and green **--> Palette swap and tileset editing**
 
 ![](/Palettes/Kunoichi_violet_palette.png)
 
@@ -200,7 +200,7 @@ Alternate palettes
 
 ![](/Palettes/Kunoichi_green_palette_alternate.png)
 
-- Axeman red and green **--> TO DO**
+- Axeman red and green **--> Palette swap and tileset editing**
 
 ![](/Palettes/Axeman_red_palette.png)
 
@@ -212,7 +212,7 @@ Alternate palettes
 
 ![](/Palettes/Axeman_green_palette_alternate.png)
 
-- Spearman green and red **--> TO DO**
+- Spearman green and red **--> Palette swap and tileset editing**
 
 ![](/Palettes/Spearman_green_palette.png)
 
@@ -222,7 +222,7 @@ Alternate palette (red)
 
 ![](/Palettes/Spearman_red_palette_alternate.png)
 
-- Small and big fishes **--> TO DO**
+- Small and big fishes **--> Palette swap and tileset editing**
 
 ![](/Palettes/Small_fish_palette.png)
 
@@ -232,7 +232,7 @@ Alternate palette (big fish)
 
 ![](/Palettes/Big_fish_palette_alternate.png)
 
-- Soldier **--> TO DO**
+- Soldier **--> Palette swap and tileset editing**
 
 ![](/Palettes/Soldier_palette.png)
 
@@ -240,13 +240,13 @@ Alternate palette
 
 ![](/Palettes/Soldier_palette_alternate.png)
 
-- Dragon (last level) **--> TO DO**
+- Dragon (last level) **--> Palette swap and tileset editing**
 
 ![](/Palettes/Dragon_palette.png)
 
 ## Regular and modified palettes, bosses
 
-Kojiro blue (Boss level 1) and green (anywhere else) **--> TO DO**
+Kojiro blue (Boss level 1) and green (anywhere else) **--> Palette swap and tileset editing**
 
 ![](/Palettes/Kojiro_blue_palette.png)
 
@@ -256,11 +256,11 @@ Alternate palette
 
 ![](/Palettes/Kojiro_green_palette_alternate.png)
 
-Kitsune (Boss level 2) **--> TO DO**
+Kitsune (Boss level 2) **--> Palette swap and tileset editing**
 
 ![](/Palettes/Kitsune_palette.png)
 
-Yoshitsune (Boss level 3) **--> TO DO**
+Yoshitsune (Boss level 3) **--> Palette swap and tileset editing**
 
 ![](/Palettes/Yoshitsune_palette.png)
 
@@ -268,7 +268,7 @@ Alternate palette
 
 ![](/Palettes/Yoshitsune_palette_alternate.png)
 
-Dark Monarch and General (Bosses level 4) **--> TO DO**
+Dark Monarch and General (Bosses level 4) **--> Palette swap and tileset editing**
 
 ![](/Palettes/Dark_Monarch_palette.png)
 
@@ -278,7 +278,7 @@ Aternate palette (General)
 
 ![](/Palettes/General_palette_alternate.png)
 
-Puppets (Final boss) **--> TO DO**
+Puppets (Final boss) **--> Palette swap and tileset editing**
 
 ![](/Palettes/Puppet_1_palette.png)
 

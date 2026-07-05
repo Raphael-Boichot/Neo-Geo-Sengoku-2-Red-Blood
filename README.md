@@ -34,7 +34,7 @@ Here are the main steps used in a nutshell:
 - Anything looking (even partly) human has red blood. And yes daemon fishes have legs...
 - The least effort will always be prefered because I do this on my spare time, and basically my (valuable) spare time is shared between a ton of other projects and non negociable family duties. All the sources been given, more patient people can probably improve the hack.
 
-## which tools ?
+## Which tools ?
 
 - MAME in debug mode and helped with LUA scripts to explore the palette RAM while playing. This is the only tedious step in absence of scripted debuggers fully dedidacted to the Neo Geo (or I guess ?).
 - Custom codes to turn C ROMs to png and the inverse. Tileset is edited from a png image with the current character palette, then turned back to C ROM.

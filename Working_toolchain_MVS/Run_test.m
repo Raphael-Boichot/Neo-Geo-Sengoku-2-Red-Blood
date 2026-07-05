@@ -93,8 +93,8 @@ disp('Initialization completed')
 %% Transforms the pair of roms in png tileset + palette image to ckeck
 %///////////////section to comment to edit tileset//////////////////
 disp('Building tileset in png from palette vector')
-Crom_to_png(oddRomFile_big,evenRomFile_big,palette, outpng_big, txt_exchange_palette_big)
-Crom_to_png(oddRomFile_small,evenRomFile_small,palette, outpng_small, txt_exchange_palette_small)
+% Crom_to_png(oddRomFile_big,evenRomFile_big,palette, outpng_big, txt_exchange_palette_big)
+% Crom_to_png(oddRomFile_small,evenRomFile_small,palette, outpng_small, txt_exchange_palette_small)
 %///////////////section to comment to edit tileset//////////////////
 
 %% Neo Geo new palette hex values for testing
@@ -103,6 +103,10 @@ alternative_palette = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0
 Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % Here some manual editing of the png tileset is expected
+
+%2026-07-05 Claude Yamamoto, done
+%2026-07-05 Jack Stone, done
+
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 disp('Building back C ROMs from png and palette.txt')
@@ -127,10 +131,10 @@ palette_new = [0x0070, 0x2812, 0x2912, 0x6A12, 0x0B00, 0x0C00, 0x0D00, 0x0E00, 0
 Prom_Palette_injector(PRomFile,palette_old,palette_new)
 
 % Boring flashing effect, everyone, white to vibrant red
-disp('------------Swapping flashing damage palette---------------------')
-palette_old = [0x0001, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF]; % general flashing effect when hit
-palette_new = [0x0001, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00]; % general flashing effect when hit, red
-Prom_Palette_injector(PRomFile,palette_old,palette_new)
+% disp('------------Swapping flashing damage palette---------------------')
+% palette_old = [0x0001, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF]; % general flashing effect when hit
+% palette_new = [0x0001, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00]; % general flashing effect when hit, red
+% Prom_Palette_injector(PRomFile,palette_old,palette_new)
 
 % Jack Stone (player 2);
 disp('------------Swapping Jack Stone (player 2) palette---------------')

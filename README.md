@@ -66,14 +66,6 @@ Palette are stored in the P rom as it and can easily be targeted and swapped wit
 
 Do not mind the first color rendered here, it is the transparent layer but it also contains the palette number as displayed in RAM (which was very practical for the LUA script). It is rendered as a color or transparency depending on the tool I used to render the palette strip in the repository.
 
-- Flashing effect when hit (boring) **--> Palette swap only**
-
-![](/Palettes/Flashing_Effect_Palette.png)
-
-Alternate palette:
-
-![](/Palettes/Flashing_Effect_Palette_alternate.png)
-
 ## Regular and modified palettes, main characters
 
 - Stream of blood (boring) **--> Palette swap only**

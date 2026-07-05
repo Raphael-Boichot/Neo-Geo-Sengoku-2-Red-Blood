@@ -1,4 +1,4 @@
-# Neo Geo Sengoku 2 Red Blood
+# Red Blood hack for SenGoku 2, Neo Geo AES/MVS and NGCD
 ## Open source hack to turn the game into a blood bath
 
 ## Current state: WIP

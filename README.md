@@ -11,11 +11,11 @@
 
 Sometimes you get pissed. I mean really.
 
-Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's fucking CENSORED. The issue is that I could deal with that in my life until I heard the existence of a red blood hack. That’s a pretty good idea, I thought to myself. Let’s download the ROM have have fun!
+Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's fucking **CENSORED**. The issue is that I could deal with that in my life until I heard the existence of a red blood hack. That’s a pretty good idea, I thought to myself. Let’s download the ROM and have fun!
 
-My fun hit a wall rapidely. The NCI blood hack was a "scammers only" version not released in the public domain and VERY expensive for what it is (probably a 40€ revamped Aliexpress cartridge). Said scammers not being equipped with screwdrivers and EPROM readers apparently.
+My fun hit a wall rapidely. The NCI blood hack was a "scammers only" version not released in the public domain and VERY expensive for what it is (probably a 40€ revamped Aliexpress cartridge). Who knows, scammers have no screwdriver nor EPROM programmer anyways.
 
-SO, armed with years of hacking Game Boy games and hardware, the marvelous Matlab software that does coffee and Neogeodev documentations, it's was just a matter of time and effort to cook a public version. Basically I began thinking doing the hack seriously in June 2026 and was able to release the first version in July.
+SO, armed with years of hacking Game Boy games and hardware, the marvelous Matlab software that does coffee and Neogeodev documentations, it's was just a matter of time and effort to cook a public version. Basically I began thinking doing the hack seriously in June 2026 and was able to release the first version in July 2026.
 
 Seeing at the tileset and palettes, it is clear that Sengoku 2 is not programmed to be easily uncensored like with a magic byte. Color palette of current "blood" is frequently shared with other parts of the tiles so simple palette swaps are far from being satisfying.
 
@@ -23,39 +23,43 @@ I'm just a tinkerer so code disassembly was just not on option. In the other han
 
 ## The steps (or how being ambitious when you have no time)
 
-Doing ambitious hacks with work and family necessitates some planning and building a toolchain. I've sliced the hack in many sub steps in order to be able to work on it by slots of about one hour maximum and easily reverse a fucked situation.
+Doing ambitious hacks with work and family requires some planning and building a reliable toolchain. I've sliced the hack in many sub steps in order to be able to work on it by slots of about one hour maximum and easily reverse any fucked situation.
 
 Here are the main steps used in a nutshell:
 
-- get the palette of every bleeding characters with MAME in debug mode and with a LUA script, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully) and not that many palette reordering between levels. This is long and tedious but does not require any intelligence. Just play, check the LUA outputs, look at the RAM in MAME debug mode to confirm (LUA script has false positives I was not able to fully remove), take notes and reload.
+- first get the palette number of every bleeding characters with MAME in debug mode and with a LUA script, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully) and not that many palette reordering between levels. This is long and tedious but does not require any intelligence. Just play, check the LUA outputs, look at the RAM in MAME debug mode to confirm (LUA script has false positives I was not able to fully remove), take notes and reload.
 - Easy situation, there is no vibrant red in the tileset but a clever palette swap is not visually shocking, go with a palette swap and target the P ROM only.
 - Moderate situation, there is yet a vibrant enough red in the palette and no need for palette swap, edit and inject the modified tileset only on the C ROMs, with unchanged palette.
-- Fucked situation, multiple palette swap for the same character and non consistent color to turn to red: I have to cheat and force a red in each palette at the same position and a modified tileset as well. The mod must stay pleasant to the eye and do not deteriorate too much the initial character design. It's an artistic compromise.
+- Fucked situation, multiple palette swap for the same character and non consistent color to turn to red: I have to cheat and force a red in each palette at the same position and a modified tileset as well. The mod must stay pleasant to the eye and do not deteriorate too much the initial character design. It's my artistic compromise.
 
 ## My rules
 
-- Anything looking (even partly) human has red blood.
-- The least effort will always be prefered because I do this on my spare time, and basically my spare time is shared between a ton of other projects and non negociable family duties. All the sources been given, more patient people can probably improve the hack.
+- Anything looking (even partly) human has red blood. And yes daemon fishes have legs...
+- The least effort will always be prefered because I do this on my spare time, and basically my (valuable) spare time is shared between a ton of other projects and non negociable family duties. All the sources been given, more patient people can probably improve the hack.
 
-## How ?
+## which tools ?
 
 - MAME in debug mode and helped with LUA scripts to explore the palette RAM while playing. This is the only tedious step in absence of scripted debuggers fully dedidacted to the Neo Geo (or I guess ?).
 - Custom codes to turn C ROMs to png and the inverse. Tileset is edited from a png image with the current character palette, then turned back to C ROM.
 - Custom codes to swap palettes in P ROMs.
 - Custom codes to generate and chain IPS scripts.
 - Custom codes to convert RGB color to 16 bits Neo Geo colors.
-- MS Paint to edit tilesets because this is the best tool ever created.
+- MS Paint to edit tilesets because this is the best tool ever created on Earth.
 - Spriter ressources to check for inconsistencies in colors and planning the work.
 - Rince and repeat with all characters.
-- Make a final IPS script.
+- Make a final IPS script for P ROM and C ROMS.
 
-I wanted to maximize the scripting in order to be able to easily come back on errors / bad design later. Some codes or parts of codes were made with A.I. to speed up the process. Basically there is no rocket science here but I must admit that A.I. was precious to circumvent the scarcity of Neo Geo dedicated editing tool (Yeah, I know, it’s evil, the planet and all that). We are clearly addressing a niche market here. 
+I wanted to maximize the scripting in order to be able to easily come back on errors / bad design later. Some codes or parts of codes were made with A.I. to speed up the process (Gemini mainly, a pinch of Claude too for the most tricky parts). Basically there is no rocket science here but I must admit that A.I. was precious to circumvent the scarcity of Neo Geo dedicated editing tool (Yeah, I know, it’s evil, it kills the planet and all of that). We are clearly addressing a niche market here. 
 
-The Neo Geo CD hack was made in parallel to the MVS version as it is not more difficult to do on any of the systems. Except that the Neo Geo CD is even less documented so I was basically on my own all time.
+The Neo Geo CD hack was made in parallel to the MVS version as it is not more difficult to do on any of the systems. Except that the Neo Geo CD is scarcely documented so I was basically on my own most of the time.
 
 ## Identified flaws due to the 15 colors per tile limitation
 
-- The redness of blood may vary depending on the compromises made when juggling with palette swap, yet existing satisfying reds, my artistic perception but most of all, my laziness.
+The 15 colors limit per tile was surprisingly frustrating. The redness of blood may vary depending on the compromises made when juggling with palette swap, yet existing satisfying reds, my artistic perception but most of all, my laziness. Overall, the game is now more reddish. 
+
+I've reused at most the existing tones present in the original palette to avoid travesting the designer intention.
+
+It fits well with the game anyways.
 
 ## The story
 

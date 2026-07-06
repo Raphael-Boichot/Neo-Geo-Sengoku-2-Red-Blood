@@ -112,7 +112,7 @@ Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 %2026-07-06 Kirimaru, done
 
 % Regular foes
-%2026-07-06 Puppet warrior, done
+%2026-07-06 Puppet warrior, done, but horses to do !
 
 % Bosses
 

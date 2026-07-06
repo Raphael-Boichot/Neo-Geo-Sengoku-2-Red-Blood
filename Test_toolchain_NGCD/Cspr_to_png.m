@@ -2,13 +2,29 @@ function Cspr_to_png(sprFile, palette, outputPng, outputPalette)
 TILES_PER_ROW = 32;
 
 % 1. CRC32 Check
+%% High-Performance CRC32 using Lookup Table
     function crc = calculateCRC32(data)
-        poly = uint32(hex2dec('EDB88320')); crc = uint32(hex2dec('FFFFFFFF'));
-        for i = 1:numel(data)
-            crc = bitxor(crc, uint32(data(i)));
-            for j = 1:8
-                if bitand(crc, 1), crc = bitxor(bitshift(crc, -1), poly); else, crc = bitshift(crc, -1); end
+        persistent crc32Table;
+        if isempty(crc32Table)
+            poly = uint32(hex2dec('EDB88320'));
+            crc32Table = zeros(256, 1, 'uint32');
+            for i = 0:255
+                crc_val = uint32(i);
+                for j = 1:8
+                    if bitand(crc_val, 1)
+                        crc_val = bitxor(bitshift(crc_val, -1), poly);
+                    else
+                        crc_val = bitshift(crc_val, -1);
+                    end
+                end
+                crc32Table(i+1) = crc_val;
             end
+        end
+
+        crc = uint32(hex2dec('FFFFFFFF'));
+        for i = 1:numel(data)
+            idx = bitxor(bitand(crc, 255), uint32(data(i))) + 1;
+            crc = bitxor(bitshift(crc, -8), crc32Table(idx));
         end
         crc = bitcmp(crc);
     end

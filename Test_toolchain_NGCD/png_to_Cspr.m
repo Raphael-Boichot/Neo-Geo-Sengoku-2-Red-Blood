@@ -2,13 +2,29 @@ function png_to_Cspr(sprOut, inputPng, paletteFile)
 TILES_PER_ROW = 32;
 
 % 1. CRC32 Function
+%% High-Performance CRC32 using Lookup Table
     function crc = calculateCRC32(data)
-        poly = uint32(hex2dec('EDB88320')); crc = uint32(hex2dec('FFFFFFFF'));
-        for i = 1:numel(data)
-            crc = bitxor(crc, uint32(data(i)));
-            for j = 1:8
-                if bitand(crc, 1), crc = bitxor(bitshift(crc, -1), poly); else, crc = bitshift(crc, -1); end
+        persistent crc32Table;
+        if isempty(crc32Table)
+            poly = uint32(hex2dec('EDB88320'));
+            crc32Table = zeros(256, 1, 'uint32');
+            for i = 0:255
+                crc_val = uint32(i);
+                for j = 1:8
+                    if bitand(crc_val, 1)
+                        crc_val = bitxor(bitshift(crc_val, -1), poly);
+                    else
+                        crc_val = bitshift(crc_val, -1);
+                    end
+                end
+                crc32Table(i+1) = crc_val;
             end
+        end
+
+        crc = uint32(hex2dec('FFFFFFFF'));
+        for i = 1:numel(data)
+            idx = bitxor(bitand(crc, 255), uint32(data(i))) + 1;
+            crc = bitxor(bitshift(crc, -8), crc32Table(idx));
         end
         crc = bitcmp(crc);
     end
@@ -17,15 +33,15 @@ TILES_PER_ROW = 32;
 fileID = fopen(paletteFile, 'r');
 if fileID == -1, error('Could not open palette file: %s', paletteFile); end
 line1 = fgetl(fileID);
-totalTiles = sscanf(line1, 'Total Tiles: %d'); 
-for i=1:3, fgetl(fileID); end 
+totalTiles = sscanf(line1, 'Total Tiles: %d');
+for i=1:3, fgetl(fileID); end
 rawPal = fscanf(fileID, '%d | %d | %d | %d\n', [4, 16]);
 fclose(fileID);
-targetRGB = rawPal(2:4, :)'; 
+targetRGB = rawPal(2:4, :)';
 
 % 3. Load PNG
 [img, ~, alpha] = imread(inputPng);
-if size(alpha, 3) > 1, alpha = alpha(:,:,4); end 
+if size(alpha, 3) > 1, alpha = alpha(:,:,4); end
 
 % 4. Encode to .spr
 sprData = zeros(totalTiles*128, 1, 'uint8');
@@ -36,12 +52,12 @@ for tile = 0:totalTiles-1
     tx = mod(tile, TILES_PER_ROW); ty = floor(tile/TILES_PER_ROW);
     pixelY_start = ty * 16 + 1;
     pixelX_start = tx * 16 + 1;
-    
+
     tileIdx = zeros(16, 16, 'uint8');
     for py = 0:15
         for px = 0:15
             y = pixelY_start + py; x = pixelX_start + px;
-            
+
             % Enforce transparency for Alpha=0
             if alpha(y, x) == 0
                 tileIdx(py+1, px+1) = 0;
@@ -49,16 +65,16 @@ for tile = 0:totalTiles-1
                 % Match opaque pixels against solid palette (1-15)
                 pixel = reshape(img(y, x, :), 1, 3);
                 matchIdx = find(all(solidPalette == pixel, 2));
-                
+
                 if ~isempty(matchIdx)
-                    tileIdx(py+1, px+1) = uint8(matchIdx(1)); 
+                    tileIdx(py+1, px+1) = uint8(matchIdx(1));
                 else
                     error('Opaque pixel at (%d, %d) [RGB: %d,%d,%d] not in palette (1-15).', x, y, pixel(1), pixel(2), pixel(3));
                 end
             end
         end
     end
-    
+
     % Encode tile
     for b = 0:3
         blockBase = tile*128 + b*32;

@@ -99,7 +99,6 @@ Palette_swapper(alternative_palette,outpng,txt_exchange_palette)
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 % disp('Building back C ROMs from png and palette.txt')
 png_to_Cspr(Crom_1_out,outpng,txt_exchange_palette)
-% png_to_Crom(oddRomOut_small, evenRomOut_small,outpng_small,txt_exchange_palette_small)
 % CRC32 must be the same in test mode
 
 %% Debug step if necessary
@@ -123,12 +122,6 @@ ipsFile='.\IPS_scripts\P040.PRG.ips';
 IPS_generator(original_prog,modified_prog,ipsFile)
 ipsFile='.\IPS_scripts\JOUCHU.SPR.ips';
 IPS_generator(Crom_1_in,Crom_1_out,ipsFile)
-% ipsFile='.\IPS_scripts\040-c3.c3.ips';
-% IPS_generator(oddRomFile_small,oddRomOut_small,ipsFile)
-% ipsFile='.\IPS_scripts\040-c4.c4.ips';
-% IPS_generator(evenRomFile_small,evenRomOut_small,ipsFile)
-% ipsFile='.\IPS_scripts\040-p1.p1.ips';
-% IPS_generator(original_prog,modified_prog,ipsFile)
 toc
 
 % This is the dump of the palette RAM during first level. Hopefully the

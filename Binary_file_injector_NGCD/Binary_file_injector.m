@@ -7,8 +7,8 @@ clear;
 
 %% Parameters
 sourceDir = '.\\Source_files\\';
-trackFile = 'track1.iso';
-patchedTrackFile = 'track1_patched.iso';
+trackFile = 'Sengoku2_track_1.bin';
+patchedTrackFile = 'Sengoku2_track_1_patched.bin';
 headerSamples = 256; % 64 bytes = 32 samples (16-bit)
 
 %% Check files

@@ -12,18 +12,12 @@ disp('A PALETTE MUST NEVER SHARE TWO TIMES THE SAME COLOR !')
 
 % general settings
 mkdir('.\roms_out\');
+mkdir('.\tileset_out\');
 mkdir('.\IPS_scripts\');
 
 % Original roms
-Crom_1_in  = '.\NGCD_track_1\JOUCHU.SPR';
 original_prog ='.\NGCD_track_1\P040.PRG';
-
-% modified roms
-Crom_1_out    = '.\roms_out\JOUCHU.SPR';
 modified_prog = '.\roms_out\P040.PRG';
-
-outpng ='Tileset.png';
-txt_exchange_palette = 'txt_exchange_palette.txt';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main characters %%%%%%%%%%%%%%%%%%%%%%%%%
 % palette = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; % Claude Yamamoto (player 1)
@@ -70,7 +64,7 @@ txt_exchange_palette = 'txt_exchange_palette.txt';
 % Strangely, the two palettes of Kojiro are stored at the same memory address in two different levels, looks like it has been patched later in dev
 % palette = [0x005F, 0x6510, 0x7852, 0x7B85, 0x4C80, 0x6FC0, 0x6DB9, 0x30BF, 0x30FF, 0x4700, 0x0E00, 0x445A, 0x478D, 0x5ACF, 0x1FFF, 0x0000]; % Kitsune (Boss 2)
 % palette = [0x0068, 0x3005, 0x202C, 0x306F, 0x1426, 0x393A, 0x5C5F, 0x0360, 0x04A0, 0x6AF0, 0x0777, 0x7BBB, 0x7FFF, 0x4A10, 0x6F40, 0x0000]; % Yoshitsune (boss 3)
-palette = [0x0076, 0x2A31, 0x2D85, 0x4FC8, 0x0830, 0x0C40, 0x4F60, 0x5131, 0x2242, 0x0494, 0x08B0, 0x6BB0, 0x6FF0, 0x07C7, 0x2AFA, 0x0000]; % Adolfo Ramirez
+% palette = [0x0076, 0x2A31, 0x2D85, 0x4FC8, 0x0830, 0x0C40, 0x4F60, 0x5131, 0x2242, 0x0494, 0x08B0, 0x6BB0, 0x6FF0, 0x07C7, 0x2AFA, 0x0000]; % Adolfo Ramirez
 % palette = [0x0077, 0x3720, 0x2B52, 0x3E94, 0x4700, 0x4B00, 0x4F00, 0x6320, 0x6640, 0x2960, 0x4599, 0x09CC, 0x3DFF, 0x4B90, 0x4FD0, 0x0000]; % Puppet 1
 % palette = [0x0078, 0x3720, 0x2B52, 0x3E94, 0x5606, 0x5A0A, 0x5F0F, 0x3023, 0x3046, 0x2069, 0x0885, 0x6BB9, 0x7FFC, 0x109B, 0x10DF, 0x0000]; % Puppet 2
 % palette = [0x0081, 0x6721, 0x1B73, 0x4FC8, 0x4600, 0x4A11, 0x4F33, 0x0143, 0x1383, 0x66D8, 0x0444, 0x7AAA, 0x7FFF, 0x4F66, 0x7FFC, 0x0000]; % Dark Monarch
@@ -87,18 +81,32 @@ disp('Initialization completed')
 %% Transforms the pair of roms in png tileset + palette image to ckeck
 %///////////////section to comment to edit tileset//////////////////
 disp('Building tileset in png from palette vector')
-Cspr_to_png(Crom_1_in,palette, outpng, txt_exchange_palette)
+Cspr_to_png('.\NGCD_track_1\JOUCHU.SPR',dummy_palette_jet, '.\tileset_out\JOUCHU.png', '.\tileset_out\JOUCHU_exchange_palette.txt')
+Cspr_to_png('.\NGCD_track_1\AREA1.SPR',dummy_palette_jet, '.\tileset_out\AREA1.png', '.\tileset_out\AREA1_exchange_palette.txt')
+Cspr_to_png('.\NGCD_track_1\AREA2.SPR',dummy_palette_jet, '.\tileset_out\AREA2.png', '.\tileset_out\AREA2_exchange_palette.txt')
+Cspr_to_png('.\NGCD_track_1\AREA3.SPR',dummy_palette_jet, '.\tileset_out\AREA3.png', '.\tileset_out\AREA3_exchange_palette.txt')
+Cspr_to_png('.\NGCD_track_1\AREA4.SPR',dummy_palette_jet, '.\tileset_out\AREA4.png', '.\tileset_out\AREA4_exchange_palette.txt')
+Cspr_to_png('.\NGCD_track_1\STAFF.SPR',dummy_palette_jet, '.\tileset_out\STAFF.png', '.\tileset_out\STAFF_exchange_palette.txt')
+Cspr_to_png('.\NGCD_track_1\TITLE.SPR',dummy_palette_jet, '.\tileset_out\TITLE.png', '.\tileset_out\TITLE_exchange_palette.txt')
 %///////////////section to comment to edit tileset//////////////////
 
 %% Neo Geo new palette hex values for testing
-disp('Swapping palettes from vector and updating palette.txt')
-alternative_palette = dummy_palette_jet;
-Palette_swapper(alternative_palette,outpng,txt_exchange_palette)
+% disp('Swapping palettes from vector and updating palette.txt')
+% alternative_palette = dummy_palette_jet;
+% Palette_swapper(alternative_palette,outpng,txt_exchange_palette)
 % Here some manual editing of the png tileset is expected
+
+Tileset_injector()% use the MVS tileset to modify the NGCD tileset
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 % disp('Building back C ROMs from png and palette.txt')
-png_to_Cspr(Crom_1_out,outpng,txt_exchange_palette)
+png_to_Cspr('.\roms_out\JOUCHU.SPR','.\tileset_out\JOUCHU.png','.\tileset_out\JOUCHU_exchange_palette.txt')
+png_to_Cspr('.\roms_out\AREA1.SPR','.\tileset_out\AREA1.png','.\tileset_out\AREA1_exchange_palette.txt')
+png_to_Cspr('.\roms_out\AREA2.SPR','.\tileset_out\AREA2.png','.\tileset_out\AREA2_exchange_palette.txt')
+png_to_Cspr('.\roms_out\AREA3.SPR','.\tileset_out\AREA3.png','.\tileset_out\AREA3_exchange_palette.txt')
+png_to_Cspr('.\roms_out\AREA4.SPR','.\tileset_out\AREA4.png','.\tileset_out\AREA4_exchange_palette.txt')
+png_to_Cspr('.\roms_out\STAFF.SPR','.\tileset_out\STAFF.png','.\tileset_out\STAFF_exchange_palette.txt')
+png_to_Cspr('.\roms_out\TITLE.SPR','.\tileset_out\TITLE.png','.\tileset_out\TITLE_exchange_palette.txt')
 % CRC32 must be the same in test mode
 
 %% Debug step if necessary
@@ -242,11 +250,11 @@ PRG_Palette_injector(PRomFile,palette_old,palette_new)
 % PRG_Palette_injector(PRomFile,palette_old,palette_new)
 
 %% Generate IPF files for all these modifications
-disp('Generating IPS script')
-ipsFile='.\IPS_scripts\P040.PRG.ips';
-IPS_generator(original_prog,modified_prog,ipsFile)
-ipsFile='.\IPS_scripts\JOUCHU.SPR.ips';
-IPS_generator(Crom_1_in,Crom_1_out,ipsFile)
+% disp('Generating IPS script')
+% ipsFile='.\IPS_scripts\P040.PRG.ips';
+% IPS_generator(original_prog,modified_prog,ipsFile)
+% ipsFile='.\IPS_scripts\JOUCHU.SPR.ips';
+% IPS_generator(Crom_1_in,Crom_1_out,ipsFile)
 toc
 
 % This is the dump of the palette RAM during first level. Hopefully the

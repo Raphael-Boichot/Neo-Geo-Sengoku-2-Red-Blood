@@ -44,6 +44,7 @@ Here are the main steps used in a nutshell:
 - Custom codes to convert RGB color to 16 bits Neo Geo colors.
 - MS Paint to edit tilesets because this is the best tool ever created on Earth.
 - Spriter ressources to check for inconsistencies in colors and planning the work.
+- Custom codes to inject the MVS ROM modifications into the NGCD version.
 - Rince and repeat with all characters.
 - Make a final IPS script for P ROM and C ROMS.
 

@@ -10,7 +10,7 @@
 
 Sometimes, as a player, you get pissed. I mean really.
 
-Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's fucking **CENSORED**. The issue is that I could deal with that in my life until I heard the existence of a red blood hack. That’s a pretty good idea, I thought to myself. Let’s download the ROM and have fun!
+Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's fucking **CENSORED**. The issue is that I could deal with that in my life until I heard the existence of a red blood hack. That’s a pretty good idea, I thought to myself. Let’s download the ROM (sorry, the patch, I own the original of course) and have fun!
 
 My fun hit a wall rapidely. The NCI blood hack was a "scammers only" version not released in the public domain and VERY expensive for what it is (probably a 40€ revamped Aliexpress cartridge). Not my concern though, I'm not client for expensive objects only there to take dust on shelves.
 

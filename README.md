@@ -70,6 +70,14 @@ Do not mind the first color rendered here, it is the transparent layer but it al
 
 ## Regular and modified palettes, main characters
 
+- Damage flickering **--> Palette swap only**
+
+![](/Palettes/Flashing_Effect_Palette.png)
+
+Alternate palette:
+
+![](/Palettes/Flashing_Effect_Palette_alternate.png)
+
 - Stream of blood (boring) **--> Palette swap only**
 
 ![](/Palettes/Stream_of_blood_Palette.png)

@@ -256,7 +256,7 @@ Alternate palette
 
 ![](/Palettes/Kojiro_green_palette_alternate.png)
 
-Kitsune (Boss level 2) **--> Palette swap and tileset editing**
+Kitsune (Boss level 2) **--> Tileset editing only**
 
 ![](/Palettes/Kitsune_palette.png)
 

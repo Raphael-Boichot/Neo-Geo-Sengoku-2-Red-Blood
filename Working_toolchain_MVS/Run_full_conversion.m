@@ -10,7 +10,6 @@ disp('A PALETTE MUST NEVER SHARE TWO TIMES THE SAME COLOR !')
 
 %% Init section
 
-
 % general settings
 mkdir('.\roms_out\');
 mkdir('.\IPS_scripts\');
@@ -105,7 +104,7 @@ disp('Building tileset in png from palette vector')
 
 %% Neo Geo new palette hex values for testing
 disp('Swapping palettes from vector and updating palette.txt')
-alternative_palette = [0x002D, 0x4B30, 0x2D80, 0x7FD6, 0x0213, 0x3425, 0x2859, 0x2510, 0x6950, 0x4FD0, 0x4600, 0x0C00, 0x6F40, 0x7CBD, 0x7FFF, 0x0000]; % Spearman red
+alternative_palette = [0x005F, 0x6510, 0x7852, 0x7B85, 0x4C80, 0x6FC0, 0x6DB9, 0x30BF, 0x30FF, 0x4700, 0x0E00, 0x445A, 0x478D, 0x5ACF, 0x1FFF, 0x0000]; % Kitsune (Boss 2)
 Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % Here some manual editing of the png tileset is expected, by changing the
@@ -125,9 +124,13 @@ Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 %2026-07-07 Kunoichi, done
 %2026-07-07 Axeman, done
 %2026-07-07 Spearman, nothing to do ?
-%2026-07-07 Fishes, in progress
+%2026-07-07 Fishes, done big and small
+%2026-07-07 Dragon, done
 
 % Bosses
+%2026-07-07 Kojiro, done
+%2026-07-07 Kitsune, done
+%2026-07-07 Yoshitsune
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 disp('Building back C ROMs from png and palette.txt')

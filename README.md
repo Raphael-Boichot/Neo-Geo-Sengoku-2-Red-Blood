@@ -12,9 +12,7 @@ Sometimes, as a player, you get pissed. I mean really.
 
 Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's fucking **CENSORED**. The issue is that I could deal with that in my life until I heard the existence of a red blood hack. That’s a pretty good idea, I thought to myself. Let’s download the ROM (sorry, the patch, I own the original of course) and have fun!
 
-My fun hit a wall rapidely. The NCI blood hack was a "scammers only" version not released in the public domain and VERY expensive for what it is (probably a 40€ revamped Aliexpress cartridge). Not my concern though, I'm not client for expensive objects only there to take dust on shelves.
-
-SO, armed with years of hacking Game Boy games and hardware, the marvelous Matlab software that does coffee and Neogeodev documentations, it's was just a matter of time and effort to cook a public version. Basically I began thinking doing the hack seriously in June 2026 and was able to release the first version in July 2026.
+My fun hit a wall rapidely. The blood hack was not released in the public domain. SO, armed with years of hacking Game Boy games and hardware, the marvelous Matlab software that does coffee and Neogeodev documentations, it's was just a matter of time and effort to cook a public version. Basically I began thinking doing the hack seriously in June 2026 and was able to release the first version in July 2026.
 
 I'm just a tinkerer so code disassembly was just not on option. In the other hand I'm educated enough to hack video games in a top-down approach by diving into the RAMs / ROMs structure. Just a bootlegger job basically.
 

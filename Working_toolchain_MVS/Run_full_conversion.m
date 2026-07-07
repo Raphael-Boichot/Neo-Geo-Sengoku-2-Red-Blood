@@ -104,9 +104,17 @@ disp('Building tileset in png from palette vector')
 
 %% Neo Geo new palette hex values for testing
 disp('Swapping palettes from vector and updating palette.txt')
-alternative_palette = [0x005F, 0x6510, 0x7852, 0x7B85, 0x4C80, 0x6FC0, 0x6DB9, 0x30BF, 0x30FF, 0x4700, 0x0E00, 0x445A, 0x478D, 0x5ACF, 0x1FFF, 0x0000]; % Kitsune (Boss 2)
+alternative_palette = [0x0078, 0x3720, 0x2B52, 0x3E94, 0x4700, 0x4B00, 0x4F00, 0x3023, 0x3046, 0x2069, 0x0885, 0x6BB9, 0x7FFC, 0x109B, 0x10DF, 0x0000]; % Puppet 2 with reds from puppet 1
 Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
+% Here some manual editing of the png tileset is expected, by changing the
+% palettes and just running individual sections (right click, run section)
+
+%% Prepare palettes for NGCD injection
+% disp('Swapping palettes from vector and updating palette.txt')
+% alternative_palette = [0x1005, 0x1008, 0x100D, 0x303F, 0x308F, 0x30DF, 0xF3FB, 0xF7F7, 0xFCF2, 0xEFF0, 0xEFA0, 0xEF50, 0xEF00, 0xCB00, 0xC700, 0xC400]; % palette jet
+% Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
+% Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % Here some manual editing of the png tileset is expected, by changing the
 % palettes and just running individual sections (right click, run section)
 
@@ -130,7 +138,9 @@ Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % Bosses
 %2026-07-07 Kojiro, done
 %2026-07-07 Kitsune, done
-%2026-07-07 Yoshitsune
+%2026-07-07 Yoshitsune, done
+%2026-07-07 General, done
+%2026-07-07 Puppets, to do
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 disp('Building back C ROMs from png and palette.txt')

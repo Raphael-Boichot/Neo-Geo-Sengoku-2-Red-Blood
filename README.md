@@ -240,7 +240,7 @@ Alternate palette
 
 ![](/Palettes/Soldier_palette_alternate.png)
 
-- Dragon (last level) **--> Palette swap and tileset editing**
+- Dragon (last level) **--> Tileset editing only**
 
 ![](/Palettes/Dragon_palette.png)
 

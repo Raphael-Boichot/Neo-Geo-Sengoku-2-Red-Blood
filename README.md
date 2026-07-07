@@ -33,6 +33,7 @@ Here are the main steps used in a nutshell:
 
 - Anything looking (even partly) human has red blood. And yes daemon fishes have legs...
 - The least effort will always be prefered because I do this on my spare time, and basically my (valuable) spare time is shared between a ton of other projects and non negociable family duties. All the sources been given, more patient people can probably improve the hack.
+- The game must look gore but must of all, genuine.
 
 ## Which tools ?
 

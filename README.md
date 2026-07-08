@@ -15,7 +15,7 @@ Summary of CRC32 you should expect before / after patching :
 
 ## For Neo Geo CD (under construction)
 
-Get the CD version compatible with the NeoSD Loader, for example [here](https://archive.org/details/fullset-for-neocd-sd-loader). Extract files from the track 1 with any way to mount the .bin file as a directory (like WinCDEmu for example, but amny othet tools may work). Patch the following files with the [dedicated IPS patches](/Working_toolchain_NGCD/IPS_scripts).
+Get the CD version compatible with the NeoSD Loader, for example [here](https://archive.org/details/fullset-for-neocd-sd-loader). Extract files from the track 1 with any way to mount the .bin file as a directory (like WinCDEmu for example, but amny other tools may work). Patch the following files with the [dedicated IPS patches](/Working_toolchain_NGCD/IPS_scripts).
 
 Summary of CRC32 you should expect before / after patching :
 

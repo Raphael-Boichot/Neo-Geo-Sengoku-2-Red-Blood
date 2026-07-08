@@ -1,1 +1,1 @@
-Place here the files extracted from the track 1 AND the binary of the track 1
+Place here all the files extracted from track one (game data)

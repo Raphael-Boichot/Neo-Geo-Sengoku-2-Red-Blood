@@ -1,0 +1,1 @@
+Place unzipped ROMs of a known good version of Sengoku 2 here (for example from the MAME Fullset)

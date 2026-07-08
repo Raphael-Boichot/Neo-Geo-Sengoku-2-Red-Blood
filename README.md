@@ -28,7 +28,7 @@ Summary of CRC32 you should expect before / after patching :
     
 The tricky part is now to rebuilt an [iso level 1 track](https://wiki.neogeodev.org/index.php/Making_an_ISO_file), only format recognized by the NGCD. The recommended way is to use [mkisofs](http://www.win3x.org/win3board/viewtopic.php?t=4096) with Powershell for example :
 
-    .\mkisofs -iso-level 1 -pad -N -V "SENGOKU2" -o output.iso ./Track1/
+    .\mkisofs -iso-level 1 -pad -N -V "SENGOKU2" -o output.iso .\Patched_NGCD_files
 
 Then rename output.iso like the first track in folder, place it with othet tracks and run the game !
 

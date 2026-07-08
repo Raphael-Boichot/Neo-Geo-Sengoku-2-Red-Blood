@@ -15,6 +15,19 @@ Summary of CRC32 you should expect before / after patching :
 
 ## For Neo Geo CD
 
+Get the CD version compatible with the NeoSD Loader, for example [here](https://archive.org/details/fullset-for-neocd-sd-loader). Extract files from the track 1 with any way to mount the .bin file as a directory (like WinCDEmu for example, but amny othet tools may work). Patch the following files with the [dedicated IPS patches](/Working_toolchain_NGCD/IPS_scripts).
+
+Summary of CRC32 you should expect before / after patching :
+
+    File: .\NGCD_track_1\P040.PRG | Original CRC32: DE9334F2 | Modified CRC32: C6126BCF
+    File: .\NGCD_track_1\JOUCHU.SPR | Original CRC32: 458CA60B | Modified CRC32: D4E11138
+    File: .\NGCD_track_1\AREA2.SPR | Original CRC32: DFC4BFFC | Modified CRC32: 9A9DD451
+    File: .\NGCD_track_1\AREA3.SPR | Original CRC32: 6812A91A | Modified CRC32: 963F01DD
+    File: .\NGCD_track_1\AREA4.SPR | Original CRC32: 1BB25F6C | Modified CRC32: E0BD0AF3
+    File: .\NGCD_track_1\TITLE.SPR | Original CRC32: DDA3971E | Modified CRC32: 98FAFCB3
+    
+The tricky part is now to rebuilt an [iso level 1 track](https://wiki.neogeodev.org/index.php/Making_an_ISO_file), only format recognized by the NGCD.
+
 ## Why ?
 
 Sometimes, as a player, you get pissed. I mean really.

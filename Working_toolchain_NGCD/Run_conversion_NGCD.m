@@ -32,11 +32,11 @@ Tileset_injector()% use the MVS tileset to modify the NGCD tileset, only use dum
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 % disp('Building back C ROMs from png and palette.txt')
 png_to_Cspr('.\roms_out\JOUCHU.SPR','.\tileset_out_modified\JOUCHU.png','.\tileset_out\JOUCHU_exchange_palette.txt')
-png_to_Cspr('.\roms_out\AREA1.SPR','.\tileset_out_modified\AREA1.png','.\tileset_out\AREA1_exchange_palette.txt')
+%png_to_Cspr('.\roms_out\AREA1.SPR','.\tileset_out_modified\AREA1.png','.\tileset_out\AREA1_exchange_palette.txt')
 png_to_Cspr('.\roms_out\AREA2.SPR','.\tileset_out_modified\AREA2.png','.\tileset_out\AREA2_exchange_palette.txt')
 png_to_Cspr('.\roms_out\AREA3.SPR','.\tileset_out_modified\AREA3.png','.\tileset_out\AREA3_exchange_palette.txt')
 png_to_Cspr('.\roms_out\AREA4.SPR','.\tileset_out_modified\AREA4.png','.\tileset_out\AREA4_exchange_palette.txt')
-png_to_Cspr('.\roms_out\STAFF.SPR','.\tileset_out_modified\STAFF.png','.\tileset_out\STAFF_exchange_palette.txt')
+%png_to_Cspr('.\roms_out\STAFF.SPR','.\tileset_out_modified\STAFF.png','.\tileset_out\STAFF_exchange_palette.txt')
 png_to_Cspr('.\roms_out\TITLE.SPR','.\tileset_out_modified\TITLE.png','.\tileset_out\TITLE_exchange_palette.txt')
 % CRC32 must be the same in test mode
 
@@ -179,11 +179,11 @@ PRG_Palette_injector(PRomFile,palette_old,palette_new)
 disp('Generating IPS script')
 IPS_generator('.\NGCD_track_1\P040.PRG','.\roms_out\P040.PRG','.\IPS_scripts\P040.PRG.ips')
 IPS_generator('.\NGCD_track_1\JOUCHU.SPR','.\roms_out\JOUCHU.SPR','.\IPS_scripts\JOUCHU.SPR.ips')
-IPS_generator('.\NGCD_track_1\AREA1.SPR','.\roms_out\AREA1.SPR','.\IPS_scripts\AREA1.SPR.ips')
+%IPS_generator('.\NGCD_track_1\AREA1.SPR','.\roms_out\AREA1.SPR','.\IPS_scripts\AREA1.SPR.ips')
 IPS_generator('.\NGCD_track_1\AREA2.SPR','.\roms_out\AREA2.SPR','.\IPS_scripts\AREA2.SPR.ips')
 IPS_generator('.\NGCD_track_1\AREA3.SPR','.\roms_out\AREA3.SPR','.\IPS_scripts\AREA3.SPR.ips')
 IPS_generator('.\NGCD_track_1\AREA4.SPR','.\roms_out\AREA4.SPR','.\IPS_scripts\AREA4.SPR.ips')
-IPS_generator('.\NGCD_track_1\STAFF.SPR','.\roms_out\STAFF.SPR','.\IPS_scripts\STAFF.SPR.ips')
+%IPS_generator('.\NGCD_track_1\STAFF.SPR','.\roms_out\STAFF.SPR','.\IPS_scripts\STAFF.SPR.ips')
 IPS_generator('.\NGCD_track_1\TITLE.SPR','.\roms_out\TITLE.SPR','.\IPS_scripts\TITLE.SPR.ips')
 
 disp('Neo Geo CD version converted !')

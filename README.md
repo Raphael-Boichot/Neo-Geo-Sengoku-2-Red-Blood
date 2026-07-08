@@ -32,6 +32,10 @@ The tricky part is now to rebuilt an [iso level 1 track](https://wiki.neogeodev.
 
 Then rename output.iso like the first track in folder, place it with othet tracks and run the game !
 
+![](\Caption.png)
+
+
+
 ## Why ?
 
 Sometimes, as a player, you get pissed. I mean really.

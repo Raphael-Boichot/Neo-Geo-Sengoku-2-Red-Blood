@@ -91,7 +91,7 @@ txt_exchange_palette_small = 'txt_exchange_palette_small.txt';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Bosses %%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Alternative palettes %%%%%%%%%%
-% dummy_palette_jet =[0x1005, 0x1008, 0x100D, 0x303F, 0x308F, 0x30DF, 0xF3FB, 0xF7F7, 0xFCF2, 0xEFF0, 0xEFA0, 0xEF50, 0xEF00, 0xCB00, 0xC700, 0xC400];
+% dummy_palette_jet =[0x1005, 0x1008, 0x100D, 0x303F, 0x308F, 0x30DF, 0xF3FB, 0xF7F7, 0xFCF2, 0xEFF0, 0xEFA0, 0xEF50, 0xEF00, 0xCB00, 0xC700, 0xC400];%
 % dummy_palette = [0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000];
 disp('Initialization completed')
 
@@ -107,10 +107,9 @@ disp('Swapping palettes from vector and updating palette.txt')
 alternative_palette = [0x0078, 0x3720, 0x2B52, 0x3E94, 0x4700, 0x4B00, 0x4F00, 0x3023, 0x3046, 0x2069, 0x0885, 0x6BB9, 0x7FFC, 0x109B, 0x10DF, 0x0000]; % Puppet 2 with reds from puppet 1
 Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
-% Here some manual editing of the png tileset is expected, by changing the
-% palettes and just running individual sections (right click, run section)
+% Here some manual editing of the png tileset is expected, by changing the palettes and just running individual sections (right click, run section)
 
-%% Prepare palettes for NGCD injection
+%% Prepare tileset for NGCD injection (use of a dummy palette)
 % disp('Swapping palettes from vector and updating palette.txt')
 % alternative_palette = [0x1005, 0x1008, 0x100D, 0x303F, 0x308F, 0x30DF, 0xF3FB, 0xF7F7, 0xFCF2, 0xEFF0, 0xEFA0, 0xEF50, 0xEF00, 0xCB00, 0xC700, 0xC400]; % palette jet
 % Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)

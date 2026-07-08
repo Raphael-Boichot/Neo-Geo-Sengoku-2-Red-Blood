@@ -312,6 +312,8 @@ Aternate palette (puppet 2)
 
 ![](/Palettes/Puppet_2_palette_alternate.png)
 
+And... that's all. Hope you will enjoy the hack as much as I enjoy playing it.
+
 ## Acknowledgments
 
 - The [neogeodev community](https://wiki.neogeodev.org//index.php/Main_Page) in general and [Furrtek](https://github.com/furrtek) in particular. This project made on spare time was only possible because I stood on the shoulders of giants.

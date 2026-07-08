@@ -2,8 +2,6 @@
 
 ## Build your own (current version 1.0)
 
-Of course you can run all the codes with the original ROMs in the indicated folders to rebuild the project from scratch but IPS patches are much easier to handle.
-
 ## For Neo Geo MVS / AES (working, validated)
 
 Go to the dedicated [IPS scripts folder](/Working_toolchain_MVS/IPS_scripts), get a know good dump of Sengoku 2 for MAME, unzip, apply the IPS patch to corresponding files, zip the patched files, enjoy !
@@ -30,6 +28,8 @@ Summary of CRC32 you should expect before / after patching :
     File: .\NGCD_track_1\TITLE.SPR | Original CRC32: DDA3971E | Modified CRC32: 98FAFCB3
     
 The tricky part is now to rebuilt an [iso level 1 track](https://wiki.neogeodev.org/index.php/Making_an_ISO_file), only format recognized by the NGCD. I'm still trying to find a smooth workflow to do this, so stay tuned.
+
+Of course you can run all the codes with the original ROMs in the indicated folders to rebuild the project for AES / MVS and NGCD from scratch but IPS patches are much easier to handle.
 
 ## Click on image to see level 1 gameplay
 [ ![Click to see gameplay](/Caption.png)](https://www.youtube.com/watch?v=bVQaettOxyM)

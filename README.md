@@ -1,7 +1,7 @@
 # Red Blood hack for Sengoku 2, Neo Geo AES/MVS and NGCD
 
 ## Build your own (current version 1.0)
-## For Neo Geo MVS / AES
+## For Neo Geo MVS / AES (working, validated)
 
 Go to the dedicated [IPS scripts folder](/Working_toolchain_MVS/IPS_scripts), get a know good dump of Sengoku 2 for MAME, unzip, apply the IPS patch to corresponding files, zip the patched files, enjoy !
 
@@ -13,7 +13,7 @@ Summary of CRC32 you should expect before / after patching :
     File: .\roms\040-c4.c4 | Original CRC32: 1C9E9930 | Modified CRC32: 9AAD51A1
     File: .\roms\040-p1.p1 | Original CRC32: 6DDE02C2 | Modified CRC32: 66287B69
 
-## For Neo Geo CD
+## For Neo Geo CD (under construction)
 
 Get the CD version compatible with the NeoSD Loader, for example [here](https://archive.org/details/fullset-for-neocd-sd-loader). Extract files from the track 1 with any way to mount the .bin file as a directory (like WinCDEmu for example, but amny othet tools may work). Patch the following files with the [dedicated IPS patches](/Working_toolchain_NGCD/IPS_scripts).
 
@@ -26,11 +26,7 @@ Summary of CRC32 you should expect before / after patching :
     File: .\NGCD_track_1\AREA4.SPR | Original CRC32: 1BB25F6C | Modified CRC32: E0BD0AF3
     File: .\NGCD_track_1\TITLE.SPR | Original CRC32: DDA3971E | Modified CRC32: 98FAFCB3
     
-The tricky part is now to rebuilt an [iso level 1 track](https://wiki.neogeodev.org/index.php/Making_an_ISO_file), only format recognized by the NGCD. The recommended way is to use [mkisofs](http://www.win3x.org/win3board/viewtopic.php?t=4096) with Powershell for example :
-
-    .\mkisofs -iso-level 1 -pad -N -V "SENGOKU2" -o output.iso .\Patched_NGCD_files
-
-Then rename output.iso like the first track in folder, place it with othet tracks and run the game !
+The tricky part is now to rebuilt an [iso level 1 track](https://wiki.neogeodev.org/index.php/Making_an_ISO_file), only format recognized by the NGCD. I'm still trying to find a smooth workflow to do this, stay tuned.
 
 ## Click on image to see level 1 gameplay
 [ ![Click to see gameplay](/Caption.png)](https://www.youtube.com/watch?v=bVQaettOxyM)

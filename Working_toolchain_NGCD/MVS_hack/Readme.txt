@@ -1,0 +1,1 @@
+This folder contains the original and modified MVS tileset with the same palette (whatever which)

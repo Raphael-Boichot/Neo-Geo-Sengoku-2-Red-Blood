@@ -30,6 +30,8 @@ The tricky part is now to rebuilt an [iso level 1 track](https://wiki.neogeodev.
 
     mkisofs -iso-level 1 -pad -N -V "YOUR_VOLUME_NAME" -o output.iso /path/to/patched/files
 
+Then rename output.iso like the first track in folder, place it with othet tracks and run the game !
+
 ## Why ?
 
 Sometimes, as a player, you get pissed. I mean really.

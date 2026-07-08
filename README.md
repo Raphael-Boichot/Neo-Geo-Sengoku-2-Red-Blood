@@ -26,7 +26,7 @@ Summary of CRC32 you should expect before / after patching :
     File: .\NGCD_track_1\AREA4.SPR | Original CRC32: 1BB25F6C | Modified CRC32: E0BD0AF3
     File: .\NGCD_track_1\TITLE.SPR | Original CRC32: DDA3971E | Modified CRC32: 98FAFCB3
     
-The tricky part is now to rebuilt an [iso level 1 track](https://wiki.neogeodev.org/index.php/Making_an_ISO_file), only format recognized by the NGCD. The recommended way is to use mkisofs with Powershell for example :
+The tricky part is now to rebuilt an [iso level 1 track](https://wiki.neogeodev.org/index.php/Making_an_ISO_file), only format recognized by the NGCD. The recommended way is to use [mkisofs](http://www.win3x.org/win3board/viewtopic.php?t=4096) with Powershell for example :
 
     mkisofs -iso-level 1 -pad -N -V "YOUR_VOLUME_NAME" -o output.iso /path/to/patched/files
 

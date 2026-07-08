@@ -32,10 +32,8 @@ The tricky part is now to rebuilt an [iso level 1 track](https://wiki.neogeodev.
 
 Then rename output.iso like the first track in folder, place it with othet tracks and run the game !
 
-
+## Click on image to see level 1 gameplay
 [ ![Click to see gameplay](/Caption.png)](https://www.youtube.com/watch?v=bVQaettOxyM)
-
-
 
 ## Why ?
 

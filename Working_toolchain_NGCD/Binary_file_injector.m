@@ -1,72 +1,93 @@
-%% Binary File Patcher (Byte-Level)
-% Treats files as raw byte streams and handles non-matching files gracefully.
+function Binary_file_injector()
+
+%% Binary File Patcher (Fragment-Aware Fragment Injection)
+% Maps fragment offsets from original files and injects hacked versions.
 
 %% Parameters
-sourceDir = '.\roms_out\';
-trackFile = '.\NGCD_track_1\Sengoku2_Track_01.bin';
-patchedTrackFile = '.\patched_binary\Sengoku2_track_1_patched.bin';
-headerBytesCount = 2048; % Define how many bytes define a unique header
+origDir = '.\NGCD_track_1_files\';
+hackedDir = '.\roms_out\';
+trackFile = '.\NGCD_track_1_binary\Sengoku2_Track_01.bin';
+patchedTrackFile = '.\NGCD_track_1_binary\Sengoku2_track_1_patched.bin';
+chunkSize = 2048;
+paddingThreshold = 100;
 
-%% Check files
-if ~isfolder(sourceDir)
-    error('Source directory "%s" does not exist.', sourceDir);
-end
-if ~isfile(trackFile)
-    error('Track file "%s" does not exist.', trackFile);
-end
+%% Initialization
+fprintf('Reading track file: %s\n', trackFile);
+trackData = readbin(trackFile);
+% Combine file search patterns to include PRG and SPR
+sourceFiles = [dir(fullfile(origDir, '*.PRG')); dir(fullfile(origDir, '*.SPR'))];
 
-%% Read track
-fprintf('Reading track file...\n');
-fid = fopen(trackFile, 'rb');
-trackData = fread(fid, '*uint8'); 
-fclose(fid);
-trackLength = length(trackData);
+for f = 1:length(sourceFiles)
+    fileName = sourceFiles(f).name;
+    origPath = fullfile(sourceFiles(f).folder, fileName);
+    hackedPath = fullfile(hackedDir, fileName);
 
-%% Process source files
-sourceFiles = dir(fullfile(sourceDir, '*'));
-sourceFiles = sourceFiles(~[sourceFiles.isdir]);
-
-for i = 1:length(sourceFiles)
-    fileName = sourceFiles(i).name;
-    filePath = fullfile(sourceDir, fileName);
-    
-    fid = fopen(filePath, 'rb');
-    fileData = fread(fid, '*uint8');
-    fclose(fid);
-    
-    if length(fileData) < headerBytesCount
-        fprintf('SKIP: "%s" is too small to contain a header.\n', fileName);
+    if ~exist(hackedPath, 'file')
+        fprintf('WARNING: No hacked file found for %s. Skipping.\n', fileName);
         continue;
     end
 
-    header = fileData(1:headerBytesCount);
+    fprintf('\n>>> Scanning File: %s\n', fileName);
+    origData = readbin(origPath);
+    hackedData = readbin(hackedPath);
 
-    %% Find header in track
-    matches = strfind(trackData', header');
+    if length(origData) ~= length(hackedData)
+        error('CRITICAL: Size mismatch for %s. Original: %d, Hacked: %d', ...
+            fileName, length(origData), length(hackedData));
+    end
 
-    if isempty(matches)
-        % Explicitly reporting no match found
-        fprintf('NO MATCH: The header for "%s" was not found in the track file.\n', fileName);
-    elseif length(matches) > 1
-        fprintf('WARNING: Multiple matches found for "%s". Skipping to prevent data corruption.\n', fileName);
-    else
-        offset = matches(1) - 1; 
-        fprintf('SUCCESS: Injecting "%s" at offset %d (0x%X).\n', fileName, offset, offset);
+    numChunks = ceil(length(origData) / chunkSize);
+    lastMatchOffset = 0; % Pointer reset for fragment-chain mapping
 
-        % Verify bounds
-        if (offset + length(fileData)) > trackLength
-            error('CRITICAL: File "%s" exceeds track bounds at offset %d.', fileName, offset);
+    for c = 1:numChunks
+        startByte = (c-1)*chunkSize + 1;
+        endByte = min(c*chunkSize, length(origData));
+        chunk = origData(startByte:endByte);
+
+        % Skip padding/duplicates
+        if length(strfind(trackData', chunk')) > paddingThreshold
+            continue;
         end
 
-        % Inject
-        trackData(offset + 1 : offset + length(fileData)) = fileData;
+        % Find location of this specific chunk
+        searchArea = trackData(lastMatchOffset + 1 : end);
+        matchPosLocal = strfind(searchArea', chunk');
+
+        if ~isempty(matchPosLocal)
+            absOffset = lastMatchOffset + matchPosLocal(1) - 1;
+
+            % Inject corresponding chunk from HACKED file
+            hackedChunk = hackedData(startByte:endByte);
+            trackData(absOffset + 1 : absOffset + length(hackedChunk)) = hackedChunk;
+
+            % Required output format
+            gap = absOffset - lastMatchOffset;
+            fprintf('Chunk %d/%d (File: %s) found at 0x%X (Gap from previous: 0x%X)\n', ...
+                c, numChunks, fileName, absOffset, gap);
+
+            lastMatchOffset = absOffset + chunkSize;
+        else
+            error('CRITICAL: Could not locate chunk %d for %s. Stopping.', c, fileName);
+        end
     end
 end
 
-%% Write patched track
-fprintf('Writing patched track to "%s"...\n', patchedTrackFile);
+%% Save Patched Track
+fprintf('\nWriting patched track: %s\n', patchedTrackFile);
 fid = fopen(patchedTrackFile, 'wb');
 fwrite(fid, trackData, 'uint8');
 fclose(fid);
+fprintf('Patch complete.\n');
 
-fprintf('Operation complete.\n');
+%% 4. Fix ECC/EDC Overhead
+fprintf('\nRegenerating ECC/EDC checksums using EDCRE...\n');
+% The -v flag provides verbose output, -s 16 starts regeneration at sector 16
+system(sprintf('edcre -v -s 16 "%s"', patchedTrackFile));
+
+    function data = readbin(path)
+        fid = fopen(path, 'rb');
+        data = fread(fid, '*uint8');
+        fclose(fid);
+    end
+
+end

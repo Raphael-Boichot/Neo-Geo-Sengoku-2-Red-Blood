@@ -47,7 +47,7 @@ png_to_Cspr('.\roms_out\TITLE.SPR','.\tileset_out_modified\TITLE.png','.\tileset
 %% Injects new palettes in P ROMs
 % Here some manual editing of the new palette
 disp('Targeting and injecting new palette(s) in P ROM')
-copyfile('.\NGCD_track_1\P040.PRG','.\roms_out\P040.PRG');
+copyfile('.\NGCD_track_1_files\P040.PRG','.\roms_out\P040.PRG');
 PRomFile = '.\roms_out\P040.PRG';
 
 % Boring blood vs vibrant blood, several foes
@@ -175,16 +175,20 @@ palette_old = [0x0078, 0x3720, 0x2B52, 0x3E94, 0x5606, 0x5A0A, 0x5F0F, 0x3023, 0
 palette_new = [0x0078, 0x3720, 0x2B52, 0x3E94, 0x4700, 0x4B00, 0x4F00, 0x3023, 0x3046, 0x2069, 0x0885, 0x6BB9, 0x7FFC, 0x109B, 0x10DF, 0x0000]; % Puppet 2 with reds from puppet 1
 PRG_Palette_injector(PRomFile,palette_old,palette_new)
 
-%% Generate IPF files for all these modifications
+%% Now dealing directly with the track 1 raw binary
+Binary_file_injector();
+
+%% Generate IPF files for all these modifications on individual files
 disp('Generating IPS script')
-IPS_generator('.\NGCD_track_1\P040.PRG','.\roms_out\P040.PRG','.\IPS_scripts\P040.PRG.ips')
-IPS_generator('.\NGCD_track_1\JOUCHU.SPR','.\roms_out\JOUCHU.SPR','.\IPS_scripts\JOUCHU.SPR.ips')
-%IPS_generator('.\NGCD_track_1\AREA1.SPR','.\roms_out\AREA1.SPR','.\IPS_scripts\AREA1.SPR.ips')
-IPS_generator('.\NGCD_track_1\AREA2.SPR','.\roms_out\AREA2.SPR','.\IPS_scripts\AREA2.SPR.ips')
-IPS_generator('.\NGCD_track_1\AREA3.SPR','.\roms_out\AREA3.SPR','.\IPS_scripts\AREA3.SPR.ips')
-IPS_generator('.\NGCD_track_1\AREA4.SPR','.\roms_out\AREA4.SPR','.\IPS_scripts\AREA4.SPR.ips')
-%IPS_generator('.\NGCD_track_1\STAFF.SPR','.\roms_out\STAFF.SPR','.\IPS_scripts\STAFF.SPR.ips')
-IPS_generator('.\NGCD_track_1\TITLE.SPR','.\roms_out\TITLE.SPR','.\IPS_scripts\TITLE.SPR.ips')
+IPS_generator('.\NGCD_track_1_files\P040.PRG','.\roms_out\P040.PRG','.\IPS_scripts\P040.PRG.ips')
+IPS_generator('.\NGCD_track_1_files\JOUCHU.SPR','.\roms_out\JOUCHU.SPR','.\IPS_scripts\JOUCHU.SPR.ips')
+%IPS_generator('.\NGCD_track_1_files\AREA1.SPR','.\roms_out\AREA1.SPR','.\IPS_scripts\AREA1.SPR.ips')
+IPS_generator('.\NGCD_track_1_files\AREA2.SPR','.\roms_out\AREA2.SPR','.\IPS_scripts\AREA2.SPR.ips')
+IPS_generator('.\NGCD_track_1_files\AREA3.SPR','.\roms_out\AREA3.SPR','.\IPS_scripts\AREA3.SPR.ips')
+IPS_generator('.\NGCD_track_1_files\AREA4.SPR','.\roms_out\AREA4.SPR','.\IPS_scripts\AREA4.SPR.ips')
+%IPS_generator('.\NGCD_track_1_files\STAFF.SPR','.\roms_out\STAFF.SPR','.\IPS_scripts\STAFF.SPR.ips')
+IPS_generator('.\NGCD_track_1_files\TITLE.SPR','.\roms_out\TITLE.SPR','.\IPS_scripts\TITLE.SPR.ips')
+IPS_generator('.\NGCD_track_1_binary\Sengoku2_Track_01.bin','.\NGCD_track_1_binary\Sengoku2_track_1_patched.bin','.\IPS_scripts\Sengoku2_Track_01.bin.ips')
 
 disp('Neo Geo CD version converted !')
 toc

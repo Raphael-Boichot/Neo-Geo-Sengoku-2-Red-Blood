@@ -23,7 +23,7 @@ Cspr_to_png('.\NGCD_track_1_files\AREA2.SPR',dummy_palette_jet, '.\tileset_out\A
 Cspr_to_png('.\NGCD_track_1_files\AREA3.SPR',dummy_palette_jet, '.\tileset_out\AREA3.png', '.\tileset_out\AREA3_exchange_palette.txt')
 Cspr_to_png('.\NGCD_track_1_files\AREA4.SPR',dummy_palette_jet, '.\tileset_out\AREA4.png', '.\tileset_out\AREA4_exchange_palette.txt')
 % Cspr_to_png('.\NGCD_track_1_files\STAFF.SPR',dummy_palette_jet, '.\tileset_out\STAFF.png', '.\tileset_out\STAFF_exchange_palette.txt')
-Cspr_to_png('.\NGCD_track_1\TITLE.SPR',dummy_palette_jet, '.\tileset_out\TITLE.png', '.\tileset_out\TITLE_exchange_palette.txt')
+Cspr_to_png('.\NGCD_track_1_files\TITLE.SPR',dummy_palette_jet, '.\tileset_out\TITLE.png', '.\tileset_out\TITLE_exchange_palette.txt')
 %///////////////section to comment to edit tileset//////////////////
 
 %% Section to inject modified tileset from MVS into NGCD

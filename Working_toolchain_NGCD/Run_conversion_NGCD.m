@@ -17,12 +17,12 @@ disp('Initialization completed')
 %% Transforms the pair of roms in png tileset + palette image to ckeck
 %///////////////section to comment to edit tileset//////////////////
 % disp('Building tileset in png from palette vector')
-Cspr_to_png('.\NGCD_track_1\JOUCHU.SPR',dummy_palette_jet, '.\tileset_out\JOUCHU.png', '.\tileset_out\JOUCHU_exchange_palette.txt')
+Cspr_to_png('.\NGCD_track_1_files\JOUCHU.SPR',dummy_palette_jet, '.\tileset_out\JOUCHU.png', '.\tileset_out\JOUCHU_exchange_palette.txt')
 % Cspr_to_png('.\NGCD_track_1\AREA1.SPR',dummy_palette_jet, '.\tileset_out\AREA1.png', '.\tileset_out\AREA1_exchange_palette.txt')
-Cspr_to_png('.\NGCD_track_1\AREA2.SPR',dummy_palette_jet, '.\tileset_out\AREA2.png', '.\tileset_out\AREA2_exchange_palette.txt')
-Cspr_to_png('.\NGCD_track_1\AREA3.SPR',dummy_palette_jet, '.\tileset_out\AREA3.png', '.\tileset_out\AREA3_exchange_palette.txt')
-Cspr_to_png('.\NGCD_track_1\AREA4.SPR',dummy_palette_jet, '.\tileset_out\AREA4.png', '.\tileset_out\AREA4_exchange_palette.txt')
-Cspr_to_png('.\NGCD_track_1\STAFF.SPR',dummy_palette_jet, '.\tileset_out\STAFF.png', '.\tileset_out\STAFF_exchange_palette.txt')
+Cspr_to_png('.\NGCD_track_1_files\AREA2.SPR',dummy_palette_jet, '.\tileset_out\AREA2.png', '.\tileset_out\AREA2_exchange_palette.txt')
+Cspr_to_png('.\NGCD_track_1_files\AREA3.SPR',dummy_palette_jet, '.\tileset_out\AREA3.png', '.\tileset_out\AREA3_exchange_palette.txt')
+Cspr_to_png('.\NGCD_track_1_files\AREA4.SPR',dummy_palette_jet, '.\tileset_out\AREA4.png', '.\tileset_out\AREA4_exchange_palette.txt')
+Cspr_to_png('.\NGCD_track_1_files\STAFF.SPR',dummy_palette_jet, '.\tileset_out\STAFF.png', '.\tileset_out\STAFF_exchange_palette.txt')
 % Cspr_to_png('.\NGCD_track_1\TITLE.SPR',dummy_palette_jet, '.\tileset_out\TITLE.png', '.\tileset_out\TITLE_exchange_palette.txt')
 %///////////////section to comment to edit tileset//////////////////
 

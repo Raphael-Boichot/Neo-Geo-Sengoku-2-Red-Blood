@@ -11,7 +11,8 @@ paddingThreshold = 100;
 %% 1. Initialization and Loading
 fprintf('Loading track file into memory...\n');
 trackData = readbin(trackFile);
-trackData = trackData(:); 
+trackData = trackData(:);
+trackDataT = trackData'; % transpose once, reused for every search
 
 sourceFiles = [dir(fullfile(origDir, '*.PRG')); dir(fullfile(origDir, '*.SPR'))];
 dataMap = struct('name', {}, 'orig', {}, 'hacked', {});
@@ -20,9 +21,15 @@ for f = 1:length(sourceFiles)
     fileName = sourceFiles(f).name;
     hackedPath = fullfile(hackedDir, fileName);
     if exist(hackedPath, 'file')
+        origData = readbin(fullfile(sourceFiles(f).folder, fileName));
+        hackedData = readbin(hackedPath);
+        if length(origData) ~= length(hackedData)
+            error('Size mismatch for %s: orig=%d bytes, hacked=%d bytes. In-place patching requires identical sizes.', ...
+                fileName, length(origData), length(hackedData));
+        end
         dataMap(end+1).name = fileName;
-        dataMap(end).orig = readbin(fullfile(sourceFiles(f).folder, fileName));
-        dataMap(end).hacked = readbin(hackedPath);
+        dataMap(end).orig = origData;
+        dataMap(end).hacked = hackedData;
     end
 end
 
@@ -36,7 +43,7 @@ for f = 1:length(dataMap)
     fileName = dataMap(f).name;
     origData = dataMap(f).orig;
     hackedData = dataMap(f).hacked;
-    
+
     numChunks = ceil(length(origData) / chunkSize);
     lastMatchOffset = 0;
     processedCount = 0;
@@ -49,17 +56,23 @@ for f = 1:length(dataMap)
         chunkOrig = origData(startByte:endByte);
         chunkHacked = hackedData(startByte:endByte);
 
-        % Count padding/duplicates as ignored
-        if length(strfind(trackData', chunkOrig')) > paddingThreshold
-            ignoredCount = ignoredCount + 1;
-            continue;
-        end
-
-        % Skip if original and hacked chunks are identical
+        % Skip if original and hacked chunks are identical.
+        % Check this FIRST: if nothing changed, there's nothing to inject,
+        % regardless of how many times this chunk repeats in the track.
         if isequal(chunkOrig, chunkHacked)
             skippedCount = skippedCount + 1;
             % Advance lastMatchOffset to keep alignment context
-            lastMatchOffset = lastMatchOffset + chunkSize; 
+            lastMatchOffset = lastMatchOffset + chunkSize;
+            continue;
+        end
+
+        % Chunk DID change. Now check if it's too ambiguous to locate safely
+        % (e.g. a common padding/fill pattern that repeats many times).
+        occurrences = length(strfind(trackDataT, chunkOrig'));
+        if occurrences > paddingThreshold
+            fprintf('  WARNING: chunk %d in %s changed but repeats %d times in track (> threshold %d) - SKIPPED, not injected!\n', ...
+                c, fileName, occurrences, paddingThreshold);
+            ignoredCount = ignoredCount + 1;
             continue;
         end
 
@@ -67,15 +80,20 @@ for f = 1:length(dataMap)
         matchPosLocal = strfind(searchArea', chunkOrig');
 
         if ~isempty(matchPosLocal)
+            if numel(matchPosLocal) > 1
+                fprintf('  WARNING: chunk %d in %s has %d candidate matches after offset %d; using the first one.\n', ...
+                    c, fileName, numel(matchPosLocal), lastMatchOffset);
+            end
             absOffset = lastMatchOffset + matchPosLocal(1) - 1;
             trackData(absOffset + 1 : absOffset + length(chunkOrig)) = chunkHacked;
+            trackDataT(absOffset + 1 : absOffset + length(chunkOrig)) = chunkHacked';
             lastMatchOffset = absOffset + chunkSize;
             processedCount = processedCount + 1;
         else
             error('CRITICAL: Could not locate chunk %d for %s.', c, fileName);
         end
     end
-    
+
     grandTotalInjected = grandTotalInjected + processedCount;
     fprintf('%-20s | %-12d | %-12d | %-12d | %-12d\n', fileName, numChunks, processedCount, ignoredCount, skippedCount);
 end

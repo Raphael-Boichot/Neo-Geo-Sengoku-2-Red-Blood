@@ -27,7 +27,7 @@ for f = 1:length(sourceFiles)
 end
 
 %% 2. Processing with Per-File Reporting
-fprintf('\n%-20s | %-12s | %-12s | %-12s | %-12s\n', 'Filename', 'Chunks', 'Injected', 'Ignored', 'Skipped');
+fprintf('\n%-20s | %-12s | %-12s | %-12s | %-12s\n', 'Filename', 'Chunks', 'Injected (padding)', 'Ignored', 'Skipped');
 fprintf('--------------------------------------------------------------------------------------------\n');
 
 grandTotalInjected = 0;
@@ -87,6 +87,9 @@ fprintf('\nWriting patched track: %s\n', patchedTrackFile);
 fid = fopen(patchedTrackFile, 'wb');
 fwrite(fid, trackData, 'uint8');
 fclose(fid);
+
+% https://github.com/alex-free/edcre
+% Alex Free, you saved my day !
 
 fprintf('\nRegenerating ECC/EDC checksums...\n');
 system(sprintf('edcre -v -s 16 "%s"', patchedTrackFile));

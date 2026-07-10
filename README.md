@@ -22,7 +22,7 @@ Summary of CRC32 you should expect before / after patching:
 
     File: Sengoku2_Track_01.bin | Original CRC32: 6EFBFA46 | Modified CRC32: 13D0AE7A
 
-Of course, for AES / MVS and NGCD versions you can run all the codes with the original ROMs / files in the indicated folders to rebuild the project from scratch but IPS patches are much easier to handle.
+Of course, for AES / MVS and NGCD versions you can run all the codes with the original ROMs / files in the indicated folders to rebuild the project from scratch but IPS patches are much easier to handle for casual players. The toolchain is howaver written in a way allowing you, SNK nerd, to very easily update the hack to your own taste. Matlab code can be easily ported to Python with your prefered A.I. coding tool.
 
 ## Click on image to see level 1 gameplay
 [ ![Click to see gameplay](/Caption.png)](https://www.youtube.com/watch?v=bVQaettOxyM)
@@ -68,7 +68,7 @@ Here are the main steps used in a nutshell:
 - Rince and repeat with all characters.
 - Make a final IPS script for P ROM and C ROMS.
 
-I wanted to maximize the scripting in order to be able to easily come back on errors / bad design later. Some codes or parts of codes were made with A.I. to speed up the process (Gemini mainly, a pinch of Claude too for the most tricky parts). Basically there is no rocket science here but I must admit that A.I. was precious to circumvent the scarcity of Neo Geo dedicated editing tool (Yeah, I know, it’s evil, it kills the planet and all of that). We are clearly addressing a niche market here. 
+I wanted to maximize the scripting in order to be able to easily come back on errors / bad design later. Some codes or parts of codes were made with A.I. to speed up the process (Gemini mainly, sometimes Mistral A.I. because I'm beta tester, a pinch of Claude too for the most tricky parts). Basically there is no rocket science here but I must admit that A.I. was precious to circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a niche market here. 
 
 The Neo Geo CD hack was made in parallel to the MVS version as it is not more difficult to do on any of the systems. Except that the Neo Geo CD is scarcely documented (The only interesting source is a [Neo Geo CD World article](https://www.neogeocdworld.info/html/fiche/hard.htm) by Furrtek), so I was basically on my own most of the time for the file formatting details.
 

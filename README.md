@@ -88,6 +88,10 @@ Cherry on top, for all the hacked chunks reinjected, the EDC/ECC 304 bytes are n
 
 Replace the genuine track 1 by hacked one, run it with a NeoGeo CD SD loader because it is the fastest route from hacking to real hardware for testing. Enjoy.
 
+![](/Monkey.jpg)
+
+First time I'm happy to see this fucker...
+
 ## Identified flaws due to the 15 colors per tile limitation
 
 The 15 colors limit per tile was surprisingly frustrating. The redness of blood may vary depending on the compromises made when juggling with palette swap, yet existing satisfying reds, my artistic perception but most of all, my laziness. Overall, the game is now more reddish. 

@@ -298,7 +298,7 @@ Yoshitsune (Boss level 3) **--> Palette swap and tileset editing**
 
 ![](/Palettes/Yoshitsune_palette.png)
 
-Alternate palette
+Alternate palette (reds more vibrant)
 
 ![](/Palettes/Yoshitsune_palette_alternate.png)
 

@@ -1,4 +1,4 @@
-# Red Blood hack for Sengoku 2, Neo Geo AES/MVS and NGCD
+# Red Blood hack for Sengoku 2, Neo Geo AES/MVS and Neo Geo CD
 
 ## Build your own (current version 1.0)
 

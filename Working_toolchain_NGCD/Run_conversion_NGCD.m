@@ -180,14 +180,14 @@ Binary_file_injector();
 
 %% Generate IPF files for all these modifications on individual files
 disp('Generating IPS script')
-IPS_generator('.\NGCD_track_1_files\P040.PRG','.\roms_out\P040.PRG','.\IPS_scripts\P040.PRG.ips')
-IPS_generator('.\NGCD_track_1_files\JOUCHU.SPR','.\roms_out\JOUCHU.SPR','.\IPS_scripts\JOUCHU.SPR.ips')
+%IPS_generator('.\NGCD_track_1_files\P040.PRG','.\roms_out\P040.PRG','.\IPS_scripts\P040.PRG.ips')
+%IPS_generator('.\NGCD_track_1_files\JOUCHU.SPR','.\roms_out\JOUCHU.SPR','.\IPS_scripts\JOUCHU.SPR.ips')
 %IPS_generator('.\NGCD_track_1_files\AREA1.SPR','.\roms_out\AREA1.SPR','.\IPS_scripts\AREA1.SPR.ips')
-IPS_generator('.\NGCD_track_1_files\AREA2.SPR','.\roms_out\AREA2.SPR','.\IPS_scripts\AREA2.SPR.ips')
-IPS_generator('.\NGCD_track_1_files\AREA3.SPR','.\roms_out\AREA3.SPR','.\IPS_scripts\AREA3.SPR.ips')
-IPS_generator('.\NGCD_track_1_files\AREA4.SPR','.\roms_out\AREA4.SPR','.\IPS_scripts\AREA4.SPR.ips')
+%IPS_generator('.\NGCD_track_1_files\AREA2.SPR','.\roms_out\AREA2.SPR','.\IPS_scripts\AREA2.SPR.ips')
+%IPS_generator('.\NGCD_track_1_files\AREA3.SPR','.\roms_out\AREA3.SPR','.\IPS_scripts\AREA3.SPR.ips')
+%IPS_generator('.\NGCD_track_1_files\AREA4.SPR','.\roms_out\AREA4.SPR','.\IPS_scripts\AREA4.SPR.ips')
 %IPS_generator('.\NGCD_track_1_files\STAFF.SPR','.\roms_out\STAFF.SPR','.\IPS_scripts\STAFF.SPR.ips')
-IPS_generator('.\NGCD_track_1_files\TITLE.SPR','.\roms_out\TITLE.SPR','.\IPS_scripts\TITLE.SPR.ips')
+%IPS_generator('.\NGCD_track_1_files\TITLE.SPR','.\roms_out\TITLE.SPR','.\IPS_scripts\TITLE.SPR.ips')
 IPS_generator('.\NGCD_track_1_binary\Sengoku2_Track_01.bin','.\NGCD_track_1_binary\Sengoku2_track_1_patched.bin','.\IPS_scripts\Sengoku2_Track_01.bin.ips')
 
 disp('Neo Geo CD version converted !')

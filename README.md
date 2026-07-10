@@ -6,7 +6,7 @@
 
 Go to the dedicated [IPS scripts folder](/Working_toolchain_MVS/IPS_scripts), get a know good dump of Sengoku 2 for MAME, unzip, apply the IPS patch to corresponding files, zip the patched files, enjoy !
 
-Summary of CRC32 you should expect before / after patching :
+Summary of CRC32 you should expect before / after patching:
 
     File: .\roms\040-c1.c1 | Original CRC32: FAA8EA99 | Modified CRC32: 137B21F9
     File: .\roms\040-c2.c2 | Original CRC32: 87D0EC65 | Modified CRC32: 4AD35858
@@ -16,20 +16,13 @@ Summary of CRC32 you should expect before / after patching :
 
 ## For Neo Geo CD (under construction)
 
-Get the CD version compatible with the NeoSD Loader, for example [here](https://archive.org/details/fullset-for-neocd-sd-loader). Extract files from the track 1 with any way to mount the .bin file as a virtual drive (like WinCDEmu for example, but any other tools may work). Patch the following files with the [dedicated IPS patches](/Working_toolchain_NGCD/IPS_scripts).
+Get the CD version compatible with the NeoSD Loader, for example [here](https://archive.org/details/fullset-for-neocd-sd-loader). It must be a .CUE + .BINs version. Patch the track 1 with the [dedicated IPS patch](/Working_toolchain_NGCD/IPS_scripts).
 
-Summary of CRC32 you should expect before / after patching :
+Summary of CRC32 you should expect before / after patching:
 
-    File: .\NGCD_track_1\P040.PRG | Original CRC32: DE9334F2 | Modified CRC32: C6126BCF
-    File: .\NGCD_track_1\JOUCHU.SPR | Original CRC32: 458CA60B | Modified CRC32: D4E11138
-    File: .\NGCD_track_1\AREA2.SPR | Original CRC32: DFC4BFFC | Modified CRC32: 9A9DD451
-    File: .\NGCD_track_1\AREA3.SPR | Original CRC32: 6812A91A | Modified CRC32: 963F01DD
-    File: .\NGCD_track_1\AREA4.SPR | Original CRC32: 1BB25F6C | Modified CRC32: E0BD0AF3
-    File: .\NGCD_track_1\TITLE.SPR | Original CRC32: DDA3971E | Modified CRC32: 98FAFCB3
-    
-The tricky part is now to rebuilt an [iso level 1 track](https://wiki.neogeodev.org/index.php/Making_an_ISO_file), only format recognized by the NGCD. I'm still trying to find a smooth workflow to do this, so stay tuned.
+    File: .\NGCD_track_1_binary\Sengoku2_Track_01.bin | Original CRC32: 6EFBFA46 | Modified CRC32: 13D0AE7A
 
-Of course you can run all the codes with the original ROMs in the indicated folders to rebuild the project for AES / MVS and NGCD from scratch but IPS patches are much easier to handle.
+Of course, for AES / MVS and NGCD versions you can run all the codes with the original ROMs / files in the indicated folders to rebuild the project from scratch but IPS patches are much easier to handle.
 
 ## Click on image to see level 1 gameplay
 [ ![Click to see gameplay](/Caption.png)](https://www.youtube.com/watch?v=bVQaettOxyM)

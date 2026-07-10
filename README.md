@@ -24,6 +24,8 @@ Summary of CRC32 you should expect before / after patching:
 
 Of course, for AES / MVS and NGCD versions you can run all the codes with the original ROMs / files in the indicated folders to rebuild the project from scratch but IPS patches are much easier to handle for casual players. The toolchain is however written in a way allowing you, SNK nerd, to very easily update the hack to your own taste. Matlab codes used here can be easily ported to Python with your prefered A.I. coding tool.
 
+Anything fishy with the hacks ? Need for help ? Open an issue !
+
 ## Click on image to see BLOOD
 [ ![Click to see gameplay](/Caption.png)](https://www.youtube.com/watch?v=bVQaettOxyM)
 

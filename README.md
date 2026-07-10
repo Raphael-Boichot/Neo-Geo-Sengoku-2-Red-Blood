@@ -14,7 +14,7 @@ Summary of CRC32 you should expect before / after patching:
     File: 040-c4.c4 | Original CRC32: 1C9E9930 | Modified CRC32: 9AAD51A1
     File: 040-p1.p1 | Original CRC32: 6DDE02C2 | Modified CRC32: 66287B69
 
-## For Neo Geo CD (wait for validation)
+## For Neo Geo CD (working, validated)
 
 Get the CD version compatible with the NeoSD Loader, for example [here](https://archive.org/details/fullset-for-neocd-sd-loader). It must be a .CUE + .BINs version. Patch the track 1 with the [dedicated IPS patch](/Working_toolchain_NGCD/IPS_scripts).
 

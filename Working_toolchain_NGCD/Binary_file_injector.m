@@ -27,7 +27,7 @@ for f = 1:length(sourceFiles)
 end
 
 %% 2. Processing with Per-File Reporting
-fprintf('\n%-20s | %-12s | %-12s | %-12s | %-12s\n', 'Filename', 'Chunks', 'Injected (padding)', 'Ignored', 'Skipped');
+fprintf('\n%-20s | %-12s | %-12s | %-12s | %-12s\n', 'Filename', 'Chunks', 'Injected', 'Padding', 'Skipped');
 fprintf('--------------------------------------------------------------------------------------------\n');
 
 grandTotalInjected = 0;

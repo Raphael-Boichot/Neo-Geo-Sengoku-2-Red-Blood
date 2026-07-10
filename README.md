@@ -79,6 +79,20 @@ I wanted to maximize the scripting in order to be able to easily come back on er
 
 The Neo Geo CD hack was made in parallel to the MVS version as it is not more difficult to do on any of the systems. Except that the Neo Geo CD is scarcely documented (The only interesting source is a [Neo Geo CD World article](https://www.neogeocdworld.info/html/fiche/hard.htm) by Furrtek), so I was basically on my own most of the time for the file formatting details.
 
+## Some notes about (painfully and partially) reverse engineering the NGCD file format
+
+I initially though hacking individual files of the NGCD version contained in track 1 and rebuilding an iso from any dedicated tool would be enough. As far as I can tell, it does not work. Even the trusty [neogeodev dedicated page](https://wiki.neogeodev.org/index.php/Making_an_ISO_file) was finally not usefull. Any tool gives me a .bin or .iso container that makes the Geo Geo CD crash. The size of the track is always too small compared to the genuine one.
+
+So I took the problem in reverse. Rebuilding the original TOC as made by SNK in 1995 was just out of question, so I tried injecting the individual hacked .SPR and .PRG directly into the original track 1 binary as big data chunks, by searching for header signatures. Neo Geo CD crashed again with that rebuilt binary, damn! The fact is that I had only partial matching between .PRG and .SPR injected and the binary data of track 1, which indicated that the files were probably splitted within the binary. It was in fact even more complicated.
+
+By messing with dedicated tool, I finally understood each file structure: each individual file is splitted in chunks of 2048 bytes (0x800) followed by 304 bytes (0x130) of EDC/ECC data (typically checksums and other informations). Chunks are consecutives for a given file at first glance but at this step I could not trust anything. 
+
+So I wrote a code to inject my hacked file by chunks of 2048 bytes. 2048 bytes is enough to have a unique signature in the track 1 binary and target precise address range by comparison. So the trick was to search a sequence in the binary matching a chunk of 2048 bytes from the non hacked original files to build a table of address ranges for each files, then use this table to inject chunks of the hacked files to the dedicated range. Of course there is a ton of optimizatiion but you get the idea.
+
+Cherry on the cake, for the hacked chunks reinjected, the EDC/ECC 304 bytes are now indicating that the chunk is corrupted (of course). So the last step is to regenerate the EDC/ECC data for each modified chunk with a dedicated tool. Life is not always a bitch because THERE IS YET A TOOL TO DO THIS!
+
+Load the hacked track one to an SD card, run it with a NeoGeo CD SD loader. Joy.
+
 ## Identified flaws due to the 15 colors per tile limitation
 
 The 15 colors limit per tile was surprisingly frustrating. The redness of blood may vary depending on the compromises made when juggling with palette swap, yet existing satisfying reds, my artistic perception but most of all, my laziness. Overall, the game is now more reddish. 

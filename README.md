@@ -26,7 +26,7 @@ Of course, for AES / MVS and NGCD versions you can run all the codes with the or
 
 Anything fishy with the hacks ? Need for help ? Open an issue !
 
-## Click on image to see BLOOD
+## Click on image to see bloody action
 [ ![Click to see gameplay](/Caption.png)](https://www.youtube.com/watch?v=bVQaettOxyM)
 
 ## The story so far...

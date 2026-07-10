@@ -27,8 +27,10 @@ for f = 1:length(sourceFiles)
 end
 
 %% 2. Processing with Per-File Reporting
-fprintf('\n%-20s | %-12s | %-12s | %-12s\n', 'Filename', 'Total Chunks', 'Processed', 'Ignored (padding)');
-fprintf('----------------------------------------------------------------------------\n');
+fprintf('\n%-20s | %-12s | %-12s | %-12s | %-12s\n', 'Filename', 'Chunks', 'Injected', 'Ignored', 'Skipped');
+fprintf('--------------------------------------------------------------------------------------------\n');
+
+grandTotalInjected = 0;
 
 for f = 1:length(dataMap)
     fileName = dataMap(f).name;
@@ -39,24 +41,34 @@ for f = 1:length(dataMap)
     lastMatchOffset = 0;
     processedCount = 0;
     ignoredCount = 0;
+    skippedCount = 0;
 
     for c = 1:numChunks
         startByte = (c-1)*chunkSize + 1;
         endByte = min(c*chunkSize, length(origData));
-        chunk = origData(startByte:endByte);
+        chunkOrig = origData(startByte:endByte);
+        chunkHacked = hackedData(startByte:endByte);
 
         % Count padding/duplicates as ignored
-        if length(strfind(trackData', chunk')) > paddingThreshold
+        if length(strfind(trackData', chunkOrig')) > paddingThreshold
             ignoredCount = ignoredCount + 1;
             continue;
         end
 
+        % Skip if original and hacked chunks are identical
+        if isequal(chunkOrig, chunkHacked)
+            skippedCount = skippedCount + 1;
+            % Advance lastMatchOffset to keep alignment context
+            lastMatchOffset = lastMatchOffset + chunkSize; 
+            continue;
+        end
+
         searchArea = trackData(lastMatchOffset + 1 : end);
-        matchPosLocal = strfind(searchArea', chunk');
+        matchPosLocal = strfind(searchArea', chunkOrig');
 
         if ~isempty(matchPosLocal)
             absOffset = lastMatchOffset + matchPosLocal(1) - 1;
-            trackData(absOffset + 1 : absOffset + length(chunk)) = hackedData(startByte:endByte);
+            trackData(absOffset + 1 : absOffset + length(chunkOrig)) = chunkHacked;
             lastMatchOffset = absOffset + chunkSize;
             processedCount = processedCount + 1;
         else
@@ -64,9 +76,11 @@ for f = 1:length(dataMap)
         end
     end
     
-    % Update status table for each file
-    fprintf('%-20s | %-12d | %-12d | %-12d\n', fileName, numChunks, processedCount, ignoredCount);
+    grandTotalInjected = grandTotalInjected + processedCount;
+    fprintf('%-20s | %-12d | %-12d | %-12d | %-12d\n', fileName, numChunks, processedCount, ignoredCount, skippedCount);
 end
+
+fprintf('\nGrand Total Injected Chunks: %d\n', grandTotalInjected);
 
 %% 3. Output
 fprintf('\nWriting patched track: %s\n', patchedTrackFile);
@@ -74,8 +88,6 @@ fid = fopen(patchedTrackFile, 'wb');
 fwrite(fid, trackData, 'uint8');
 fclose(fid);
 
-% https://github.com/alex-free/edcre
-% alex-free, you saved my day !
 fprintf('\nRegenerating ECC/EDC checksums...\n');
 system(sprintf('edcre -v -s 16 "%s"', patchedTrackFile));
 

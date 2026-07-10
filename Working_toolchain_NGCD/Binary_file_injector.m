@@ -81,8 +81,10 @@ for f = 1:length(dataMap)
 
         if ~isempty(matchPosLocal)
             if numel(matchPosLocal) > 1
-                fprintf('  WARNING: chunk %d in %s has %d candidate matches after offset %d; using the first one.\n', ...
-                    c, fileName, numel(matchPosLocal), lastMatchOffset);
+                gapToFirst = matchPosLocal(1) - 1; % 0 = perfectly contiguous with previous chunk
+                fprintf('  WARNING: chunk %d in %s has %d candidate matches after offset %d; using the first one (gap=%d bytes). Other candidates at offsets: %s\n', ...
+                    c, fileName, numel(matchPosLocal), lastMatchOffset, gapToFirst, ...
+                    mat2str(lastMatchOffset + matchPosLocal(2:end) - 1));
             end
             absOffset = lastMatchOffset + matchPosLocal(1) - 1;
             trackData(absOffset + 1 : absOffset + length(chunkOrig)) = chunkHacked;

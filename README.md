@@ -49,7 +49,8 @@ Here are the main steps used in a nutshell:
 - Easy situation, there is no vibrant red in the tileset but a clever palette swap is not visually shocking, go with a palette swap and target the P ROM only.
 - Moderate situation, there is yet a vibrant enough red in the palette and no need for palette swap, edit and inject the modified tileset only on the C ROMs, with unchanged palette.
 - Fucked situation, multiple palette swap for the same character and non consistent color to turn to red: I have to cheat and force a red in each palette at the same position and a modified tileset as well. The mod must stay pleasant to the eye and do not deteriorate too much the initial character design. It's my artistic compromise.
-- Then for each character, repeat the process until reaching the final boss puppets and take some rest.
+- Then for each character, repeat the process until reaching the final boss puppets.
+- Build the Neo Geo CD version automatically from the MVS version.
 
 ## My rules
 

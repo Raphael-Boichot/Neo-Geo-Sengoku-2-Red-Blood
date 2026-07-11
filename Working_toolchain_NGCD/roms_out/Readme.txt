@@ -1,1 +1,1 @@
-The patched ROMs will be placed here
+The patched ROMs will be generated here

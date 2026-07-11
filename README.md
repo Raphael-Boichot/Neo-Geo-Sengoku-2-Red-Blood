@@ -78,7 +78,7 @@ The Neo Geo CD hack was made in parallel to the MVS version as it is not more di
 
 First surprise, the Neo Geo CD file format is 16 bit little endian, which required adapting all the conversion tools developped for the MVS ROMs stored in big endian (but converted to little endian at the end in the 68k RAM, do not ask me why).
 
-Starting confident after this little surprise, I initially though hacking individual files of the NGCD version contained in track 1 and rebuilding an iso from any dedicated tool would be enough. As far as I can tell, it does not work. Even the trusty [neogeodev dedicated page](https://wiki.neogeodev.org/index.php/Making_an_ISO_file) was finally not usefull. Any tool gives me a .bin or .iso container that makes the Neo Geo CD crash. The format is NOT ISO9660 level 1 (at least not only), it's something proprietary. The size of the rebuilt track is always too small compared to the genuine one. I was missing something, clearly.
+Starting confident after this little surprise, I initially though hacking individual files of the NGCD version contained in track 1 and rebuilding an iso from any dedicated tool would be enough. As far as I can tell, it does not work. Even the trusty [neogeodev dedicated page](https://wiki.neogeodev.org/index.php/Making_an_ISO_file) was finally not usefull. Any tool gives me a .bin or .iso container that makes the Neo Geo CD crash. The format is not ISO9660 level 1 only, it's something more primitive not supported by any 2026 software I found. The size of the rebuilt track is always too small compared to the genuine one. But I was probably missing something like alignement tricks.
 
 So I took the problem in reverse. Rebuilding the original TOC as made by SNK in 1995 was just out of question, so I tried injecting the individual hacked .SPR and .PRG files directly into the original track 1 binary as big data chunks, by searching for some header signatures. Neo Geo CD crashed again with that "rebuilt" binary, damn! The fact is that I had only like 12% matching between .PRG and .SPR injected and the binary data of track 1 on the same address range, which indicated that the files were probably at least partially splitted within the binary. It was in fact even more complicated than I though.
 
@@ -94,13 +94,15 @@ Replace the genuine track 1 by hacked one, run it with a NeoGeo CD SD loader bec
 
 First time I'm happy to see this fucker...
 
-## Identified flaws due to the 15 colors per tile limitation
+## Identified flaws
 
 The 15 colors limit per tile was surprisingly frustrating. The redness of blood may vary depending on the compromises made when juggling with palette swap, yet existing satisfying reds, my artistic perception but most of all, my laziness. Overall, the game is now more reddish. 
 
 I've reused at most the existing tones present in the original palette to avoid travesting the designer intention.
 
 It fits well with the game anyways.
+
+On the Neo Geo CD part, I encountered some rare occurence of repeated chunks of data for AREA2.SPR (only) in the track 1 binary. The actual tool target only the first one (the closest from preceding chunk) and it seems to be OK as far as I can tell. Could be some compiling crap, could be something I do not understand. In any case, the injection tool is easily fixable to target any occurence in case of issue.
 
 ## Regular and modified palettes, main effects
 

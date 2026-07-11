@@ -85,15 +85,15 @@ So I took the problem in reverse. Rebuilding the original TOC as made by SNK in 
 
 By messing with dedicated tool, I finally understood each file structure: each individual file is splitted in chunks of 2048 bytes (0x800) followed by 304 bytes (0x130) of EDC/ECC data (typically checksums and other error correction stuff). Chunks seem consecutives for a given file at first glance but at this step I could not trust anything. 
 
-So I wrote a code to inject my hacked .SPR and .PRG files by chunks of 2048 bytes. 2048 bytes is hopefully enough to have a unique signature in the track 1 binary and target precise address range by comparison. So the trick was to search a sequence in the binary matching a chunk of 2048 bytes from the non hacked original files to build a table of address ranges for each files, then use this address table to inject chunks of the hacked files to their respective range. Of course there is a ton of optimization and tricks but you get the idea: seek and inject 2048 byte chunks at the right place.
+So I wrote a code to inject my hacked .SPR and .PRG files by chunks of 2048 bytes. 2048 bytes is hopefully enough to have a unique signature in the track 1 binary and target precise address range by comparison. So the trick was to search a sequence in the binary matching a chunk of 2048 bytes from the non hacked original files to build a table of address ranges for each files, then use this address table to inject chunks of the hacked files to their respective range. Of course there is a ton of optimization and tricks (like dealing with modified chunks only) but you get the idea: seek and inject 2048 byte chunks at the right place.
 
-Cherry on top, for all the hacked chunks reinjected, the EDC/ECC 304 bytes are now  incorrect (of course). So the last step is to regenerate the EDC/ECC data for each modified chunk with a dedicated tool. Life is not always a bitch because THERE IS YET A TOOL TO DO THIS!
+Cherry on top, for all the hacked chunks reinjected, the EDC/ECC 304 bytes are now incorrect (of course). So the last step is to regenerate the EDC/ECC data for each modified chunk with a dedicated tool. Life is not always a bitch because THERE IS YET A TOOL TO DO THIS!
 
-Replace the genuine track 1 by hacked one, run it with a NeoGeo CD SD loader because it is the fastest route from hacking to real hardware for testing. Enjoy.
+Replace the genuine track 1 by hacked one, run it with a Neo Geo CD SD loader because it is the fastest route from hacking to real hardware for testing. Enjoy your bloody version.
 
 ![](/Monkey.jpg)
 
-First time I'm happy to see this fucker...
+First time I'm happy to see this little fucker juggling...
 
 ## Identified flaws
 

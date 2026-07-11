@@ -333,6 +333,10 @@ Aternate palette (puppet 2)
 
 And... that's all. Hope you will enjoy the hack as much as I enjoy playing it.
 
+## Funfact
+
+The Neo Geo CD version seems to contains remnants of codes from Cyber Lip, so I guess that at least some logic from Sengoku 2 P040.PRG was common with that earlier game (probably the logic to split and load levels in the tiny Neo Geo CD memory).
+
 ## Acknowledgments
 
 - The [neogeodev community](https://wiki.neogeodev.org//index.php/Main_Page) in general and [Furrtek](https://github.com/furrtek) in particular. This project made on spare time was only possible because I stood on the shoulders of giants.

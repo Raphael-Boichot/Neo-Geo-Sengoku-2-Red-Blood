@@ -100,9 +100,9 @@ The 15 colors limit per tile was surprisingly frustrating. The redness of blood 
 
 I've reused at most the existing tones present in the original palette to avoid travesting the designer intention.
 
-It fits well with the game anyways.
+It fits well with the game anyways, st least to my taste.
 
-On the Neo Geo CD part, I encountered some rare occurence of repeated chunks of data for AREA2.SPR (only) in the track 1 binary. The actual tool target only the first one (the closest from preceding chunk) and it seems to be OK as far as I can tell. Could be some compiling crap, could be something I do not understand. In any case, the injection tool is easily fixable to target any occurence in case of issue.
+On the Neo Geo CD port, I encountered some rare occurence of repeated chunks of data for AREA2.SPR (only) in the track 1 binary. The actual tool target only the first one (the closest from preceding chunk) and it seems to be OK as far as I can tell. Could be some compiling crap, could be something I do not understand. In any case, the injection tool is easily fixable to target any occurence in case of issue.
 
 ## Regular and modified palettes, main effects
 

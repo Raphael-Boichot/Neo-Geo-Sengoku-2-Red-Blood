@@ -1,1 +1,1 @@
-The NGCD tileset will be genrated here
+The NGCD tileset will be generated here

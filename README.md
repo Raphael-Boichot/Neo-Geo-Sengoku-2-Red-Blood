@@ -52,6 +52,8 @@ Here are the main steps used in a nutshell:
 - Then for each character, repeat the process until reaching the final boss puppets.
 - Build the Neo Geo CD version automatically from the MVS version.
 
+Final adujstments were made by lookind closely at gameplay footage, frame by frame.
+
 ## My rules
 
 - Anything looking (even partly) human has red blood. And yes daemon fishes have legs...

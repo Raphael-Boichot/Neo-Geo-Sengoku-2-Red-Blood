@@ -1,42 +1,12 @@
 function Crom_to_png(oddRomFile,evenRomFile,palette,outputPng, outputPalette)
 TILES_PER_ROW = 32;
 
-% 1. CRC32 Check Function
-%% High-Performance CRC32 using Lookup Table
-    function crc = calculateCRC32(data)
-        persistent crc32Table;
-        % Precompute table once
-        if isempty(crc32Table)
-            poly = uint32(hex2dec('EDB88320'));
-            crc32Table = zeros(256, 1, 'uint32');
-            for i = 0:255
-                crc_val = uint32(i);
-                for j = 1:8
-                    if bitand(crc_val, 1)
-                        crc_val = bitxor(bitshift(crc_val, -1), poly);
-                    else
-                        crc_val = bitshift(crc_val, -1);
-                    end
-                end
-                crc32Table(i+1) = crc_val;
-            end
-        end
-
-        % Process data
-        crc = uint32(hex2dec('FFFFFFFF'));
-        for i = 1:numel(data)
-            idx = bitxor(bitand(crc, 255), uint32(data(i))) + 1;
-            crc = bitxor(bitshift(crc, -8), crc32Table(idx));
-        end
-        crc = bitcmp(crc);
-    end
-
 % 2. Load and Verify ROMs
 fid1 = fopen(oddRomFile,'rb'); odd = fread(fid1,Inf,'uint8=>uint8'); fclose(fid1);
 fid2 = fopen(evenRomFile,'rb'); even = fread(fid2,Inf,'uint8=>uint8'); fclose(fid2);
 
-fprintf('Source  %s (CRC32: %08X)\n', oddRomFile, calculateCRC32(odd));
-fprintf('Source  %s (CRC32: %08X)\n', evenRomFile, calculateCRC32(even));
+fprintf('Source  %s (CRC32: %08X)\n', oddRomFile, computeCRC32(odd));
+fprintf('Source  %s (CRC32: %08X)\n', evenRomFile, computeCRC32(even));
 
 % 3. Decode
 numTiles = numel(odd)/64;

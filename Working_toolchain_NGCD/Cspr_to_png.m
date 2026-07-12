@@ -1,37 +1,9 @@
 function Cspr_to_png(sprFile, palette, outputPng, outputPalette)
 TILES_PER_ROW = 32;
 
-% 1. CRC32 Check
-%% High-Performance CRC32 using Lookup Table
-    function crc = calculateCRC32(data)
-        persistent crc32Table;
-        if isempty(crc32Table)
-            poly = uint32(hex2dec('EDB88320'));
-            crc32Table = zeros(256, 1, 'uint32');
-            for i = 0:255
-                crc_val = uint32(i);
-                for j = 1:8
-                    if bitand(crc_val, 1)
-                        crc_val = bitxor(bitshift(crc_val, -1), poly);
-                    else
-                        crc_val = bitshift(crc_val, -1);
-                    end
-                end
-                crc32Table(i+1) = crc_val;
-            end
-        end
-
-        crc = uint32(hex2dec('FFFFFFFF'));
-        for i = 1:numel(data)
-            idx = bitxor(bitand(crc, 255), uint32(data(i))) + 1;
-            crc = bitxor(bitshift(crc, -8), crc32Table(idx));
-        end
-        crc = bitcmp(crc);
-    end
-
 % 2. Load ROM
 fid = fopen(sprFile,'rb'); sprData = fread(fid,Inf,'uint8=>uint8'); fclose(fid);
-fprintf('Source %s (CRC32: %08X)\n', sprFile, calculateCRC32(sprData));
+fprintf('Source %s (CRC32: %08X)\n', sprFile, computeCRC32(sprFile));
 
 % 3. Decode
 numTiles = floor(numel(sprData)/128);
@@ -118,4 +90,3 @@ for i = 1:16
     end
 end
 imwrite(palette_strip(:,:,1:3), 'Palette.png', 'Alpha', palette_strip(:,:,4));
-end

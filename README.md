@@ -26,7 +26,7 @@ Of course, for AES / MVS and NGCD versions you can run all the codes with the or
 
 Anything fishy with the hacks ? Need for help ? Open an issue !
 
-## Click on image to see bloody action (prototype, better now)
+## Click on image to see bloody actio, MVS version
 [ ![Click to see gameplay](/Caption.png)](https://www.youtube.com/watch?v=bVQaettOxyM)
 
 ## The story so far...
@@ -93,6 +93,7 @@ Cherry on top, for all the hacked chunks reinjected, the EDC/ECC 304 bytes are n
 
 Replace the genuine track 1 by hacked one, run it with a Neo Geo CD SD loader because it is the fastest route from hacking to real hardware for testing. Enjoy your bloody version.
 
+## Click on image to see bloody actio, Neo Geo CD version
 [ ![Click to see gameplay](/Monkey.jpg)](https://www.youtube.com/watch?v=lhKzlUg3lMo)
 
 First time I'm happy to see this little juggling fucker...

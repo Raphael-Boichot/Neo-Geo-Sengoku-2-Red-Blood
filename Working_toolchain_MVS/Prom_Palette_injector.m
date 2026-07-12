@@ -6,7 +6,7 @@ data = fread(fid, inf, 'uint8=>uint8');
 fclose(fid);
 
 % 2. Initial CRC Check (Using fast LUT method)
-fprintf('Original File CRC32: %08X\n', computeCRC32(PRomFile));
+origCRC = computeCRC32(PRomFile);
 
 % 3. Prepare Patterns
 get_le_bytes = @(p) reshape([bitand(p, 255); bitshift(p, -8)], 1, []);
@@ -28,7 +28,7 @@ if length(search_pattern) == length(replace_pattern)
         data_row(idx(i) : idx(i) + pattern_len - 1) = replace_pattern;
     end
     data = data_row(:);
-    fprintf('Total of %d injections performed.\n', length(idx));
+    numInjections = length(idx);
 else
     error('This fast version requires palettes of the same length.');
 end
@@ -41,6 +41,5 @@ fid = fopen(newFileName, 'wb');
 fwrite(fid, data, 'uint8');
 fclose(fid);
 
-fprintf('File saved as: %s\n', newFileName);
-fprintf('New File CRC32:      %08X\n', computeCRC32(newFileName));
-end
+fprintf('Orig CRC32: %08X | Injections: %d | Saved: %s | New CRC32: %08X\n', ...
+    origCRC, numInjections, newFileName, computeCRC32(newFileName));

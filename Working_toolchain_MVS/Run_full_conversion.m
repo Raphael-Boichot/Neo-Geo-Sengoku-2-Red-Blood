@@ -98,7 +98,7 @@ disp('Initialization completed')
 
 %% Transforms the pair of roms in png tileset + palette image to ckeck
 %///////////////section to comment to edit tileset//////////////////
-% warndlg('Proceeding with this section will destry the entire tilset', 'WARNING');
+% warndlg('Proceeding with this section will destroy the entire tilset', 'WARNING');
 % seconds = 10;
 % fprintf('Countdown started. Press Ctrl+C to abort.\n');
 % for i = seconds:-1:1

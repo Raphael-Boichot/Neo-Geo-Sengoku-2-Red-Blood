@@ -152,7 +152,7 @@ Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 
 % Polishing after thorough game sessions on NGCD (my test system on CRT TV)
 %2026-07-12 Puppet warrior with feathers had many tiles missing - it has additionnal animations compared to other Puppet Warriors
-%2026-07-12 last boss pupets had tiles missing
+%2026-07-12 last boss puppets have tiles missing
 %2026-07-12 One tile of Claude Yamamoto was missing
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt

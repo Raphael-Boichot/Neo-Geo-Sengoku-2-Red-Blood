@@ -80,25 +80,27 @@ for f = 1:length(dataMap)
                     c, fileName, numel(matchPosLocal), mat2str(matchPosLocal - 1));
             end
             
+            % Inject into all found locations
             for i = 1:numel(matchPosLocal)
                 absOffset = matchPosLocal(i) - 1;
                 trackData(absOffset + 1 : absOffset + length(chunkOrig)) = chunkHacked;
                 trackDataT(absOffset + 1 : absOffset + length(chunkOrig)) = chunkHacked';
+                
+                % Increment grand total for every individual injection performed
+                grandTotalInjected = grandTotalInjected + 1;
             end
             
             processedCount = processedCount + 1;
         else
-            % Modification: Instead of erroring, we output the requested message and continue
             fprintf('  NOTICE: Chunk %d for %s not found (likely already modified or missing), skipping and continuing...\n', c, fileName);
             continue;
         end
     end
 
-    grandTotalInjected = grandTotalInjected + processedCount;
     fprintf('%-20s | %-12d | %-12d | %-12d | %-12d\n', fileName, numChunks, processedCount, ignoredCount, skippedCount);
 end
 
-fprintf('\nGrand Total Injected Chunks: %d\n', grandTotalInjected);
+fprintf('\nGrand Total Injected Instances: %d\n', grandTotalInjected);
 
 %% 3. Output
 fprintf('\nWriting patched track: %s\n', patchedTrackFile);

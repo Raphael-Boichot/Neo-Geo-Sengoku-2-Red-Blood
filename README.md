@@ -33,7 +33,7 @@ Anything fishy with the hacks ? Need for help ? Open an issue !
 
 Sometimes, as a player, you get pissed. I mean really.
 
-Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's fucking **CENSORED**. The issue is that I could deal with that in my life until I heard the existence of a red blood hack. That’s a pretty good idea, I thought to myself. Let’s download the ROM (sorry, the patch, I own the original of course) and have fun!
+Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's **censored**. The issue is that I could deal with that in my life until I heard the existence of a red blood hack. That’s a pretty good idea, I thought to myself. Let’s download the ROM (sorry, the patch, I own the original of course) and have fun!
 
 My fun hit a wall rapidely. The blood hack was not released in the public domain. SO, armed with years of hacking Game Boy games and hardware, the marvelous Matlab software that does coffee and Neogeodev documentations, it's was just a matter of time and effort (honestly, more than expected initially) to cook a public version. Basically I began thinking doing the hack seriously in June 2026 and was able to release the first version in July 2026.
 
@@ -89,13 +89,13 @@ By messing with dedicated tool, I finally understood each file structure: each i
 
 So I wrote a code to inject my hacked .SPR and .PRG files by chunks of 2048 bytes. 2048 bytes is hopefully enough to have a unique signature in the track 1 binary and target precise address range by comparison. So the trick was to search a sequence in the binary matching a chunk of 2048 bytes from the non hacked original files to build a table of address ranges for each files, then use this address table to inject chunks of the hacked files to their respective range. Of course there is a ton of optimization and tricks (like dealing with modified chunks only) but you get the idea: seek and inject 2048 byte chunks at the right place. Some tiles are present in several .SPR files so don't forget to take this into account (typically most of tiles from AREA2.SPR and TITLE.SPR are redunding).
 
-Cherry on top, for all the hacked chunks reinjected, the EDC/ECC 304 bytes are now incorrect (of course). So the last step is to regenerate the EDC/ECC data for each modified chunk with a dedicated tool (included in the workflow). Life is not always a bitch because THERE WAS YET A TOOL TO DO THIS!
+Cherry on top, for all the hacked chunks reinjected, the EDC/ECC 304 bytes are now incorrect (of course). So the last step is to regenerate the EDC/ECC data for each modified chunk with a dedicated tool (included in the workflow).
 
 Replace the genuine track 1 by hacked one, run it with a Neo Geo CD SD loader because it is the fastest route from hacking to real hardware for testing. Enjoy your bloody version.
 
 ![](/Monkey.jpg)
 
-First time I'm happy to see this little fucker juggling...
+First time I'm happy to see this little juggling fucker...
 
 ## Identified flaws
 

@@ -167,7 +167,7 @@ Kirimaru (player 2) alternate palette
 
 ## Regular and modified palettes, ennemies of interest
 
-- Puppet Warrior blue, gray, blue and red (+ horse) and orange **--> Palette swap and tileset editing**
+- Puppet Warrior blue, gray, blue and red (+ horse) and orange **--> Palette swap and tileset editing**. Beware, the blue and red (+ horse) version of puppet master has a ton of dedicated tiles to edit compared to the other colors.
 
 ![](/Palettes/Puppet_Warrior_blue_Palette.png)
 

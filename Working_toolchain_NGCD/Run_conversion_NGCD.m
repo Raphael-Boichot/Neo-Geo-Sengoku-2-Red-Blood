@@ -4,7 +4,7 @@ warning off
 tic
 
 disp('The working palette is Matlab jet by default, better not try changing it !')
-
+disp('The NGCD Version is rebuilt from the MVS version, pure scripting')
 %% Init section
 
 % general settings
@@ -16,7 +16,7 @@ disp('Initialization completed')
 
 %% Transforms the pair of roms in png tileset + palette image to ckeck
 %///////////////section to comment to edit tileset//////////////////
-% disp('Building tileset in png from palette vector')
+disp('Building tileset in png from jet palette vector')
 Cspr_to_png('.\NGCD_track_1_files\JOUCHU.SPR',dummy_palette_jet, '.\tileset_out\JOUCHU.png', '.\tileset_out\JOUCHU_exchange_palette.txt')
 % Cspr_to_png('.\NGCD_track_1\AREA1.SPR',dummy_palette_jet, '.\tileset_out\AREA1.png', '.\tileset_out\AREA1_exchange_palette.txt')
 Cspr_to_png('.\NGCD_track_1_files\AREA2.SPR',dummy_palette_jet, '.\tileset_out\AREA2.png', '.\tileset_out\AREA2_exchange_palette.txt')
@@ -30,7 +30,7 @@ Cspr_to_png('.\NGCD_track_1_files\TITLE.SPR',dummy_palette_jet, '.\tileset_out\T
 Tileset_injector()% use the MVS tileset to modify the NGCD tileset, only use dummy palette for NGCD conversion
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
-% disp('Building back C ROMs from png and palette.txt')
+disp('Building back .PRG files from png and palette.txt')
 png_to_Cspr('.\roms_out\JOUCHU.SPR','.\tileset_out_modified\JOUCHU.png','.\tileset_out\JOUCHU_exchange_palette.txt')
 %png_to_Cspr('.\roms_out\AREA1.SPR','.\tileset_out_modified\AREA1.png','.\tileset_out\AREA1_exchange_palette.txt')
 png_to_Cspr('.\roms_out\AREA2.SPR','.\tileset_out_modified\AREA2.png','.\tileset_out\AREA2_exchange_palette.txt')
@@ -179,6 +179,7 @@ palette_new = [0x0078, 0x3720, 0x2B52, 0x3E94, 0x4700, 0x4B00, 0x4F00, 0x3023, 0
 PRG_Palette_injector(PRomFile,palette_old,palette_new)
 
 %% Now dealing directly with the track 1 raw binary
+disp('Injecting data packets into the NGCD binary')
 Binary_file_injector();
 
 %% Generate IPF files for all these modifications on individual files

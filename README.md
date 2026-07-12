@@ -93,7 +93,7 @@ Cherry on top, for all the hacked chunks reinjected, the EDC/ECC 304 bytes are n
 
 Replace the genuine track 1 by hacked one, run it with a Neo Geo CD SD loader because it is the fastest route from hacking to real hardware for testing. Enjoy your bloody version.
 
-![](/Monkey.jpg)
+[ ![Click to see gameplay](/Monkey.jpg)](https://www.youtube.com/watch?v=lhKzlUg3lMo)
 
 First time I'm happy to see this little juggling fucker...
 

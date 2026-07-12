@@ -16,7 +16,7 @@ Summary of CRC32 you should expect before / after patching:
 
 ## For Neo Geo CD (working, validated)
 
-Get the CD version compatible with the NeoSD Loader, for example [here](https://archive.org/details/fullset-for-neocd-sd-loader). It must be a .CUE + .BINs version. Patch the track 1 with the [dedicated IPS patch](/Working_toolchain_NGCD/IPS_scripts) and any [good IPS patcher](https://www.marcrobledo.com/RomPatcher.js/). You may of course check the CRC32 just in case.
+Get the CD version compatible with the NeoGeo CD SD Loader, for example [here](https://archive.org/details/fullset-for-neocd-sd-loader). It must be a .CUE + .BINs version. Patch the track 1 with the [dedicated IPS patch](/Working_toolchain_NGCD/IPS_scripts) and any [good IPS patcher](https://www.marcrobledo.com/RomPatcher.js/). You may of course check the CRC32 just in case.
 
 Summary of CRC32 you should expect before / after patching:
 

@@ -4,10 +4,12 @@ clear
 warning off
 tic
 
-disp('If test is good, checksums before and after must coincide')
+disp('To test this codes, just run Crom_to_png, Palette_swapper and png_to_Crom')
+disp('The CRC2 before and after must coincide')
 disp('Just ignore this message in case you''re doing modifications')
+disp('The dummy palette jet is the mandatory exchange palette for NGCD')
 disp('A PALETTE MUST NEVER SHARE TWO TIMES THE SAME COLOR !')
-
+disp('Don''t foget to first place the Sengoku 2 MAME compatible roms in .\roms\ !')
 %% Init section
 
 % general settings
@@ -34,8 +36,8 @@ oddRomOut_small    = '.\roms_out\040-c3.c3';
 evenRomOut_small   = '.\roms_out\040-c4.c4';
 modified_prog = '.\roms_out\040-p1.p1';
 
-outpng_big ='Tileset_big.png';
-outpng_small ='Tileset_small.png';
+outpng_big ='Tileset_MVS_modified_big.png';
+outpng_small ='Tileset_MVS_modified_small.png';
 txt_exchange_palette_big = 'txt_exchange_palette_big.txt';
 txt_exchange_palette_small = 'txt_exchange_palette_small.txt';
 
@@ -91,12 +93,20 @@ txt_exchange_palette_small = 'txt_exchange_palette_small.txt';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Bosses %%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Alternative palettes %%%%%%%%%%
-% dummy_palette_jet =[0x1005, 0x1008, 0x100D, 0x303F, 0x308F, 0x30DF, 0xF3FB, 0xF7F7, 0xFCF2, 0xEFF0, 0xEFA0, 0xEF50, 0xEF00, 0xCB00, 0xC700, 0xC400];%
+% dummy_palette_jet =[0x1005, 0x1008, 0x100D, 0x303F, 0x308F, 0x30DF, 0xF3FB, 0xF7F7, 0xFCF2, 0xEFF0, 0xEFA0, 0xEF50, 0xEF00, 0xCB00, 0xC700, 0xC400]; % Dummy palette jet, high contrast
 % dummy_palette = [0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000];
 disp('Initialization completed')
 
 %% Transforms the pair of roms in png tileset + palette image to ckeck
 %///////////////section to comment to edit tileset//////////////////
+% warndlg('Proceeding with this section will destry the entire tilset', 'WARNING');
+% seconds = 10;
+% fprintf('Countdown started. Press Ctrl+C to abort.\n');
+% for i = seconds:-1:1
+%     fprintf('Time remaining: %d seconds\n', i);
+%     pause(1); 
+% end
+% fprintf('Time is up! Proceeding with the task.\n');
 % disp('Building tileset in png from palette vector')
 % Crom_to_png(oddRomFile_big,evenRomFile_big,palette, outpng_big, txt_exchange_palette_big)
 % Crom_to_png(oddRomFile_small,evenRomFile_small,palette, outpng_small, txt_exchange_palette_small)
@@ -111,7 +121,7 @@ disp('Initialization completed')
 
 %% Prepare tileset for NGCD injection (use of a dummy jet palette)
 disp('Swapping palettes from vector and updating palette.txt')
-alternative_palette = [0x1005, 0x1008, 0x100D, 0x303F, 0x308F, 0x30DF, 0xF3FB, 0xF7F7, 0xFCF2, 0xEFF0, 0xEFA0, 0xEF50, 0xEF00, 0xCB00, 0xC700, 0xC400]; % palette jet
+alternative_palette = [0x1005, 0x1008, 0x100D, 0x303F, 0x308F, 0x30DF, 0xF3FB, 0xF7F7, 0xFCF2, 0xEFF0, 0xEFA0, 0xEF50, 0xEF00, 0xCB00, 0xC700, 0xC400]; % Dummy palette jet, high contrast
 Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % palettes and just running individual sections (right click, run section)
@@ -139,6 +149,11 @@ Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 %2026-07-07 Yoshitsune, done
 %2026-07-07 General, done
 %2026-07-07 Puppets, done
+
+% Polishing after thorough game sessions on NGCD (my test system on CRT TV)
+%2026-07-12 Puppet warrior with feathers had many tiles missing - it has additionnal animations compared to other Puppet Warriors
+%2026-07-12 last boss pupets had tiles missing
+%2026-07-12 One tile of Claude Yamamoto was missing
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 disp('Building back C ROMs from png and palette.txt')

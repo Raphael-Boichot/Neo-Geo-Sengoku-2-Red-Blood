@@ -45,7 +45,6 @@ for f = 1:length(dataMap)
     hackedData = dataMap(f).hacked;
 
     numChunks = ceil(length(origData) / chunkSize);
-    lastMatchOffset = 0;
     processedCount = 0;
     ignoredCount = 0;
     skippedCount = 0;
@@ -57,17 +56,12 @@ for f = 1:length(dataMap)
         chunkHacked = hackedData(startByte:endByte);
 
         % Skip if original and hacked chunks are identical.
-        % Check this FIRST: if nothing changed, there's nothing to inject,
-        % regardless of how many times this chunk repeats in the track.
         if isequal(chunkOrig, chunkHacked)
             skippedCount = skippedCount + 1;
-            % Advance lastMatchOffset to keep alignment context
-            lastMatchOffset = lastMatchOffset + chunkSize;
             continue;
         end
 
-        % Chunk DID change. Now check if it's too ambiguous to locate safely
-        % (e.g. a common padding/fill pattern that repeats many times).
+        % Check for ambiguous padding patterns
         occurrences = length(strfind(trackDataT, chunkOrig'));
         if occurrences > paddingThreshold
             fprintf('  WARNING: chunk %d in %s changed but repeats %d times in track (> threshold %d) - SKIPPED, not injected!\n', ...
@@ -76,23 +70,27 @@ for f = 1:length(dataMap)
             continue;
         end
 
-        searchArea = trackData(lastMatchOffset + 1 : end);
+        % Search globally
+        searchArea = trackData;
         matchPosLocal = strfind(searchArea', chunkOrig');
 
         if ~isempty(matchPosLocal)
             if numel(matchPosLocal) > 1
-                gapToFirst = matchPosLocal(1) - 1; % 0 = perfectly contiguous with previous chunk
-                fprintf('  WARNING: chunk %d in %s has %d candidate matches after offset %d; using the first one (gap=%d bytes). Other candidates at offsets: %s\n', ...
-                    c, fileName, numel(matchPosLocal), lastMatchOffset, gapToFirst, ...
-                    mat2str(lastMatchOffset + matchPosLocal(2:end) - 1));
+                fprintf('  WARNING: chunk %d in %s has %d candidate matches. Injecting into all locations at: %s\n', ...
+                    c, fileName, numel(matchPosLocal), mat2str(matchPosLocal - 1));
             end
-            absOffset = lastMatchOffset + matchPosLocal(1) - 1;
-            trackData(absOffset + 1 : absOffset + length(chunkOrig)) = chunkHacked;
-            trackDataT(absOffset + 1 : absOffset + length(chunkOrig)) = chunkHacked';
-            lastMatchOffset = absOffset + chunkSize;
+            
+            for i = 1:numel(matchPosLocal)
+                absOffset = matchPosLocal(i) - 1;
+                trackData(absOffset + 1 : absOffset + length(chunkOrig)) = chunkHacked;
+                trackDataT(absOffset + 1 : absOffset + length(chunkOrig)) = chunkHacked';
+            end
+            
             processedCount = processedCount + 1;
         else
-            error('CRITICAL: Could not locate chunk %d for %s.', c, fileName);
+            % Modification: Instead of erroring, we output the requested message and continue
+            fprintf('  NOTICE: Chunk %d for %s not found (likely already modified or missing), skipping and continuing...\n', c, fileName);
+            continue;
         end
     end
 

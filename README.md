@@ -22,7 +22,7 @@ Summary of CRC32 you should expect before / after patching:
 
     File: Sengoku2_Track_01.bin | Original CRC32: 6EFBFA46 | Modified CRC32: 57FB45DC
 
-Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Neo CD format so I won't try targeting any other one. Just patching track 1 from other formats may or may not work depending on their CRC32.
+Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Neo CD format (.CUE + .BIN for each track) so I won't try targeting any other exotic one. Just patching track 1 from other formats may or may not work depending on their CRC32.
 
 Of course, the AES / MVS and NGCD versions can be entirely rebuilt from scratch with the original ROMs / files places in the dedicated folders, but IPS patches are much easier to handle for casual players. The toolchain is however written in a way allowing you, (future ?) SNK nerd, to very easily update the hack to your own taste. Matlab codes used here can be easily ported to Python with your prefered A.I. coding tool.
 

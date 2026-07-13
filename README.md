@@ -75,7 +75,7 @@ Final adujstments were made by looking closely at gameplay footage during dev, f
 - Custom codes to swap palettes in P ROMs.
 - Custom codes to generate and chain IPS scripts.
 - Custom codes to convert RGB color to 16 bits Neo Geo colors.
-- MS Paint to edit tilesets because this is the best tool ever created on Earth (and it manages transparent layers). About 500 tiles have been bloodified in the conversion. 
+- MS Paint to edit tilesets because this is the best tool ever created on Earth (and it manages transparent layers). About 500 tiles have been painfully bloodified by hand, pixel per pixel, in the conversion. 
 - Spriter ressources to check for inconsistencies in colors and planning the quantity of work.
 - Custom codes to inject the MVS ROM modifications into the NGCD version automatically.
 - Rince and repeat with all characters.

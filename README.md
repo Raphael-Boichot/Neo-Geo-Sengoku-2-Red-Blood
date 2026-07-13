@@ -24,9 +24,9 @@ Summary of CRC32 you should expect before / after patching:
 
 Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Neo CD format so I won't try targeting any other one. Just patching track 1 from other formats may or may not work depending on their CRC32.
 
-Of course, for AES / MVS and NGCD versions you can run all the codes with the original ROMs / files places in the dedicated folders to rebuild the project from scratch, but IPS patches are much easier to handle for casual players. The toolchain is however written in a way allowing you, SNK nerd, to very easily update the hack to your own taste. Matlab codes used here can be easily ported to Python with your prefered A.I. coding tool.
+Of course, the AES / MVS and NGCD versions can be entirely rebuilt from scratch with the original ROMs / files places in the dedicated folders, but IPS patches are much easier to handle for casual players. The toolchain is however written in a way allowing you, (future ?) SNK nerd, to very easily update the hack to your own taste. Matlab codes used here can be easily ported to Python with your prefered A.I. coding tool.
 
-Anything fishy with the hacks ? Need for help ? Open an issue !
+Anything fishy with the hacks ? A bloody tile is missing ? Need for help ? Open an issue !
 
 ## Click on image to see bloody action, MVS version
 [ ![Click to see gameplay](/Caption.png)](https://www.youtube.com/watch?v=bVQaettOxyM)

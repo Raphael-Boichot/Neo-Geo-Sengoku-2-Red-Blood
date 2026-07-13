@@ -43,7 +43,9 @@ I'm just a tinkerer so code disassembly was just not on option. In the other han
 
 ## Why using Matlab ?
 
-Matlab is my everyday go to tool for scientific computing. Because my job during working hours is to solve engineering problems. It's not open source, I know it's bad. There is a free version called GNU Octave that you can try to use to run the toolchain. As it is like 99% compatible, it will probably crash and require some minor code ajustements. Matlab considers everything as a matrix, even scalars, so it is fast, very fast. It has zero dependencies. Exactly what I needed here. The very shortest path from my problem to the solution.
+Matlab is my everyday go to tool for scientific computing. My job during working hours is to solve engineering problems. Hacking video games is just another class of engineering problem embedding archealogy.
+
+There is a free version of Matlab called GNU Octave that you can try to use to run the toolchain. As it is like 99% compatible, it will probably crash and require some minor code ajustements. Matlab considers everything as a matrix, even scalars, so it is fast, very fast. It has zero dependencies. Exactly what I needed here. The very shortest path from my problem to the solution.
 
 ## The steps (or how being ambitious when you have no time)
 

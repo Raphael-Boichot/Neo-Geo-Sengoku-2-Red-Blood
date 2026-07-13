@@ -43,9 +43,9 @@ I'm just a tinkerer so code disassembly was just not on option. In the other han
 
 ## Why using Matlab ?
 
-Matlab is my everyday go to tool for scientific computing. My job during working hours is to solve engineering problems. Hacking video games is just another class of engineering problem embedding archealogy.
+Matlab is my everyday go to tool for scientific computing. My job during working hours is to solve engineering problems. Hacking video games is just another class of engineering problem I tackle when I have insomnia.
 
-There is a free version of Matlab called GNU Octave that you can try to use to run the toolchain. As it is like 99% compatible, it will probably crash and require some minor code ajustements. Matlab considers everything as a matrix, even scalars, so it is fast, very fast. It has zero dependencies. Exactly what I needed here. The very shortest path from my problem to the solution.
+There is a free version of Matlab called [GNU Octave](https://octave.org/) that you can try to use to run the toolchain. As it is like 99% compatible with Matlab, it will probably sometimes crash and require some minor code ajustements. Matlab / Octave considers everything as a matrix, even scalars, so it is fast, very fast. It has zero dependencies. Exactly what I needed here. The very shortest path from my problem to the solution.
 
 ## The steps (or how being ambitious when you have no time)
 
@@ -356,3 +356,5 @@ The Neo Geo CD version seems to contains remnants of codes from Cyber Lip, so I 
 - [Alex Free and EDCRE](https://github.com/alex-free/edcre), which basically saved the Neo Geo CD port!
 
 In brief, all the people / communities that rendered this project possible !
+
+![](/Pen_and_paper.jpg)

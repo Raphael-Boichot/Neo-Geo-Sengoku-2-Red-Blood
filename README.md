@@ -60,24 +60,24 @@ Here are the main steps used in a nutshell:
 - Then for each character, repeat the process until reaching the final boss puppets.
 - Build the Neo Geo CD version automatically from the MVS version.
 
-Final adujstments were made by lookind closely at gameplay footage, frame by frame.
+Final adujstments were made by looking closely at gameplay footage during dev, frame by frame to spot any missing tile conversion.
 
 ## My rules
 
-- Anything looking (even partly) human has red blood. And yes daemon fishes have legs...
-- The least effort will always be prefered because I do this on my spare time, and basically my (valuable) spare time is shared between a ton of other projects and non negociable family duties. All the sources been given, more patient people can probably improve the hack.
-- The game must look gore but most of all, as genuine as possible.
+- Anything looking (even partly) human has red blood. And yes daemon fishes have human legs...
+- The least effort will always be prefered because I do this on my spare time, and basically my (valuable) spare time is shared between a ton of other projects and non negociable family duties. All the sources been given, more patient people can probably improve the hack. In it's current form, it's very easy to spot an issue and correct it.
+- The game must look gore but most of all, as genuine as possible. The least modification is always prefered.
 
 ## Which tools ?
 
 - MAME in debug mode and helped with LUA scripts to explore the palette RAM while playing. This is the only tedious step in absence of scripted debuggers fully dedidacted to the Neo Geo (or I guess ?).
-- Custom codes to turn C ROMs to png and the inverse. Tileset is edited from a png image with the current character palette, then turned back to C ROM.
+- Custom codes to turn C ROMs to png and the inverse. Tileset is edited by hand from a png image with the current character palette, then turned back to C ROM.
 - Custom codes to swap palettes in P ROMs.
 - Custom codes to generate and chain IPS scripts.
 - Custom codes to convert RGB color to 16 bits Neo Geo colors.
-- MS Paint to edit tilesets because this is the best tool ever created on Earth.
-- Spriter ressources to check for inconsistencies in colors and planning the work.
-- Custom codes to inject the MVS ROM modifications into the NGCD version.
+- MS Paint to edit tilesets because this is the best tool ever created on Earth (and it manages transparent layers).
+- Spriter ressources to check for inconsistencies in colors and planning the quantity of work.
+- Custom codes to inject the MVS ROM modifications into the NGCD version automatically.
 - Rince and repeat with all characters.
 - Make a final IPS script for P ROM and C ROMS.
 
@@ -89,9 +89,11 @@ The Neo Geo CD hack was made in parallel to the MVS version as it is not more di
 
 First surprise, the Neo Geo CD file format is 16 bit little endian, which required adapting all the conversion tools developped for the MVS ROMs stored in big endian (but converted to little endian at the end in the 68k RAM, do not ask me why). Sprites are not stored interlaced compared to the MVS.
 
-Starting confident after this little surprise, I initially though hacking individual files of the NGCD version contained in track 1 and rebuilding an iso from any dedicated tool would be enough. As far as I can tell, it does not work. Even the trusty [neogeodev dedicated page](https://wiki.neogeodev.org/index.php/Making_an_ISO_file) was finally not usefull. Any tool gives me a .bin or .iso container that makes the Neo Geo CD crash. The format is ISO9660 level 1 compatible, but none of the 2026 software I found was able to recreate the variant expected by the Neo Geo CD for this game. The size of the rebuilt track is always too small compared to the genuine one. But I was probably missing something like alignement tricks.
+Starting confident after this little surprise, I initially though hacking individual files of the NGCD version contained in track 1 and rebuilding an iso from any dedicated tool would be enough. As far as I can tell, it does not work. Even the trusty [neogeodev dedicated page](https://wiki.neogeodev.org/index.php/Making_an_ISO_file) was finally not usefull. Any tool gives me a .bin or .iso container that makes the Neo Geo CD crash. The format is ISO9660 level 1 compatible, but none of the 2026 software I found was able to recreate the obsolete variant expected by the Neo Geo CD for this game. The size of the rebuilt track is always too small compared to the genuine one. But I was probably missing something like alignement tricks.
 
 So I took the problem in reverse. Rebuilding the original TOC as made by SNK in 1995 was just out of question, so I tried injecting the individual hacked .SPR and .PRG files directly into the original track 1 binary as big data chunks, by searching for some header signatures. Neo Geo CD crashed again with that "rebuilt" binary, damn! The fact is that I had only like 12% matching between .PRG and .SPR injected and the binary data of track 1 on the same address range, which indicated that the files were probably at least partially splitted within the filesystem. It was in fact even more complicated than I though.
+
+Some reader may find the latter approach incredibly naïve but for my defense, I had no idea how CD tracks were organized before tackling this problem.
 
 By messing with dedicated tool, I finally understood each file structure: each individual file is splitted in chunks of 2048 bytes (0x800) followed by 304 bytes (0x130) of EDC/ECC data (typically checksums and other error correction stuff). Chunks seem consecutives for a given file at first glance but at this step I could not trust anything. 
 

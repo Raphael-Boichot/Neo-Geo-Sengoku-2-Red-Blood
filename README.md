@@ -41,6 +41,10 @@ My fun hit a wall rapidely. The blood hack was not released in the public domain
 
 I'm just a tinkerer so code disassembly was just not on option. In the other hand I'm educated enough to hack video games in a top-down approach by diving into the RAMs / ROMs structure. Just a bootlegger job basically.
 
+## Why using Matlab ?
+
+Matlab is my everyday go to tool for scientific computing. It's not open source, I know it's bad. There is a free version called GNU Octave that you can try to use to run the toolchain. As it is like 99% compatible, it will probably crash and require some minor code ajustements. Matlab considers everything as a matrix, even scalars, so it is fast, very fast. It has zero dependencies. Exactly what I needed here.
+
 ## The steps (or how being ambitious when you have no time)
 
 Seeing at the tileset and palettes, it is clear that Sengoku 2 is not programmed to be easily uncensored like with a magic byte. Color palette of current "blood" is frequently shared with other parts of the tiles so simple palette swaps are far from being satisfying. Basically not a quick and dirty hack. Doing ambitious hacks with work and family requires some planning and building a reliable toolchain. I've sliced the hack in many sub steps in order to be able to work on it by slots of about one hour maximum and easily reverse any fucked situation.

@@ -313,7 +313,11 @@ IPS_generator(evenRomFile_small,evenRomOut_small,ipsFile)
 ipsFile='.\IPS_scripts\040-p1.p1.ips';
 IPS_generator(original_prog,modified_prog,ipsFile)
 
-disp('MVS version converted !')
+%% Prepare merged roms for burning EPROMs
+disp('Prepare ROMs for burning EPROMs to a bootleg MVS cartridge')
+EPROM_merger(oddRomOut_big, evenRomOut_big, '.\EPROM_out\Bootleg_C1.ROM')
+EPROM_merger(oddRomOut_small, evenRomOut_small, '.\EPROM_out\Bootleg_C2.ROM')
+disp('MVS version fully converted !')
 toc
 
 % This is the dump of the palette RAM during first level. Hopefully the

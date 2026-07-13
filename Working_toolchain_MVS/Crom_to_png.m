@@ -5,8 +5,8 @@ TILES_PER_ROW = 32;
 fid1 = fopen(oddRomFile,'rb'); odd = fread(fid1,Inf,'uint8=>uint8'); fclose(fid1);
 fid2 = fopen(evenRomFile,'rb'); even = fread(fid2,Inf,'uint8=>uint8'); fclose(fid2);
 
-fprintf('Source  %s (CRC32: %08X)\n', oddRomFile, computeCRC32(odd));
-fprintf('Source  %s (CRC32: %08X)\n', evenRomFile, computeCRC32(even));
+fprintf('Source  %s (CRC32: %08X)\n', oddRomFile, computeCRC32(oddRomFile));
+fprintf('Source  %s (CRC32: %08X)\n', evenRomFile, computeCRC32(evenRomFile));
 
 % 3. Decode
 numTiles = numel(odd)/64;

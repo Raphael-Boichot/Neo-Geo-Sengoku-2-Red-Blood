@@ -47,7 +47,7 @@ Matlab is my everyday go to tool for scientific computing. My job during working
 
 There is a free version of Matlab called [GNU Octave](https://octave.org/) that you can try to use to run the toolchain. As it is like 99% compatible with Matlab, it will probably sometimes crash and require some minor code ajustements. Matlab / Octave considers everything as a matrix, even scalars, so it is fast, very fast. It has zero dependencies. Exactly what I needed here. The very shortest path from my problem to the solution.
 
-## The steps (or how being ambitious when you have no time)
+## The steps (or how being ambitious when you have no time / no sleep)
 
 Seeing at the tileset and palettes, it is clear that Sengoku 2 is not programmed to be easily uncensored like with a magic byte. Color palette of current "blood" is frequently shared with other parts of the tiles so simple palette swaps are far from being satisfying. Basically not a quick and dirty hack. Doing ambitious hacks with work and family requires some planning and building a reliable toolchain. I've sliced the hack in many sub steps in order to be able to work on it by slots of about one hour maximum and easily reverse any fucked situation.
 

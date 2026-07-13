@@ -87,7 +87,7 @@ The Neo Geo CD hack was made in parallel to the MVS version as it is not more di
 
 ## Some notes about (painfully and partially) reverse engineering the NGCD file format
 
-First surprise, the Neo Geo CD file format is 16 bit little endian, which required adapting all the conversion tools developped for the MVS ROMs stored in big endian (but converted to little endian at the end in the 68k RAM, do not ask me why). Sprites are not stored interlaced compared to the MVS.
+First surprise, the Neo Geo CD file format is 16 bit little endian, which required adapting all the conversion tools developped for the MVS ROMs stored in big endian (but converted to little endian at the end in the 68k RAM, do not ask me why). Sprites are not stored de-interlaced compared to the MVS version.
 
 Starting confident after this little surprise, I initially though hacking individual files of the NGCD version contained in track 1 and rebuilding an iso from any dedicated tool would be enough. As far as I can tell, it does not work. Even the trusty [neogeodev dedicated page](https://wiki.neogeodev.org/index.php/Making_an_ISO_file) was finally not usefull. Any tool gives me a .bin or .iso container that makes the Neo Geo CD crash. The format is ISO9660 level 1 compatible, but none of the 2026 software I found was able to recreate the obsolete variant expected by the Neo Geo CD for this game. The size of the rebuilt track is always too small compared to the genuine one. But I was probably missing something like alignement tricks.
 

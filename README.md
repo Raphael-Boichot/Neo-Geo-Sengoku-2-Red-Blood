@@ -116,8 +116,6 @@ I've reused at most the existing tones present in the original palette to avoid 
 
 It fits well with the game anyways, st least to my taste.
 
-On the Neo Geo CD port, I encountered some rare occurence of repeated chunks of data for AREA2.SPR (only) in the track 1 binary. The actual tool target only the first one (the closest from preceding chunk) and it seems to be OK as far as I can tell. Could be some compiling crap, could be something I do not understand. In any case, the injection tool is easily fixable to target any occurence in case of issue.
-
 ## Regular and modified palettes, main effects
 
 Do not mind the first color rendered here, it is the transparent layer but it also contains the palette number as displayed in RAM (which was very practical for the LUA script). It is rendered as a color or transparency depending on the tool I used to render the palette strip in the repository.

@@ -12,6 +12,8 @@ Summary of CRC32 you should expect before / after patching:
     File: 040-c4.c4 | Original CRC32: 1C9E9930 | Modified CRC32: C9A33DB7
     File: 040-p1.p1 | Original CRC32: 6DDE02C2 | Modified CRC32: B26122F7
 
+Dev note: I have no plan to support other ROM formats, MAME being the most common. I guess converters between formats must exist.
+
 ## For Neo Geo CD (version 1.0)
 
 Get the CD version compatible with the NeoGeo CD SD Loader, for example [here](https://archive.org/details/fullset-for-neocd-sd-loader). It must be a .CUE + .BINs version. Patch the track 1 with the [dedicated IPS patch](/Working_toolchain_NGCD/IPS_scripts) and any [good IPS patcher](https://www.marcrobledo.com/RomPatcher.js/). You may of course check the CRC32 just in case.

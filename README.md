@@ -60,7 +60,7 @@ Here are the main steps used in a nutshell:
 - Then for each character, repeat the process until reaching the final boss puppets.
 - Build the Neo Geo CD version automatically from the MVS version.
 
-Final adujstments were made by looking closely at gameplay footage during dev, frame by frame to spot any missing tile conversion.
+Final adujstments were made by looking closely at gameplay footage during dev, frame by frame to spot any missing tile conversion (only way to see a single pixel missing).
 
 ## My rules
 

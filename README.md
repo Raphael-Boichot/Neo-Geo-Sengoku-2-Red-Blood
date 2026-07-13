@@ -112,9 +112,7 @@ First time I'm happy to see this little juggling fucker...
 
 The 15 colors limit per tile was surprisingly frustrating. The redness of blood may vary depending on the compromises made when juggling with palette swap, yet existing satisfying reds, my artistic perception but most of all, my laziness. Overall, the game is now more reddish. 
 
-I've reused at most the existing tones present in the original palette to avoid travesting the designer intention.
-
-It fits well with the game anyways, st least to my taste.
+I reused only the existing colors to keep the designer's original vision intact. I think it fits the game really well.
 
 ## Regular and modified palettes, main effects
 

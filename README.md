@@ -83,7 +83,7 @@ Final adujstments were made by looking closely at gameplay footage during dev, f
 
 I wanted to maximize the scripting in order to be able to easily come back on errors / bad design later. Some codes or parts of codes were made with A.I. to speed up the process (Gemini mainly, sometimes Mistral A.I. because I'm beta tester, a pinch of Claude too for the most tricky parts). Basically there is no rocket science here but I must admit that A.I. was precious to circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a niche market here. 
 
-The Neo Geo CD hack was made in parallel to the MVS version as it is not more difficult to do on any of the systems. Except that the Neo Geo CD is scarcely documented (The only interesting source is a [Neo Geo CD World article](https://www.neogeocdworld.info/html/fiche/hard.htm) by Furrtek), so I was basically on my own most of the time for the file formatting details.
+The Neo Geo CD hack was made in parallel to the MVS version as it is not more difficult to do on any of the systems. Except that the Neo Geo CD is scarcely documented (The only interesting source is a French [Neo Geo CD World article](https://www.neogeocdworld.info/html/fiche/hard.htm)), so I was basically on my own most of the time for the file formatting details.
 
 ## Some notes about (painfully and partially) reverse engineering the NGCD file format
 

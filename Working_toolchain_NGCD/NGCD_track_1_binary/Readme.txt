@@ -1,1 +1,1 @@
-Place here the binary of track 1 from Sengoku 2, NeoGeo CD SD loader proven version. You have to match the expected name: 
+Place here the binary of track 1 from Sengoku 2, NeoGeo CD SD loader proven version. You have to match the expected name: Sengoku2_Track_01.bin

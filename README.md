@@ -6,8 +6,8 @@ Go to the dedicated [IPS scripts folder](/Working_toolchain_MVS/IPS_scripts), ge
 
 Summary of CRC32 you should expect before / after patching:
 
-    File: 040-c1.c1 | Original CRC32: FAA8EA99 | Modified CRC32: 38371A2E
-    File: 040-c2.c2 | Original CRC32: 87D0EC65 | Modified CRC32: 49D73F45
+    File: 040-c1.c1 | Original CRC32: FAA8EA99 | Modified CRC32: 414B1C85
+    File: 040-c2.c2 | Original CRC32: 87D0EC65 | Modified CRC32: 86B929AD
     File: 040-c3.c3 | Original CRC32: 24B5BA80 | Modified CRC32: 327E432F
     File: 040-c4.c4 | Original CRC32: 1C9E9930 | Modified CRC32: 4C6D8667
     File: 040-p1.p1 | Original CRC32: 6DDE02C2 | Modified CRC32: B26122F7

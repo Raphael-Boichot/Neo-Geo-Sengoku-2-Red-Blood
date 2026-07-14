@@ -112,8 +112,8 @@ disp('Initialization completed')
 %///////////////section to comment to edit tileset//////////////////
 
 %% Neo Geo new palette hex values for testing
-% disp('Swapping palettes from vector and updating palette.txt')
-% alternative_palette = [0x0078, 0x3720, 0x2B52, 0x3E94, 0x4700, 0x4B00, 0x4F00, 0x3023, 0x3046, 0x2069, 0x0885, 0x6BB9, 0x7FFC, 0x109B, 0x10DF, 0x0000]; % Puppet 2 with reds from puppet 1
+disp('Swapping palettes from vector and updating palette.txt')
+% alternative_palette = [0x004A, 0x0660, 0x6AA0, 0x6FF0, 0x0157, 0x029D, 0x14FF, 0x6600, 0x0A10, 0x4F20, 0x3115, 0x6348, 0x558B, 0x59BC, 0x7FFF, 0x0000]; % Puppet Warrior blue, helmet with feather
 % Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 % Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % Here some manual editing of the png tileset is expected, by changing the palettes and just running individual sections (right click, run section)
@@ -154,6 +154,8 @@ Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 %2026-07-12 last boss puppets have tiles missing
 %2026-07-12 One tile of Claude Yamamoto was missing
 %2026-07-13 Puppet warrior with feathers had one fucking tile missing and ONE fucking white pixel put by error
+%2026-07-14 Bloody sword of puppet warrior with feather, still 2 tiles not converted...
+% Must be over now
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 disp('Building back C ROMs from png and palette.txt')

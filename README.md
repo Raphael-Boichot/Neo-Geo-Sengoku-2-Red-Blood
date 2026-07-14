@@ -20,7 +20,7 @@ Get the CD version compatible with the NeoGeo CD SD Loader, for example [here](h
 
 Summary of CRC32 you should expect before / after patching:
 
-    File: Sengoku2_Track_01.bin | Original CRC32: 6EFBFA46 | Modified CRC32: D761FD85
+    File: Sengoku2_Track_01.bin | Original CRC32: 6EFBFA46 | Modified CRC32: DD26BCA6
 
 Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Neo CD format (.CUE + .BIN for each track) so I won't try targeting any other exotic one. Just patching track 1 from other formats may or may not work depending on their CRC32. You can test the hack with [Raine64](https://www.emu-france.com/emulateurs/6-arcades/61-multi-games/7687-raine-64-bits/#google_vignette) before burning a CD or transfering to SD card.
 

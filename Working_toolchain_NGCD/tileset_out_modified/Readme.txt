@@ -1,1 +1,1 @@
-The NGCD tileset modified from MVS verion will be generated here
+The NGCD tileset modified from MVS version will be generated here

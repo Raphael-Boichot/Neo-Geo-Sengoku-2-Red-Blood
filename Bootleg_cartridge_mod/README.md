@@ -6,7 +6,7 @@
 
 - Buy an [Aliexpress repro](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros). PRG board always come in one version, CHA may come in two versions.
 - Variant 1 is populated with MX26L6420 chip for C ROMS. This chip is impossible to reprogram with el cheapo programmers like the GQ-4x4 or the XGECU T48. On the other hand, the nearly pin compatible MX29LV320 is quite well supported. You of course need a SOP 44 to DIP 44 adapter to flash it. You just need to cut trace to pin 1 and place a bodge wire between pin 1 and VCC to force the chip in read mode.
-- The variant 2 is populated with M27C322 one time programmable EPROM but with a very baroque footprint impossible to source. Remoce that shit and reverse back to variant 1, then apply the preceding mod.
+- The variant 2 is populated with M27C322 one time programmable EPROM but with a very baroque footprint impossible to source (compact DIP or something like this, completely obsolete). Remove that shit and reverse back to variant 1, then apply the preceding mod.
 
 That's it. I have no idea if this work for the moment, but on paper, it should.
 

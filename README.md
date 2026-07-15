@@ -116,9 +116,9 @@ I reused only the existing colors to keep the designer's original vision intact.
 
 # History of modifications
 
-## Regular and modified palettes, main effects
+Do not mind the first color rendered in the next section, it is the transparent layer but it also contains the palette number as displayed in RAM (which was very practical for the LUA script). It is rendered as a color or transparency depending on the tool I used to render the palette strip in the repository.
 
-Do not mind the first color rendered here, it is the transparent layer but it also contains the palette number as displayed in RAM (which was very practical for the LUA script). It is rendered as a color or transparency depending on the tool I used to render the palette strip in the repository.
+## Regular and modified palettes, main effects
 
 - Damage flickering **--> Palette swap only**
 

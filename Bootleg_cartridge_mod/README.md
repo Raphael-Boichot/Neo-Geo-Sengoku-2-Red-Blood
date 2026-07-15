@@ -10,7 +10,7 @@
 
 That's it. I have no idea if this work for the moment, but on paper, it should.
 
-## Tower of power: GQ-4x4->ADP054 adaptet->DIP 44 to SOP 44 adapter
+## Tower of power: GQ-4x4->ADP054 adapter->DIP 44 to SOP 44 adapter
 
 ![](/Bootleg_cartridge_mod/Tower_of_power.jpg)
 

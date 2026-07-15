@@ -6,7 +6,7 @@ A bootleg costs about 70€ shipped on Aliexpress, this is the price of trusting
 
 ## Steps
 
-- Buy an [Aliexpress Sengoku 2 repro](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros). Modding a genuine Senoku 2 MVS / AES is not an option if you are of sound mind. PRG board always come in one version, CHA may come in two versions.
+- Buy an [Aliexpress Sengoku 2 repro](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros). Modding a genuine Sengoku 2 MVS / AES is not an option if you are of sound mind. PRG board always come in one version, CHA may come in two versions.
 - Variant 1 is populated with two MX26L6420 chips for C ROMS. This chip is just impossible to reprogram with el cheapo programmers like the GQ-4x4 or the XGECU T48. You will just remove them with hot air and trash them. On the other hand, the nearly pin compatible MX29LV320 is quite well supported. You of course need a SOP 44 to DIP 44 adapter to flash it. You just need to cut trace to pin 1 and place a bodge wire between pin 1 and VCC to force the chip in read mode. Flash with the ROMS interlaced by byte (two ROMS -> one chip), solder back, that's it.
 - The variant 2 is populated with M27C322 one time programmable EPROM but with a very baroque footprint impossible to source (compact DIP or something like this, completely obsolete). Remove that shit with hot air and reverse back to variant 1, then apply the preceding procedure.
 - Flashing the PRG board just requires removing P1 and mounting in on socket and it's a pain in the arse but I guess you know what you are doing, right ?

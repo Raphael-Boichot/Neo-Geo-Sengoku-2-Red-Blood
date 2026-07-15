@@ -355,6 +355,8 @@ The Neo Geo CD version seems to contains remnants of codes from Cyber Lip, so I 
 - [Spriter ressources](https://www.spriters-resource.com/neo_geo_ngcd/sengoku2/) for the incredible dataset that helped me a lot figuring out which tiles was where within the giant game tileset.
 - [Alex Free and EDCRE](https://github.com/alex-free/edcre), which basically saved the Neo Geo CD port!
 
-In brief, all the people / communities that rendered this project possible ! Below, my very first notes taken around mid june 2026, because every project starts with a scratchpad.
+In brief, all the people / communities that rendered this project possible ! 
+
+Below, my very first notes taken around mid june 2026, because every project starts with a scratchpad.
 
 ![](/Pen_and_paper.jpg)

@@ -77,8 +77,8 @@ Final adujstments were made by looking closely at gameplay footage during dev, f
 - Custom codes to convert RGB color to 16 bits Neo Geo colors.
 - MS Paint to edit tilesets because this is the best tool ever created on Earth (and it manages transparent layers). About 500 tiles have been painfully bloodified by hand, pixel per pixel, in the conversion. 
 - Spriter ressources to check for inconsistencies in colors and planning the quantity of work.
-- Custom codes to inject the MVS ROM modifications into the NGCD version automatically.
-- Rince and repeat with all characters.
+- Custom codes to inject the MVS tileset modifications into the NGCD tileset automatically (under the form of sprite swapping between PNGs). Hopefully, no tile is missing at the end because the port was the very laziest possible on SNK side. This helped a lot.
+- Rince and repeat with all characters. 10% of the time was taken to edit 90% of the tileset, 90% of the time to find some lone tiles / pixels in the giant tilset.
 - Make a final IPS script for P ROM and C ROMS.
 
 I wanted to maximize the scripting in order to be able to easily come back on errors / bad design later. Some codes or parts of codes were made with A.I. to speed up the process (Gemini mainly, sometimes Mistral A.I. because I'm beta tester, a pinch of Claude too for the most tricky parts). Basically there is no rocket science here but I must admit that A.I. was precious to circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a niche market here. 

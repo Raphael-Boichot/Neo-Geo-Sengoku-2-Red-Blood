@@ -35,7 +35,7 @@ Anything fishy with the hacks ? A bloody tile is missing ? Need for help ? Open 
 
 Sometimes, as a player, you get pissed. I mean really.
 
-Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's **censored**. The issue is that I could deal with that in my life until I heard the existence of a red blood hack. That’s a pretty good idea, I thought to myself. Let’s download the ROM (sorry, the patch, I own the original of course) and have fun!
+Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's **censored**. The issue is that I could deal with that in my life until I heard the existence of a NCI red blood hack from 2023. That’s a pretty good idea, I thought to myself. Let’s download the ROM (sorry, the IPS patch, piracy is bad, very bad) and have fun!
 
 My fun hit a wall rapidely. The blood hack was not released in the public domain. SO, armed with years of hacking Game Boy games and hardware, the marvelous Matlab software that does coffee and Neogeodev documentations, it's was just a matter of time and effort (honestly, more than expected initially) to cook a public version. Basically I began thinking doing the hack seriously in June 2026 and was able to release the first version in July 2026.
 

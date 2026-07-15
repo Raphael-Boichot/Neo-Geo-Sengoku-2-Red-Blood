@@ -13,7 +13,7 @@ A bootleg costs about 70€ shipped on Aliexpress, this is the price of trusting
 
 That's it. I have no idea if this work for the moment, but there is no reason it shouldn't.
 
-## Tower of power: GQ-4x4->ADP054 adapter->DIP 44 to SOP 44 adapter
+## Tower of power required: GQ-4x4->ADP-054 adapter->DIP 44 to SOP 44 adapter
 
 ![](/Bootleg_cartridge_mod/Tower_of_power.jpg)
 

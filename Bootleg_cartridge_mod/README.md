@@ -1,4 +1,4 @@
-# Making a Cartridge for real
+# Making a cartridge for real
 
 ## Do this at your own risk, design currently not validated on my side !
 

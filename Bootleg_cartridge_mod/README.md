@@ -12,22 +12,22 @@ That's it. I have no idea if this work for the moment, but on paper, it should.
 
 ## Tower of power: GQ-4x4->ADP054 adaptet->DIP 44 to SOP 44 adapter
 
-[](Bootleg_cartridge_mod//Tower_of_power.jpg)
+[](/Bootleg_cartridge_mod/Tower_of_power.jpg)
 
 ## The principle: in theory, it should work
 
-[](Bootleg_cartridge_mod/Drop_in_replacement.png)
+[](/Bootleg_cartridge_mod/Drop_in_replacement.png)
 
 ## Bootleg PRG board: mount that MX29F1615 on socket and flash it!
 
-[](Bootleg_cartridge_mod/PRG_top.jfif)
+[](/Bootleg_cartridge_mod/PRG_top.jfif)
 
 ## Bootleg CHA board variant 1: Drop the chip, cut a trace an solder a bodge wire
 
-[](Bootleg_cartridge_mod/Variant1_CHA_top.jfif)
+[](/Bootleg_cartridge_mod/Variant1_CHA_top.jfif)
 
 ## Bootleg CHA board variant 2: Reverse back to variant 1 and apply the mod
 
-[](Bootleg_cartridge_mod/Variant2_CHA_top.jfif)
+[](/Bootleg_cartridge_mod/Variant2_CHA_top.jfif)
 
 

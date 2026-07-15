@@ -33,4 +33,4 @@ That's it. I have no idea if this work for the moment, but there is no reason it
 
 ![](/Bootleg_cartridge_mod/Variant2_CHA_top.jfif)
 
-
+Mod not working ? Take the chips back from the garbage and restore your initial configuration, it should work again if the chips were not burnt during desoldering. 

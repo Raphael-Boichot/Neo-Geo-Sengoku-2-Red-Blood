@@ -22,7 +22,7 @@ That's it. I have no idea if this work for the moment, but on paper, it should.
 
 ![](/Bootleg_cartridge_mod/PRG_top.jfif)
 
-## Bootleg CHA board variant 1: Drop the chip, cut a trace an solder a bodge wire
+## Bootleg CHA board variant 1: Drop the chip, cut a trace and solder a bodge wire
 
 ![](/Bootleg_cartridge_mod/Variant1_CHA_top.jfif)
 

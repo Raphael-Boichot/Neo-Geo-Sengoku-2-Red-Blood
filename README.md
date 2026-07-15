@@ -114,6 +114,8 @@ The 15 colors limit per tile was surprisingly frustrating. The redness of blood 
 
 I reused only the existing colors to keep the designer's original vision intact. I think it fits the game really well.
 
+# History of modifications
+
 ## Regular and modified palettes, main effects
 
 Do not mind the first color rendered here, it is the transparent layer but it also contains the palette number as displayed in RAM (which was very practical for the LUA script). It is rendered as a color or transparency depending on the tool I used to render the palette strip in the repository.

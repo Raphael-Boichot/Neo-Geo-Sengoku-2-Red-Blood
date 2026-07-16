@@ -43,9 +43,9 @@ I'm just a tinkerer so code disassembly was just not on option. In the other han
 
 ## Why using Matlab ?
 
-Matlab is my everyday go tool for scientific computing. My job during working hours is to solve engineering problems. Hacking video games is just another class of engineering problem I tackle when I have insomnia.
+Matlab is my everyday go tool for scientific computing. My job during working hours is to solve engineering problems. Hacking video games is just another class of engineering problem I tackle when I have insomnia. Matlab considers everything as a matrix / vectors, so it is super fast when you keep that particularity in mind. It has zero dependencies. Exactly what I needed here. The very shortest path from my problem to the solution.
 
-There is a free version of Matlab called [GNU Octave](https://octave.org/) that you can try to use to run the toolchain. As it is like 99% compatible with Matlab, it will probably sometimes crash and require some minor code ajustements. Matlab / Octave considers everything as a matrix, even scalars, so it is fast, very fast. It has zero dependencies. Exactly what I needed here. The very shortest path from my problem to the solution.
+There is a free version of Matlab called [GNU Octave](https://octave.org/) that you can try to use to run the toolchain. It will probably work but execution will be super slow compared to Matlab. 
 
 ## The steps (or how being ambitious when you have no time / no sleep)
 

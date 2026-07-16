@@ -21,9 +21,9 @@ That's it. I have no idea if this work for the moment, but there is no reason it
 
 ![](/Bootleg_cartridge_mod/Drop_in_replacement.png)
 
-Pin 1 of the MX26L6420 (C ROMs) is triggered by a LS143 to access data up to 4 MBytes, I guess for bankswitching bigger games, the CHA board being a universal bootleg platform. Here on the MX29LV320 (4 MBytes), nothing is supposed to be bankswitched and pin 1 must always be HIGH to put the chip in read mode. So only way to do this is to cut the trace between the LS174 and pin 1 and connect pin 1 to VCC (3.3V here). Hopefully, all pins 1 of C ROMs are at the same level so you can make connection where you want.
+Pin 1 of the MX26L6420 (C ROMs) is triggered by a LS143 to access data up to 4 MBytes, I guess for bankswitching bigger games, the CHA board being a universal bootleg platform. Here on the MX29LV320 (4 MBytes), nothing is supposed to be bankswitched because pin 1 must always be HIGH to put the chip in read mode. So only way to do this is to cut the trace between the LS174 and pin 1 and connect pin 1 to VCC (3.3V here). Hopefully, all pins 1 of C ROMs are at the same level so you can make connection where you want.
 
-I just hope that the pin 1 is not switching the MX26L6420 upper and lower banks with C1 and C2 being on there (on C1) and C3 / C4 being on C2, just separated... As I have no way to read the actual chip configuration, it's just a guess work.
+I just hope that the cartridge will not try to access the addresses up to 4 MBytes. With Sengoku 2, it is not supposed to happen.
 
 ## Bootleg PRG board: mount that MX29F1615 on socket and flash it!
 

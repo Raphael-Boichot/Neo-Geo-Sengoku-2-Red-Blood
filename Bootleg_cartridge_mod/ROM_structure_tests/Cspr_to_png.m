@@ -10,31 +10,42 @@ numTiles = floor(numel(sprData)/128);
 rows = ceil(numTiles/TILES_PER_ROW);
 sheet_indices = zeros(rows*16, TILES_PER_ROW*16, 'uint8');
 
-blockX = [8 8 0 0]; blockY = [0 8 0 8];
+rOffsets = (0:7)'*4;          % byte offset of each row's 4-byte group within a block
+posRep = repmat(1:8, 16, 1);  % for unpacking 16 bytes at once into a 16x8 bit matrix
 
 for tile = 0:numTiles-1
     base = tile*128;
     tx = mod(tile, TILES_PER_ROW); ty = floor(tile/TILES_PER_ROW);
 
-    for b = 0:3
-        xOfs = blockX(b+1); yOfs = blockY(b+1);
-        blockBase = base + (b * 32);
+    % blockX=[8 8 0 0], blockY=[0 8 0 8]:
+    %   b=0 -> x=8, rows 1:8   (top,    right half)
+    %   b=1 -> x=8, rows 9:16  (bottom, right half)
+    %   b=2 -> x=0, rows 1:8   (top,    left half)
+    %   b=3 -> x=0, rows 9:16  (bottom, left half)
+    base0 = base;      % b=0
+    base1 = base + 32; % b=1
+    base2 = base + 64; % b=2
+    base3 = base + 96; % b=3
 
-        for row = 0:7
-            rowBase = blockBase + (row * 4);
-            p1 = sprData(rowBase + 1); p0 = sprData(rowBase + 2);
-            p3 = sprData(rowBase + 3); p2 = sprData(rowBase + 4);
+    rightP1 = [sprData(base0+rOffsets+1); sprData(base1+rOffsets+1)];
+    rightP0 = [sprData(base0+rOffsets+2); sprData(base1+rOffsets+2)];
+    rightP3 = [sprData(base0+rOffsets+3); sprData(base1+rOffsets+3)];
+    rightP2 = [sprData(base0+rOffsets+4); sprData(base1+rOffsets+4)];
 
-            for col = 0:7
-                bitPos = col; % FIX: Removed inversion (7-col) to correct horizontal flip
-                val = bitget(p0, bitPos+1) + ...
-                    bitshift(bitget(p1, bitPos+1), 1) + ...
-                    bitshift(bitget(p2, bitPos+1), 2) + ...
-                    bitshift(bitget(p3, bitPos+1), 3);
-                sheet_indices(ty*16+yOfs+row+1, tx*16+xOfs+col+1) = uint8(val);
-            end
-        end
-    end
+    leftP1 = [sprData(base2+rOffsets+1); sprData(base3+rOffsets+1)];
+    leftP0 = [sprData(base2+rOffsets+2); sprData(base3+rOffsets+2)];
+    leftP3 = [sprData(base2+rOffsets+3); sprData(base3+rOffsets+3)];
+    leftP2 = [sprData(base2+rOffsets+4); sprData(base3+rOffsets+4)];
+
+    % Unpack each 16x1 byte column into a 16x8 bit matrix in one call.
+    % bitPos = col (no inversion), so column p directly corresponds to image col (p-1) - no flip needed.
+    unpack = @(byteCol) double(bitget(repmat(byteCol,1,8), posRep));
+
+    valRight = uint8(unpack(rightP0) + 2*unpack(rightP1) + 4*unpack(rightP2) + 8*unpack(rightP3)); % 16x8
+    valLeft  = uint8(unpack(leftP0)  + 2*unpack(leftP1)  + 4*unpack(leftP2)  + 8*unpack(leftP3));  % 16x8
+
+    sheet_indices(ty*16+(1:16), tx*16+(1:8))    = valLeft;   % xOfs = 0
+    sheet_indices(ty*16+(1:16), tx*16+(9:16))   = valRight;  % xOfs = 8
 end
 
 % 5. Create visual PNG with Transparent Padding
@@ -48,22 +59,26 @@ for i=1:16
     end
 end
 
-sheet = zeros(size(sheet_indices,1), size(sheet_indices,2), 4, 'uint8');
-for y=1:size(sheet_indices,1)
-    for x=1:size(sheet_indices,2)
-        tileX = floor((x-1) / 16);
-        tileY = floor((y-1) / 16);
-        tileIdx = tileY * TILES_PER_ROW + tileX;
+% Vectorized replacement for the per-pixel y,x loop
+[H, W] = size(sheet_indices);
+[xg, yg] = meshgrid(0:W-1, 0:H-1);           % xg,yg == (x-1),(y-1) from the original 1-indexed loop
+tileX = floor(xg/16); tileY = floor(yg/16);
+tileIdxMat = tileY*TILES_PER_ROW + tileX;
+validMask = tileIdxMat < numTiles;
 
-        if tileIdx >= numTiles
-            % Updated: Transparent black padding
-            sheet(y,x,:) = [0, 0, 0, 0];
-        else
-            idx = sheet_indices(y,x);
-            if idx == 0, sheet(y,x,:) = [0, 0, 0, 0]; else, sheet(y,x,:) = [rgbPalette(idx+1,:), 255]; end
-        end
-    end
-end
+idxPlusOne = double(sheet_indices) + 1;
+Rall = reshape(rgbPalette(idxPlusOne(:), 1), H, W);
+Gall = reshape(rgbPalette(idxPlusOne(:), 2), H, W);
+Ball = reshape(rgbPalette(idxPlusOne(:), 3), H, W);
+
+opaqueMask = validMask & (sheet_indices ~= 0);
+R = zeros(H, W, 'uint8'); G = zeros(H, W, 'uint8'); B = zeros(H, W, 'uint8');
+R(opaqueMask) = Rall(opaqueMask);
+G(opaqueMask) = Gall(opaqueMask);
+B(opaqueMask) = Ball(opaqueMask);
+A = uint8(opaqueMask) * 255;
+
+sheet = cat(3, R, G, B, A);
 imwrite(sheet(:,:,1:3), outputPng, 'Alpha', sheet(:,:,4));
 
 % 6. Export Palette and Metadata

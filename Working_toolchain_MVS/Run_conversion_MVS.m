@@ -92,23 +92,14 @@ txt_exchange_palette_small = 'txt_exchange_palette_small.txt';
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Bosses %%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Alternative palettes %%%%%%%%%%
-% dummy_palette_jet =[0x1005, 0x1008, 0x100D, 0x303F, 0x308F, 0x30DF, 0xF3FB, 0xF7F7, 0xFCF2, 0xEFF0, 0xEFA0, 0xEF50, 0xEF00, 0xCB00, 0xC700, 0xC400]; % Dummy palette jet, high contrast
+dummy_palette_jet =[0x1005, 0x1008, 0x100D, 0x303F, 0x308F, 0x30DF, 0xF3FB, 0xF7F7, 0xFCF2, 0xEFF0, 0xEFA0, 0xEF50, 0xEF00, 0xCB00, 0xC700, 0xC400]; % Dummy palette jet, high contrast
 % dummy_palette = [0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000];
 disp('Initialization completed')
 
 %% Transforms the pair of roms in png tileset + palette image to ckeck
-%///////////////section to comment to edit tileset//////////////////
-% warndlg('Proceeding with this section will destroy the entire tilset', 'WARNING');
-% seconds = 10;
-% fprintf('Countdown started. Press Ctrl+C to abort.\n');
-% for i = seconds:-1:1
-%     fprintf('Time remaining: %d seconds\n', i);
-%     pause(1); 
-% end
-% fprintf('Time is up! Proceeding with the task.\n');
-% disp('Building tileset in png from palette vector')
-% Crom_to_png(oddRomFile_big,evenRomFile_big,palette, outpng_big, txt_exchange_palette_big)
-% Crom_to_png(oddRomFile_small,evenRomFile_small,palette, outpng_small, txt_exchange_palette_small)
+disp('Building tileset in png from palette vector')
+Crom_to_png(oddRomFile_big,evenRomFile_big,dummy_palette_jet, 'Tileset_MVS_reference_big.png', txt_exchange_palette_big)
+Crom_to_png(oddRomFile_small,evenRomFile_small,dummy_palette_jet, 'Tileset_MVS_reference_small.png', txt_exchange_palette_small)
 %///////////////section to comment to edit tileset//////////////////
 
 %% Neo Geo new palette hex values for testing
@@ -120,7 +111,7 @@ disp('Swapping palettes from vector and updating palette.txt')
 
 %% Prepare tileset for NGCD injection (use of a dummy jet palette)
 disp('Swapping palettes from vector and updating palette.txt')
-alternative_palette = [0x1005, 0x1008, 0x100D, 0x303F, 0x308F, 0x30DF, 0xF3FB, 0xF7F7, 0xFCF2, 0xEFF0, 0xEFA0, 0xEF50, 0xEF00, 0xCB00, 0xC700, 0xC400]; % Dummy palette jet, high contrast
+alternative_palette = dummy_palette_jet;
 Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % palettes and just running individual sections (right click, run section)

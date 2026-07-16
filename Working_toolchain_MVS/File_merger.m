@@ -13,4 +13,4 @@ end
 
 fwrite(fid_Out, data_out, 'uint8');
 fclose(fid_Out);
-disp(['Concatenated ',fid_Out, ' created'])
+disp(['Concatenated ',file_out, ' created'])

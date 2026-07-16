@@ -14,24 +14,30 @@ f2 = fopen(modifiedFile, 'rb'); data2 = fread(f2, inf, 'uint8'); fclose(f2);
 fid = fopen(ipsFile, 'wb');
 fwrite(fid, 'PATCH', 'char');
 
-% 3. Identify and write changes
+% 3. Identify and write changes (vectorized run detection)
 len = min(length(data1), length(data2));
 diffs = find(data1(1:len) ~= data2(1:len));
 
-i = 1;
-while i <= length(diffs)
-    startIdx = diffs(i) - 1;
-    chunk = data2(diffs(i));
+if ~isempty(diffs)
+    % A "break" occurs wherever the next diff index isn't consecutive.
+    % This finds run boundaries in one vectorized pass instead of
+    % growing the chunk array element-by-element.
+    runBreaks = find(diff(diffs) ~= 1);
+    runStarts = [1; runBreaks + 1];
+    runEnds   = [runBreaks; length(diffs)];
 
-    while (i + 1 <= length(diffs)) && (diffs(i+1) == diffs(i) + 1)
-        i = i + 1;
-        chunk = [chunk; data2(diffs(i))];
+    for r = 1:length(runStarts)
+        firstDiffIdx = diffs(runStarts(r));
+        lastDiffIdx  = diffs(runEnds(r));
+        startIdx = firstDiffIdx - 1;
+
+        % Contiguous run, so pull it as a single slice
+        chunk = data2(firstDiffIdx:lastDiffIdx);
+
+        fwrite(fid, [bitshift(startIdx, -16), bitand(bitshift(startIdx, -8), 255), bitand(startIdx, 255)], 'uint8');
+        fwrite(fid, [bitshift(length(chunk), -8), bitand(length(chunk), 255)], 'uint8');
+        fwrite(fid, chunk, 'uint8');
     end
-
-    fwrite(fid, [bitshift(startIdx, -16), bitand(bitshift(startIdx, -8), 255), bitand(startIdx, 255)], 'uint8');
-    fwrite(fid, [bitshift(length(chunk), -8), bitand(length(chunk), 255)], 'uint8');
-    fwrite(fid, chunk, 'uint8');
-    i = i + 1;
 end
 
 fwrite(fid, 'EOF', 'char');

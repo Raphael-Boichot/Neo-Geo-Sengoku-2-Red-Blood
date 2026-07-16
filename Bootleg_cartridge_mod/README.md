@@ -8,10 +8,10 @@ A bootleg costs about 70€ shipped on Aliexpress, this is the price of trusting
 
 - Buy an [Aliexpress Sengoku 2 repro](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros). Modding a genuine Sengoku 2 MVS / AES is not an option if you are of sound mind. PRG board always come in one version, CHA may come in two versions.
 - Variant 1 is populated with two MX26L6420 chips for C ROMs. This chip is just impossible to reprogram with el cheapo programmers like the GQ-4x4 or the XGECU T48 (only possibility is to [read it by tricking the programmer](https://www.arcade-projects.com/threads/making-a-mx26l6420-adapter-top3000-for-naomi-cart-converts.16086/)). You are cheap so you will just remove them with hot air and trash them. On the other hand, the nearly pin compatible MX29LV320 is quite well supported and common. You of course need a SOP 44 to DIP 44 adapter to flash it. You just need to cut trace to pin 1 and place a bodge wire between pin 1 and VCC to force the chip in read mode. **For the moment I have no idea how the ROM files must be organized on the remaining 4 MBytes of the low bank, must investigate.**
-- The variant 2 is populated with M27C322 one time programmable EPROM but with a very baroque footprint impossible to source (compact DIP or something like this, completely obsolete, sockets impossible to find). Remove that shit with hot air and reverse back to variant 1 with bridges, then apply the preceding procedure.
-- Flashing the PRG board just requires removing P1 and mounting in on socket and it's a pain in the arse without desoldering pump but I guess you know what you are doing, right ?
+- The variant 2 is populated with M27C322 one time programmable EPROM but with a very baroque footprint impossible to source (compact DIP or something like this, completely obsolete, sockets / adapters impossible to find). Remove that shit with hot air and reverse back to variant 1 with 0 Ohm bridges, then apply the preceding procedure.
+- Flashing the PRG board just requires removing P1 and mounting it in on socket and it's a pain in the arse without desoldering pump but I guess you know what you are doing at this point, right ?
 
-**I still need to read the MX26L6420 to understand how the 4 MAME roms are flashed on the two chips and confirm that the mod is doable with MX29LV320 chips.**
+**I still need to read the MX26L6420 to understand how the 4 MAME roms are flashed on the two chips in the low banks and confirm that the mod is doable with MX29LV320 chips.**
 
 ## Tower of power required: GQ-4x4->ADP-054 adapter->DIP 44 to SOP 44 adapter
 

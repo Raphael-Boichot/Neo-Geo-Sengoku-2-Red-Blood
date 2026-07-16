@@ -13,17 +13,20 @@ get_le_bytes = @(p) reshape([bitand(p, 255); bitshift(p, -8)], 1, []);
 search_pattern = get_le_bytes(palette_old);
 replace_pattern = get_le_bytes(palette_new);
 
-% 4. Search and Inject (Optimized)
+% 4. Search and Inject (Vectorized, fast)
 if length(search_pattern) == length(replace_pattern)
     data_row = data(:)';
-    idx = strfind(data_row, search_pattern);
+    pattern_len = length(search_pattern);
+
+    % Fast vectorized byte-pattern search via strfind
+    % (uint8 values map 1:1 to char codes, so this is safe for binary data)
+    idx = strfind(char(data_row), char(search_pattern));
 
     if isempty(idx)
         error('Palette not found in file.');
     end
 
-    % Vectorized modification on all occurrences
-    pattern_len = length(replace_pattern);
+    % Apply replacement at every match location
     for i = 1:length(idx)
         data_row(idx(i) : idx(i) + pattern_len - 1) = replace_pattern;
     end

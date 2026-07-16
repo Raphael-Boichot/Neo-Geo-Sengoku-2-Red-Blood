@@ -21,9 +21,7 @@ A bootleg costs about 70€ shipped on Aliexpress, this is the price of trusting
 
 ![](/Bootleg_cartridge_mod/Drop_in_replacement.png)
 
-Pin 1 of the MX26L6420 (C ROMs) is triggered by a LS143 to access data up to 4 MBytes, I guess for bankswitching bigger games, the CHA board being a universal bootleg platform. Here on the MX29LV320 (4 MBytes), nothing is supposed to be bankswitched because pin 1 must always be HIGH to put the chip in read mode. So only way to do this is to cut the trace between the LS174 and pin 1 and connect pin 1 to VCC (3.3V here). Hopefully, all pins 1 of C ROMs are at the same level so you can make connection where you want.
-
-I just hope that the cartridge will not try to access the addresses up to 4 MBytes. With Sengoku 2, it is not supposed to happen.
+Pin 1 of the MX26L6420 (C ROMs) is triggered by a LS143 to access data up to 4 MBytes, I guess for bankswitching bigger games, the CHA board being a universal bootleg platform. Here on the MX29LV320 (4 MBytes), nothing is supposed to be bankswitched because pin 1 must always be HIGH to put the chip in read mode. So only way to do this is to cut the trace between the LS174 and pin 1 and connect pin 1 to VCC (3.3V here). Hopefully, all pins 1 of C ROMs are at the same level so you can make connection where you want. Rapid testing on the cartridge showed that Sengoku 2 never tries to access the high bank (A21 stays always low).
 
 ## Bootleg PRG board: mount that MX29F1615 on socket and flash it!
 

@@ -18,11 +18,11 @@ disp('Initialization completed')
 %///////////////section to comment to edit tileset//////////////////
 disp('Building tileset in png from jet palette vector')
 Cspr_to_png('.\NGCD_track_1_files\JOUCHU.SPR',dummy_palette_jet, '.\tileset_out\JOUCHU.png', '.\tileset_out\JOUCHU_exchange_palette.txt')
-% Cspr_to_png('.\NGCD_track_1\AREA1.SPR',dummy_palette_jet, '.\tileset_out\AREA1.png', '.\tileset_out\AREA1_exchange_palette.txt')
+Cspr_to_png('.\NGCD_track_1_files\\AREA1.SPR',dummy_palette_jet, '.\tileset_out\AREA1.png', '.\tileset_out\AREA1_exchange_palette.txt')
 Cspr_to_png('.\NGCD_track_1_files\AREA2.SPR',dummy_palette_jet, '.\tileset_out\AREA2.png', '.\tileset_out\AREA2_exchange_palette.txt')
 Cspr_to_png('.\NGCD_track_1_files\AREA3.SPR',dummy_palette_jet, '.\tileset_out\AREA3.png', '.\tileset_out\AREA3_exchange_palette.txt')
 Cspr_to_png('.\NGCD_track_1_files\AREA4.SPR',dummy_palette_jet, '.\tileset_out\AREA4.png', '.\tileset_out\AREA4_exchange_palette.txt')
-% Cspr_to_png('.\NGCD_track_1_files\STAFF.SPR',dummy_palette_jet, '.\tileset_out\STAFF.png', '.\tileset_out\STAFF_exchange_palette.txt')
+Cspr_to_png('.\NGCD_track_1_files\STAFF.SPR',dummy_palette_jet, '.\tileset_out\STAFF.png', '.\tileset_out\STAFF_exchange_palette.txt')
 Cspr_to_png('.\NGCD_track_1_files\TITLE.SPR',dummy_palette_jet, '.\tileset_out\TITLE.png', '.\tileset_out\TITLE_exchange_palette.txt')
 %///////////////section to comment to edit tileset//////////////////
 
@@ -32,11 +32,11 @@ Tileset_injector()% use the MVS tileset to modify the NGCD tileset, only use dum
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 disp('Building back .PRG files from png and palette.txt')
 png_to_Cspr('.\roms_out\JOUCHU.SPR','.\tileset_out_modified\JOUCHU.png','.\tileset_out\JOUCHU_exchange_palette.txt')
-%png_to_Cspr('.\roms_out\AREA1.SPR','.\tileset_out_modified\AREA1.png','.\tileset_out\AREA1_exchange_palette.txt')
+png_to_Cspr('.\roms_out\AREA1.SPR','.\tileset_out_modified\AREA1.png','.\tileset_out\AREA1_exchange_palette.txt')
 png_to_Cspr('.\roms_out\AREA2.SPR','.\tileset_out_modified\AREA2.png','.\tileset_out\AREA2_exchange_palette.txt')
 png_to_Cspr('.\roms_out\AREA3.SPR','.\tileset_out_modified\AREA3.png','.\tileset_out\AREA3_exchange_palette.txt')
 png_to_Cspr('.\roms_out\AREA4.SPR','.\tileset_out_modified\AREA4.png','.\tileset_out\AREA4_exchange_palette.txt')
-%png_to_Cspr('.\roms_out\STAFF.SPR','.\tileset_out_modified\STAFF.png','.\tileset_out\STAFF_exchange_palette.txt')
+png_to_Cspr('.\roms_out\STAFF.SPR','.\tileset_out_modified\STAFF.png','.\tileset_out\STAFF_exchange_palette.txt')
 png_to_Cspr('.\roms_out\TITLE.SPR','.\tileset_out_modified\TITLE.png','.\tileset_out\TITLE_exchange_palette.txt')
 % CRC32 must be the same in test mode
 

@@ -1,30 +1,30 @@
 function Palette_swapper(palette,inputPng,Old_palette)
 
-% 1. Convert Neo Geo 16-bit to 8-bit RGB
+% 1. Convert Neo Geo 16-bit to 8-bit RGB (vectorized over all 16 entries at once)
 New_palette_RGB = zeros(16, 3, 'uint8');
-for i = 1:16
-    if i == 1
-        New_palette_RGB(i, :) = [0 0 0];
-    else
-        c = uint16(palette(i));
-        dark = bitget(c, 16);
-        r = bitshift(bitand(c, hex2dec('0F00')), -8);
-        g = bitshift(bitand(c, hex2dec('00F0')), -4);
-        b = bitand(c, hex2dec('000F'));
-        
-        New_palette_RGB(i, :) = uint8(round(double([ ...
-            bitor(bitshift(r, 1), dark), ...
-            bitor(bitshift(g, 1), dark), ...
-            bitor(bitshift(b, 1), dark)]) * 255 / 31));
-    end
-end
+
+c = uint16(palette(2:16));               % entries 2..16, entry 1 stays [0 0 0]
+c = c(:);                                 % ensure column vector
+
+dark = bitget(c, 16);
+r = bitshift(bitand(c, hex2dec('0F00')), -8);
+g = bitshift(bitand(c, hex2dec('00F0')), -4);
+b = bitand(c, hex2dec('000F'));
+
+rgb = uint8(round(double([ ...
+    bitor(bitshift(r, 1), dark), ...
+    bitor(bitshift(g, 1), dark), ...
+    bitor(bitshift(b, 1), dark)]) * 255 / 31));
+
+New_palette_RGB(1, :)    = [0 0 0];
+New_palette_RGB(2:16, :) = rgb;
 
 % 2. Load Old Palette
 fileID = fopen(Old_palette, 'r');
 for i=1:3, fgetl(fileID); end % Skip header
 rawPal = fscanf(fileID, '%d | %d | %d | %d\n', [4, 16]);
 fclose(fileID);
-targetRGB = rawPal(2:4, :)'; 
+targetRGB = rawPal(2:4, :)';
 
 % 3. Load PNG and Convert to Index
 [img, ~, alpha] = imread(inputPng);
@@ -37,44 +37,35 @@ end
 [h, w, d] = size(img);
 hasAlpha = (d == 4);
 
-for y = 1:h
-    for x = 1:w
-        % Check Alpha channel first
-        if hasAlpha && img(y, x, 4) < 128 % Threshold for transparency
-            sheet_indices(y, x) = 0;
-        else
-            % Perform matching against indices 1 through 15 only
-            pixel = double(reshape(img(y,x,1:3), 1, 3));
-            % Only compare against targetRGB rows 2-16 (ignoring the entry 0 color)
-            dist = sum((targetRGB(2:16, :) - pixel).^2, 2);
-            [~, minIdx] = min(dist);
-            sheet_indices(y, x) = minIdx; % This now maps to 1-15
-        end
-    end
+% --- Vectorized nearest-color matching (replaces the y/x double loop) ---
+pixels = double(reshape(img(:,:,1:3), h*w, 3));   % (h*w) x 3
+targets = double(targetRGB(2:16, :));              % 15 x 3
+
+% Squared Euclidean distance, all pixels vs all 15 targets at once
+distSq = sum(pixels.^2, 2) + sum(targets.^2, 2)' - 2*(pixels*targets');
+[~, minIdx] = min(distSq, [], 2);                  % (h*w) x 1, values 1-15
+
+sheet_indices = reshape(minIdx, h, w);
+
+if hasAlpha
+    sheet_indices(img(:,:,4) < 128) = 0; % transparent pixels -> index 0
 end
 
-% 4. Substitute colors only for solid pixels
+% 4. Substitute colors only for solid pixels (vectorized, replaces the second double loop)
 new_img = img; % Start with a copy of the original image to keep alpha intact
 
-for y = 1:h
-    for x = 1:w
-        % Only process pixels that are NOT transparent
-        if hasAlpha && img(y, x, 4) < 128
-            % Do nothing: keep the original pixel (transparency/attributes preserved)
-        else
-            % Identify which palette index this pixel belongs to (1-15)
-            % We use the sheet_indices logic we already calculated
-            idx = sheet_indices(y, x);
-            
-            % If it matched a palette entry, replace the color
-            if idx > 0
-                new_img(y, x, 1) = New_palette_RGB(idx+1, 1);
-                new_img(y, x, 2) = New_palette_RGB(idx+1, 2);
-                new_img(y, x, 3) = New_palette_RGB(idx+1, 3);
-            end
-        end
-    end
-end
+solidMask = sheet_indices > 0;              % h x w logical, false where transparent
+idxFlat = sheet_indices(solidMask);         % values 1-15 for solid pixels
+colorLookup = New_palette_RGB(2:16, :);     % row i -> replacement color for match idx i
+
+R = new_img(:,:,1); G = new_img(:,:,2); B = new_img(:,:,3);
+R(solidMask) = colorLookup(idxFlat, 1);
+G(solidMask) = colorLookup(idxFlat, 2);
+B(solidMask) = colorLookup(idxFlat, 3);
+new_img(:,:,1) = R;
+new_img(:,:,2) = G;
+new_img(:,:,3) = B;
+
 imwrite(new_img(:,:,1:3), inputPng, 'Alpha', new_img(:,:,4));
 
 % 5. Regenerate Palette.txt

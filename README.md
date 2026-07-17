@@ -37,15 +37,15 @@ Sometimes, as a player, you get pissed. I mean really.
 
 Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's **censored**. The issue is that I could deal with that in my life until I heard the existence of a NCI red blood hack from 2023. That’s a pretty good idea, I thought to myself. Let’s download the ROM (sorry, the IPS patch, piracy is bad, very bad) and have fun!
 
-My fun hit a wall rapidely. The blood hack was not released in the public domain. SO, armed with years of hacking Game Boy games and hardware, the marvelous Matlab software that does coffee and Neogeodev documentations, it's was just a matter of time and effort (honestly, more than expected initially) to cook a public version. Basically I began thinking doing the hack seriously in June 2026 and was able to release the first version in July 2026.
+My fun hit a wall rapidely. The blood hack was not released in the public domain, it looked like a ~~scammer~~ collector only version. SO, armed with years of hacking Game Boy games and hardware, the marvelous Matlab software that does coffee and Neogeodev documentations, it's was just a matter of time and effort (honestly, more than expected initially) to cook a public version. Basically I began thinking doing the hack seriously in June 2026 and was able to release the first version in July 2026.
 
 I'm just a tinkerer so code disassembly was just not on option. In the other hand I'm educated enough to hack video games in a top-down approach by diving into the RAMs / ROMs structure. Just a bootlegger job basically.
 
 ## Why using Matlab ?
 
-Matlab is my everyday go tool for scientific computing. My job during working hours is to solve engineering problems. Hacking video games is just another class of engineering problem I tackle when I have insomnia. Matlab considers everything as a matrix / vectors, so it is super fast when you keep that particularity in mind. It has zero dependencies. Exactly what I needed here. The very shortest path from my problem to the solution.
+Matlab is my everyday go tool for scientific computing. My job during working hours is to solve engineering problems. Hacking video games is just another class of engineering problem I tackle when I have insomnia. Matlab considers everything as a matrix / vectors, so it is super fast when you keep that particularity in mind when programming. It has zero dependencies. Exactly what I needed here. The very shortest path from my problem to the solution.
 
-There is a free version of Matlab called [GNU Octave](https://octave.org/) that you can try to use to run the toolchain. It will probably work but execution will be super slow (like 100x slower) compared to Matlab. 
+There is a free version of Matlab called [GNU Octave](https://octave.org/) that you can try to use to run the toolchain. It will probably work but execution will be suuuuupppeeer slow (like 100x slower) compared to Matlab. Better than nothing though.
 
 ## The steps (or how being ambitious when you have no time / no sleep)
 

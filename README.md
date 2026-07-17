@@ -352,7 +352,7 @@ The Neo Geo CD version seems to contains remnants of codes from Cyber Lip, so I 
 
 I am publishing this code to ensure it remains accessible. Throughout my career, I have seen too many brilliant solutions and significant projects disappear simply because they were never shared before their authors vanished from the face of the Earth, whatever the reason (death, boredom, greed... who knows). I operate on the principle that if it is not online, it does not exist. I would rather release functional work that is available to everyone than chase a version of "perfection" that eventually fades into obscurity rotting on a forgotten hard drive nobody cares even me.
 
-This project is now part of the public record. Use it, learn from it, or build upon it — not my problem anymore, it's yours.
+This project is now part of the public record. Use it, learn from it, or build upon it — it's your project now.
 
 ## Acknowledgments
 

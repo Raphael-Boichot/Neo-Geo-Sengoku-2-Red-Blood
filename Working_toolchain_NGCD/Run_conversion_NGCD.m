@@ -4,7 +4,9 @@ warning off
 tic
 
 disp('The working palette is Matlab jet by default, better not try changing it !')
-disp('The NGCD Version is rebuilt from the MVS version, pure scripting')
+disp('The NGCD Version is rebuilt from the MVS version, entirely by scripting')
+disp('Don''t forget to copy paste the required files (.bin track, files into the track, png tileset from MVS)')
+disp('The code will just crash in case any file is missing somewhere!')
 %% Init section
 
 % general settings
@@ -14,8 +16,9 @@ mkdir('.\IPS_scripts\');
 dummy_palette_jet =[0x1005, 0x1008, 0x100D, 0x303F, 0x308F, 0x30DF, 0xF3FB, 0xF7F7, 0xFCF2, 0xEFF0, 0xEFA0, 0xEF50, 0xEF00, 0xCB00, 0xC700, 0xC400];
 disp('Initialization completed')
 
-%% Transforms the pair of roms in png tileset + palette image to ckeck
-%///////////////section to comment to edit tileset//////////////////
+%% Transforms the pair of roms in png tileset + palette image to check
+% Cspt_to_png is aggressively using matrix/vector formalism
+% some .SPR files do not contain modified tiles but I let them just in case
 disp('Building tileset in png from jet palette vector')
 Cspr_to_png('.\NGCD_track_1_files\JOUCHU.SPR',dummy_palette_jet, '.\tileset_out\JOUCHU.png', '.\tileset_out\JOUCHU_exchange_palette.txt')
 Cspr_to_png('.\NGCD_track_1_files\\AREA1.SPR',dummy_palette_jet, '.\tileset_out\AREA1.png', '.\tileset_out\AREA1_exchange_palette.txt')
@@ -28,8 +31,10 @@ Cspr_to_png('.\NGCD_track_1_files\TITLE.SPR',dummy_palette_jet, '.\tileset_out\T
 
 %% Section to inject modified tileset from MVS into NGCD
 Tileset_injector()% use the MVS tileset to modify the NGCD tileset, only use dummy palette for NGCD conversion
+% if any tile is not found, there is an error message
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
+% png_to_Cspr is aggressively using matrix/vector formalism too
 disp('Building back .PRG files from png and palette.txt')
 png_to_Cspr('.\roms_out\JOUCHU.SPR','.\tileset_out_modified\JOUCHU.png','.\tileset_out\JOUCHU_exchange_palette.txt')
 png_to_Cspr('.\roms_out\AREA1.SPR','.\tileset_out_modified\AREA1.png','.\tileset_out\AREA1_exchange_palette.txt')
@@ -38,15 +43,10 @@ png_to_Cspr('.\roms_out\AREA3.SPR','.\tileset_out_modified\AREA3.png','.\tileset
 png_to_Cspr('.\roms_out\AREA4.SPR','.\tileset_out_modified\AREA4.png','.\tileset_out\AREA4_exchange_palette.txt')
 png_to_Cspr('.\roms_out\STAFF.SPR','.\tileset_out_modified\STAFF.png','.\tileset_out\STAFF_exchange_palette.txt')
 png_to_Cspr('.\roms_out\TITLE.SPR','.\tileset_out_modified\TITLE.png','.\tileset_out\TITLE_exchange_palette.txt')
-% CRC32 must be the same in test mode
-
-%% Debug step if necessary
-%Crom_to_png(oddRomOut_big,evenRomOut_big,palette, 'debug_big.png', 'debug_big.txt')
-%Crom_to_png(oddRomOut_small,evenRomOut_small,palette, 'debug_small.png', 'debug_small.txt')
 
 %% Injects new palettes in P ROMs
-% Here some manual editing of the new palette
-disp('Targeting and injecting new palette(s) in P ROM')
+% it's a seek and replace sequence based algorithm, it avoids me to do this by hand with hex editor
+disp('Targeting and injecting new palette(s) in .PRG')
 copyfile('.\NGCD_track_1_files\P040.PRG','.\roms_out\P040.PRG');
 PRomFile = '.\roms_out\P040.PRG';
 
@@ -179,19 +179,21 @@ palette_new = [0x0078, 0x3720, 0x2B52, 0x3E94, 0x4700, 0x4B00, 0x4F00, 0x3023, 0
 PRG_Palette_injector(PRomFile,palette_old,palette_new)
 
 %% Now dealing directly with the track 1 raw binary
+% A modified payload can be injected two times in different locations, it's not an issue
+% The NGCD use some level of data duplication between levels due to memoru constraints
 disp('Injecting data packets into the NGCD binary')
-Binary_file_injector();
+Binary_file_injector(); % also contains the ECC/EDC correction routine
 
 %% Generate IPF files for all these modifications on individual files
 disp('Generating IPS script')
-%IPS_generator('.\NGCD_track_1_files\P040.PRG','.\roms_out\P040.PRG','.\IPS_scripts\P040.PRG.ips')
-%IPS_generator('.\NGCD_track_1_files\JOUCHU.SPR','.\roms_out\JOUCHU.SPR','.\IPS_scripts\JOUCHU.SPR.ips')
-%IPS_generator('.\NGCD_track_1_files\AREA1.SPR','.\roms_out\AREA1.SPR','.\IPS_scripts\AREA1.SPR.ips')
-%IPS_generator('.\NGCD_track_1_files\AREA2.SPR','.\roms_out\AREA2.SPR','.\IPS_scripts\AREA2.SPR.ips')
-%IPS_generator('.\NGCD_track_1_files\AREA3.SPR','.\roms_out\AREA3.SPR','.\IPS_scripts\AREA3.SPR.ips')
-%IPS_generator('.\NGCD_track_1_files\AREA4.SPR','.\roms_out\AREA4.SPR','.\IPS_scripts\AREA4.SPR.ips')
-%IPS_generator('.\NGCD_track_1_files\STAFF.SPR','.\roms_out\STAFF.SPR','.\IPS_scripts\STAFF.SPR.ips')
-%IPS_generator('.\NGCD_track_1_files\TITLE.SPR','.\roms_out\TITLE.SPR','.\IPS_scripts\TITLE.SPR.ips')
+%IPS_generator('.\NGCD_track_1_files\P040.PRG','.\roms_out\P040.PRG','.\IPS_scripts\P040.PRG.ips') %not used anymore, targetting the binary directly
+%IPS_generator('.\NGCD_track_1_files\JOUCHU.SPR','.\roms_out\JOUCHU.SPR','.\IPS_scripts\JOUCHU.SPR.ips') %not used anymore, targetting the binary directly
+%IPS_generator('.\NGCD_track_1_files\AREA1.SPR','.\roms_out\AREA1.SPR','.\IPS_scripts\AREA1.SPR.ips') %not used anymore, targetting the binary directly
+%IPS_generator('.\NGCD_track_1_files\AREA2.SPR','.\roms_out\AREA2.SPR','.\IPS_scripts\AREA2.SPR.ips') %not used anymore, targetting the binary directly
+%IPS_generator('.\NGCD_track_1_files\AREA3.SPR','.\roms_out\AREA3.SPR','.\IPS_scripts\AREA3.SPR.ips') %not used anymore, targetting the binary directly
+%IPS_generator('.\NGCD_track_1_files\AREA4.SPR','.\roms_out\AREA4.SPR','.\IPS_scripts\AREA4.SPR.ips') %not used anymore, targetting the binary directly
+%IPS_generator('.\NGCD_track_1_files\STAFF.SPR','.\roms_out\STAFF.SPR','.\IPS_scripts\STAFF.SPR.ips') %not used anymore, targetting the binary directly
+%IPS_generator('.\NGCD_track_1_files\TITLE.SPR','.\roms_out\TITLE.SPR','.\IPS_scripts\TITLE.SPR.ips') %not used anymore, targetting the binary directly
 IPS_generator('.\NGCD_track_1_binary\Sengoku2_Track_01.bin','.\NGCD_track_1_binary\Sengoku2_track_1_patched.bin','.\IPS_scripts\Sengoku2_Track_01.bin.ips')
 
 disp('Neo Geo CD version converted !')

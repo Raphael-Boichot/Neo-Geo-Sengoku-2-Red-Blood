@@ -13,6 +13,7 @@ fprintf('Loading track file into memory...\n');
 trackData = readbin(trackFile);
 trackData = trackData(:);
 trackDataT = trackData'; % transpose once, reused for every search
+trackDataTChar = char(trackDataT); % Octave's strfind requires char/string input, not numeric uint8
 
 sourceFiles = [dir(fullfile(origDir, '*.PRG')); dir(fullfile(origDir, '*.SPR'))];
 dataMap = struct('name', {}, 'orig', {}, 'hacked', {});
@@ -62,7 +63,7 @@ for f = 1:length(dataMap)
         end
 
         % Check for ambiguous padding patterns
-        occurrences = length(strfind(trackDataT, chunkOrig'));
+        occurrences = length(strfind(trackDataTChar, char(chunkOrig')));
         if occurrences > paddingThreshold
             fprintf('  WARNING: chunk %d in %s changed but repeats %d times in track (> threshold %d) - SKIPPED, not injected!\n', ...
                 c, fileName, occurrences, paddingThreshold);
@@ -72,24 +73,25 @@ for f = 1:length(dataMap)
 
         % Search globally
         searchArea = trackData;
-        matchPosLocal = strfind(searchArea', chunkOrig');
+        matchPosLocal = strfind(char(searchArea'), char(chunkOrig'));
 
         if ~isempty(matchPosLocal)
             if numel(matchPosLocal) > 1
                 fprintf('  WARNING: chunk %d in %s has %d candidate matches. Injecting into all locations at: %s\n', ...
                     c, fileName, numel(matchPosLocal), mat2str(matchPosLocal - 1));
             end
-            
+
             % Inject into all found locations
             for i = 1:numel(matchPosLocal)
                 absOffset = matchPosLocal(i) - 1;
                 trackData(absOffset + 1 : absOffset + length(chunkOrig)) = chunkHacked;
                 trackDataT(absOffset + 1 : absOffset + length(chunkOrig)) = chunkHacked';
-                
+                trackDataTChar(absOffset + 1 : absOffset + length(chunkOrig)) = char(chunkHacked');
+
                 % Increment grand total for every individual injection performed
                 grandTotalInjected = grandTotalInjected + 1;
             end
-            
+
             processedCount = processedCount + 1;
         else
             fprintf('  NOTICE: Chunk %d for %s not found (likely already modified or missing), skipping and continuing...\n', c, fileName);

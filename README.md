@@ -348,6 +348,12 @@ And... that's all. Hope you will enjoy the hack as much as I enjoy playing it.
 
 The Neo Geo CD version seems to contains remnants of codes from Cyber Lip, so I guess that at least some logic from Sengoku 2 P040.PRG was common with that earlier game (probably the logic to split and load levels in the tiny Neo Geo CD memory).
 
+## Final words
+
+I am publishing these codes to ensure they remain accessible. Throughout my career, I have seen too many brilliant solutions and significant projects disappear simply because they were never shared. I operate on the principle that if it isn't online, it effectively does not exist. While these codes may not be perfect, I recognize that better is the enemy of good. I would rather release functional work that is available to everyone than chase a version of "perfection" that eventually fades into obscurity on a forgotten hard drive.
+
+This project is now part of the public record. Use it, learn from it, or build upon it—at least it is no longer lost.
+
 ## Acknowledgments
 
 - The [neogeodev community](https://wiki.neogeodev.org//index.php/Main_Page) in general and [Furrtek](https://github.com/furrtek) in particular. This project made on spare time was only possible because I stood on the shoulders of giants.

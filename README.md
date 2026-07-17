@@ -12,7 +12,7 @@ Summary of CRC32 you should expect before / after patching:
     File: 040-c4.c4 | Original CRC32: 1C9E9930 | Modified CRC32: 4C6D8667
     File: 040-p1.p1 | Original CRC32: 6DDE02C2 | Modified CRC32: B26122F7
 
-Dev note: I have no plan to support other ROM formats, MAME being the most common and popular. I guess converters between formats must exist but you're on your own to do this on your particular emulator.
+Dev note: I have no plan to support other ROM formats, MAME being the most common and popular. I guess converters between formats must exist but you're on your own to do this on your particular emulator / SD loader.
 
 ## Building the Neo Geo CD (version 1.0 - finished)
 

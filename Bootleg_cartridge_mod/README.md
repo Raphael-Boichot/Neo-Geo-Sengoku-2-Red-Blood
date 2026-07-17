@@ -1,6 +1,6 @@
-# Making a cartridge for real, WIP
+# Making a cartridge for real, working notes
 
-## Do this at your own risk, design currently not validated on my side !
+## Do this at your own risk, design currently NOT VALIDATED on my side !
 
 A bootleg costs about 70€ shipped on Aliexpress, this is the price of trusting somebody who knows nothing in electronics if you lost your money! This is not a straighforward mod as bootleggers take a perverse pleasure in recycling the worst possible chips in terms of compatibility or footprint.
 

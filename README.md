@@ -26,6 +26,10 @@ Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Neo
 
 ## Building the whole project
 
+Just run from the root of the project:
+    Build_project.ps1
+Prerequites:
+
 Of course, the AES / MVS and NGCD versions can be entirely rebuilt from scratch with the original ROMs / files places in the dedicated folders, but IPS patches are much easier to handle for casual players. The toolchain is however written in a way allowing you, (future ?) SNK nerd, to very easily update the hack to your own taste. Matlab codes used here can be easily ported to Python with your prefered A.I. coding tool.
 
 Anything fishy with the hacks ? A bloody tile is missing ? Need for help ? Open an issue !

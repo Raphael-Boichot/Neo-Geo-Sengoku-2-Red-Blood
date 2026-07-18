@@ -24,6 +24,8 @@ Summary of CRC32 you should expect before / after patching:
 
 Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Neo CD format (.CUE + .BIN for each track) so I won't try targeting any other exotic one (like .ISO + .MP3). Just patching track 1 from other formats may or may not work depending on their CRC32. You can test the hack with [Raine64](https://www.emu-france.com/emulateurs/6-arcades/61-multi-games/7687-raine-64-bits/#google_vignette) before burning a CD or transfering to SD card.
 
+## Building the whole project
+
 Of course, the AES / MVS and NGCD versions can be entirely rebuilt from scratch with the original ROMs / files places in the dedicated folders, but IPS patches are much easier to handle for casual players. The toolchain is however written in a way allowing you, (future ?) SNK nerd, to very easily update the hack to your own taste. Matlab codes used here can be easily ported to Python with your prefered A.I. coding tool.
 
 Anything fishy with the hacks ? A bloody tile is missing ? Need for help ? Open an issue !

@@ -353,12 +353,6 @@ Aternate palette (puppet 2)
 
 ![](/Palettes/Puppet_2_palette_alternate.png)
 
-HUDs **--> Not modified yet, inconsistency for player 2**
-
-![](/Palettes/HUD_player_one.png)
-
-![](/Palettes/HUD_player_two.png)
-
 ## Funfact
 
 The Neo Geo CD version seems to contains remnants of codes from Cyber Lip, so I guess that at least some logic from Sengoku 2 P040.PRG was common with that earlier game (probably the logic to split and load levels in the tiny Neo Geo CD memory).

@@ -128,9 +128,8 @@ First time I'm happy to see this little juggling fucker...
 
 ## Identified flaws
 
-The 15 colors limit per tile was surprisingly frustrating. The redness of blood may vary depending on the compromises made when juggling with palette swap, yet existing satisfying reds, my artistic perception but most of all, my laziness. Overall, the game is now more reddish. 
-
-I reused only the existing colors to keep the designer's original vision intact. I think it fits the game really well.
+- HUD palette for player 2 not unified with new character palettes yet. HUD "stickers" have their own palette, very reduced (15 colors for all characters).
+- The 15 colors limit per tile was surprisingly frustrating. The redness of blood may vary depending on the compromises made when juggling with palette swap, yet existing satisfying reds, my artistic perception but most of all, my laziness. Overall, the game is now more reddish. I reused only the existing colors to keep the designer's original vision intact. I think it fits the game really well.
 
 # History of modifications
 

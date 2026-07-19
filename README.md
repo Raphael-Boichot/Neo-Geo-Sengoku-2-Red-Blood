@@ -159,13 +159,9 @@ Alternate palette:
 
 ![](/Palettes/Claude_Yamamoto_Palette.png)
 
-- Jack Stone (Player 2) **--> Palette swap and tileset editing**
+- Jack Stone (Player 2) **--> Tileset editing only**
 
 ![](/Palettes/Jack_Stone_Palette.png)
-
-Alternate palette:
-
-![](/Palettes/Jack_Stone_Palette_alternate.png)
 
 - Mike Walsh green (player 1) and blue (player 2) **--> Tileset editing only**
 
@@ -173,15 +169,11 @@ Alternate palette:
 
 ![](/Palettes/Mike_Walsh_blue_Palette.png)
 
-- Crow Tengu God red (player 1) and green (player 2) **--> Palette swap and tileset editing**
+- Crow Tengu God red (player 1) and green (player 2) **--> Tileset editing only**
 
 ![](/Palettes/Crow_Tengu_God_red_Palette.png)
 
 ![](/Palettes/Crow_Tengu_God_green_Palette.png)
-
-Crow Tengu (player 2) alternate palette
-
-![](/Palettes/Crow_Tengu_God_green_Palette_alternate.png)
 
 - Kirimaru red (player 1) and blue (player 2) **--> Palette swap and tileset editing**
 

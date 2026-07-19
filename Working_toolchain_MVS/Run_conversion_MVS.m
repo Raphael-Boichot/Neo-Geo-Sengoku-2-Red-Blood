@@ -103,19 +103,19 @@ disp('Initialization completed')
 
 %% Transforms the pair of roms in png tileset + palette image to ckeck
 disp('Building tileset in png from palette vector')
-Crom_to_png(oddRomFile_big,evenRomFile_big,dummy_palette_jet, 'Tileset_MVS_reference_big.png', txt_exchange_palette_big)
-Crom_to_png(oddRomFile_small,evenRomFile_small,dummy_palette_jet, 'Tileset_MVS_reference_small.png', txt_exchange_palette_small)
+Crom_to_png(oddRomFile_big,evenRomFile_big,dummy_palette_jet, 'Tileset_MVS_reference_big.png', 'txt_reference_palette_big.txt')
+Crom_to_png(oddRomFile_small,evenRomFile_small,dummy_palette_jet, 'Tileset_MVS_reference_small.png', 'txt_reference_palette_small.txt')
 %///////////////section to comment to edit tileset//////////////////
 
 %% Neo Geo new palette hex values for testing
 disp('Swapping palettes from vector and updating palette.txt')
-% alternative_palette = [0x004A, 0x0660, 0x6AA0, 0x6FF0, 0x0157, 0x029D, 0x14FF, 0x6600, 0x0A10, 0x4F20, 0x3115, 0x6348, 0x558B, 0x59BC, 0x7FFF, 0x0000]; % Puppet Warrior blue, helmet with feather
-% Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
-% Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
+alternative_palette = [0x004A, 0x0660, 0x6AA0, 0x6FF0, 0x0157, 0x029D, 0x14FF, 0x6600, 0x0A10, 0x4F20, 0x3115, 0x6348, 0x558B, 0x59BC, 0x7FFF, 0x0000]; % Puppet Warrior blue, helmet with feather
+Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
+Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % Here some manual editing of the png tileset is expected, by changing the palettes and just running individual sections (right click, run section)
 
 %% Prepare tileset for NGCD injection (use of a dummy jet palette)
-disp('Swapping palettes from vector and updating palette.txt')
+disp('Forcing palette compatibility with next NGCD conversion.txt')
 alternative_palette = dummy_palette_jet;
 Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
@@ -312,12 +312,12 @@ IPS_generator(evenRomFile_small,evenRomOut_small,ipsFile)
 ipsFile='.\IPS_scripts\040-p1.p1.ips';
 IPS_generator(original_prog,modified_prog,ipsFile)
 
-%% Prepare merged roms for burning EPROMs
-disp('Prepare ROMs for burning EPROMs to a bootleg MVS cartridge') 
-EPROM_merger(oddRomOut_big, evenRomOut_big, '.\EPROM_out\MX29LV320.C1') % chip is 4 MBytes, ROM is 4 MBytes, filled at 100% OK
-EPROM_merger(oddRomOut_small, evenRomOut_small, '.\EPROM_out\MX29LV320.C2') % chip is 4 MBytes, ROM is 1 MBytes
-File_merger('.\EPROM_out\MX29LV320.C2','.\EPROM_out\MX29LV320.C2',4) %Fills 4 times instead of just padding, chip is 4 MBytes, ROM is 1 MBytes
-File_merger(modified_prog,'.\EPROM_out\MX29F1615.P1',2) %Fills two times instead of just padding, P1 is 1 MByte, chip is 2 MBytes
+%% Prepare merged roms for burning EPROMs / DISMISSED
+% disp('Prepare ROMs for burning EPROMs to a bootleg MVS cartridge') 
+% EPROM_merger(oddRomOut_big, evenRomOut_big, '.\EPROM_out\MX29LV320.C1') % chip is 4 MBytes, ROM is 4 MBytes, filled at 100% OK
+% EPROM_merger(oddRomOut_small, evenRomOut_small, '.\EPROM_out\MX29LV320.C2') % chip is 4 MBytes, ROM is 1 MBytes
+% File_merger('.\EPROM_out\MX29LV320.C2','.\EPROM_out\MX29LV320.C2',4) %Fills 4 times instead of just padding, chip is 4 MBytes, ROM is 1 MBytes
+% File_merger(modified_prog,'.\EPROM_out\MX29F1615.P1',2) %Fills two times instead of just padding, P1 is 1 MByte, chip is 2 MBytes
 disp('MVS version fully converted !')
 toc
 

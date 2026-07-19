@@ -359,7 +359,11 @@ Aternate palette (puppet 2)
 
 ![](/Palettes/Puppet_2_palette_alternate.png)
 
-And... that's all. Hope you will enjoy the hack as much as I enjoy playing it.
+HUDs **--> Not modified yet, inconsistency for player 2**
+
+![](/Palettes/HUD_player_one.png)
+
+![](/Palettes/HUD_player_two.png)
 
 ## Funfact
 

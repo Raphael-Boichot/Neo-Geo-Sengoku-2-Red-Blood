@@ -40,9 +40,12 @@ outpng_small ='Tileset_MVS_modified_small.png';
 txt_exchange_palette_big = 'txt_exchange_palette_big.txt';
 txt_exchange_palette_small = 'txt_exchange_palette_small.txt';
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HUD vignette %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% palette = [0x000A, 0x7901, 0x0D85, 0x5FC9, 0x060A, 0x5B0F, 0x5F8F, 0x4F00, 0x4FA1, 0x7555, 0x7999, 0x7EEE, 0x6510, 0x138B, 0x47DE, 0x0000]; %HUD vignette, all characters player 1
-% palette = [0x000B, 0x7921, 0x68B0, 0x5FC9, 0x6750, 0x0D93, 0x6FE0, 0x0040, 0x638C, 0x29EF, 0x7555, 0x7999, 0x7EEE, 0x0250, 0x4580, 0x0000]; %HUD vignette, all characters player 2
+%%%%%%%%%%%%%%%%%%%%%%%%% HUD vignettes, for reference%%%%%%%%%%%%%%%%%%%%%
+% Except for Claude Yamamoto and Jack Stones, tilesets are doubled in the .s1 SROM (.FIX for NGCD)
+% palette = [0x000A, 0x7901, 0x0D85, 0x5FC9, 0x060A, 0x5B0F, 0x5F8F, 0x4F00, 0x4FA1, 0x7555, 0x7999, 0x7EEE, 0x6510, 0x138B, 0x47DE, 0x0000]; %HUD vignette, Claude Yamamoto
+% palette = [0x000B, 0x7921, 0x68B0, 0x5FC9, 0x6750, 0x0D93, 0x6FE0, 0x0040, 0x638C, 0x29EF, 0x7555, 0x7999, 0x7EEE, 0x0250, 0x4580, 0x0000]; %HUD vignette, Jack Stone, Crow Tengu P2, Mike Walsh P1 and P2, Kirimaru P2
+% basically, due to this palette, we're fucked ! Character colors must not change !
+% palette = [0x000C, 0x0332, 0x0D85, 0x3FC9, 0x7800, 0x0E00, 0x5F62, 0x0884, 0x6AA6, 0x6BB0, 0x7555, 0x7999, 0x7EEE, 0x6553, 0x6FF0, 0x0000]; %HUD vignette, Kirimary P1, Crow Tengu P1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HUD vignette %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main characters %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -109,7 +112,7 @@ Crom_to_png(oddRomFile_small,evenRomFile_small,dummy_palette_jet, 'Tileset_MVS_r
 
 %% Neo Geo new palette hex values for testing
 disp('Swapping palettes from vector and updating palette.txt')
-alternative_palette = [0x004A, 0x0660, 0x6AA0, 0x6FF0, 0x0157, 0x029D, 0x14FF, 0x6600, 0x0A10, 0x4F20, 0x3115, 0x6348, 0x558B, 0x59BC, 0x7FFF, 0x0000]; % Puppet Warrior blue, helmet with feather
+alternative_palette = [0x0014, 0x0810, 0x0A42, 0x0C74, 0x0D96, 0x0FC9, 0x4FFC, 0x0A00, 0x0F00, 0x4F90, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (red, other fur)
 Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % Here some manual editing of the png tileset is expected, by changing the palettes and just running individual sections (right click, run section)
@@ -121,47 +124,11 @@ Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % palettes and just running individual sections (right click, run section)
 
-% Mains characters tileset edition
-%2026-07-05 Claude Yamamoto, done
-%2026-07-05 Jack Stone, done
-%2026-07-06 Mike Walsh, done
-%2026-07-06 Crow Tengu god, done
-%2026-07-06 Kirimaru, done
-
-% Regular foes
-%2026-07-06 Puppet warrior, done, but I do not find the beheaded sprite !
-%2026-07-07 Ninja Monk, done
-%2026-07-07 Giant, done
-%2026-07-07 Kunoichi, done
-%2026-07-07 Axeman, done
-%2026-07-07 Spearman, nothing to do ?
-%2026-07-07 Fishes, done big and small
-%2026-07-07 Dragon, done
-
-% Bosses
-%2026-07-07 Kojiro, done
-%2026-07-07 Kitsune, done
-%2026-07-07 Yoshitsune, done
-%2026-07-07 General, done
-%2026-07-07 Puppets, done
-
-% Polishing after thorough game sessions on NGCD (my test system on CRT TV)
-%2026-07-12 Puppet warrior with feathers had many tiles missing - it has additionnal animations compared to other Puppet Warriors
-%2026-07-12 last boss puppets have tiles missing
-%2026-07-12 One tile of Claude Yamamoto was missing
-%2026-07-13 Puppet warrior with feathers had one fucking tile missing and ONE fucking white pixel put by error
-%2026-07-14 Bloody sword of puppet warrior with feather, still 2 tiles not converted...
-% Must be over now
-
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 disp('Building back C ROMs from png and palette.txt')
 png_to_Crom(oddRomOut_big, evenRomOut_big,outpng_big,txt_exchange_palette_big)
 png_to_Crom(oddRomOut_small, evenRomOut_small,outpng_small,txt_exchange_palette_small)
 % CRC32 must be the same in test mode
-
-%% Debug step if necessary
-% Crom_to_png(oddRomOut_big,evenRomOut_big,palette, 'debug_big.png', 'debug_big.txt')
-% Crom_to_png(oddRomOut_small,evenRomOut_small,palette, 'debug_small.png', 'debug_small.txt')
 
 %% Injects new palettes in P ROMs
 % Here some manual editing of the new palette
@@ -181,23 +148,34 @@ palette_old = [0x0001, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0
 palette_new = [0x0001, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00]; % general flashing effect when hit, red
 Prom_Palette_injector(PRomFile,palette_old,palette_new)
 
-% Jack Stone (player 2);
-disp('------------Swapping Jack Stone (player 2) palette---------------')
-palette_old = [0x0011, 0x7810, 0x0C74, 0x5FC9, 0x6640, 0x6B80, 0x6FF0, 0x3037, 0x638C, 0x3AFF, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4FA0, 0x7111]; % Jack Stone (Player 2)
-palette_new = [0x0011, 0x7810, 0x0C74, 0x5FC9, 0x6640, 0x6B80, 0x6FF0, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4FA0, 0x7111]; % Jack Stone (Player 2), blue becomes red
+% Jack Stone (player 2) / DISMISSED, interacts too much with HUD palette
+% disp('------------Swapping Jack Stone (player 2) palette---------------')
+% palette_old = [0x0011, 0x7810, 0x0C74, 0x5FC9, 0x6640, 0x6B80, 0x6FF0, 0x3037, 0x638C, 0x3AFF, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4FA0, 0x7111]; % Jack Stone (Player 2)
+% palette_new = [0x0011, 0x7810, 0x0C74, 0x5FC9, 0x6640, 0x6B80, 0x6FF0, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4FA0, 0x7111]; % Jack Stone (Player 2), blue becomes red
+% Prom_Palette_injector(PRomFile,palette_old,palette_new)
+
+% Kirimaru (Player 2) / DISMISSED, interacts too much with HUD palette
+% disp('------------Swapping Kirimaru (player 2) palette-----------------')
+% palette_old = [0x0017, 0x4332, 0x4663, 0x4995, 0x3BA6, 0x3DC9, 0x4FFC, 0x000C, 0x306E, 0x10DF, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (doggo, blue, player 2)
+% palette_new = [0x0017, 0x6940, 0x0C70, 0x4EA0, 0x6FD0, 0x5FF5, 0x4FFC, 0x0A00, 0x0F00, 0x4F90, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (doggo, red, blonde fur, player 2)
+% Prom_Palette_injector(PRomFile,palette_old,palette_new)
+
+% Kirimaru (Player 1 - test)
+disp('------------Swapping Kirimaru (player 1) palette-----------------')
+palette_old = [0x0014, 0x4332, 0x4663, 0x4995, 0x3BA6, 0x3DC9, 0x4FFC, 0x0A00, 0x0F00, 0x4F90, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (doggo, red, player 1)
+palette_new = [0x0014, 0x0810, 0x0A42, 0x0C74, 0x0D96, 0x0FC9, 0x4FFC, 0x0A00, 0x0F00, 0x4F90, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (red, other fur)
 Prom_Palette_injector(PRomFile,palette_old,palette_new)
 
-% Kirimaru (Player 2)
 disp('------------Swapping Kirimaru (player 2) palette-----------------')
 palette_old = [0x0017, 0x4332, 0x4663, 0x4995, 0x3BA6, 0x3DC9, 0x4FFC, 0x000C, 0x306E, 0x10DF, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (doggo, blue, player 2)
-palette_new = [0x0017, 0x6940, 0x0C70, 0x4EA0, 0x6FD0, 0x5FF5, 0x4FFC, 0x0A00, 0x0F00, 0x4F90, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (doggo, red, blonde fur, player 2)
+palette_new = [0x0017, 0x0810, 0x0A42, 0x0C74, 0x0D96, 0x0FC9, 0x4FFC, 0x000C, 0x306E, 0x10DF, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (blue, other fur)
 Prom_Palette_injector(PRomFile,palette_old,palette_new)
 
-%Crow tengu (player 2)
-disp('------------Swapping Crow Tengu (player 2) palette---------------')
-palette_old = [0x0016, 0x7810, 0x0C74, 0x5FC9, 0x3040, 0x6281, 0x54E2, 0x6253, 0x52A9, 0x3AFF, 0x7555, 0x7999, 0x0EEE, 0x6870, 0x2CC0, 0x7111]; % Crow Tengu God (green, player 2)
-palette_new = [0x0016, 0x7810, 0x0C74, 0x5FC9, 0x0800, 0x0D00, 0x4F64, 0x6253, 0x52A9, 0x3AFF, 0x7555, 0x7999, 0x0EEE, 0x6870, 0x2CC0, 0x7111]; % Crow Tengu God (red and blue, player 2)
-Prom_Palette_injector(PRomFile,palette_old,palette_new)
+% Crow tengu (player 2) / DISMISSED, interacts too much with HUD palette
+% disp('------------Swapping Crow Tengu (player 2) palette---------------')
+% palette_old = [0x0016, 0x7810, 0x0C74, 0x5FC9, 0x3040, 0x6281, 0x54E2, 0x6253, 0x52A9, 0x3AFF, 0x7555, 0x7999, 0x0EEE, 0x6870, 0x2CC0, 0x7111]; % Crow Tengu God (green, player 2)
+% palette_new = [0x0016, 0x7810, 0x0C74, 0x5FC9, 0x0800, 0x0D00, 0x4F64, 0x6253, 0x52A9, 0x3AFF, 0x7555, 0x7999, 0x0EEE, 0x6870, 0x2CC0, 0x7111]; % Crow Tengu God (red and blue, player 2)
+% Prom_Palette_injector(PRomFile,palette_old,palette_new)
 
 % Sword guards, just a palette swap (color of masks is used for blood)
 disp('------------Swapping Sword Guards palette------------------------')
@@ -262,6 +240,7 @@ palette_old = [0x006F, 0x0631, 0x1962, 0x1DA5, 0x0444, 0x0999, 0x7FFF, 0x3220, 0
 palette_new = [0x006F, 0x0631, 0x1962, 0x1DA5, 0x0444, 0x0999, 0x7FFF, 0x4500, 0x0B00, 0x4F00, 0x4F80, 0x0007, 0x100F, 0x106F, 0x1FEA, 0x0000]; % Axeman green, now red too
 Prom_Palette_injector(PRomFile,palette_old,palette_new)
 
+% Spearman palette / DISMISSED, pointless
 % disp('-----------------------Spearman palette----------------------')
 % palette_old = [0x002D, 0x4B30, 0x2D80, 0x7FD6, 0x0213, 0x3425, 0x2859, 0x2510, 0x6950, 0x4FD0, 0x4600, 0x0C00, 0x6F40, 0x7CBD, 0x7FFF, 0x0000]; % Spearman red
 % palette_new = [0x002D, 0x4B30, 0x2D80, 0x7FD6, 0x0213, 0x3425, 0x2859, 0x4600, 0x0C00, 0x6F40, 0x2510, 0x6950, 0x4FD0, 0x7CBD, 0x7FFF, 0x0000]; % Spearman red and green inverted
@@ -320,6 +299,47 @@ IPS_generator(original_prog,modified_prog,ipsFile)
 % File_merger(modified_prog,'.\EPROM_out\MX29F1615.P1',2) %Fills two times instead of just padding, P1 is 1 MByte, chip is 2 MBytes
 disp('MVS version fully converted !')
 toc
+
+%% Changelog
+% Mains characters tileset edition
+%2026-07-05 Claude Yamamoto, done
+%2026-07-05 Jack Stone, done
+%2026-07-06 Mike Walsh, done
+%2026-07-06 Crow Tengu god, done
+%2026-07-06 Kirimaru, done
+
+% Regular foes
+%2026-07-06 Puppet warrior, done, but I do not find the beheaded sprite !
+%2026-07-07 Ninja Monk, done
+%2026-07-07 Giant, done
+%2026-07-07 Kunoichi, done
+%2026-07-07 Axeman, done
+%2026-07-07 Spearman, nothing to do ?
+%2026-07-07 Fishes, done big and small
+%2026-07-07 Dragon, done
+
+% Bosses
+%2026-07-07 Kojiro, done
+%2026-07-07 Kitsune, done
+%2026-07-07 Yoshitsune, done
+%2026-07-07 General, done
+%2026-07-07 Puppets, done
+
+% Polishing after thorough game sessions on NGCD (my test system on CRT TV)
+%2026-07-12 Puppet warrior with feathers had many tiles missing - it has additionnal animations compared to other Puppet Warriors
+%2026-07-12 last boss puppets have tiles missing
+%2026-07-12 One tile of Claude Yamamoto was missing
+%2026-07-13 Puppet warrior with feathers had one fucking tile missing and ONE fucking white pixel put by error
+%2026-07-14 Bloody sword of puppet warrior with feather, still 2 tiles not converted...
+% Must be over now
+
+%In fact not, due to the very constraint HUB palette, I had to reverse back
+%All main characters come back to initial color
+%The fur of Kirimaru only was modified with more reddish aspect
+%2026-07-19 Claude Yamamoto and Mike Walsh some tiles missing / fixed
+%2026-07-19 Kirimraru blue has blue blood, reverse to red/brown
+%2026-07-19 Jack Stone back to normal palette and brown blood
+%2026-07-19 Crow Tengu God back to normal palette and brown blood
 
 % This is the dump of the palette RAM during first level. Hopefully the
 % characters palettes do not change much in the different levels contrary

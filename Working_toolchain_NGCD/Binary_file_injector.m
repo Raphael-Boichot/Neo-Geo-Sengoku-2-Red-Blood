@@ -114,7 +114,7 @@ fclose(fid);
 % Alex Free, you saved my day !
 
 fprintf('\nRegenerating ECC/EDC checksums...\n');
-system(sprintf('edcre -v -s 16 "%s"', patchedTrackFile));
+system(sprintf('edcre -s 16 "%s"', patchedTrackFile));
 
     function data = readbin(path)
         fid = fopen(path, 'rb');

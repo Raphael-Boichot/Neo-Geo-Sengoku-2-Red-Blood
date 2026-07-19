@@ -189,7 +189,9 @@ Crow Tengu (player 2) alternate palette
 
 ![](/Palettes/Kirimaru_blue_Palette.png)
 
-Kirimaru (player 2) alternate palette
+Kirimaru (player 1 and 2) alternate palettes
+
+![](/Palettes/Kirimaru_red_palette_alternate.png)
 
 ![](/Palettes/Kirimaru_blue_palette_alternate.png)
 

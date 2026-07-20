@@ -84,7 +84,7 @@ Final adujstments were made by looking closely at gameplay footage during dev, f
 
 - Anything looking (even partly) human has red blood. And yes daemon fishes have human legs...
 - The least effort will always be prefered because I do this on my spare time, and basically my (valuable) spare time is shared between a ton of other projects and non negociable family duties. All the sources been given, more patient people can probably improve the hack. In it's current form, it's very easy to spot an issue and correct it.
-- The game must look gore but most of all, as genuine as possible. The least modification is always prefered. Apart from being a very hardcore fan of Sengoku 2 like me, you will probably not see any obvious palette swap part from blood.
+- The game must look gore but most of all, as genuine as possible. The least modification is always prefered. Apart from being a very hardcore fan of Sengoku 2 like me, you will probably not see any obvious palette swap apart from blood of course.
 
 ## Which tools ?
 
@@ -153,6 +153,8 @@ Alternate palette:
 ![](/Palettes/Stream_of_blood_Palette_alternate.png)
 
 ## Regular and modified palettes, main characters
+
+The HUD has a small vignette with characters face. It has its own palettes, but very limited in quantity (16), not common with the sprites palettes. Whatever the reason, game devs chose to use one common palette for many characters. This basically means that synchronisation of character palette and HUD palette is impossible. The compromise here is so to stay minimal with palette swap, blood being the first palette entry (brown), except for Claude Yamamoto.
 
 - Claude Yamamoto (Player 1) **--> Tileset editing only**
 

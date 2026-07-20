@@ -154,7 +154,7 @@ Alternate palette:
 
 ## Regular and modified palettes, main characters
 
-The HUD has a small vignette with characters face. It has its own palettes, but very limited in quantity (16), not common with the sprites palettes. Whatever the reason, game devs chose to use one common palette for many characters. This basically means that synchronisation of character palette and HUD palette is impossible. The compromise here is so to stay minimal with palette swap, blood being the first palette entry (brown), except for Claude Yamamoto.
+The HUD has a small vignette with characters face. It has its own palettes, but very limited in quantity (16), not common with the sprites palettes. Whatever the reason, game devs chose to use one common palette for many characters. This basically means that synchronisation of character palette and HUD palette is impossible. The compromise here is so to stay minimal with palette swap, blood being the second palette entry (brown), except for Claude Yamamoto. Fun fact, it is closer from real blood color than pure red.
 
 - Claude Yamamoto (Player 1) **--> Tileset editing only**
 

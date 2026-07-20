@@ -128,7 +128,7 @@ Starting confident after this little surprise, I initially though hacking indivi
 
 So I took the problem in reverse. Rebuilding from scratch the exact original ISO 9660 structure as expected by the Neo Geo CD was just out of question, so I tried injecting the individual hacked .SPR and .PRG files directly into the original track 1 binary as big data chunks, by searching for some header signatures. Neo Geo CD crashed again with that "rebuilt" binary, damn! The fact is that I had only like 12% matching between .PRG and .SPR injected and the binary data of track 1 on the same address range, which indicated that the files were probably at least partially splitted within the filesystem. Splitted was a weak word.
 
-Some reader may find the latter approach incredibly naïve but for my defense, I had no idea how Neo Geo CD data tracks were organized before tackling this problem. Let's say that reverse engineering was part of the fun...
+Some reader may find the latter approach incredibly naïve but for my defense, I had no idea how Neo Geo CD data tracks were organized before tackling this problem. Let's say that reverse engineering things is becoming for me as fun, if not funnier, than playing video games.
 
 By messing with dedicated tool (and lot of trial and errors), I finally understood the fine data structure: each individual file is splitted in chunks of 2048 bytes (0x800) separated by 304 bytes (0x130) of EDC/ECC data (typically 288 bytes of checksums and other error correction stuff + 16 bytes of header for the next packet). Each sector (header, 16 bytes + payload, 2048 bytes + error correction, 288 bytes) is 2352 bytes long. There is lot of padding sectors too (zero payload but CD sector format) plus alignement / boot sectors. In brief, I should have started by reading the audio CD format specification. Chunks of data seem consecutives for a given file at first glance but at this step I could not trust anything. 
 
@@ -386,8 +386,6 @@ Aternate palette (puppet 2)
 ## Final words
 
 I am publishing these workflows in a state far from perfection, to say the least. Throughout my career and my hobbies, I have seen too many projects (good or not, this is not the point here) disappear simply because they were never shared before their authors vanished from the face of the Earth, whatever the reason (brutal death, mental illness, boredom, greed, discord... I've seen all of these). I operate on the principle that if it is not online, it does not exist. I prefer releasing a functional work that is available to everyone than chasing a perfect version that eventually will fade into obscurity rotting on a forgotten hard drive.
-
-Not happy with Matlab ? Pissed with my artistic choices ? Do your own, it's open access !
 
 ## Acknowledgments
 

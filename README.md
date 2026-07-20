@@ -362,6 +362,8 @@ Aternate palette (puppet 2)
 
 - The Neo Geo CD version seems to contains remnants of codes from Cyber Lip, so I guess that at least some logic from Sengoku 2 P040.PRG was common with that earlier game (probably the logic to split and load levels in the tiny Neo Geo CD memory).
 
+- The sword slashing sound is much more satisfying and violent with AES / MVS version than Neo Geo CD version.
+
 - LUA script used to read sprite palettes during gameplay has lots of "false positive" with palette 0x70 on bosses (the palette of massive blood jets). I suspect these to be remnants of a much bloody version into the code, maybe possible to restore.
 
 ## Final words

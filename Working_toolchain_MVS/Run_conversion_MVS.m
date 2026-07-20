@@ -141,7 +141,7 @@ png_to_Crom(oddRomOut_small, evenRomOut_small,outpng_small,txt_exchange_palette_
 % Here some manual editing of the new palette
 disp('Targeting and injecting new palette(s) in P ROM')
 PRomFile = '.\roms_out\040-p1.p1';
-copyfile(original_prog,PRomFile);
+copyfile(original_prog,PRomFile,'f');
 
 % Boring blood vs vibrant blood, several foes
 disp('------------Swapping blood splashings palette--------------------')

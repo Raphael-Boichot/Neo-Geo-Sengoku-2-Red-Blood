@@ -8,7 +8,7 @@ disp('The CRC2 before and after must coincide')
 disp('Just ignore this message in case you''re doing modifications')
 disp('The dummy palette jet is the mandatory exchange palette for NGCD')
 disp('A PALETTE MUST NEVER SHARE TWO TIMES THE SAME COLOR !')
-disp('Don''t foget to first place the Sengoku 2 MAME compatible roms in .\roms\ !')
+disp('Don''t forget to first place the Sengoku 2 MAME compatible roms in .\roms\ !')
 %% Init section
 
 % general settings

@@ -35,7 +35,7 @@ Tileset_injector()% use the MVS tileset to modify the NGCD tileset, only use dum
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 % png_to_Cspr is aggressively using matrix/vector formalism too
-disp('Building back .PRG files from png and palette.txt')
+disp('Building back .SPR files from png and palette.txt')
 png_to_Cspr('.\roms_out\JOUCHU.SPR','.\tileset_out_modified\JOUCHU.png','.\tileset_out\JOUCHU_exchange_palette.txt')
 png_to_Cspr('.\roms_out\AREA1.SPR','.\tileset_out_modified\AREA1.png','.\tileset_out\AREA1_exchange_palette.txt')
 png_to_Cspr('.\roms_out\AREA2.SPR','.\tileset_out_modified\AREA2.png','.\tileset_out\AREA2_exchange_palette.txt')
@@ -62,7 +62,7 @@ palette_old = [0x0001, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0
 palette_new = [0x0001, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00]; % general flashing effect when hit, red
 PRG_Palette_injector(PRomFile,palette_old,palette_new)
 
-% Kirimaru (Player 1 - test)
+% Kirimaru
 disp('------------Swapping Kirimaru (player 1) palette-----------------')
 palette_old = [0x0014, 0x4332, 0x4663, 0x4995, 0x3BA6, 0x3DC9, 0x4FFC, 0x0A00, 0x0F00, 0x4F90, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (doggo, red, player 1)
 palette_new = [0x0014, 0x0810, 0x0A42, 0x0C74, 0x0D96, 0x0FC9, 0x4FFC, 0x0A00, 0x0F00, 0x4F90, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (other fur)

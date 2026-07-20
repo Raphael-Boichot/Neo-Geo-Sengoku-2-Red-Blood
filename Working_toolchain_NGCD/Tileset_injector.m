@@ -27,17 +27,22 @@ for f = 1:length(files)
     ngcd_modified = cat(3, ngcd, alpha_ngcd);
 
     % Build a lookup table of every tile currently in ngcd_modified.
-    % Key = exact byte content of the tile -> FIFO list of [row col] positions,
-    % stored in raster-scan order (same order the original nested loop walked).
-    tileMap = containers.Map('KeyType', 'char', 'ValueType', 'any');
+    % Key = integer hash of the tile bytes -> FIFO list of entries
+    % {row, col, bytes}, stored in raster-scan order (same order the
+    % original nested loop walked). "bytes" is kept so that hash
+    % collisions (rare, but possible) can be resolved with an exact
+    % byte comparison, preserving the original isequal-based guarantee.
+    tileMap = containers.Map('KeyType', 'int64', 'ValueType', 'any');
     [ngh, ngw, ~] = size(ngcd_modified);
     for row = 1:tile_size:(ngh - tile_size + 1)
         for col = 1:tile_size:(ngw - tile_size + 1)
-            key = tile_key(ngcd_modified(row:row+15, col:col+15, :));
-            if isKey(tileMap, key)
-                tileMap(key) = [tileMap(key); row col];
+            tile = ngcd_modified(row:row+15, col:col+15, :);
+            h = tile_hash(tile);
+            entry = struct('row', row, 'col', col, 'bytes', tile(:));
+            if isKey(tileMap, h)
+                tileMap(h) = [tileMap(h), {entry}];
             else
-                tileMap(key) = [row col];
+                tileMap(h) = {entry};
             end
         end
     end
@@ -55,11 +60,11 @@ for f = 1:length(files)
         ref = cat(3, ref, alpha_ref);
         mod_img = cat(3, mod_img, alpha_mod);
 
-        [h, w, ~] = size(ref);
-        tiles_per_row = w / tile_size;
+        [h_img, w_img, ~] = size(ref);
+        tiles_per_row = w_img / tile_size;
 
         diff_indices = [];
-        for i = 0:((w / tile_size) * (h / tile_size))-1
+        for i = 0:((w_img / tile_size) * (h_img / tile_size))-1
             r_start = floor(i / tiles_per_row) * tile_size + 1;
             c_start = mod(i, tiles_per_row) * tile_size + 1;
             if ~isequal(ref(r_start:r_start+15, c_start:c_start+15, :), ...
@@ -80,30 +85,32 @@ for f = 1:length(files)
             candidates_ref = {ref_tile, flip(ref_tile, 2)};
             candidates_mod = {source_tile, flip(source_tile, 2)};
 
-            key1 = tile_key(candidates_ref{1});
-            key2 = tile_key(candidates_ref{2});
+            bytes1 = candidates_ref{1}(:);
+            bytes2 = candidates_ref{2}(:);
+            key1 = tile_hash(candidates_ref{1});
+            key2 = tile_hash(candidates_ref{2});
+
+            [pos1, list_idx1] = find_tile_in_map(tileMap, key1, bytes1);
+            [pos2, list_idx2] = find_tile_in_map(tileMap, key2, bytes2);
+
+            has1 = ~isempty(pos1);
+            has2 = ~isempty(pos2);
 
             chosen_k = 0;
             pos = [];
 
-            has1 = isKey(tileMap, key1) && ~isempty(tileMap(key1));
-            has2 = isKey(tileMap, key2) && ~isempty(tileMap(key2));
-
             if has1 && has2
-                list1 = tileMap(key1); list2 = tileMap(key2);
                 % Pick whichever match comes first in raster-scan order
                 % (ties go to the non-flipped candidate, matching the original loop)
-                if (list1(1,1) < list2(1,1)) || (list1(1,1) == list2(1,1) && list1(1,2) <= list2(1,2))
-                    pos = list1(1,:); chosen_k = 1;
+                if (pos1(1) < pos2(1)) || (pos1(1) == pos2(1) && pos1(2) <= pos2(2))
+                    pos = pos1; chosen_k = 1;
                 else
-                    pos = list2(1,:); chosen_k = 2;
+                    pos = pos2; chosen_k = 2;
                 end
             elseif has1
-                list1 = tileMap(key1);
-                pos = list1(1,:); chosen_k = 1;
+                pos = pos1; chosen_k = 1;
             elseif has2
-                list2 = tileMap(key2);
-                pos = list2(1,:); chosen_k = 2;
+                pos = pos2; chosen_k = 2;
             end
 
             if chosen_k > 0
@@ -112,9 +119,9 @@ for f = 1:length(files)
                 found_count = found_count + 1;
 
                 % Remove the consumed slot from its queue
-                if chosen_k == 1, usedKey = key1; else, usedKey = key2; end
+                if chosen_k == 1, usedKey = key1; usedIdx = list_idx1; else, usedKey = key2; usedIdx = list_idx2; end
                 list = tileMap(usedKey);
-                list(1,:) = [];
+                list(usedIdx) = [];
                 if isempty(list)
                     remove(tileMap, usedKey);
                 else
@@ -122,11 +129,13 @@ for f = 1:length(files)
                 end
 
                 % Register the new content now sitting at this position
-                newKey = tile_key(candidates_mod{chosen_k});
+                newBytes = candidates_mod{chosen_k}(:);
+                newKey = tile_hash(candidates_mod{chosen_k});
+                newEntry = struct('row', row, 'col', col, 'bytes', newBytes);
                 if isKey(tileMap, newKey)
-                    tileMap(newKey) = [tileMap(newKey); row col];
+                    tileMap(newKey) = [tileMap(newKey), {newEntry}];
                 else
-                    tileMap(newKey) = [row col];
+                    tileMap(newKey) = {newEntry};
                 end
             else
                 unplaced_count = unplaced_count + 1;
@@ -141,8 +150,43 @@ for f = 1:length(files)
 end
 end
 
-function key = tile_key(tile)
-    % Exact byte content of the tile, used as a hash-map key.
-    % Guarantees no false-positive matches (only identical isequal tiles collide).
-    key = char(tile(:)');
+function h = tile_hash(tile)
+    % Fast integer hash of the tile's exact byte content, used as a
+    % containers.Map key. Using an int64 numeric key instead of a
+    % ~1024-character string key is what actually fixes the Octave
+    % slowdown: Octave's containers.Map compares/hashes string keys in
+    % time proportional to string length, so with thousands of 1024-byte
+    % keys the original code degraded badly. A single int64 key is
+    % compared in constant time.
+    %
+    % Collisions are possible (this is a checksum, not a cryptographic
+    % hash) but are resolved by find_tile_in_map via an exact byte
+    % comparison, so correctness matches the original isequal-based logic.
+    bytes = double(tile(:));
+    n = numel(bytes);
+    % Deterministic per-position weights, large enough to spread the sum
+    % well, kept small enough that the running sum stays an exactly
+    % representable integer in double precision (max ~1024*255*~4.3e9
+    % ~= 1.1e15, comfortably under 2^53 ~= 9.0e15).
+    weights = mod((1:n)' .* 2654435761, 1000000007);
+    h = int64(mod(sum(bytes .* weights), 4611686018427387903)); % < intmax('int64')
+end
+
+function [pos, list_idx] = find_tile_in_map(tileMap, h, tileBytes)
+    % Look up the first (raster-order) FIFO entry under hash h whose
+    % stored bytes exactly match tileBytes. Returns pos = [row col] and
+    % the index of that entry within the map's list (for removal), or
+    % pos = [] / list_idx = 0 if no exact match exists.
+    pos = [];
+    list_idx = 0;
+    if isKey(tileMap, h)
+        list = tileMap(h);
+        for k = 1:numel(list)
+            if isequal(list{k}.bytes, tileBytes)
+                pos = [list{k}.row, list{k}.col];
+                list_idx = k;
+                return;
+            end
+        end
+    end
 end

@@ -106,7 +106,6 @@ Final adjustments (sometimes bigger than expected) were made by looking closely 
 - MAME in debug mode and helped with Lua scripts to explore the palette RAM while playing.
 - Custom codes to turn C ROMs to png and the inverse. Tileset is edited by hand from a png image with the current character palette, then turned back to C ROM.
 - Custom codes to swap palettes in P ROMs.
-- Custom codes to generate and chain IPS scripts.
 - Custom codes to convert RGB color to 16 bits Neo Geo colors.
 - MS Paint to edit tilesets because this is the best tool ever created on Earth (and it manages transparent layers). About 500 tiles have been painfully bloodified by hand, pixel per pixel, in the conversion. 
 - Spriter ressources to check for inconsistencies in colors and planning the quantity of work.
@@ -117,7 +116,7 @@ Final adjustments (sometimes bigger than expected) were made by looking closely 
 
 As for any prject, 10% of the time was taken to edit 90% of the tileset, 90% of the time to find some lone tiles / pixels in the giant tileset.
 
-I wanted to maximize the scripting in order to be able to easily come back on errors / bad design later. Some codes or parts of codes were made with A.I. to speed up the process (Gemini mainly, sometimes Mistral A.I. because I'm beta tester, a pinch of Claude too for the most tricky parts). Basically there is no rocket science here but I must admit that A.I. was precious to circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a niche market here. 
+I wanted to maximize the scripting in order to be able to easily come back on errors / bad design later. Some codes or parts of codes were made / polished / optimized with A.I. (Gemini mainly, sometimes Mistral A.I. because I'm beta tester, a pinch of Claude too for the most tricky parts). Basically there is no rocket science here but I must admit that A.I. was precious to circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a very niche market here.
 
 The Neo Geo CD hack was made in parallel to the MVS version as it is not more difficult (in fact, it was) to do on any of the systems. Except that the Neo Geo CD is scarcely documented (The only interesting source is a French [Neo Geo CD World article](https://www.neogeocdworld.info/html/fiche/hard.htm)), so I was basically on my own most of the time for the file formatting details.
 
@@ -388,7 +387,7 @@ Aternate palette (puppet 2)
 
 I am publishing these workflows in a state far from perfection, to say the least. Throughout my career and my hobbies, I have seen too many projects (good or not, this is not the point here) disappear simply because they were never shared before their authors vanished from the face of the Earth, whatever the reason (brutal death, mental illness, boredom, greed, discord... I've seen all of these). I operate on the principle that if it is not online, it does not exist. I prefer releasing a functional work that is available to everyone than chasing a perfect version that eventually will fade into obscurity rotting on a forgotten hard drive.
 
-This project is now part of the public record. Use it, learn from it, play with it, or build upon it — it's your project.
+Not happy with Matlab ? Pissed with my artistic choices ? Do your own, it's open access !
 
 ## Acknowledgments
 

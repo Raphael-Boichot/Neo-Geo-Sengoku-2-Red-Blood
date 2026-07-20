@@ -19,7 +19,7 @@ mkdir('.\IPS_scripts\');
 files = dir('.\roms\');
 % Filter: Keep files that are not directories AND do not end in .txt
 toCopy = files(~[files.isdir] & ~endsWith({files.name}, '.txt', 'IgnoreCase', true));
-arrayfun(@(x) copyfile(fullfile(x.folder, x.name), '.\roms_out\'), toCopy);
+arrayfun(@(x) copyfile(fullfile(x.folder, x.name), '.\roms_out\','f'), toCopy); %'f' to force copy
 
 % Original roms
 oddRomFile_big  = '.\roms\040-c1.c1';

@@ -85,15 +85,15 @@ Seeing at the tileset and palettes, it is clear that Sengoku 2 is not programmed
 
 Here are the main steps used in a nutshell:
 
-- first get the palette number of every bleeding characters with MAME in debug mode and with a Lua script, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully) and not that many palette reordering between levels. It required anyway some cross validations due to false positives (see Fun facts section).
+- First get the palette number of every bleeding characters with MAME in debug mode and with a Lua script, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully) and not that many palette reordering between levels. It required anyway some cross validations due to false positives (see Fun facts section).
 - Easy situation, there is no vibrant red in the tileset but a clever palette swap is not visually shocking, go with a palette swap and target the P ROM only.
 - Moderate situation, there is yet a vibrant enough red in the palette and no need for palette swap, edit and inject the modified tileset only on the C ROMs, with unchanged palette.
 - Fucked situation, multiple palette swap for the same character and non consistent color to turn to red: I have to cheat and force a red in each palette at the same position and a modified tileset as well. The mod must stay pleasant to the eye and do not deteriorate too much the initial character design. It's my artistic compromise.
 - Then for each character, repeat the process until reaching the final boss puppets.
 - Build the Neo Geo CD version ~~easily and automatically~~ with blood and pain from the MVS version.
-- Play with recording and look frame by frame if anything is missing.
+- Realize that the HUD palette with character face vignettes is no longer synchronized, that it's impossible to modify because of very strong color constraints, and having to redo part of the work from scratch.
 
-Final adujstments were made by looking closely at gameplay footage during dev, frame by frame to spot any missing tile conversion (only way to see a single pixel missing).
+Final adjustments (sometimes bigger than expected) were made by looking closely at gameplay footage during dev, frame by frame to spot any missing tile conversion (only way to see a single pixel missing).
 
 ## My rules
 
@@ -103,21 +103,23 @@ Final adujstments were made by looking closely at gameplay footage during dev, f
 
 ## Which tools ?
 
-- MAME in debug mode and helped with Lua scripts to explore the palette RAM while playing. This is the only tedious step in absence of scripted debuggers fully dedidacted to the Neo Geo (or I guess ?).
+- MAME in debug mode and helped with Lua scripts to explore the palette RAM while playing.
 - Custom codes to turn C ROMs to png and the inverse. Tileset is edited by hand from a png image with the current character palette, then turned back to C ROM.
 - Custom codes to swap palettes in P ROMs.
 - Custom codes to generate and chain IPS scripts.
 - Custom codes to convert RGB color to 16 bits Neo Geo colors.
 - MS Paint to edit tilesets because this is the best tool ever created on Earth (and it manages transparent layers). About 500 tiles have been painfully bloodified by hand, pixel per pixel, in the conversion. 
 - Spriter ressources to check for inconsistencies in colors and planning the quantity of work.
-- Custom codes to inject the MVS tileset modifications into the NGCD tileset automatically (under the form of sprite swapping between PNGs). Hopefully, no tile is missing at the end because the port was the very laziest possible on SNK side. This helped a lot.
-- Make a final IPS script for P ROM and C ROMS.
+- Custom NGCD converters, tileset to png and png to tileset, because encoding is different from AES / MVS.
+- Custom codes to inject the MVS tileset modifications into the NGCD tileset automatically.
+- Custom codes to rebuild the NGCD binary from individual .SPR and .PRG files (this was a pain, see next section).
+- IPS script generator for sharing the hack easily.
 
 As for any prject, 10% of the time was taken to edit 90% of the tileset, 90% of the time to find some lone tiles / pixels in the giant tileset.
 
 I wanted to maximize the scripting in order to be able to easily come back on errors / bad design later. Some codes or parts of codes were made with A.I. to speed up the process (Gemini mainly, sometimes Mistral A.I. because I'm beta tester, a pinch of Claude too for the most tricky parts). Basically there is no rocket science here but I must admit that A.I. was precious to circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a niche market here. 
 
-The Neo Geo CD hack was made in parallel to the MVS version as it is not more difficult to do on any of the systems. Except that the Neo Geo CD is scarcely documented (The only interesting source is a French [Neo Geo CD World article](https://www.neogeocdworld.info/html/fiche/hard.htm)), so I was basically on my own most of the time for the file formatting details.
+The Neo Geo CD hack was made in parallel to the MVS version as it is not more difficult (in fact, it was) to do on any of the systems. Except that the Neo Geo CD is scarcely documented (The only interesting source is a French [Neo Geo CD World article](https://www.neogeocdworld.info/html/fiche/hard.htm)), so I was basically on my own most of the time for the file formatting details.
 
 ## Some notes about (painfully and partially) reverse engineering the NGCD file format
 
@@ -170,7 +172,7 @@ Alternate palette:
 
 ## Regular and modified palettes, main characters
 
-The HUD has a small vignette with characters face. It has its own palettes, but very limited in quantity (16), not common with the sprites palettes. Whatever the reason, game devs chose to use one common palette for many characters. This basically means that synchronisation of character palette and HUD palette is impossible. The compromise here is so to stay minimal with palette swap, blood being the second palette entry (brown), except for Claude Yamamoto. Fun fact, it is closer from real blood color than pure red.
+The HUD has a small vignettes with characters face. It has its own palettes, but only 3 are used for the vignettes, and they are not common with the sprites palettes. Whatever the reason, game devs chose to use a single common palette for all P2 vignettes. This basically means that synchronisation of character palette and HUD palette is impossible. The compromise here is so to stay minimal with palette swap for the main characters, blood being the second palette entry (brown), except for Claude Yamamoto. Fun fact, it is closer from real blood color than pure red.
 
 - Claude Yamamoto (Player 1) **--> Tileset editing only**
 
@@ -380,11 +382,11 @@ Aternate palette (puppet 2)
 
 - The sword slashing sound is much more satisfying and violent with AES / MVS version than Neo Geo CD version. It must be not that difficult to restore.
 
-- LUA script used to read sprite palettes during gameplay has lots of "false positive" with palette 0x70 on bosses (the palette of massive blood jets). I suspect these to be remnants of a much bloody version into the code, maybe possible to restore.
+- LUA script used to read sprite palettes during gameplay has lots of "false positive" with palette 0x70 on bosses (the palette of massive blood streams). I suspect these to be remnants of a much bloody version into the code, maybe possible to restore.
 
 ## Final words
 
-I am publishing these workflows in a state far from perfection, to say the least. Throughout my career and my hobbies, I have seen too many brilliant solutions and significant projects disappear simply because they were never shared before their authors vanished from the face of the Earth, whatever the reason (brutal death, mental illness, boredom, greed, discord... I've seen all of these). I operate on the principle that if it is not online, it does not exist. I would rather release functional work that is available to everyone than chase a version of "perfection" that eventually will fade into obscurity rotting on a forgotten hard drive, at best.
+I am publishing these workflows in a state far from perfection, to say the least. Throughout my career and my hobbies, I have seen too many projects (good or not, this is not the point here) disappear simply because they were never shared before their authors vanished from the face of the Earth, whatever the reason (brutal death, mental illness, boredom, greed, discord... I've seen all of these). I operate on the principle that if it is not online, it does not exist. I prefer releasing a functional work that is available to everyone than chasing a perfect version that eventually will fade into obscurity rotting on a forgotten hard drive.
 
 This project is now part of the public record. Use it, learn from it, play with it, or build upon it — it's your project.
 

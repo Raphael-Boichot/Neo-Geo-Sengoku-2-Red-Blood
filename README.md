@@ -85,12 +85,13 @@ Seeing at the tileset and palettes, it is clear that Sengoku 2 is not programmed
 
 Here are the main steps used in a nutshell:
 
-- first get the palette number of every bleeding characters with MAME in debug mode and with a LUA script, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully) and not that many palette reordering between levels. This is long and tedious but does not require any intelligence. Just play, check the LUA outputs, look at the RAM in MAME debug mode to confirm, take notes and reload.
+- first get the palette number of every bleeding characters with MAME in debug mode and with a Lua script, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully) and not that many palette reordering between levels. It required anyway some cross validations due to false positives (see Fun facts section).
 - Easy situation, there is no vibrant red in the tileset but a clever palette swap is not visually shocking, go with a palette swap and target the P ROM only.
 - Moderate situation, there is yet a vibrant enough red in the palette and no need for palette swap, edit and inject the modified tileset only on the C ROMs, with unchanged palette.
 - Fucked situation, multiple palette swap for the same character and non consistent color to turn to red: I have to cheat and force a red in each palette at the same position and a modified tileset as well. The mod must stay pleasant to the eye and do not deteriorate too much the initial character design. It's my artistic compromise.
 - Then for each character, repeat the process until reaching the final boss puppets.
 - Build the Neo Geo CD version ~~easily and automatically~~ with blood and pain from the MVS version.
+- Play with recording and look frame by frame if anything is missing.
 
 Final adujstments were made by looking closely at gameplay footage during dev, frame by frame to spot any missing tile conversion (only way to see a single pixel missing).
 
@@ -102,7 +103,7 @@ Final adujstments were made by looking closely at gameplay footage during dev, f
 
 ## Which tools ?
 
-- MAME in debug mode and helped with LUA scripts to explore the palette RAM while playing. This is the only tedious step in absence of scripted debuggers fully dedidacted to the Neo Geo (or I guess ?).
+- MAME in debug mode and helped with Lua scripts to explore the palette RAM while playing. This is the only tedious step in absence of scripted debuggers fully dedidacted to the Neo Geo (or I guess ?).
 - Custom codes to turn C ROMs to png and the inverse. Tileset is edited by hand from a png image with the current character palette, then turned back to C ROM.
 - Custom codes to swap palettes in P ROMs.
 - Custom codes to generate and chain IPS scripts.
@@ -110,8 +111,9 @@ Final adujstments were made by looking closely at gameplay footage during dev, f
 - MS Paint to edit tilesets because this is the best tool ever created on Earth (and it manages transparent layers). About 500 tiles have been painfully bloodified by hand, pixel per pixel, in the conversion. 
 - Spriter ressources to check for inconsistencies in colors and planning the quantity of work.
 - Custom codes to inject the MVS tileset modifications into the NGCD tileset automatically (under the form of sprite swapping between PNGs). Hopefully, no tile is missing at the end because the port was the very laziest possible on SNK side. This helped a lot.
-- Rince and repeat with all characters. 10% of the time was taken to edit 90% of the tileset, 90% of the time to find some lone tiles / pixels in the giant tileset.
 - Make a final IPS script for P ROM and C ROMS.
+
+As for any prject, 10% of the time was taken to edit 90% of the tileset, 90% of the time to find some lone tiles / pixels in the giant tileset.
 
 I wanted to maximize the scripting in order to be able to easily come back on errors / bad design later. Some codes or parts of codes were made with A.I. to speed up the process (Gemini mainly, sometimes Mistral A.I. because I'm beta tester, a pinch of Claude too for the most tricky parts). Basically there is no rocket science here but I must admit that A.I. was precious to circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a niche market here. 
 

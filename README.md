@@ -1,6 +1,6 @@
 # Red Blood hack for Sengoku 2, Neo Geo AES / MVS and Neo Geo CD
 
-## Patching the Neo Geo MVS / AES (version 1.1)
+## Patching the Neo Geo MVS / AES game (version 1.1)
 
 Go to the dedicated [IPS scripts folder](/Working_toolchain_MVS/IPS_scripts), get a know good dump of Sengoku 2 for [MAME](https://www.mamedev.org/), unzip, [apply the IPS patch](https://www.marcrobledo.com/RomPatcher.js/) to corresponding files (check the CRC32 just in case), zip the patched files, enjoy !
 
@@ -14,7 +14,7 @@ Summary of CRC32 you should expect before / after patching:
 
 Dev note: I have no plan to support other ROM formats, MAME being the most common and popular. I guess converters between formats must exist but you're on your own to do this on your particular emulator / SD loader.
 
-## Patching the Neo Geo CD (version 1.1)
+## Patching the Neo Geo CD game (version 1.1)
 
 Get the CD version compatible with the NeoGeo CD SD Loader, for example [here](https://archive.org/details/fullset-for-neocd-sd-loader). It must be a .CUE + .BINs version. Patch the track 1 with the [dedicated IPS patch](/Working_toolchain_NGCD/IPS_scripts) and any [good IPS patcher](https://www.marcrobledo.com/RomPatcher.js/). You may of course check the CRC32 just in case.
 

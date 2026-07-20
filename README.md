@@ -65,6 +65,20 @@ Matlab is my everyday go tool for scientific computing. My job during working ho
 
 There is a free version of Matlab called [GNU Octave](https://octave.org/) that you can try to use to run the toolchain. It will probably work but execution will be suuuuupppeeer slow (like 100x slower) compared to Matlab. Better than nothing though.
 
+## Forewords: Neo Geo RAM palette and tilesets
+
+Working with arcade systems is a very big relief compared to classical game systems from the 90'. Sprites, voices, music, program, and HUD are well organized and separated on different files / chips, clearly identified. No need to search for data or guess anything. The goal of the project here is to make a combo of tileset editing / palette swap. It will require modifying both the tilesets and the main program.
+
+Neo Geo memory is easily accessible from MAME in debug mode. As far as I know, MAME stays the best way to explore Neo Geo memory and code while playing. It allows internal scripting in Lua and basically access / do anything you want with the game by manipulating memory in live. You can access here the codes I used to launch MAME with Lua scripts and the scripts themselves.
+
+My first approach was to simply look at the palette RAM in MAME debug window. It is mapped from [address 0x400000 to 0x401FFF](https://wiki.neogeodev.org/index.php/68k_memory_map). Each palette is composed of 16 words (transparency + 15 colors) [coded in 5 bits per color](https://wiki.neogeodev.org/index.php/Colors). There is 256 palette available at any time during gameplay. Each tile must be assigned to a single palette (15 colors + transparency) but a sprite may use all the palettes available. The first 16 palettes are reserved for the fix layer (HUD). I don't know if this is particular to sengoku 2, but the transparency color (palette entry 1) also contains the palette number between 0x00 and 0xFF in its fisrt byte. This was **super** practical.
+
+In the particular case of Sengoku 2, there is no huge color palette reorganization between levels. Basically capturing the memory state in attract mode is enough to have 99% of the color used. You can play with palette RAM by manually changing the colors to see any change on screen. It allows basically to build the table of sprite attributes by hand. Finding the palette of each character like this (manually, messing with values in RAM) is barely possible as you basically have to cross check something like 20 characters present at diffrent moments of the gameplay among 256 palettes.
+
+The approach was to write a [Lua script](/Tools/monitor.lua) that monitors (and plot) the palette associated with everything having a sprite attribute during the whole gameplay. It appears that ALL sprites uses a single palette (that's fortunate !) and that the palette "string" appears in clear in the main program, easy to target so.
+
+So armed with a dump of memory during gameplay, the list of all palette attributed to any sprite, I was ready to began the hack.
+
 ## The steps (or how being ambitious when you have no time / no sleep)
 
 Seeing at the tileset and palettes, it is clear that Sengoku 2 is not programmed to be easily uncensored like with a magic byte. Color palette of current "blood" is frequently shared with other parts of the tiles so simple palette swaps are far from being satisfying. Basically not a quick and dirty hack. Doing ambitious hacks with work and family requires some planning and building a reliable toolchain. I've sliced the hack in many sub steps in order to be able to work on it by slots of about one hour maximum and easily reverse any fucked situation.

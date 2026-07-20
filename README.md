@@ -26,7 +26,7 @@ Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Neo
 
 ## Building the whole project at once
 
-Just run with Powershell from the root of the project:
+Just run this Powershell script from the root of the project:
 
     Build_project.ps1
 

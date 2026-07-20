@@ -28,6 +28,13 @@ oddRomFile_small  = '.\roms\040-c3.c3';
 evenRomFile_small = '.\roms\040-c4.c4';
 original_prog ='.\roms\040-p1.p1';
 
+% MAME romsets may use different file extensions
+oddRomFile_big = findFileWithBinFallback(oddRomFile_big);
+evenRomFile_big = findFileWithBinFallback(evenRomFile_big);
+oddRomFile_small = findFileWithBinFallback(oddRomFile_small);
+evenRomFile_small = findFileWithBinFallback(evenRomFile_small);
+original_prog = findFileWithBinFallback(original_prog);
+
 % modified roms
 oddRomOut_big    = '.\roms_out\040-c1.c1';
 evenRomOut_big   = '.\roms_out\040-c2.c2';
@@ -133,8 +140,8 @@ png_to_Crom(oddRomOut_small, evenRomOut_small,outpng_small,txt_exchange_palette_
 %% Injects new palettes in P ROMs
 % Here some manual editing of the new palette
 disp('Targeting and injecting new palette(s) in P ROM')
-copyfile('.\roms\040-p1.p1','.\roms_out\040-p1.p1');
 PRomFile = '.\roms_out\040-p1.p1';
+copyfile(original_prog,PRomFile);
 
 % Boring blood vs vibrant blood, several foes
 disp('------------Swapping blood splashings palette--------------------')
@@ -292,7 +299,7 @@ ipsFile='.\IPS_scripts\040-p1.p1.ips';
 IPS_generator(original_prog,modified_prog,ipsFile)
 
 %% Prepare merged roms for burning EPROMs / DISMISSED
-% disp('Prepare ROMs for burning EPROMs to a bootleg MVS cartridge') 
+% disp('Prepare ROMs for burning EPROMs to a bootleg MVS cartridge')
 % EPROM_merger(oddRomOut_big, evenRomOut_big, '.\EPROM_out\MX29LV320.C1') % chip is 4 MBytes, ROM is 4 MBytes, filled at 100% OK
 % EPROM_merger(oddRomOut_small, evenRomOut_small, '.\EPROM_out\MX29LV320.C2') % chip is 4 MBytes, ROM is 1 MBytes
 % File_merger('.\EPROM_out\MX29LV320.C2','.\EPROM_out\MX29LV320.C2',4) %Fills 4 times instead of just padding, chip is 4 MBytes, ROM is 1 MBytes

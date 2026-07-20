@@ -190,6 +190,8 @@ Kirimaru (player 1 and 2) alternate palettes
 
 ## Regular and modified palettes, ennemies of interest
 
+For regular foes, palette swap was prioritized. The idea was to be the less visible as possible. I've excluded the idea to merge close colors to free a color slot in the palette. it's too demanding because ALL tiles must be modified accordingly versus like 5-10% with a clever palette swap.
+
 - Puppet Warrior blue, gray, blue and red (+ horse) and orange **--> Palette swap and tileset editing**. Beware, the blue and red (+ horse) version of puppet master has a ton of dedicated tiles to edit compared to the other colors.
 
 ![](/Palettes/Puppet_Warrior_blue_Palette.png)
@@ -225,6 +227,8 @@ Ninka monks alternate palettes
 ![](/Palettes/Ninka_Monk_red_Palette_alternate.png)
 
 - Sword Guard white, blue, violet and brown **--> Palette swap only**
+
+This one was too easy. Probably a remnant from early development stages were the game was possibly still uncensored.
 
 ![](/Palettes/Sword_Guard_white_palette.png)
 

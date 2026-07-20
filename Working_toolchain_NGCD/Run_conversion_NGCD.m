@@ -47,7 +47,7 @@ png_to_Cspr('.\roms_out\TITLE.SPR','.\tileset_out_modified\TITLE.png','.\tileset
 %% Injects new palettes in P ROMs
 % it's a seek and replace sequence based algorithm, it avoids me to do this by hand with hex editor
 disp('Targeting and injecting new palette(s) in .PRG')
-copyfile('.\NGCD_track_1_files\P040.PRG','.\roms_out\P040.PRG');
+copyfile('.\NGCD_track_1_files\P040.PRG','.\roms_out\P040.PRG','f');
 PRomFile = '.\roms_out\P040.PRG';
 
 % Boring blood vs vibrant blood, several foes

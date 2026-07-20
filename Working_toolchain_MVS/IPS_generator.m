@@ -11,35 +11,48 @@ if ~exist('.\IPS_scripts\', 'dir'), mkdir('.\IPS_scripts\'); end
 f1 = fopen(originalFile, 'rb'); data1 = fread(f1, inf, 'uint8'); fclose(f1);
 f2 = fopen(modifiedFile, 'rb'); data2 = fread(f2, inf, 'uint8'); fclose(f2);
 
-fid = fopen(ipsFile, 'wb');
-fwrite(fid, 'PATCH', 'char');
-
-% 3. Identify and write changes (vectorized run detection)
+% 3. Identify changes (vectorized run detection)
 len = min(length(data1), length(data2));
 diffs = find(data1(1:len) ~= data2(1:len));
 
+% 4. Build the entire patch body in memory first, then do a single
+% fwrite at the end. Many small fwrite calls (one header + one chunk
+% per run) is what makes this slow when there are thousands of runs:
+% each call carries fixed interpreter/syscall overhead in Octave that
+% dwarfs the actual bytes being written. Concatenating into one buffer
+% and writing once amortizes that overhead to effectively zero.
+chunks = {};
 if ~isempty(diffs)
-    % A "break" occurs wherever the next diff index isn't consecutive.
-    % This finds run boundaries in one vectorized pass instead of
-    % growing the chunk array element-by-element.
     runBreaks = find(diff(diffs) ~= 1);
     runStarts = [1; runBreaks + 1];
     runEnds   = [runBreaks; length(diffs)];
 
+    chunks = cell(length(runStarts), 1);
     for r = 1:length(runStarts)
         firstDiffIdx = diffs(runStarts(r));
         lastDiffIdx  = diffs(runEnds(r));
         startIdx = firstDiffIdx - 1;
 
-        % Contiguous run, so pull it as a single slice
         chunk = data2(firstDiffIdx:lastDiffIdx);
+        chunkLen = length(chunk);
 
-        fwrite(fid, [bitshift(startIdx, -16), bitand(bitshift(startIdx, -8), 255), bitand(startIdx, 255)], 'uint8');
-        fwrite(fid, [bitshift(length(chunk), -8), bitand(length(chunk), 255)], 'uint8');
-        fwrite(fid, chunk, 'uint8');
+        header = [bitshift(startIdx, -16); bitand(bitshift(startIdx, -8), 255); bitand(startIdx, 255); ...
+                  bitshift(chunkLen, -8); bitand(chunkLen, 255)];
+
+        chunks{r} = [header; chunk(:)];
     end
 end
 
+body = vertcat(chunks{:});
+
+% 5. Single write for the whole file: header + body + footer
+fid = fopen(ipsFile, 'wb');
+fwrite(fid, 'PATCH', 'char');
+if ~isempty(body)
+    fwrite(fid, body, 'uint8');
+end
 fwrite(fid, 'EOF', 'char');
 fclose(fid);
+
 fprintf('IPS patch generated: %s\n', ipsFile);
+end

@@ -75,7 +75,7 @@ My first approach was to simply look at the palette RAM in MAME debug mode. It i
 
 In the particular case of Sengoku 2, there is no huge color palette reorganization between levels. Basically capturing the memory state in attract mode is enough to have 99% of the color used. You can play with palette RAM by manually changing the colors to see any change on screen. It allows basically to build the table of sprite attributes by hand. Finding the palette of each character like this (manually, messing with values in RAM) is barely possible as you basically have to cross check something like 20 characters present at different moments of the gameplay among 256 palettes.
 
-The good approach was to write a [Lua script](/Tools/monitor.lua) that monitors (and plot) the palette associated with everything having a sprite attribute during the whole gameplay. It appears that ALL sprites uses a single palette (that's fortunate !) and that the palette "string" appears in clear in the main program, easy to target so.
+The good approach was to write a [Lua script](/Tools/monitor.lua) that monitors (and plot) the palette associated with everything having a sprite attribute during the whole gameplay. It appears that ALL sprites uses a single palette (that's fortunate !) and that the palette "string" appears in clear in the main program, easy to target so. Lua script has lots of false positive with palette 0x1D during boss fight, not sure why (maybe remnants of sprites not displayed in final version).
 
 So armed with a dump of memory during gameplay, the list of all palette attributed to any sprite, I was ready to began the hack.
 
@@ -85,7 +85,7 @@ Seeing at the tileset and palettes, it is clear that Sengoku 2 is not programmed
 
 Here are the main steps used in a nutshell:
 
-- First get the palette number of every bleeding characters with MAME in debug mode and with a Lua script, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully) and not that many palette reordering between levels. It required anyway some cross validations due to false positives (see Fun facts section).
+- First get the palette number of every bleeding characters with MAME in debug mode and with a Lua script, thanks to the informations grabbed on Neogeodev website. There is only one palette for each character (hopefully) and not that many palette reordering between levels. It required anyway some cross validations due to false positives with palette 0x1D.
 - Easy situation, there is no vibrant red in the tileset but a clever palette swap is not visually shocking, go with a palette swap and target the P ROM only.
 - Moderate situation, there is yet a vibrant enough red in the palette and no need for palette swap, edit and inject the modified tileset only on the C ROMs, with unchanged palette.
 - Fucked situation, multiple palette swap for the same character and non consistent color to turn to red: I have to cheat and force a red in each palette at the same position and a modified tileset as well. The mod must stay pleasant to the eye and do not deteriorate too much the initial character design. It's my artistic compromise.
@@ -380,8 +380,6 @@ Aternate palette (puppet 2)
 - The Neo Geo CD version seems to contains remnants of codes from Cyber Lip, so I guess that at least some logic from Sengoku 2 P040.PRG was common with that earlier game (probably the logic to split and load levels in the tiny Neo Geo CD memory).
 
 - The sword slashing sound is much more satisfying and violent with AES / MVS version than Neo Geo CD version. It must be not that difficult to restore.
-
-- LUA script used to read sprite palettes during gameplay has lots of "false positive" with palette 0x70 on bosses (the palette of massive blood streams). I suspect these to be remnants of a much bloody version into the code, maybe possible to restore.
 
 ## Final words
 

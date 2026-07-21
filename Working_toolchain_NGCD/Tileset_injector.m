@@ -61,10 +61,9 @@ for f = 1:length(files)
         blocks = reshape(diff_mask, tile_size, th_, tile_size, tw_);
         blocks = permute(blocks, [1 3 2 4]);
         tile_diff = reshape(any(reshape(blocks, tile_size*tile_size, th_*tw_), 1), th_, tw_);
-        
-        % Fixed to prevent parsing errors across various MATLAB versions
+
         tile_diff_transposed = tile_diff.';
-        diff_indices = find(tile_diff_transposed(:)); 
+        diff_indices = find(tile_diff_transposed(:));
 
         found_count = 0;
         unplaced_count = 0;
@@ -127,12 +126,6 @@ for f = 1:length(files)
             else
                 unplaced_count = unplaced_count + 1;
             end
-
-            processed_count = found_count + unplaced_count;
-            if mod(processed_count, 10) == 0
-                fprintf('Set %d: processed %d/%d tiles (Injected %d, Unplaced %d, Remaining %d)\n', ...
-                    s, processed_count, total_diffs, found_count, unplaced_count, total_diffs - processed_count);
-            end
         end
         fprintf('Set %d: Injected %d, Unplaced: %d\n', s, found_count, unplaced_count);
     end
@@ -156,19 +149,19 @@ function [hashes, row_out, col_out, bytes_out] = build_tile_table(img, tile_size
     n = th * tw;
 
     blocks = reshape(img, tile_size, th, tile_size, tw, nch);
-    blocks = permute(blocks, [1 3 5 2 4]); 
-    flat = reshape(blocks, tile_size*tile_size*nch, n); 
+    blocks = permute(blocks, [1 3 5 2 4]);
+    flat = reshape(blocks, tile_size*tile_size*nch, n);
 
     flat_d = double(flat);
-    hashraw = mod(weights' * flat_d, 4611686018427387903); 
-    hashes_colmajor = int64(hashraw)'; 
+    hashraw = mod(weights' * flat_d, 4611686018427387903);
+    hashes_colmajor = int64(hashraw)';
 
     hmat = reshape(hashes_colmajor, th, tw);
     hashes = reshape(hmat.', n, 1);
 
-    bytes_colmajor = uint8(flat); 
+    bytes_colmajor = uint8(flat);
     col_order = reshape(reshape(1:n, th, tw).', n, 1);
-    bytes_out = bytes_colmajor(:, col_order); 
+    bytes_out = bytes_colmajor(:, col_order);
 
     tile_row0 = floor((0:n-1)' / tw);
     tile_col0 = mod((0:n-1)', tw);
@@ -181,7 +174,7 @@ function [pos, src, cidx] = find_tile(sorted_hashes, sort_order, base_row, base_
 
     lo = compat_lookup(sorted_hashes, key - 1) + 1;
     hi = compat_lookup(sorted_hashes, key);
-    
+
     for i = lo:hi
         oi = sort_order(i);
         if ~base_used(oi) && isequal(base_bytes(:, oi), target_bytes)
@@ -207,11 +200,11 @@ function idx = compat_lookup(sorted_vector, val)
         idx = 0;
         return;
     end
-    
+
     low = 1;
     high = length(sorted_vector);
     idx = 0;
-    
+
     if val < sorted_vector(1)
         idx = 0;
         return;
@@ -220,7 +213,7 @@ function idx = compat_lookup(sorted_vector, val)
         idx = high;
         return;
     end
-    
+
     while low <= high
         mid = floor((low + high) / 2);
         if sorted_vector(mid) <= val

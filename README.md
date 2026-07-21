@@ -383,7 +383,7 @@ Aternate palette (puppet 2)
 
 ## Plan for uncensoring Sengoku 1 and 3 ?
 
-Clearly not. Sengoku 1 is much too boring and I cannot imagine myself playing it for many hours to debug palette issue and find rogue pixels. Regarding Sengoku 3, it does not exist.
+Clearly not. Sengoku 1 is much too boring and I cannot imagine myself playing it for many hours to debug palette issue and find rogue pixels. Regarding Sengoku 3, it does not exist. The piece of crap named "Sengoku 3" is just soiling the franchise.
 
 ## Final words
 

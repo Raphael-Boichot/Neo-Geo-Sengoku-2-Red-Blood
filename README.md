@@ -26,9 +26,9 @@ Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Neo
 
 ## Building the whole project at once
 
-Just run this Powershell script from the root of the project:
+Just open and run this file from Matlab or GNU Octave:
 
-    Build_project.ps1
+    Build_project.m
 
 Prerequites:
 - Matlab is installed (or GNU Octave, but requires running [add_octave_to_path.m](/add_octave_to_path.m) first, from Octave)

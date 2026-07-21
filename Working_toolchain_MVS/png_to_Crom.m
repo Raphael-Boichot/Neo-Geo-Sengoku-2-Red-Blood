@@ -100,10 +100,6 @@ dataSets = {oddData, evenData};
 
 for i = 1:2
     fid = fopen(fileNames{i}, 'wb');
-    if fid == -1
-        error('Failed to open file for writing: %s. Ensure the directory exists and is writable.', fileNames{i});
-    end
     fwrite(fid, dataSets{i}, 'uint8');
     fclose(fid);
-    fprintf('Rebuilt %s (CRC32: %08X)\n', fileNames{i}, computeCRC32(fileNames{i}));
 end

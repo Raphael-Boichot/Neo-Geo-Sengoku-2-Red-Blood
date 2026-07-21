@@ -1,7 +1,6 @@
 clc
 clear
 warning off
-tic
 
 disp('To test this codes, just run Crom_to_png, Palette_swapper and png_to_Crom')
 disp('The CRC2 before and after must coincide')
@@ -112,27 +111,27 @@ dummy_palette_jet =[0x1005, 0x1008, 0x100D, 0x303F, 0x308F, 0x30DF, 0xF3FB, 0xF7
 disp('Initialization completed')
 
 %% Transforms the pair of roms in png tileset + palette image to ckeck
-disp('Building tileset in png from palette vector')
+disp('Building reference tileset in png from palette vector and original rom')
 Crom_to_png(oddRomFile_big,evenRomFile_big,dummy_palette_jet, 'Tileset_MVS_reference_big.png', 'txt_reference_palette_big.txt')
 Crom_to_png(oddRomFile_small,evenRomFile_small,dummy_palette_jet, 'Tileset_MVS_reference_small.png', 'txt_reference_palette_small.txt')
 %///////////////section to comment to edit tileset//////////////////
 
 %% Neo Geo new palette hex values for testing
-disp('Swapping palettes from vector and updating palette.txt')
+% disp('Swapping palettes of the modified tileset and updating palette.txt')
 % alternative_palette = [0x0014, 0x0810, 0x0A42, 0x0C74, 0x0D96, 0x0FC9, 0x4FFC, 0x0A00, 0x0F00, 0x4F90, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (red, other fur)
 % Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 % Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % Here some manual editing of the png tileset is expected, by changing the palettes and just running individual sections (right click, run section)
 
 %% Prepare tileset for NGCD injection (use of a dummy jet palette)
-disp('Forcing palette compatibility for next Neo Geo CD conversion')
+disp('Forcing palette compatibility of the modified tileset for next Neo Geo CD conversion')
 alternative_palette = dummy_palette_jet;
 Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % palettes and just running individual sections (right click, run section)
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
-disp('Building back C ROMs from png and palette.txt')
+disp('Building back C ROMs from modified tileset in png and palette.txt')
 png_to_Crom(oddRomOut_big, evenRomOut_big,outpng_big,txt_exchange_palette_big)
 png_to_Crom(oddRomOut_small, evenRomOut_small,outpng_small,txt_exchange_palette_small)
 % CRC32 must be the same in test mode
@@ -141,7 +140,6 @@ png_to_Crom(oddRomOut_small, evenRomOut_small,outpng_small,txt_exchange_palette_
 disp('Targeting and injecting new palette(s) in P ROM')
 PRomFile = '.\roms_out\040-p1.p1';
 copyfile(original_prog,PRomFile,'f');
-origCRC = computeCRC32(PRomFile);
 fid = fopen(PRomFile, 'rb'); %load file into memory and work with it locally
 PROMdata = fread(fid, inf, 'uint8=>uint8');
 fclose(fid);
@@ -294,12 +292,8 @@ fid = fopen(newFileName, 'wb');
 fwrite(fid, PROMdata, 'uint8');
 fclose(fid);
 
-fprintf('Orig CRC32: %08X | Saved: %s | New CRC32: %08X\n', ...
-    origCRC, newFileName, computeCRC32(newFileName));
-% CRC32 must be the same in test mode
-
 %% Generate IPF files for all these modifications
-disp('Generating IPS script')
+disp('Generating IPS script and performing CRC32 checksums')
 ipsFile='.\IPS_scripts\040-c1.c1.ips';
 IPS_generator(oddRomFile_big,oddRomOut_big,ipsFile)
 ipsFile='.\IPS_scripts\040-c2.c2.ips';
@@ -318,7 +312,6 @@ IPS_generator(original_prog,modified_prog,ipsFile)
 % File_merger('.\EPROM_out\MX29LV320.C2','.\EPROM_out\MX29LV320.C2',4) %Fills 4 times instead of just padding, chip is 4 MBytes, ROM is 1 MBytes
 % File_merger(modified_prog,'.\EPROM_out\MX29F1615.P1',2) %Fills two times instead of just padding, P1 is 1 MByte, chip is 2 MBytes
 disp('MVS version fully converted !')
-toc
 
 %% Changelog
 % Mains characters tileset edition

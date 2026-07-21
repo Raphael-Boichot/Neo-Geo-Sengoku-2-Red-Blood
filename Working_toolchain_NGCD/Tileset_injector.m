@@ -87,6 +87,8 @@ for f = 1:length(files)
 
         found_count = 0;
         unplaced_count = 0;
+        total_diffs = numel(diff_indices);
+        fprintf('Set %d: %d differing tiles to place\n', s, total_diffs);
 
         for idx = diff_indices'
             r_idx = floor((idx-1) / tiles_per_row) * tile_size + 1;
@@ -152,6 +154,12 @@ for f = 1:length(files)
             else
                 unplaced_count = unplaced_count + 1;
             end
+
+            processed_count = found_count + unplaced_count;
+            if mod(processed_count, 10) == 0
+                fprintf('Set %d: processed %d/%d tiles (Injected %d, Unplaced %d, Remaining %d)\n', ...
+                    s, processed_count, total_diffs, found_count, unplaced_count, total_diffs - processed_count);
+            end
         end
         fprintf('Set %d: Injected %d, Unplaced: %d\n', s, found_count, unplaced_count);
     end
@@ -159,6 +167,8 @@ for f = 1:length(files)
     final_rgb = ngcd_modified(:,:,1:3);
     final_alpha = ngcd_modified(:,:,4);
     imwrite(final_rgb, output_filename, 'Alpha', final_alpha);
+
+    fprintf('=== Finished Target Tileset: %s -> %s ===\n', files(f).name, output_filename);
 end
 end
 

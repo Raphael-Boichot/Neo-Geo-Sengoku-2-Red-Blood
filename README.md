@@ -122,7 +122,7 @@ The Neo Geo CD hack was made in parallel to the MVS version as it is not more di
 
 ## Some notes about (painfully and partially) reverse engineering the NGCD file format
 
-First surprise, the Neo Geo CD .SPR format is 16 bit little endian, which required adapting all the conversion tools developped for the MVS ROMs stored in big endian (but converted to little endian at the end in the 68k RAM, do not ask me why). Sprites are not stored de-interlaced compared to the MVS version. They are also stored horizontally flipped compared to MVS but it may be due to my decoder. HUD sprites (.FIX on NGCD, .s1 on MVS), are exactly formatted the same on the other hand.
+First surprise, the Neo Geo CD .SPR (sprites) and .PRG (program) formats are 16 bit little endian, which required adapting all the conversion tools developped for the MVS ROMs stored in big endian (but converted to little endian at the end in the 68k RAM, do not ask me why). Sprites are not stored de-interlaced compared to the MVS version. They are also stored horizontally flipped compared to MVS but it may be due to my decoder. HUD sprites (.FIX on NGCD, .s1 on MVS), are exactly formatted the same on the other hand (Big endian, 8x8 pixel tiles).
 
 Starting confident after this little surprise, I initially though hacking individual files of the NGCD version contained in track 1 and rebuilding an iso from any dedicated tool would be enough. As far as I can tell, it does not work. Even the trusty [neogeodev dedicated page](https://wiki.neogeodev.org/index.php/Making_an_ISO_file) was finally not usefull / enough. Any tool gives me an .iso container too small that makes the Neo Geo CD crash. I was clearly missing something like alignement tricks / error correction / padding.
 

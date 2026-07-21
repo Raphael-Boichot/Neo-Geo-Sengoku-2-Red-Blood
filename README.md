@@ -31,7 +31,7 @@ Just open and run this file with Matlab or GNU Octave from the root of the proje
     Build_project.m
 
 Prerequites:
-- You are in a Windows environment (virtual or not)
+- You are in a Windows environment (virtual or not, code easily adaptable to any OS anyway)
 - Matlab or [GNU Octave](https://octave.org/) are correctly installed
 - **/Working_toolchain_MVS/roms/** -> contains all C roms and P rom of Sengoku 2, MAME compatible version.
 - **/Working_toolchain_NGCD/NGCD_track_1_files/** -> contains all .SPR and .PRG files extracted from Sengoku 2, track 1, Neo Geo SD loader compatible version.

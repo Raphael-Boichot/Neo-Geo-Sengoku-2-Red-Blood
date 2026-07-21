@@ -384,7 +384,7 @@ Aternate palette (puppet 2)
 
 ## Any plan for uncensoring Sengoku 1 and 3 in the future ?
 
-Absolutely not, [for sure](https://www.youtube.com/watch?v=DNVGvQE0vgU). Sengoku 1 is boring as fuck and I cannot imagine myself playing it for more than 20 minutes to debug palette issue and chase rogue pixels. As for Sengoku 3, it doesn’t exist.
+Absolutely not, [for sure](https://www.youtube.com/watch?v=DNVGvQE0vgU). Sengoku 1 is boring as fuck and I cannot imagine myself playing it for more than 20 minutes to debug palette issue and chase rogue pixels. As for Sengoku 3, it does not exist.
 
 ## Final words
 

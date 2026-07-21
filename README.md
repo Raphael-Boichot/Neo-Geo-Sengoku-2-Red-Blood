@@ -299,7 +299,7 @@ Alternate palettes
 
 ![](/Palettes/Axeman_green_palette_alternate.png)
 
-- Spearman green and red **--> Palette swap and tileset editing**
+- Spearman green and red **--> Tileset editing only**
 
 ![](/Palettes/Spearman_green_palette.png)
 

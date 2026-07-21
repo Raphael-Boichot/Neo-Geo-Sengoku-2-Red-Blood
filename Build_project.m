@@ -7,3 +7,4 @@ run('Working_toolchain_NGCD/Run_conversion_NGCD.m')
 toc
 
 % Full conversion in about 50s with Matlab
+% Full conversion in about 4000s with GNU Octave

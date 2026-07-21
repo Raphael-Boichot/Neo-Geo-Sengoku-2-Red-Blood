@@ -28,17 +28,29 @@ for f = 1:length(files)
 
     % Build a lookup table of every tile currently in ngcd_modified.
     % Key = integer hash of the tile bytes -> FIFO list of entries
-    % {row, col, bytes}, stored in raster-scan order (same order the
-    % original nested loop walked). "bytes" is kept so that hash
+    % {row, col, bytes, used}, stored in raster-scan order (same order
+    % the original nested loop walked). "bytes" is kept so that hash
     % collisions (rare, but possible) can be resolved with an exact
     % byte comparison, preserving the original isequal-based guarantee.
+    %
+    % Duplicate tiles (e.g. blank/background tiles) commonly appear at
+    % many positions under the same hash. Each occurrence must only be
+    % handed out once, otherwise two different diffs that both need a
+    % copy of the same repeated tile would collide on the same position
+    % (one overwrite silently clobbers the other, and other genuine
+    % occurrences of that tile are never touched at all). To avoid that
+    % without the cost of splicing entries out of a cell array on every
+    % match (the previous, correctness-losing "open loop" version
+    % avoided this entirely, and the version before that spliced), each
+    % entry instead carries a "used" flag that is set once consumed;
+    % find_tile_in_map simply skips flagged entries.
     tileMap = containers.Map('KeyType', 'int64', 'ValueType', 'any');
     [ngh, ngw, ~] = size(ngcd_modified);
     for row = 1:tile_size:(ngh - tile_size + 1)
         for col = 1:tile_size:(ngw - tile_size + 1)
             tile = ngcd_modified(row:row+15, col:col+15, :);
             h = tile_hash(tile);
-            entry = struct('row', row, 'col', col, 'bytes', tile(:));
+            entry = struct('row', row, 'col', col, 'bytes', tile(:), 'used', false);
             if isKey(tileMap, h)
                 tileMap(h) = [tileMap(h), {entry}];
             else
@@ -118,20 +130,20 @@ for f = 1:length(files)
                 ngcd_modified(row:row+15, col:col+15, :) = candidates_mod{chosen_k};
                 found_count = found_count + 1;
 
-                % Remove the consumed slot from its queue
+                % Mark the consumed slot as used (no array splicing —
+                % just flip a flag on that one entry and write the list
+                % back).
                 if chosen_k == 1, usedKey = key1; usedIdx = list_idx1; else, usedKey = key2; usedIdx = list_idx2; end
                 list = tileMap(usedKey);
-                list(usedIdx) = [];
-                if isempty(list)
-                    remove(tileMap, usedKey);
-                else
-                    tileMap(usedKey) = list;
-                end
+                list{usedIdx}.used = true;
+                tileMap(usedKey) = list;
 
-                % Register the new content now sitting at this position
+                % Register the new content now sitting at this position,
+                % so later diffs (including from the next set) see the
+                % tileset's current state rather than stale bytes.
                 newBytes = candidates_mod{chosen_k}(:);
                 newKey = tile_hash(candidates_mod{chosen_k});
-                newEntry = struct('row', row, 'col', col, 'bytes', newBytes);
+                newEntry = struct('row', row, 'col', col, 'bytes', newBytes, 'used', false);
                 if isKey(tileMap, newKey)
                     tileMap(newKey) = [tileMap(newKey), {newEntry}];
                 else
@@ -173,16 +185,17 @@ function h = tile_hash(tile)
 end
 
 function [pos, list_idx] = find_tile_in_map(tileMap, h, tileBytes)
-    % Look up the first (raster-order) FIFO entry under hash h whose
-    % stored bytes exactly match tileBytes. Returns pos = [row col] and
-    % the index of that entry within the map's list (for removal), or
-    % pos = [] / list_idx = 0 if no exact match exists.
+    % Look up the first (raster-order) not-yet-used entry under hash h
+    % whose stored bytes exactly match tileBytes. Returns pos = [row col]
+    % and the index of that entry within the map's list (so the caller
+    % can flag it used), or pos = [] / list_idx = 0 if no exact,
+    % unconsumed match exists.
     pos = [];
     list_idx = 0;
     if isKey(tileMap, h)
         list = tileMap(h);
         for k = 1:numel(list)
-            if isequal(list{k}.bytes, tileBytes)
+            if ~list{k}.used && isequal(list{k}.bytes, tileBytes)
                 pos = [list{k}.row, list{k}.col];
                 list_idx = k;
                 return;

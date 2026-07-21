@@ -383,11 +383,11 @@ Aternate palette (puppet 2)
 
 ## Final words
 
-I made this mod for myself. I'm not affiliated with any company and I don't care what SNK right owners think about this. I have a job that is demanding and well-paid enough that I don't need to monetize anything or expect anything from anyone.
+I made this mod for myself. I'm not affiliated with any company and I do not care what SNK right owners think about hacking their I.P. I also have a job that is demanding and well-paid enough that I don't need to monetize anything or expect anything from anyone.
 
-I am publishing these workflows in a state far from perfection, to say the least. Throughout my career and my hobbies, I have seen too many projects (good or not, this is not the point here) disappear simply because they were never shared before their authors vanished from the face of the Earth, whatever the reason (brutal death, mental illness, boredom, greed, discord... I've seen all of these). I operate on the principle that if it is not online, it does not exist. I prefer releasing a functional work that is available to everyone than chasing a perfect version that eventually will fade into obscurity rotting on a forgotten hard drive.
+That said, I am publishing these workflows in a state far from perfection, to say the least. Throughout my career and my hobbies, I have seen too many projects (good or not, this is not the point here) disappear simply because they were never shared before their authors vanished from the face of the Earth, whatever the reason (brutal death, mental illness, boredom, conflict of interests, discord... I've seen all of these). I operate on the principle that if this is not online, it does not exist. I prefer releasing a public "functional" work than working on a never ending perfect version that will fade into obscurity rotting on my hard drive.
 
-The game is exactly what I expected from a red blood option, I hope you will enjoy that hack as much as me.
+The hacked game is exactly what I expected from a red blood option, I hope you will enjoy that hack as much as me.
 
 ## Acknowledgments
 

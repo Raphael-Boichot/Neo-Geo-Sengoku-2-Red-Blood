@@ -31,8 +31,8 @@ Just open and run this file with Matlab or GNU Octave from the root of the proje
     Build_project.m
 
 Prerequites:
-- You are in a Windows environment (other OS untested, must work or not)
-- Matlab or GNU Octave are installed
+- You are in a Windows environment (virtual or not)
+- Matlab or [GNU Octave](https://octave.org/) are correctly installed
 - **/Working_toolchain_MVS/roms/** -> contains all C roms and P rom of Sengoku 2, MAME compatible version.
 - **/Working_toolchain_NGCD/NGCD_track_1_files/** -> contains all .SPR and .PRG files extracted from Sengoku 2, Neo Geo SD loader compatible version.
 - **/Working_toolchain_NGCD/NGCD_track_1_binary/** -> contains the binary (.bin) of track 1 from Sengoku 2 Neo Neo CD, Neo Geo SD loader compatible version. It must be named **Sengoku2_Track_01.bin** (mandatory).
@@ -60,11 +60,11 @@ My fun hit a wall rapidely. The blood hack was not released in the public domain
 
 I'm just a tinkerer so code disassembly was just not on option. In the other hand I'm educated enough to hack video games in a top-down approach by diving into the RAMs / ROMs structure and use debug modes of emulators. Just a bootlegger job basically.
 
-## Why using Matlab ?
+## Why using Matlab / GNU Octave ?
 
 Matlab is my everyday go tool for scientific computing. My job during working hours is to solve engineering problems. Hacking video games is just another class of engineering problem I tackle when I have insomnia. Matlab considers everything as a matrix / vectors, so it is super fast when you keep that particularity in mind when programming. It has zero dependencies. Exactly what I needed here. The very shortest path from my problem to the solution.
 
-There is a free version of Matlab called [GNU Octave](https://octave.org/) that you can try to use to run the toolchain. It will probably work but execution will be suuuuupppeeer slow (like 100x slower) compared to Matlab. Better than nothing though.
+There is a free version of Matlab called [GNU Octave](https://octave.org/) that you can use to run the toolchain, it is fully compatible.
 
 ## Forewords: Neo Geo RAM palette and tilesets
 
@@ -115,9 +115,9 @@ Final adjustments (sometimes bigger than expected) were made by looking closely 
 - Custom codes to rebuild the NGCD binary from individual .SPR and .PRG files (this was a pain, see next section).
 - IPS script generator for sharing the hack easily.
 
-As for any prject, 10% of the time was taken to edit 90% of the tileset, 90% of the time to find some lone tiles / pixels in the giant tileset.
+As for any project, 10% of the time was taken to edit 90% of the tileset, 90% of the time to find some lone tiles / pixels in the giant tileset.
 
-I wanted to maximize the scripting in order to be able to easily come back on errors / bad design later. Some codes or parts of codes were made / polished / optimized with A.I. (Gemini mainly, sometimes Mistral A.I. because I'm beta tester, a pinch of Claude too for the most tricky parts). Basically there is no rocket science here but I must admit that A.I. was precious to circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a very niche market here.
+Some codes or parts of codes were made / polished / optimized with A.I. (Gemini mainly, sometimes Mistral A.I. because I'm beta tester, a pinch of Claude too for the most tricky parts). Basically there is no rocket science here but I must admit that A.I. was precious to circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a very niche market here.
 
 The Neo Geo CD hack was made in parallel to the MVS version as it is not more difficult (in fact, it was) to do on any of the systems. Except that the Neo Geo CD is scarcely documented (The only interesting source is a French [Neo Geo CD World article](https://www.neogeocdworld.info/html/fiche/hard.htm)), so I was basically on my own most of the time for the file formatting details.
 
@@ -300,7 +300,7 @@ Alternate palettes
 
 ![](/Palettes/Axeman_green_palette_alternate.png)
 
-- Spearman green and red **--> Tileset editing only**
+- Spearman green and red **--> Nothing to do if I remind**
 
 ![](/Palettes/Spearman_green_palette.png)
 
@@ -384,13 +384,13 @@ Aternate palette (puppet 2)
 
 ## Any plan for uncensoring Sengoku 1 and 3 in the future ?
 
-Absolutely not. Never. Sengoku 1 is much too boring and I cannot imagine myself playing it for many hours to debug palette issue and find rogue pixels. Regarding Sengoku 3, it does not exist. This game has never been made.
+Absolutely not, [for sure](https://www.youtube.com/watch?v=DNVGvQE0vgU). Sengoku 1 is boring as fuck and I cannot imagine myself playing it for more than 20 minutes to debug palette issue and chase rogue pixels. As for Sengoku 3, it doesn’t exist.
 
 ## Final words
 
-I made this mod for myself. I'm not affiliated with any company and I do not care what SNK right owners think about hacking their I.P. I also have a job that is demanding and well-paid enough that I don't need to monetize anything or expect anything from anyone.
+I made this mod for myself. I'm not affiliated with any company and I basically do not care what SNK right owners think about hacking their I.P. I also have a job that is demanding and well-paid enough that I don't need to try monetizing anything or expect anything from anyone.
 
-That said, I am publishing these workflows in a state far from perfection, to say the least. Throughout my career and my hobbies, I have seen too many projects (good or not, this is not the point here) disappear simply because they were never shared before their authors vanished from the face of the Earth, whatever the reason (brutal death, mental illness, boredom, conflict of interests, (D)discord... I've seen all of these). I operate on the principle that if this is not online, it does not exist. I prefer releasing a public "functional" work than working on a never ending perfect version that will fade into obscurity rotting on my hard drive.
+That said, I am publishing these workflows in a state far from perfection, to say the least. Throughout my career and my hobbies, I have seen too many projects (good or not, this is not the point here) disappear simply because they were never shared before their authors vanished from the face of the Earth, whatever the reason (brutal death, mental illness, boredom, conflict of interests, (D)discord... I've seen all of these). I operate on the principle that if this is not online, it does not exist. Better releasing a public "functional" work than a never ending perfect version that will fade into obscurity rotting on my hard drive.
 
 The hacked game is exactly what I expected from a red blood option, I hope you will enjoy that hack as much as me.
 

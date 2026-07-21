@@ -3,7 +3,6 @@ TILES_PER_ROW = 32;
 
 % 2. Load ROM
 fid = fopen(sprFile,'rb'); sprData = fread(fid,Inf,'uint8=>uint8'); fclose(fid);
-fprintf('Source %s (CRC32: %08X)\n', sprFile, computeCRC32(sprFile));
 
 % 3. Decode
 numTiles = floor(numel(sprData)/128);

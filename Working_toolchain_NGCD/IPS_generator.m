@@ -45,13 +45,16 @@ end
 
 body = vertcat(chunks{:});
 
-% 5. Single write for the whole file: header + body + footer
+% 5. Assemble the entire file (header + body + footer) as a single
+% in-memory uint8 buffer first, then do exactly one fwrite. This avoids
+% any per-call overhead beyond the single write itself, and means the
+% full patch content exists in memory before anything touches disk.
+patchHeader = uint8('PATCH');
+patchFooter = uint8('EOF');
+patch = [patchHeader(:); uint8(body(:)); patchFooter(:)];
+
 fid = fopen(ipsFile, 'wb');
-fwrite(fid, 'PATCH', 'char');
-if ~isempty(body)
-    fwrite(fid, body, 'uint8');
-end
-fwrite(fid, 'EOF', 'char');
+fwrite(fid, patch, 'uint8');
 fclose(fid);
 
 fprintf('IPS patch generated: %s\n', ipsFile);

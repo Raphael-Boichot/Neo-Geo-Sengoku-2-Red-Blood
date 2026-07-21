@@ -84,7 +84,5 @@ end
 
 % 5. Save and Verify
 fid = fopen(sprOut, 'wb');
-if fid == -1, error('Cannot open output file.'); end
 fwrite(fid, sprData, 'uint8');
 fclose(fid);
-fprintf('Rebuilt %s (CRC32: %08X)\n', sprOut, computeCRC32(sprOut));

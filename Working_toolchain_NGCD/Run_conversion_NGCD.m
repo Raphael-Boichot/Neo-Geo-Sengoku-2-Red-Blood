@@ -1,7 +1,5 @@
-clc
 clear
 warning off
-tic
 
 disp('The working palette is Matlab jet by default, better not try changing it !')
 disp('The NGCD Version is rebuilt from the MVS version, entirely by scripting')
@@ -19,7 +17,7 @@ disp('Initialization completed')
 %% Transforms the pair of roms in png tileset + palette image to check
 % Cspt_to_png is aggressively using matrix/vector formalism
 % some .SPR files do not contain modified tiles but I let them just in case
-disp('Building tileset in png from jet palette vector')
+disp('Building the reference tileset in png from jet palette vector')
 Cspr_to_png('.\NGCD_track_1_files\JOUCHU.SPR',dummy_palette_jet, '.\tileset_out\JOUCHU.png', '.\tileset_out\JOUCHU_exchange_palette.txt')
 Cspr_to_png('.\NGCD_track_1_files\\AREA1.SPR',dummy_palette_jet, '.\tileset_out\AREA1.png', '.\tileset_out\AREA1_exchange_palette.txt')
 Cspr_to_png('.\NGCD_track_1_files\AREA2.SPR',dummy_palette_jet, '.\tileset_out\AREA2.png', '.\tileset_out\AREA2_exchange_palette.txt')
@@ -35,7 +33,7 @@ Tileset_injector()% use the MVS tileset to modify the NGCD tileset, only use dum
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 % png_to_Cspr is aggressively using matrix/vector formalism too
-disp('Building back .SPR files from png and palette.txt')
+disp('Building back modified .SPR files from png tilesets and palette.txt')
 png_to_Cspr('.\roms_out\JOUCHU.SPR','.\tileset_out_modified\JOUCHU.png','.\tileset_out\JOUCHU_exchange_palette.txt')
 png_to_Cspr('.\roms_out\AREA1.SPR','.\tileset_out_modified\AREA1.png','.\tileset_out\AREA1_exchange_palette.txt')
 png_to_Cspr('.\roms_out\AREA2.SPR','.\tileset_out_modified\AREA2.png','.\tileset_out\AREA2_exchange_palette.txt')
@@ -49,7 +47,6 @@ png_to_Cspr('.\roms_out\TITLE.SPR','.\tileset_out_modified\TITLE.png','.\tileset
 disp('Targeting and injecting new palette(s) in .PRG')
 PRomFile = '.\roms_out\P040.PRG';
 copyfile('.\NGCD_track_1_files\P040.PRG','.\roms_out\P040.PRG','f');
-origCRC = computeCRC32(PRomFile);
 fid = fopen(PRomFile, 'rb'); %load file into memory and work with it locally
 PROMdata = fread(fid, inf, 'uint8=>uint8');
 fclose(fid);
@@ -195,25 +192,19 @@ palette_old = [0x0078, 0x3720, 0x2B52, 0x3E94, 0x5606, 0x5A0A, 0x5F0F, 0x3023, 0
 palette_new = [0x0078, 0x3720, 0x2B52, 0x3E94, 0x4700, 0x4B00, 0x4F00, 0x3023, 0x3046, 0x2069, 0x0885, 0x6BB9, 0x7FFC, 0x109B, 0x10DF, 0x0000]; % Puppet 2 with reds from puppet 1
 [PROMdata] = PRG_Palette_injector(PROMdata,palette_old,palette_new);
 
-% 5. Save and Final CRC
 [~, name, ext] = fileparts(PRomFile);
 newFileName = ['.\roms_out\', name, ext];
 fid = fopen(newFileName, 'wb');
 fwrite(fid, PROMdata, 'uint8');
 fclose(fid);
 
-fprintf('Orig CRC32: %08X | Saved: %s | New CRC32: %08X\n', ...
-    origCRC, newFileName, computeCRC32(newFileName));
-% CRC32 must be the same in test mode
-
 %% Now dealing directly with the track 1 raw binary
 % A modified payload can be injected two times in different locations, it's not an issue
-% The NGCD use some level of data duplication between levels due to memoru constraints
 disp('Injecting data packets into the NGCD binary')
 Binary_file_injector(); % also contains the ECC/EDC correction routine
 
 %% Generate IPF files for all these modifications on individual files
-disp('Generating IPS script')
+disp('Generating IPS script and performing CRC32 checksums')
 %IPS_generator('.\NGCD_track_1_files\P040.PRG','.\roms_out\P040.PRG','.\IPS_scripts\P040.PRG.ips') %not used anymore, targetting the binary directly
 %IPS_generator('.\NGCD_track_1_files\JOUCHU.SPR','.\roms_out\JOUCHU.SPR','.\IPS_scripts\JOUCHU.SPR.ips') %not used anymore, targetting the binary directly
 %IPS_generator('.\NGCD_track_1_files\AREA1.SPR','.\roms_out\AREA1.SPR','.\IPS_scripts\AREA1.SPR.ips') %not used anymore, targetting the binary directly
@@ -225,4 +216,4 @@ disp('Generating IPS script')
 IPS_generator('.\NGCD_track_1_binary\Sengoku2_Track_01.bin','.\NGCD_track_1_binary\Sengoku2_track_1_patched.bin','.\IPS_scripts\Sengoku2_Track_01.bin.ips')
 
 disp('Neo Geo CD version converted !')
-toc
+

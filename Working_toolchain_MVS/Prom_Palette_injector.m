@@ -1,12 +1,4 @@
-function Prom_Palette_injector(PRomFile, palette_old, palette_new)
-% 1. Load entire file into memory
-fid = fopen(PRomFile, 'rb');
-if fid == -1, error('Could not open file: %s', PRomFile); end
-data = fread(fid, inf, 'uint8=>uint8');
-fclose(fid);
-
-% 2. Initial CRC Check (Using fast LUT method)
-origCRC = computeCRC32(PRomFile);
+function [data]=Prom_Palette_injector(data, palette_old, palette_new)
 
 % 3. Prepare Patterns
 get_le_bytes = @(p) reshape([bitand(p, 255); bitshift(p, -8)], 1, []);
@@ -32,17 +24,7 @@ if length(search_pattern) == length(replace_pattern)
     end
     data = data_row(:);
     numInjections = length(idx);
+    fprintf('Palette pattern found and injected at %d location(s).\n', numInjections);
 else
     error('This fast version requires palettes of the same length.');
 end
-
-% 5. Save and Final CRC
-if ~exist('.\roms_out', 'dir'), mkdir('.\roms_out'); end
-[~, name, ext] = fileparts(PRomFile);
-newFileName = ['.\roms_out\', name, ext];
-fid = fopen(newFileName, 'wb');
-fwrite(fid, data, 'uint8');
-fclose(fid);
-
-fprintf('Orig CRC32: %08X | Injections: %d | Saved: %s | New CRC32: %08X\n', ...
-    origCRC, numInjections, newFileName, computeCRC32(newFileName));

@@ -31,7 +31,7 @@ Just run this Powershell script from the root of the project:
     Build_project.ps1
 
 Prerequites:
-- Matlab is installed (full automation with GNU Octave requires running [add_octave_to_path.m](/add_octave_to_path.m) first, from Octave)
+- Matlab is installed (or GNU Octave, but requires running [add_octave_to_path.m](/add_octave_to_path.m) first, from Octave)
 - **/Working_toolchain_MVS/roms/** -> contains all C roms and P rom of Sengoku 2, MAME compatible version.
 - **/Working_toolchain_NGCD/NGCD_track_1_files/** -> contains all .SPR and .PRG files extracted from Sengoku 2, Neo Geo SD loader compatible version.
 - **/Working_toolchain_NGCD/NGCD_track_1_binary/** -> contains the binary (.bin) of track 1 from Sengoku 2 Neo Neo CD, Neo Geo SD loader compatible version. It must be named **Sengoku2_Track_01.bin** (mandatory).

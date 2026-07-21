@@ -381,6 +381,10 @@ Aternate palette (puppet 2)
 
 - The sword slashing sound is much more satisfying and violent with AES / MVS version than Neo Geo CD version. It must be not that difficult to restore.
 
+## Plan for uncensoring Sengoku 1 and 3 ?
+
+Clearly not. Sengoku 1 is much too boring and I cannot imagine myself playing it for many hours to debug palette issue and find rogue pixels. Regarding Sengoku 3, it does not exist.
+
 ## Final words
 
 I made this mod for myself. I'm not affiliated with any company and I do not care what SNK right owners think about hacking their I.P. I also have a job that is demanding and well-paid enough that I don't need to monetize anything or expect anything from anyone.

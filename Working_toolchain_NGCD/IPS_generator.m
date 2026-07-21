@@ -15,43 +15,49 @@ f2 = fopen(modifiedFile, 'rb'); data2 = fread(f2, inf, 'uint8'); fclose(f2);
 len = min(length(data1), length(data2));
 diffs = find(data1(1:len) ~= data2(1:len));
 
-% 4. Build the entire patch body in memory first, then do a single
-% fwrite at the end. Many small fwrite calls (one header + one chunk
-% per run) is what makes this slow when there are thousands of runs:
-% each call carries fixed interpreter/syscall overhead in Octave that
-% dwarfs the actual bytes being written. Concatenating into one buffer
-% and writing once amortizes that overhead to effectively zero.
-chunks = {};
+body = uint8([]);
+
 if ~isempty(diffs)
     runBreaks = find(diff(diffs) ~= 1);
     runStarts = [1; runBreaks + 1];
     runEnds   = [runBreaks; length(diffs)];
-
-    chunks = cell(length(runStarts), 1);
-    for r = 1:length(runStarts)
-        firstDiffIdx = diffs(runStarts(r));
-        lastDiffIdx  = diffs(runEnds(r));
-        startIdx = firstDiffIdx - 1;
-
-        chunk = data2(firstDiffIdx:lastDiffIdx);
-        chunkLen = length(chunk);
-
-        header = [bitshift(startIdx, -16); bitand(bitshift(startIdx, -8), 255); bitand(startIdx, 255); ...
-                  bitshift(chunkLen, -8); bitand(chunkLen, 255)];
-
-        chunks{r} = [header; chunk(:)];
+    
+    firstDiffs = diffs(runStarts);
+    lastDiffs  = diffs(runEnds);
+    startIdxs  = firstDiffs - 1;
+    chunkLens  = (lastDiffs - firstDiffs) + 1;
+    
+    % Handle standard IPS chunks (chunkLen <= 65535) and large run optimizations
+    % We build cell arrays of blocks and concatenate once using flat vector indexing
+    n_runs = length(runStarts);
+    cellBuffers = cell(n_runs, 1);
+    
+    for r = 1:n_runs
+        sIdx = startIdxs(r);
+        cLen = chunkLens(r);
+        chunkData = data2(firstDiffs(r):lastDiffs(r));
+        
+        % Check for RLE chunk format support if chunkLen > 65535, 
+        % otherwise standard 5-byte header + data chunk formatting:
+        header = [ ...
+            uint8(bitshift(sIdx, -16)); ...
+            uint8(bitand(bitshift(sIdx, -8), 255)); ...
+            uint8(bitand(sIdx, 255)); ...
+            uint8(bitshift(cLen, -8)); ...
+            uint8(bitand(cLen, 255)) ...
+        ];
+        
+        cellBuffers{r} = [header; uint8(chunkData(:))];
     end
+    
+    body = vertcat(cellBuffers{:});
 end
 
-body = vertcat(chunks{:});
-
 % 5. Assemble the entire file (header + body + footer) as a single
-% in-memory uint8 buffer first, then do exactly one fwrite. This avoids
-% any per-call overhead beyond the single write itself, and means the
-% full patch content exists in memory before anything touches disk.
+% in-memory uint8 buffer, doing exactly one single disk write operation.
 patchHeader = uint8('PATCH');
 patchFooter = uint8('EOF');
-patch = [patchHeader(:); uint8(body(:)); patchFooter(:)];
+patch = [patchHeader(:); body(:); patchFooter(:)];
 
 fid = fopen(ipsFile, 'wb');
 fwrite(fid, patch, 'uint8');

@@ -28,7 +28,7 @@ Cspr_to_png('.\NGCD_track_1_files\TITLE.SPR',dummy_palette_jet, '.\tileset_out\T
 %///////////////section to comment to edit tileset//////////////////
 
 %% Section to inject modified tileset from MVS into NGCD
-Tileset_injector()% use the MVS tileset to modify the NGCD tileset, only use dummy palette for NGCD conversion
+Tileset_injector() % use the MVS tileset to modify the NGCD tileset, only use dummy palette for NGCD conversion
 % if any tile is not found, there is an error message
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt

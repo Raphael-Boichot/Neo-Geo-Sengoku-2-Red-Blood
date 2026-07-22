@@ -41,7 +41,7 @@ Resulting hacked files will be in their respective folders:
 - **/Working_toolchain_MVS/roms_out/**
 - **/Working_toolchain_NGCD/NGCD_track_1_binary/**
 
-As well as the IPS scripts for sharing:
+As well as the IPS scripts for sharing but you don't need them anymore:
 - **/Working_toolchain_MVS/IPS_scripts/**
 - **/Working_toolchain_NGCD/IPS_scripts/**
 

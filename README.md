@@ -388,7 +388,7 @@ Absolutely not, [for sure](https://www.youtube.com/watch?v=DNVGvQE0vgU). Sengoku
 
 ## Final words
 
-I made this mod for my own enjoyement. It's not an attempt to mimick the NCI mod from 2023 which, as far as I can tell seing footage on Youtube, took a different artistic direction (Changing credits and the title screen ? Who the fuck are these bootleggers ?!). Sengoku 2 in this present version is exactly what I would expect from a genuine red blood option. I hope you will enjoy that hack as much as I do.
+I made this mod for my own enjoyement. It's not an attempt to mimick the NCI mod from 2023 which, as far as I can tell seing footage on Youtube, took a different artistic direction (Changing credits and the title screen color ? How dare you !). Sengoku 2 in this present version is exactly what I would expect from a genuine red blood option. I hope you will enjoy that hack as much as I do.
 
 That said, I am publishing these workflows in a state far from perfection, to say the least. Throughout my career and my hobbies, I have seen too many projects (good or not, this is not the point here) disappear simply because they were never shared before their authors vanished from the face of the Earth, whatever the reason (brutal death, mental illness, boredom, conflict of interests, (D)discord... I've seen all of these). I operate on the principle that if this is not online, it does not exist. Better releasing a public "functional" work than a never ending perfect version that will fade into obscurity rotting on my hard drive.
 

@@ -68,7 +68,7 @@ There is a free version of Matlab called [GNU Octave](https://octave.org/) that 
 
 ## Forewords: Neo Geo RAM palette and tilesets
 
-Working with arcade systems is a very big relief compared to classical game systems from the 90'. Sprites, voices, music, program, and HUD are well organized and separated on different files / chips, clearly identified. No need to search for data or guess anything. The goal of the project here is to make a combo of tileset editing / palette swap. It will require modifying both the tilesets and the main program.
+Working with arcade systems is a very big relief compared to classical game systems from the 90'. Sprites, voices, music, program, and HUD are well organized and separated on different files / chips, clearly identified. In the case of the Neo Geo, even the color palette has its own dedicated RAM chip and memory address range. No need to search for data or guess anything. The goal of the project here is to make a combo of tileset editing / palette swap. It will require modifying both the tilesets and the main program.
 
 Neo Geo memory is easily accessible from MAME in debug mode. As far as I know, MAME stays the best way to explore Neo Geo memory and code while playing. It allows internal scripting in Lua and basically access / do anything you want within the game by manipulating memory in live.
 

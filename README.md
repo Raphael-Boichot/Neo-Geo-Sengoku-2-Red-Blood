@@ -24,7 +24,7 @@ Summary of CRC32 you should expect before / after patching:
 
 Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Neo CD format (.CUE + .BIN for each track) so I won't try targeting any other exotic one (like .ISO + .MP3). Just patching track 1 from other formats may or may not work depending on their CRC32. You can anyway test the hack with [Raine64](https://www.emu-france.com/emulateurs/6-arcades/61-multi-games/7687-raine-64-bits/#google_vignette) before burning a CD or going further with your ODE. Raine64 has glitches on the title screen unrelated to the hack.
 
-## Building the whole project at once
+## Editing and building the whole project at once
 
 Just open and run this file with Matlab or GNU Octave from the root of the project:
 
@@ -45,7 +45,7 @@ As well as the IPS scripts for sharing but you don't need them anymore:
 - **/Working_toolchain_MVS/IPS_scripts/**
 - **/Working_toolchain_NGCD/IPS_scripts/**
 
-Anything fishy with the hacks ? A bloody tile is missing ? Need for help ? Open an issue !
+Building the project basically allows you to add / remove features. You can follow the comments into the code to understand what section does. Anything fishy with the hacks ? A bloody tile is missing ? Need for help ? Open an issue !
 
 ## Click on image to see bloody action, MVS version
 [ ![Click to see gameplay](/Caption.png)](https://www.youtube.com/watch?v=bVQaettOxyM)

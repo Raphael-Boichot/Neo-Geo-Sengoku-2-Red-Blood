@@ -146,9 +146,10 @@ First time I'm happy to see this little juggling fucker...
 
 ## Identified flaws
 
-The 15 colors limit per tile was surprisingly frustrating. The redness of blood may vary depending on the compromises made when juggling with palette swap, yet existing satisfying reds (more or less brown), my artistic perception but most of all, my laziness. My goal is not to redo the entire tileset. Overall, the game is now more reddish. I reused only the existing colors to keep the designer's original vision intact. I think it fits the game really well.
+- The 15 colors limit per tile was surprisingly frustrating. The redness of blood may vary depending on the compromises made when juggling with palette swap, yet existing satisfying reds (more or less brown), my artistic perception but most of all, my laziness. My goal is not to redo the entire tileset. Overall, the game is now more reddish. I reused only the existing colors to keep the designer's original vision intact. I think it fits the game really well.
+- Some rare flashing animations during the horse rides are still unexpectedly white among the regular red ones, no idea why for the moment.
 
-# History of modifications
+# List of modifications
 
 Do not mind the first color rendered in the next section, it is the transparent layer but it also contains the palette number as displayed in RAM (which was very practical for the LUA script). It is rendered as a color or transparency depending on the tool I used to render the palette strip in the repository.
 

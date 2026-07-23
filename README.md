@@ -54,11 +54,11 @@ Building the project basically allows you to add / remove features. You can foll
 
 Sometimes, as a player, you get pissed. I mean really.
 
-Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's **censored**. The issue is that I could deal with that in my life until I heard the existence of a NCI red blood hack from 2023. That’s a pretty good idea, I thought to myself. Let’s download the ROM (sorry, the IPS patch, piracy is bad, very bad) and have fun!
+Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's **censored**. The issue is that I could deal with that in my life until I heard the existence of a NCI red blood hack from 2023. That’s a pretty good idea, I thought to myself. Let’s download the ROM (sorry, the IPS patch, piracy is bad, very bad) and have fun !
 
 My fun hit a wall rapidely. The blood hack was not released in the public domain, it looked like a ~~scammer~~ collector only version, released in very small quantities, and only to customers not owning an EPROM dumper or even a screwdriver apparently. 
 
-Anyway, staring at expensive video game box rotting on shelves is not my dope. I want to play the red blood version ! So, armed with years of hacking Game Boy games and hardware (Neo Geo is just a bigger, badder, better Game Boy), the marvelous Matlab software that does coffee and Neogeodev documentation, it's was just a matter of time and effort (honestly, more than expected initially) to cook my own, but as a public version this time. I began thinking doing the hack seriously in June 2026 and was able to release the first version in early July 2026. One month from idea to release basically.
+Anyway, staring at expensive video game box rotting on shelves is not my dope. I want to play the red blood version ! So, armed with years of hacking Game Boy games and hardware (Neo Geo is just a bigger, badder, better Game Boy), the marvelous Matlab software that does coffee and Neogeodev documentation, it was just a matter of time and effort (honestly, more than expected initially) to cook my own, but as a public version this time. I began thinking doing the hack seriously in June 2026 and was able to release the first version in early July 2026. One month from idea to release basically.
 
 I'm a tinkerer so code disassembly was just not on option. In the other hand I'm educated enough to hack video games in a top-down approach by diving into the RAMs / ROMs structure and use debug modes of emulators. Just a bootlegger job basically, nothing fancier.
 
@@ -397,7 +397,7 @@ That said, I am publishing these workflows in a state far from perfection, to sa
 
 ## Acknowledgments
 
-- The [neogeodev community](https://wiki.neogeodev.org//index.php/Main_Page) in general and [Furrtek](https://github.com/furrtek) in particular. This project made on spare time was only possible because I stood on the shoulders of giants. The Neo Geo was one of my first consoles and Sengoku 2 AES one of my first games (yes, I'm loaded) and I still have a special soft spot for this system, even though the community around has now become completely insane.
+- The [neogeodev community](https://wiki.neogeodev.org//index.php/Main_Page) in general and [Furrtek](https://github.com/furrtek) in particular. This project made on spare time was only possible because I stood on the shoulders of giants. The Neo Geo was one of my first consoles and Sengoku 2 AES one of my first games (both sold to buy a Neo Geo CD, nobody is perfect...) and I still have a special soft spot for this system, even though the community around has now become completely insane.
 - [Matt Greer](https://www.mattgreer.dev/about/) for sharing [hacks and usefull codes](https://github.com/city41/rotary-bobble) about Neo Geo hacking and the very usefull [sprite viewer](https://neospriteviewer.mattgreer.dev/) that helped me a lot configuring the ROM and SPR decoders.
 - [Spriter ressources](https://www.spriters-resource.com/neo_geo_ngcd/sengoku2/) for the incredible dataset that helped me a lot figuring out which tiles was where within the giant game tileset.
 - [Alex Free and EDCRE](https://github.com/alex-free/edcre), which basically saved the Neo Geo CD port!

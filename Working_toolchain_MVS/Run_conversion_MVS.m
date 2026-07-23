@@ -118,9 +118,9 @@ Crom_to_png(oddRomFile_small,evenRomFile_small,dummy_palette_jet, 'Tileset_MVS_r
 
 %% Neo Geo new palette hex values for testing
 % disp('Swapping palettes of the modified tileset and updating palette.txt')
-% alternative_palette = [0x0014, 0x0810, 0x0A42, 0x0C74, 0x0D96, 0x0FC9, 0x4FFC, 0x0A00, 0x0F00, 0x4F90, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (red, other fur)
-% Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
-% Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
+alternative_palette = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; % Claude Yamamoto (player 1)
+Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
+Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % Here some manual editing of the png tileset is expected, by changing the palettes and just running individual sections (right click, run section)
 
 %% Prepare tileset for NGCD injection (use of a dummy jet palette)
@@ -129,6 +129,18 @@ alternative_palette = dummy_palette_jet;
 Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % palettes and just running individual sections (right click, run section)
+
+%% Check image file sanity, remove rogue pixels put over transparent layer, check differences
+% disp('Checking image sanity (must be 16 colors)');
+% count_unique_colors('Tileset_MVS_reference_big.png');
+% count_unique_colors('Tileset_MVS_reference_small.png');
+% count_unique_colors(outpng_big);
+% count_unique_colors(outpng_small);
+% %This sometimes happens with MS Paint when you're not careful...
+% repair_transparent_pixels('Tileset_MVS_modified_big.png', 'Tileset_MVS_reference_big.png', 'Tileset_MVS_modified_big.png');
+% repair_transparent_pixels('Tileset_MVS_modified_small.png', 'Tileset_MVS_reference_small.png', 'Tileset_MVS_modified_small.png');
+% image_differential('Tileset_MVS_reference_big.png', outpng_big, 'Tileset_big_modifications.png');
+% image_differential('Tileset_MVS_reference_small.png', outpng_small, 'Tileset_small_modifications.png');
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 disp('Building back C ROMs from modified tileset in png and palette.txt')

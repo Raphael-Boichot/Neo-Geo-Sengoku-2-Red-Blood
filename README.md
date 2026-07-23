@@ -58,7 +58,7 @@ Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's viol
 
 My fun hit a wall rapidely. The blood hack was not released in the public domain, it looked like a ~~scammer~~ collector only version, released in very small quantities, and only to customers not owning an EPROM dumper or even a screwdriver. SO, armed with years of hacking Game Boy games and hardware, the marvelous Matlab software that does coffee and Neogeodev documentations, it's was just a matter of time and effort (honestly, more than expected initially) to cook a public version. I began thinking doing the hack seriously in June 2026 and was able to release the first version in July 2026. One month from idea to release basically.
 
-I'm just a tinkerer so code disassembly was just not on option. In the other hand I'm educated enough to hack video games in a top-down approach by diving into the RAMs / ROMs structure and use debug modes of emulators. Just a bootlegger job basically.
+I'm a tinkerer so code disassembly was just not on option. In the other hand I'm educated enough to hack video games in a top-down approach by diving into the RAMs / ROMs structure and use debug modes of emulators. Just a bootlegger job basically.
 
 ## Why using Matlab / GNU Octave ?
 

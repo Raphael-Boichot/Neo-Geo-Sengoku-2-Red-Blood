@@ -26,7 +26,7 @@ Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Neo
 
 ## Editing and building the whole project at once
 
-You can also just build directly the patched files from the workflow prposed here. Just open and run this file with Matlab or GNU Octave from the root of the project:
+You can also just build directly the patched files from the workflow proposed here. Just open and run this file with Matlab or GNU Octave from the root of the project:
 
     Build_project.m
 

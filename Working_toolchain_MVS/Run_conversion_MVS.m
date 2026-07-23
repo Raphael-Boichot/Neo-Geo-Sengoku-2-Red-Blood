@@ -238,9 +238,9 @@ palette_new = [0x0002, 0x1800, 0x4E45, 0x4F20, 0x0001, 0x9500, 0x4745, 0x4F20, 0
 
 % puppet warriors, lotta red !
 % Let me be honest, tilset conversion was a nightmare here. There are tiles EVERYWHERE
-% The "helmet with feather" (blue with red) form has a TON of additional tiles compared to the other forms
+% The helmet with feather (blue with red) form has a TON of additional tiles compared to the other forms (but no palette swap)
 disp('------------Swapping Puppet Warriors palette---------------------')
-palette_old = [0x002F, 0x1720, 0x5B62, 0x5FD8, 0x3844, 0x4F88, 0x4FDD, 0x2B60, 0x6FB0, 0x4FE0, 0x7113, 0x033D, 0x257D, 0x49CF, 0x7FFF, 0x0111]; % Puppet Warrior blue, helmet with feather
+palette_old = [0x002F, 0x1720, 0x5B62, 0x5FD8, 0x3844, 0x4F88, 0x4FDD, 0x2B60, 0x6FB0, 0x4FE0, 0x7113, 0x033D, 0x257D, 0x49CF, 0x7FFF, 0x0111]; % Puppet Warrior blue
 palette_new = [0x002F, 0x1720, 0x5B62, 0x5FD8, 0x3844, 0x4F88, 0x4FDD, 0x6600, 0x0A10, 0x4F20, 0x7113, 0x033D, 0x257D, 0x49CF, 0x7FFF, 0x0111]; % Puppet Warrior blue with red
 [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
 palette_old = [0x0030, 0x2930, 0x5D96, 0x4FFA, 0x6810, 0x4C50, 0x4FA3, 0x0634, 0x0957, 0x4F7A, 0x0433, 0x0766, 0x1987, 0x7CBB, 0x7FFF, 0x0000]; % Puppet Warrior orange
@@ -251,6 +251,7 @@ palette_new = [0x004B, 0x1720, 0x5B62, 0x5FD8, 0x0443, 0x1887, 0x0BBA, 0x6600, 0
 [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
 
 % Ninja monks, lotta red too!
+% Not easy to edit but easily convincing, does that make sense ?
 disp('------------Swapping Ninja Monk palette--------------------------')
 palette_old = [0x002B, 0x4730, 0x7B32, 0x5F85, 0x2464, 0x28A8, 0x7EFE, 0x4430, 0x4860, 0x4FA0, 0x5323, 0x7626, 0x2B2B, 0x7E6E, 0x6FC8, 0x7202]; % Ninja Monk violet
 palette_new = [0x002B, 0x4730, 0x7B32, 0x5F85, 0x2464, 0x28A8, 0x7EFE, 0x4500, 0x0B00, 0x4F00, 0x5323, 0x7626, 0x2B2B, 0x7E6E, 0x6FC8, 0x7202]; % Ninja Monk violet with red hat
@@ -284,22 +285,26 @@ palette_new = [0x006F, 0x0631, 0x1962, 0x1DA5, 0x0444, 0x0999, 0x7FFF, 0x4500, 0
 [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
 
 % Spearman palette / DISMISSED, pointless
+% this is a blood less ennemy, nothing to do
 % disp('-----------------------Spearman palette----------------------')
 % palette_old = [0x002D, 0x4B30, 0x2D80, 0x7FD6, 0x0213, 0x3425, 0x2859, 0x2510, 0x6950, 0x4FD0, 0x4600, 0x0C00, 0x6F40, 0x7CBD, 0x7FFF, 0x0000]; % Spearman red
 % palette_new = [0x002D, 0x4B30, 0x2D80, 0x7FD6, 0x0213, 0x3425, 0x2859, 0x4600, 0x0C00, 0x6F40, 0x2510, 0x6950, 0x4FD0, 0x7CBD, 0x7FFF, 0x0000]; % Spearman red and green inverted
 % [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
 
 disp('------------Swapping Big fish with legs palette------------------')
+% honestly, my less prefered part of the hack, maybe fishes should have white blood after all
 palette_old = [0x0055, 0x302A, 0x504F, 0x716F, 0x6430, 0x6980, 0x1DD2, 0x0731, 0x0A53, 0x5D84, 0x0016, 0x7FB7, 0x6FFC, 0x248E, 0x37CF, 0x0000]; % big blue fish
 palette_new = [0x0055, 0x4A10, 0x0E20, 0x2F50, 0x6430, 0x6980, 0x1DD2, 0x0731, 0x0A53, 0x5D84, 0x6610, 0x7FB7, 0x6FFC, 0x6E80, 0x4FB0, 0x0000]; % big blue fish, now red
 [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
 
-disp('------------Swapping Soldier palette-----------------------------')% this one was lucky, I have a free entry in palette !
+disp('------------Swapping Soldier palette-----------------------------')
+% this one was lucky, I have a free entry in palette !
 palette_old = [0x0065, 0x3941, 0x3E93, 0x4FE7, 0x0140, 0x0480, 0x08C0, 0x0720, 0x4B60, 0x1037, 0x518A, 0x26CF, 0x7EFF, 0x7DF4, 0x20F4, 0x0000]; % Soldier palette 2
 palette_new = [0x0065, 0x3941, 0x3E93, 0x4FE7, 0x0140, 0x0480, 0x08C0, 0x0720, 0x4B60, 0x1037, 0x518A, 0x26CF, 0x7EFF, 0x7DF4, 0x4F00, 0x0000]; % Soldier palette with red injected;
 [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
 
 disp('------------Swapping Kojiro palette------------------------------')
+% this ennemy appears with two different palettes at the same address depending on level (unique case in this hack), but one yet contains red
 palette_old = [0x004E, 0x2830, 0x2C73, 0x6FC8, 0x5151, 0x4595, 0x79F9, 0x0960, 0x6FB0, 0x30DF, 0x0559, 0x799C, 0x1FFF, 0x5606, 0x5C0C, 0x0000]; % Kojiro (anywhere else, green)
 palette_new = [0x004E, 0x2830, 0x2C73, 0x6FC8, 0x5151, 0x4595, 0x79F9, 0x0960, 0x6FB0, 0x30DF, 0x0559, 0x799C, 0x1FFF, 0x4A00, 0x4F00, 0x0000]; % Kojiro (anywhere else, green but a bit of red instead of purple)
 [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
@@ -387,6 +392,10 @@ disp('MVS version fully converted !')
 %2026-07-19 Kirimraru blue has blue blood, reverse to red/brown
 %2026-07-19 Jack Stone back to normal palette and brown blood
 %2026-07-19 Crow Tengu God back to normal palette and brown blood
+
+%last fright - by jumping and slashing, there are animated blood splashes with the swords of the two main characters
+%2026-07-23 Convert these last tiles and a tile missing (blood splat on the foot of puppet warrior with feathers, still him)
+%2027-07-23 adding a special tool to fix the rogue pixels in the modified tileset
 
 % This is the dump of the palette RAM during first level. Hopefully the
 % characters palettes do not change much in the different levels contrary

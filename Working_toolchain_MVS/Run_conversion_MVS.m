@@ -118,9 +118,9 @@ Crom_to_png(oddRomFile_small,evenRomFile_small,dummy_palette_jet, 'Tileset_MVS_r
 
 %% Neo Geo new palette hex values for testing
 % disp('Swapping palettes of the modified tileset and updating palette.txt')
-alternative_palette = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; % Claude Yamamoto (player 1)
-Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
-Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
+% alternative_palette = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; % Claude Yamamoto (player 1)
+% Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
+% Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % Here some manual editing of the png tileset is expected, by changing the palettes and just running individual sections (right click, run section)
 
 %% Prepare tileset for NGCD injection (use of a dummy jet palette)

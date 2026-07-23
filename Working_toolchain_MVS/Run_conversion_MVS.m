@@ -20,29 +20,32 @@ files = dir('.\roms\');
 toCopy = files(~[files.isdir] & ~endsWith({files.name}, '.txt', 'IgnoreCase', true));
 arrayfun(@(x) copyfile(fullfile(x.folder, x.name), '.\roms_out\','f'), toCopy); %'f' to force copy
 
-% Original roms
+% Original roms, to be provided
 oddRomFile_big  = '.\roms\040-c1.c1';
 evenRomFile_big = '.\roms\040-c2.c2';
 oddRomFile_small  = '.\roms\040-c3.c3';
 evenRomFile_small = '.\roms\040-c4.c4';
 original_prog ='.\roms\040-p1.p1';
 
-% MAME romsets may use different file extensions
+% MAME romsets may use different file extensions, just checking
 oddRomFile_big = findFileWithBinFallback(oddRomFile_big);
 evenRomFile_big = findFileWithBinFallback(evenRomFile_big);
 oddRomFile_small = findFileWithBinFallback(oddRomFile_small);
 evenRomFile_small = findFileWithBinFallback(evenRomFile_small);
 original_prog = findFileWithBinFallback(original_prog);
 
-% modified roms
+% modified roms, will be built by the script
 oddRomOut_big    = '.\roms_out\040-c1.c1';
 evenRomOut_big   = '.\roms_out\040-c2.c2';
 oddRomOut_small    = '.\roms_out\040-c3.c3';
 evenRomOut_small   = '.\roms_out\040-c4.c4';
 modified_prog = '.\roms_out\040-p1.p1';
 
+% modified tilesets, all the craft is here, dozens of hours on MS Paint and spriters-resource.com
 outpng_big ='Tileset_MVS_modified_big.png';
 outpng_small ='Tileset_MVS_modified_small.png';
+% palette txt files are very important to connect RGBA definition with Neo Geo palette entry order
+% without them going together, nothing can work correctly as png encoding is not necessarily keeping the index alive depending on the software you use for editing
 txt_exchange_palette_big = 'txt_exchange_palette_big.txt';
 txt_exchange_palette_small = 'txt_exchange_palette_small.txt';
 
@@ -110,27 +113,32 @@ dummy_palette_jet =[0x1005, 0x1008, 0x100D, 0x303F, 0x308F, 0x30DF, 0xF3FB, 0xF7
 % dummy_palette = [0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000];
 disp('Initialization completed')
 
-%% Transforms the pair of roms in png tileset + palette image to ckeck
+%% Transforms the pair of roms in png tileset + palette image just to check rapidely
 disp('Building reference tileset in png from palette vector and original rom')
 Crom_to_png(oddRomFile_big,evenRomFile_big,dummy_palette_jet, 'Tileset_MVS_reference_big.png', 'txt_reference_palette_big.txt')
 Crom_to_png(oddRomFile_small,evenRomFile_small,dummy_palette_jet, 'Tileset_MVS_reference_small.png', 'txt_reference_palette_small.txt')
 %///////////////section to comment to edit tileset//////////////////
 
-%% Neo Geo new palette hex values for testing
+%% Neo Geo new palette hex values for testing, this was my main tool to retrieve blood tiles
+% basically inject the good palette, search for tiles, edit the tiles, save, play, and so on
+% this part has no purpose if you just create the ROMs from my tileset, it's just for editing
 % disp('Swapping palettes of the modified tileset and updating palette.txt')
 % alternative_palette = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; % Claude Yamamoto (player 1)
 % Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 % Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
-% Here some manual editing of the png tileset is expected, by changing the palettes and just running individual sections (right click, run section)
+% You can just run this section and the init section (right click, run section) to edit the tileset
 
 %% Prepare tileset for NGCD injection (use of a dummy jet palette)
+% This part is mandatory for building the project until the Neo Geo CD conversion part
+% This palette, very contrasted, is used as universal exchange palette
 disp('Forcing palette compatibility of the modified tileset for next Neo Geo CD conversion')
 alternative_palette = dummy_palette_jet;
 Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
-% palettes and just running individual sections (right click, run section)
 
 %% Check image file sanity, remove rogue pixels put over transparent layer, check differences
+% this is just for me as I sometimes do shit with MS Paint, clicking by error
+% a rogue pixel far from a group of modified tiles is always an error
 % disp('Checking image sanity (must be 16 colors)');
 % count_unique_colors('Tileset_MVS_reference_big.png');
 % count_unique_colors('Tileset_MVS_reference_small.png');
@@ -143,12 +151,14 @@ Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % image_differential('Tileset_MVS_reference_small.png', outpng_small, 'Tileset_small_modifications.png');
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
+% after this step, graphics are packed in C ROMs, now time to edit the P ROM
 disp('Building back C ROMs from modified tileset in png and palette.txt')
 png_to_Crom(oddRomOut_big, evenRomOut_big,outpng_big,txt_exchange_palette_big)
 png_to_Crom(oddRomOut_small, evenRomOut_small,outpng_small,txt_exchange_palette_small)
 % CRC32 must be the same in test mode
 
 %% Injects new palettes in P ROMs
+% file is loaded only one time in memory as access to file is very slow in any case
 disp('Targeting and injecting new palette(s) in P ROM')
 PRomFile = '.\roms_out\040-p1.p1';
 copyfile(original_prog,PRomFile,'f');
@@ -157,18 +167,22 @@ PROMdata = fread(fid, inf, 'uint8=>uint8');
 fclose(fid);
 
 % Boring blood vs vibrant blood, several foes
+% Easy move I must admit, probably on purpose at SNK
 disp('------------Swapping blood splashings palette--------------------')
 palette_old = [0x0070, 0x0660, 0x6AA0, 0x0DD0, 0x6EE0, 0x7FF4, 0x6FFA, 0x7FFF, 0x0000, 0x7154, 0x3275, 0x2398, 0x36B9, 0x47EB, 0x7BFE, 0x7FFF]; % stream of boring blood, many ennemies
 palette_new = [0x0070, 0x2812, 0x2912, 0x6A12, 0x0B00, 0x0C00, 0x0D00, 0x0E00, 0x0000, 0x7154, 0x3275, 0x2398, 0x36B9, 0x47EB, 0x7BFE, 0x7FFF]; % stream of blood, gradation of intense reds
 [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
 
 % Boring flashing effect, everyone, white to vibrant red
+% this effect is polarizing, but you can just comment the section and it will turn back to white
 disp('------------Swapping flashing damage palette---------------------')
 palette_old = [0x0001, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF]; % general flashing effect when hit
 palette_new = [0x0001, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00]; % general flashing effect when hit, red
 [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
 
 % Jack Stone (player 2) / DISMISSED, interacts too much with HUD palette
+% I initially use a dedicated palette before discovering it was impossible to synchronyze with the HUD
+% So red is now the red - brown of the skin (second palette entry), no palette swap anymore
 % disp('------------Swapping Jack Stone (player 2) palette---------------')
 % palette_old = [0x0011, 0x7810, 0x0C74, 0x5FC9, 0x6640, 0x6B80, 0x6FF0, 0x3037, 0x638C, 0x3AFF, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4FA0, 0x7111]; % Jack Stone (Player 2)
 % palette_new = [0x0011, 0x7810, 0x0C74, 0x5FC9, 0x6640, 0x6B80, 0x6FF0, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4FA0, 0x7111]; % Jack Stone (Player 2), blue becomes red
@@ -180,25 +194,31 @@ palette_new = [0x0001, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0
 % palette_new = [0x0017, 0x6940, 0x0C70, 0x4EA0, 0x6FD0, 0x5FF5, 0x4FFC, 0x0A00, 0x0F00, 0x4F90, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (doggo, red, blonde fur, player 2)
 % [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
 
-% Kirimaru (Player 1 - test)
+% Kirimaru (Player 1 red form) - sadly, I cannot use the vibrant red
+% I initially use a dedicated palette before discovering it was impossible to synchronyze with the HUD in the blue form
+% Only discrete way to get a red with Kirimaru red / blue is to have a red-brown in the fur (second palette entry)
 disp('------------Swapping Kirimaru (player 1) palette-----------------')
 palette_old = [0x0014, 0x4332, 0x4663, 0x4995, 0x3BA6, 0x3DC9, 0x4FFC, 0x0A00, 0x0F00, 0x4F90, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (doggo, red, player 1)
 palette_new = [0x0014, 0x0810, 0x0A42, 0x0C74, 0x0D96, 0x0FC9, 0x4FFC, 0x0A00, 0x0F00, 0x4F90, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (red, other fur)
 [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
 
-% Kirimaru (Player 2 - test)
+% Kirimaru (Player 2 blue form)
 disp('------------Swapping Kirimaru (player 2) palette-----------------')
 palette_old = [0x0017, 0x4332, 0x4663, 0x4995, 0x3BA6, 0x3DC9, 0x4FFC, 0x000C, 0x306E, 0x10DF, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (doggo, blue, player 2)
 palette_new = [0x0017, 0x0810, 0x0A42, 0x0C74, 0x0D96, 0x0FC9, 0x4FFC, 0x000C, 0x306E, 0x10DF, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (blue, other fur)
 [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
 
 % Crow tengu (player 2) / DISMISSED, interacts too much with HUD palette
+% I initially use a dedicated palette before discovering it was impossible to synchronyze with the HUD
+% So red is now the red - brown of the skin (second palette entry) and no palette swap anymore
 % disp('------------Swapping Crow Tengu (player 2) palette---------------')
 % palette_old = [0x0016, 0x7810, 0x0C74, 0x5FC9, 0x3040, 0x6281, 0x54E2, 0x6253, 0x52A9, 0x3AFF, 0x7555, 0x7999, 0x0EEE, 0x6870, 0x2CC0, 0x7111]; % Crow Tengu God (green, player 2)
 % palette_new = [0x0016, 0x7810, 0x0C74, 0x5FC9, 0x0800, 0x0D00, 0x4F64, 0x6253, 0x52A9, 0x3AFF, 0x7555, 0x7999, 0x0EEE, 0x6870, 0x2CC0, 0x7111]; % Crow Tengu God (red and blue, player 2)
 % [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
 
 % Sword guards, just a palette swap (color of masks is used for blood)
+% this was an easy move, I guess an ennemy programmed very early in developement
+% If only all ennemies were as easy...
 disp('------------Swapping Sword Guards palette------------------------')
 palette_old = [0x0032, 0x3741, 0x2C85, 0x4FC9, 0x0520, 0x4A30, 0x1D74, 0x3132, 0x3375, 0x67A8, 0x7555, 0x0AAA, 0x7FFF, 0x2069, 0x00EE, 0x7111]; % Sword guard, white
 palette_new = [0x0032, 0x3741, 0x2C85, 0x4FC9, 0x0520, 0x4A30, 0x1D74, 0x3132, 0x3375, 0x67A8, 0x7555, 0x0AAA, 0x7FFF, 0x0B00, 0x4F00, 0x7111]; % Sword guard, white, red blood
@@ -217,8 +237,10 @@ palette_new = [0x0002, 0x1800, 0x4E45, 0x4F20, 0x0001, 0x9500, 0x4745, 0x4F20, 0
 [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
 
 % puppet warriors, lotta red !
+% Let me be honest, tilset conversion was a nightmare here. There are tiles EVERYWHERE
+% The "helmet with feather" (blue with red) form has a TON of additional tiles compared to the other forms
 disp('------------Swapping Puppet Warriors palette---------------------')
-palette_old = [0x002F, 0x1720, 0x5B62, 0x5FD8, 0x3844, 0x4F88, 0x4FDD, 0x2B60, 0x6FB0, 0x4FE0, 0x7113, 0x033D, 0x257D, 0x49CF, 0x7FFF, 0x0111]; % Puppet Warrior blue
+palette_old = [0x002F, 0x1720, 0x5B62, 0x5FD8, 0x3844, 0x4F88, 0x4FDD, 0x2B60, 0x6FB0, 0x4FE0, 0x7113, 0x033D, 0x257D, 0x49CF, 0x7FFF, 0x0111]; % Puppet Warrior blue, helmet with feather
 palette_new = [0x002F, 0x1720, 0x5B62, 0x5FD8, 0x3844, 0x4F88, 0x4FDD, 0x6600, 0x0A10, 0x4F20, 0x7113, 0x033D, 0x257D, 0x49CF, 0x7FFF, 0x0111]; % Puppet Warrior blue with red
 [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
 palette_old = [0x0030, 0x2930, 0x5D96, 0x4FFA, 0x6810, 0x4C50, 0x4FA3, 0x0634, 0x0957, 0x4F7A, 0x0433, 0x0766, 0x1987, 0x7CBB, 0x7FFF, 0x0000]; % Puppet Warrior orange

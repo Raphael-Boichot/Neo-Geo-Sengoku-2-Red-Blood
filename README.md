@@ -60,7 +60,7 @@ My fun hit a wall rapidely. The blood hack was not released in the public domain
 
 Anyway, paying a bootleg with a piece of cardboard 5x the price of a good Aliexpress repro is not for me. I want to play the red blood version for cheap ! So, armed with years of hacking Game Boy games and hardware (Neo Geo is just a bigger, badder, better Game Boy), the marvelous Matlab software that does coffee and Neogeodev documentation, it was just a matter of time and effort (honestly, more than expected initially) to cook my own, but as a public version this time. I began thinking doing the hack seriously in June 2026 and was able to release the first version in early July 2026. One month from idea to release basically.
 
-I'm a tinkerer so code disassembly was just not on option. In the other hand I'm educated enough to hack video games in a top-down approach by diving into the RAMs / ROMs structure and use debug modes of emulators. Just a bootlegger job basically, nothing fancier.
+I'm a tinkerer so code disassembly was just not on option. In the other hand I'm educated enough to hack video games in a top-down approach by diving into the RAMs / ROMs structure and use debug modes of emulators. Just a bootlegger job basically, nothing fancier, good enough for that task.
 
 ## Why using Matlab / GNU Octave ?
 

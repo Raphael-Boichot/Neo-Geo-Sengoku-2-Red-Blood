@@ -64,7 +64,7 @@ Anyway, paying five times the price of a good AliExpress repro for a bootleg wit
 
 As a tinkerer, code disassembly was simply out of the question. On the other hand, I'm educated enough to hack video games using a top-down approach — diving into the RAM/ROM structure and leveraging emulator debug modes. Basically just a bootlegger job, nothing too fancy, but more than enough for the task.
 
-## Why using Matlab / GNU Octave intead of Python like everyone ?
+## Why using Matlab / GNU Octave instead of Python like everyone ?
 
 First, this is my project, I do what I want in the first place. Do you know what a free electron is ?
 

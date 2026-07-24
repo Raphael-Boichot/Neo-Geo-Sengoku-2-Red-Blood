@@ -396,6 +396,9 @@ disp('MVS version fully converted !')
 %2026-07-23 Convert these last tiles and a tile missing (blood splat on the foot of puppet warrior with feathers, still him)
 %2027-07-23 adding a special tool to fix the rogue pixels in the modified tileset
 
+%2026-07-24 Some Claude Yamamoto tiles still missing...
+%2026-07-24 Some Jack Stone tiles still missing...
+
 % This is the dump of the palette RAM during first level. Hopefully the
 % characters palettes do not change much in the different levels contrary
 % to the fix background palettes

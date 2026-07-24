@@ -1,6 +1,10 @@
 function Cspr_to_png(sprFile, palette, outputPng, outputPalette)
 TILES_PER_ROW = 32;
 
+% 1. Talk
+disp(['Dealing with ',sprFile]);
+disp(['Generating ', outputPng,' and ',outputPalette]);
+
 % 2. Load ROM
 fid = fopen(sprFile,'rb'); sprData = fread(fid,Inf,'uint8=>uint8'); fclose(fid);
 

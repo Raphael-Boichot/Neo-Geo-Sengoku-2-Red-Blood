@@ -1,6 +1,10 @@
 function png_to_Cspr(sprOut, inputPng, paletteFile)
 TILES_PER_ROW = 32;
 
+% 1. Talk
+disp(['Parsing ',inputPng, ' with ',paletteFile]);
+disp(['Generating ', sprOut]);
+
 % 2. Load Palette
 fileID = fopen(paletteFile, 'r');
 if fileID == -1, error('Could not open palette file: %s', paletteFile); end

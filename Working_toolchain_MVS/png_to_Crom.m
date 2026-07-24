@@ -1,6 +1,10 @@
 function png_to_Crom(oddRomOut, evenRomOut,inputPng, paletteFile)
 TILES_PER_ROW = 32;
 
+% 0. Talk
+disp(['Parsing ',inputPng, ' with ',paletteFile]);
+disp(['Generating ', oddRomOut,' and ',evenRomOut]);
+
 % 1. Load Palette
 fileID = fopen(paletteFile, 'r');
 if fileID == -1, error('Could not open palette file: %s', paletteFile); end

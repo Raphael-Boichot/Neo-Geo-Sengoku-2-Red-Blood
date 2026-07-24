@@ -1,6 +1,10 @@
 function Crom_to_png(oddRomFile,evenRomFile,palette,outputPng, outputPalette)
 TILES_PER_ROW = 32;
 
+% 1. Talk
+disp(['Dealing with ',oddRomFile, ' and ',evenRomFile]);
+disp(['Generating ', outputPng,' and ',outputPalette]);
+
 % 2. Load and Verify ROMs
 fid1 = fopen(oddRomFile,'rb'); odd = fread(fid1,Inf,'uint8=>uint8'); fclose(fid1);
 fid2 = fopen(evenRomFile,'rb'); even = fread(fid2,Inf,'uint8=>uint8'); fclose(fid2);

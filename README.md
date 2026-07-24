@@ -45,7 +45,9 @@ As well as the IPS scripts for sharing but you don't need them anymore:
 - **/Working_toolchain_MVS/IPS_scripts/**
 - **/Working_toolchain_NGCD/IPS_scripts/**
 
-Building the project basically allows you to add / remove features. You can follow the comments into the code to understand what section does. Anything fishy with the hacks ? A bloody tile is missing ? Need for help ? Open an issue !
+Building the project basically allows you to add / remove features easily and cook your own version. You can follow the comments into the code to understand which section does what. 
+
+Anything fishy with the hacks ? A bloody tile is missing ? A rogue pixel is giving you insomnia ? Need for help ? Open an issue !
 
 ## Click on image to see bloody action, MVS version
 [ ![Click to see gameplay](/Caption.png)](https://www.youtube.com/watch?v=bVQaettOxyM)
@@ -54,7 +56,7 @@ Building the project basically allows you to add / remove features. You can foll
 
 Sometimes, as a player, you get pissed. I mean really.
 
-Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's **censored**. The issue is that I could deal with that in my life until I heard the existence of a NCI red blood hack from 2023. That’s a pretty good idea, I thought to myself. Let’s download the ROM (sorry, the IPS patch, piracy is bad, very bad) and have fun !
+Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's **censored**. The issue is that I could deal with that in my life until I heard the existence of a NCI "red blood hack" from 2023. That’s a pretty good idea, I thought to myself. Let’s download the ROM (sorry, the IPS patch, piracy is bad, very bad) and have fun !
 
 My fun hit a wall pretty quickly. The "red blood hack" was never released into the public domain — it was an AES-exclusive version (since the MVS would have been too easy to open then dump), produced in very small quantities and sold at a steep price for just a bootleg. If you want to track one down in 2026, be prepared to dive hard into the scammer market.
 
@@ -391,7 +393,7 @@ Absolutely not, [for sure](https://www.youtube.com/watch?v=DNVGvQE0vgU). Sengoku
 
 ## Final words
 
-I made this mod for my own enjoyement. It's not an attempt to mimick the NCI mod from 2023 which, as far as I can tell seing footage on Youtube, took a different artistic direction (And changing credits and the title screen color ? What a lack of taste !). In its current version, Sengoku 2 is precisely what I would have expected from an official red-blood option back in 1994. I hope you will enjoy that hack as much as I do.
+I made this mod for my own enjoyement. It's not an attempt to mimick the NCI mod from 2023 which, as far as I can tell seing footage of Youtubers flexing with the cartridge, took a quite different artistic direction (And changing credits and the title screen color ? What a lack of taste !). In its current version, this hack is precisely what I would have expected from an official red-blood option back in 1994. I hope you will enjoy that hack as much as I do.
 
 That said, I am publishing these workflows in a state far from perfection, on purpose. Throughout my career and my hobbies, I have seen too many projects (good or not, this is not the point here) disappear simply because they were never shared before their authors vanished from the face of the Earth, whatever the reason (brutal death, mental illness, boredom, conflict of interests, (D)discord, or just no reason... I've seen all of these). I now operate on the principle that if this is not online, it just does not exist.
 

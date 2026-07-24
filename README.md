@@ -393,9 +393,9 @@ Absolutely not, [for sure](https://www.youtube.com/watch?v=DNVGvQE0vgU). Sengoku
 
 ## Any plan to release a physical version ?
 
-Certainly not as the reasonable selling price to me would never cover my working hours, by far. Seeing at [Aliexpress bootlegs](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros), it must be possible to tinker a reprogramed Sengoku 2 MVS quite easily by owning the correct flasher. However, the Chinese bootleggers use very baroque chips in their repros (because availability as e-waste I guess) and reprograming them requires very uncommon flashers (good luck to find one able to flash a MX26L6420 for example). So it's easy but requires expensive hardware. 
+Certainly not as the reasonable selling price to me would never cover my working hours, by far. Looking inside [Aliexpress bootlegs](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros), it must be possible to tinker a reprogramed Sengoku 2 MVS quite easily by owning the correct flasher / adapter. However, the Chinese bootleggers use very baroque chips in their repros (because availability as e-waste I guess) and reprograming them requires very uncommon flashers (good luck to find one able to flash a MX26L6420 for example). So it's easy but requires expensive hardware. 
 
-I would say that your best bet is that bootleggers find this repository in fact. I will maybe try do do an adapter board for more common chips (some big enough MX29LVXXXX) but they will be difficult to solder in return. I'm still not certain whether it's worth the trouble. 
+I would say that your best bet is that Chinese bootleggers find this repository one day. I will maybe try to do an adapter board for more common chips (some big enough MX29LVXXXX) but they will be difficult to solder in return. I'm still not certain whether it's worth the trouble considering the excellent platform available today for emulation like the MiSTer FPGA.
 
 ## Final words
 

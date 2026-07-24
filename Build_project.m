@@ -53,5 +53,5 @@ else
     disp('Code termination, NGCD version not done !')
 end
 
-% Full conversion in about 37 seconds with Matlab
-% Full conversion in about 275 seconds with GNU Octave
+% Full conversion in about 24 seconds with Matlab
+% Full conversion in about 149 seconds with GNU Octave

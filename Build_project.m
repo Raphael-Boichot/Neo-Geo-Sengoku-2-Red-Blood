@@ -13,6 +13,21 @@ if not(isfile('.\Working_toolchain_MVS\roms\040-c1.c1') &...
         isfile('.\Working_toolchain_MVS\roms\040-p1.bin'))
     flag=0;
 end
+
+if flag==1
+    tic
+    disp('####################################################################')
+    disp('##################### Building the MVS version #####################')
+    disp('####################################################################')
+    run('Working_toolchain_MVS/Run_conversion_MVS.m')
+    toc
+else
+    warndlg('At least one necessary file is missing for the MVS version !', 'Warning');
+    disp('Code termination, MVS version not done !')
+end
+
+clear
+flag = 1;
 if not(isfile('.\Working_toolchain_NGCD\NGCD_track_1_files\AREA1.SPR') &...
         isfile('.\Working_toolchain_NGCD\NGCD_track_1_files\AREA2.SPR') &...
         isfile('.\Working_toolchain_NGCD\NGCD_track_1_files\AREA3.SPR') &...
@@ -27,13 +42,15 @@ end
 
 if flag==1
     tic
-    run('Working_toolchain_MVS/Run_conversion_MVS.m')
+    disp('#####################################################################')
+    disp('##################### Building the NGCD version #####################')
+    disp('#####################################################################')
     copyfile('.\Working_toolchain_MVS\*.png', '.\working_toolchain_NGCD\MVS_hack\');
     run('Working_toolchain_NGCD/Run_conversion_NGCD.m')
     toc
 else
-    warndlg('At least one necessary file is missing !', 'Warning');
-    disp('Code termination, nothing done...')
+    warndlg('At least one necessary file is missing for the NGCD version !', 'Warning');
+    disp('Code termination, NGCD version not done !')
 end
 
 % Full conversion in about 37 seconds with Matlab

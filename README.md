@@ -32,7 +32,7 @@ You can also just build directly the patched files from the workflow proposed he
 
 Prerequites:
 - You are in a Windows environment (virtual or not, code easily adaptable to any OS anyway)
-- Matlab or [GNU Octave](https://octave.org/) are correctly installed
+- Matlab or [GNU Octave](https://octave.org/) are correctly installed (there is NO dependencies). Versions R2024a of Matlab and 10.1.0 of GNU Octave have been tested.
 - **/Working_toolchain_MVS/roms/** -> contains all C roms and P rom of Sengoku 2, MAME compatible version.
 - **/Working_toolchain_NGCD/NGCD_track_1_files/** -> contains all .SPR and .PRG files extracted from Sengoku 2, track 1, Neo Geo SD loader compatible version.
 - **/Working_toolchain_NGCD/NGCD_track_1_binary/** -> contains the binary (.bin) of track 1 from Sengoku 2 Neo Neo CD, Neo Geo SD loader compatible version. It must be named **Sengoku2_Track_01.bin** (mandatory).

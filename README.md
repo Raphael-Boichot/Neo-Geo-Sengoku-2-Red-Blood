@@ -32,7 +32,7 @@ You can also just build directly the patched files from the workflow proposed he
 
 Prerequites to build the project "as it":
 - You are in a Windows environment, because [one code from the workflow](https://alex-free.github.io/edcre/) is a .exe (but all OS version exist in the linked repository, so any OS can be used after minor changes).
-- Matlab or [GNU Octave](https://octave.org/) are correctly installed (there is NO dependencies). Versions R2024a of Matlab and 10.1.0 of GNU Octave have been tested. These codes exist on all existing OS.
+- Matlab or [GNU Octave](https://octave.org/) are correctly installed (there is NO dependencies). Versions R2024a of Matlab and 10.1.0 of GNU Octave have been tested. These codes exist on all existing OS. The workflow has been adapted to work on both softwares on purpose.
 - **/Working_toolchain_MVS/roms/** -> must contain all C roms and P rom of Sengoku 2, MAME compatible version.
 - **/Working_toolchain_NGCD/NGCD_track_1_files/** -> must contain all .SPR and .PRG files extracted from Sengoku 2, track 1, Neo Geo SD loader compatible version (with any ISO manipulating tool).
 - **/Working_toolchain_NGCD/NGCD_track_1_binary/** -> must contain the binary (.bin) of track 1 from Sengoku 2 Neo Neo CD, Neo Geo SD loader compatible version. It must be named **Sengoku2_Track_01.bin** (mandatory, to rename after of course).
@@ -64,11 +64,11 @@ Anyway, paying five times the price of a good AliExpress repro for a bootleg wit
 
 As a tinkerer, code disassembly was simply out of the question. On the other hand, I'm educated enough to hack video games using a top-down approach — diving into the RAM/ROM structure and leveraging emulator debug modes. Basically just a bootlegger job, nothing too fancy, but more than enough for the task.
 
-## Why using Matlab / GNU Octave ?
+## Why using Matlab / GNU Octave intead of Python like everyone ?
 
-Matlab is my everyday go tool for scientific computing. My job during working hours is to solve engineering problems. Hacking video games is just another class of engineering problem I tackle when I have insomnia. Matlab considers everything as a matrix / vectors, so it is super fast when you keep that particularity in mind when programming. It has zero dependencies. Exactly what I needed here. The very shortest path from my problem to the solution.
+First, this is my project, I do what I want in the first place.
 
-There is a free version of Matlab called [GNU Octave](https://octave.org/) that you can use to run the toolchain, it is fully compatible. Both Matlab and GNU Octave can be installed on any OS.
+That said, Matlab is my everyday go tool for scientific computing at work. It creates efficient and short codes, very readable. It is super fast when used correctly (consider everything as a matrix / vectors and you're good to go). **It has zero dependencies and near zero redundancy between libraries**. It has a ton of fancy functions yet included in the base version. **It has a free and open source version called [GNU Octave](https://octave.org/)** that you can use to run the toolchain, it is fully compatible. Both Matlab and GNU Octave can be installed on any OS.
 
 ## Forewords: Neo Geo RAM palette and tilesets
 

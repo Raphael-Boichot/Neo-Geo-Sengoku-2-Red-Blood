@@ -33,13 +33,13 @@ You can also just build directly the patched files from the workflow proposed he
 Prerequites:
 - You are in a Windows environment (virtual or not, code easily adaptable to any OS anyway)
 - Matlab or [GNU Octave](https://octave.org/) are correctly installed (there is NO dependencies). Versions R2024a of Matlab and 10.1.0 of GNU Octave have been tested.
-- **/Working_toolchain_MVS/roms/** -> contains all C roms and P rom of Sengoku 2, MAME compatible version.
-- **/Working_toolchain_NGCD/NGCD_track_1_files/** -> contains all .SPR and .PRG files extracted from Sengoku 2, track 1, Neo Geo SD loader compatible version.
-- **/Working_toolchain_NGCD/NGCD_track_1_binary/** -> contains the binary (.bin) of track 1 from Sengoku 2 Neo Neo CD, Neo Geo SD loader compatible version. It must be named **Sengoku2_Track_01.bin** (mandatory).
+- **/Working_toolchain_MVS/roms/** -> must contain all C roms and P rom of Sengoku 2, MAME compatible version.
+- **/Working_toolchain_NGCD/NGCD_track_1_files/** -> must contain all .SPR and .PRG files extracted from Sengoku 2, track 1, Neo Geo SD loader compatible version (with any ISO manipulating tool).
+- **/Working_toolchain_NGCD/NGCD_track_1_binary/** -> must contain the binary (.bin) of track 1 from Sengoku 2 Neo Neo CD, Neo Geo SD loader compatible version. It must be named **Sengoku2_Track_01.bin** (mandatory, to rename after of course).
 
 Resulting hacked files will be in their respective folders:
-- **/Working_toolchain_MVS/roms_out/**
-- **/Working_toolchain_NGCD/NGCD_track_1_binary/**
+- **/Working_toolchain_MVS/roms_out/** -> AES / MVS ROMs
+- **/Working_toolchain_NGCD/NGCD_track_1_binary/** -> NeoGeo CD binary to substitute to the track 1
 
 As well as the IPS scripts for sharing but you don't need them anymore:
 - **/Working_toolchain_MVS/IPS_scripts/**

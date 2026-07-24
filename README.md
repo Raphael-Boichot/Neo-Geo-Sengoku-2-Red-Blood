@@ -95,8 +95,8 @@ Here are the main steps used in a nutshell:
 - Moderate situation, there is yet a vibrant enough red in the palette and no need for palette swap, edit and inject the modified tileset only on the C ROMs, with unchanged palette.
 - Fucked situation, multiple palette swap for the same character and non consistent color to turn to red: I have to cheat and force a red in each palette at the same position and a modified tileset as well. The mod must stay pleasant to the eye and do not deteriorate too much the initial character design. It's my artistic compromise.
 - Then for each character, repeat the process until reaching the final boss puppets.
-- Build the Neo Geo CD version ~~easily and automatically~~ with blood and pain from the MVS version.
-- Realize that the HUD palette with character face vignettes is no longer synchronized, that it's impossible to modify because of very strong color constraints, and having to redo part of the work from scratch.
+- Build the Neo Geo CD version ~~easily and automatically~~ with sweat and blood from the MVS version.
+- Realize that the HUD palette with character face vignettes is no longer synchronized, that it's impossible to modify because of very strong color constraints with player 2 palette, and having to redo part of the work from scratch.
 
 Final adjustments (sometimes bigger than expected) were made by looking closely at gameplay footage during dev, frame by frame to spot any missing tile conversion (only way to see a single pixel missing).
 
@@ -112,7 +112,7 @@ Final adjustments (sometimes bigger than expected) were made by looking closely 
 - Custom codes to turn C ROMs to png and the inverse. Tileset is edited by hand from a png image with the current character palette, then turned back to C ROM.
 - Custom codes to swap palettes in P ROMs.
 - Custom codes to convert RGB color to 16 bits Neo Geo colors.
-- MS Paint to edit tilesets because this is the best tool ever created on Earth (and it manages transparent layers). About 500 tiles have been painfully bloodified by hand, pixel per pixel, in the conversion. 
+- MS Paint to edit tilesets because this is the best tool ever created on Earth (and it manages transparent layers). About 370 tiles have been painfully bloodified by hand, pixel per pixel, in the conversion. 
 - Spriter ressources to check for inconsistencies in colors and planning the quantity of work.
 - Custom NGCD converters, tileset to png and png to tileset, because encoding is different from AES / MVS.
 - Custom codes to inject the MVS tileset modifications into the NGCD tileset automatically.
@@ -123,7 +123,7 @@ As for any project, 10% of the time was taken to edit 90% of the tileset, 90% of
 
 Some codes or parts of codes were made / polished / optimized with A.I. (Gemini mainly, sometimes Mistral A.I. because I'm beta tester, a pinch of Claude too for the most tricky parts). Basically there is no rocket science here but I must admit that A.I. was precious to circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a very niche market here.
 
-The Neo Geo CD hack was made in parallel to the MVS version as it is not more difficult (in fact, it was) to do on any of the systems. Except that the Neo Geo CD is scarcely documented (The only interesting source is a French [Neo Geo CD World article](https://www.neogeocdworld.info/html/fiche/hard.htm)), so I was basically on my own most of the time for the file formatting details.
+The Neo Geo CD hack was made in parallel to the MVS version as it is not more difficult (in fact, it was) to do on any of the systems. Except that the Neo Geo CD is very scarcely documented (The only interesting source is a French [Neo Geo CD World article](https://www.neogeocdworld.info/html/fiche/hard.htm)), so I was basically on my own most of the time for the file formatting details.
 
 ## Some notes about (painfully and partially) reverse engineering the NGCD file format
 

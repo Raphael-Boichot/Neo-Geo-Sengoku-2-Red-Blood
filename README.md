@@ -66,7 +66,7 @@ As a tinkerer, code disassembly was simply out of the question. On the other han
 
 ## Why using Matlab / GNU Octave instead of Python like everyone ?
 
-First, this is my project, I do what I want in the first place. Converting codes from a langage to another in 2026 is a non problem.
+First, this is my project, I do what I want in the first place. Converting codes from one programing langage to another in 2026 is a non problem.
 
 That said, Matlab is my everyday go tool for scientific computing at work. It creates efficient and short codes, very readable. It is super fast when used correctly (consider everything as a matrix / vectors and you're good to go). **It has zero dependencies and near zero redundancy between libraries**. It has a ton of fancy functions yet included in the base version. **It has a free and open source version called [GNU Octave](https://octave.org/)** that you can use to run the toolchain, it is fully compatible. Both Matlab and GNU Octave can be installed on any OS.
 

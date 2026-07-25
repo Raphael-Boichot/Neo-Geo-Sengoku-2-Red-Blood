@@ -122,7 +122,7 @@ Crom_to_png(oddRomFile_small,evenRomFile_small,dummy_palette_jet, 'Tileset_MVS_r
 % basically inject the good palette, search for tiles, edit the tiles, save, play, and so on
 % this part has no purpose if you just create the ROMs from my tileset, it's just for editing
 % disp('Swapping palettes of the modified tileset and updating palette.txt')
-% alternative_palette = [0x0013, 0x7810, 0x0C74, 0x5FC9, 0x0800, 0x0D00, 0x4F64, 0x6551, 0x0AA4, 0x0FF8, 0x7555, 0x7999, 0x0EEE, 0x0A80, 0x2EC0, 0x7111]; % Crow Tengu God (red, player 1)
+% alternative_palette = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; % Claude Yamamoto (player 1)
 % Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 % Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % You can just run this section and the init section (right click, run section) to edit the tileset
@@ -399,6 +399,7 @@ disp('MVS version fully converted !')
 %2026-07-24 Some Claude Yamamoto tiles still missing...
 %2026-07-24 Some Jack Stone tiles still missing...
 %2026-07-25 Crow Tengo god, 3 pixels missing...
+%2026-07-25 Lots of tiles missing in horse ride damage (all Jack Stone, one Claude Yamamoto)
 
 % This is the dump of the palette RAM during first level. Hopefully the
 % characters palettes do not change much in the different levels contrary

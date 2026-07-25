@@ -389,15 +389,15 @@ Aternate palette (puppet 2)
 
 ## Any plan for uncensoring Sengoku 1 and 3 in the future ?
 
-Absolutely not, [for sure](https://www.youtube.com/watch?v=DNVGvQE0vgU). Sengoku 1 is boring as fuck and I cannot imagine myself playing it for more than 20 minutes to debug palette issue and chase rogue pixels. As for Sengoku 3, it does not exist, it is an insulte to the franchise.
+Absolutely not, [for sure](https://www.youtube.com/watch?v=DNVGvQE0vgU). Sengoku 1 is boring as fuck and I cannot imagine myself playing it for more than 20 minutes to debug palette issue and chase rogue pixels. As for Sengoku 3, it does not exist, it is an insult to the franchise.
 
 ## Any plan to sell / release a physical version ?
 
 Certainly not. Putting aside the fact that the franchise belongs to SNK and not to me, the reasonable selling price for a tinkered physical release wouldn't even come close to covering my working hours.
 
-But the idea would be to start from a mass produced bootleg to avoid damaging genuine hardware. Looking into [Aliexpress bootlegs](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros), it must be possible to tinker a reprogramed Sengoku 2 MVS quite easily by owning the correct flasher / adapter. However, the Chinese bootleggers use very baroque chips in their repros (because availability as e-waste I guess) and reprograming them requires very uncommon flashers (good luck to find a cheap one able to flash a MX26L6420 for example). So it's easy, but requires expensive hardware. 
+But the idea would be to start from a mass produced bootleg to avoid damaging genuine hardware. Looking into [Aliexpress bootlegs](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros), it must be possible to tinker a reprogramed Sengoku 2 MVS quite easily by owning the correct flasher / adapter. This is not a simple issue, the Chinese bootleggers use very baroque chips in their repros (because huge availability as e-waste I guess) and reprograming them requires very uncommon flashers (good luck to find a cheap hobby flasher able to burn a MX26L6420 for example). So it's easy on paper, but practically very expensive due to the need for professional hardware.
 
-I would say that your best bet is that Chinese bootleggers find this repository one day. I will maybe try to do an adapter board for more common chips (some big enough MX29LVXXXX in place of the MX26L6420) but they will be difficult to solder in return. I'm still not certain whether it's worth the trouble considering the excellent platform available today for emulation like the MiSTer FPGA.
+I would say that your best bet is that Chinese bootleggers find this repository one day. I will maybe try to do an adapter board for more common chips compatible with cheap flashers (some big enough MX29LVXXXX in place of the MX26L6420) but they will be difficult to solder for most people in return. I'm still not certain whether it's worth the trouble considering the excellent platform available today for emulation like the MiSTer FPGA.
 
 ## Final words
 

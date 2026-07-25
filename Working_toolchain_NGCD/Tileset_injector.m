@@ -1,13 +1,4 @@
-function []=Tileset_injector()
-
-% Configuration
-sets = {
-    '.\MVS_hack\Tileset_MVS_reference_big.png', '.\MVS_hack\Tileset_MVS_modified_big.png';
-    '.\MVS_hack\Tileset_MVS_reference_small.png', '.\MVS_hack\Tileset_MVS_modified_small.png'
-};
-
-input_dir = '.\tileset_out\';
-output_dir = '.\tileset_out_modified\';
+function []=Tileset_injector(sets, input_dir, output_dir)
 
 if ~exist(output_dir, 'dir')
     mkdir(output_dir);

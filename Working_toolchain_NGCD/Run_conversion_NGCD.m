@@ -8,10 +8,14 @@ disp('The code will just crash in case any file is missing somewhere!')
 %% Init section
 
 % general settings
-mkdir('.\roms_out\');
-mkdir('.\tileset_out\');
-mkdir('.\IPS_scripts\');
-dummy_palette_jet =[0x1005, 0x1008, 0x100D, 0x303F, 0x308F, 0x30DF, 0xF3FB, 0xF7F7, 0xFCF2, 0xEFF0, 0xEFA0, 0xEF50, 0xEF00, 0xCB00, 0xC700, 0xC400];
+hackedDir = '.\roms_out\'; % Contains the hacked .SPR tilesets
+input_dir = '.\tileset_out\'; % Contains the genuine .PNG of the NGCD tilesets
+output_dir = '.\tileset_out_modified\'; % Contains the hacked .PNG of the NGCD tilesets
+mkdir(hackedDir);
+mkdir(input_dir);
+mkdir(output_dir);
+mkdir('.\IPS_scripts\'); % Self explanatory
+dummy_palette_jet =[0x1005, 0x1008, 0x100D, 0x303F, 0x308F, 0x30DF, 0xF3FB, 0xF7F7, 0xFCF2, 0xEFF0, 0xEFA0, 0xEF50, 0xEF00, 0xCB00, 0xC700, 0xC400]; % MANDATORY !
 disp('Initialization completed')
 
 %% Transforms the pair of roms in png tileset + palette image to check
@@ -28,8 +32,22 @@ Cspr_to_png('.\NGCD_track_1_files\TITLE.SPR',dummy_palette_jet, '.\tileset_out\T
 %///////////////section to comment to edit tileset//////////////////
 
 %% Section to inject modified tileset from MVS into NGCD
-Tileset_injector() % use the MVS tileset to modify the NGCD tileset, only use dummy palette for NGCD conversion
-% if any tile is not found, there is an error message
+% Configuration, all tilesets used to compare and inject tiles, only if modified in MVS tileset
+disp('Seeks for modified tiles in MVS hack and injecting then in NGCD tilesets')
+sets = {
+    '.\MVS_hack\Tileset_MVS_reference_big.png', '.\MVS_hack\Tileset_MVS_modified_big.png';
+    '.\MVS_hack\Tileset_MVS_reference_small.png', '.\MVS_hack\Tileset_MVS_modified_small.png'
+};
+% use the MVS tileset to modify the NGCD tileset, only use dummy palette for NGCD conversion
+% any modification on MVS tileset is automatically propagated to NGCD version
+% it's a seek and replace sequence based algorithm, it avoids me to do this by hand with hex editor
+% The code works like this: first the modified tiles are identified by comparing the hacked and genuine MVS tilesets
+% When a difference is found, the genuine tile is searched into the whole NGCD tileset (horizontally flipped)
+% When there is a match, the hacked tile is inserted into the NGCD tileset at the place of the genuine tile
+% All is done with PNG data rather than binary data directly
+Tileset_injector(sets, input_dir, output_dir);
+% I could have done that directly in NeoGeo tile format but this is a little bit too aggressive
+% I like keeping the visual control step in case everything is going wrong
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 % png_to_Cspr is aggressively using matrix/vector formalism too
@@ -43,7 +61,7 @@ png_to_Cspr('.\roms_out\STAFF.SPR','.\tileset_out_modified\STAFF.png','.\tileset
 png_to_Cspr('.\roms_out\TITLE.SPR','.\tileset_out_modified\TITLE.png','.\tileset_out\TITLE_exchange_palette.txt')
 
 %% Injects new palettes in P ROMs
-% it's a seek and replace sequence based algorithm, it avoids me to do this by hand with hex editor
+% It's a copy paste of the MVS version, minus the change logs and details
 disp('Targeting and injecting new palette(s) in .PRG')
 PRomFile = '.\roms_out\P040.PRG';
 copyfile('.\NGCD_track_1_files\P040.PRG','.\roms_out\P040.PRG','f');
@@ -63,18 +81,6 @@ palette_old = [0x0001, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0x7FFF, 0
 palette_new = [0x0001, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00, 0x4F00]; % general flashing effect when hit, red
 [PROMdata] = PRG_Palette_injector(PROMdata,palette_old,palette_new);
 
-% Jack Stone (player 2) / DISMISSED, interacts too much with HUD palette
-% disp('------------Swapping Jack Stone (player 2) palette---------------')
-% palette_old = [0x0011, 0x7810, 0x0C74, 0x5FC9, 0x6640, 0x6B80, 0x6FF0, 0x3037, 0x638C, 0x3AFF, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4FA0, 0x7111]; % Jack Stone (Player 2)
-% palette_new = [0x0011, 0x7810, 0x0C74, 0x5FC9, 0x6640, 0x6B80, 0x6FF0, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4FA0, 0x7111]; % Jack Stone (Player 2), blue becomes red
-% [PROMdata] = PRG_Palette_injector(PROMdata,palette_old,palette_new);
-
-% Kirimaru (Player 2) / DISMISSED, interacts too much with HUD palette
-% disp('------------Swapping Kirimaru (player 2) palette-----------------')
-% palette_old = [0x0017, 0x4332, 0x4663, 0x4995, 0x3BA6, 0x3DC9, 0x4FFC, 0x000C, 0x306E, 0x10DF, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (doggo, blue, player 2)
-% palette_new = [0x0017, 0x6940, 0x0C70, 0x4EA0, 0x6FD0, 0x5FF5, 0x4FFC, 0x0A00, 0x0F00, 0x4F90, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (doggo, red, blonde fur, player 2)
-% [PROMdata] = PRG_Palette_injector(PROMdata,palette_old,palette_new);
-
 % Kirimaru (Player 1 - test)
 disp('------------Swapping Kirimaru (player 1) palette-----------------')
 palette_old = [0x0014, 0x4332, 0x4663, 0x4995, 0x3BA6, 0x3DC9, 0x4FFC, 0x0A00, 0x0F00, 0x4F90, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (doggo, red, player 1)
@@ -86,12 +92,6 @@ disp('------------Swapping Kirimaru (player 2) palette-----------------')
 palette_old = [0x0017, 0x4332, 0x4663, 0x4995, 0x3BA6, 0x3DC9, 0x4FFC, 0x000C, 0x306E, 0x10DF, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (doggo, blue, player 2)
 palette_new = [0x0017, 0x0810, 0x0A42, 0x0C74, 0x0D96, 0x0FC9, 0x4FFC, 0x000C, 0x306E, 0x10DF, 0x6770, 0x0AA0, 0x7FF3, 0x099A, 0x6556, 0x7111]; % Kirimaru (blue, other fur)
 [PROMdata] = PRG_Palette_injector(PROMdata,palette_old,palette_new);
-
-% Crow tengu (player 2) / DISMISSED, interacts too much with HUD palette
-% disp('------------Swapping Crow Tengu (player 2) palette---------------')
-% palette_old = [0x0016, 0x7810, 0x0C74, 0x5FC9, 0x3040, 0x6281, 0x54E2, 0x6253, 0x52A9, 0x3AFF, 0x7555, 0x7999, 0x0EEE, 0x6870, 0x2CC0, 0x7111]; % Crow Tengu God (green, player 2)
-% palette_new = [0x0016, 0x7810, 0x0C74, 0x5FC9, 0x0800, 0x0D00, 0x4F64, 0x6253, 0x52A9, 0x3AFF, 0x7555, 0x7999, 0x0EEE, 0x6870, 0x2CC0, 0x7111]; % Crow Tengu God (red and blue, player 2)
-% [PROMdata] = PRG_Palette_injector(PROMdata,palette_old,palette_new);
 
 % Sword guards, just a palette swap (color of masks is used for blood)
 disp('------------Swapping Sword Guards palette------------------------')
@@ -156,18 +156,12 @@ palette_old = [0x006F, 0x0631, 0x1962, 0x1DA5, 0x0444, 0x0999, 0x7FFF, 0x3220, 0
 palette_new = [0x006F, 0x0631, 0x1962, 0x1DA5, 0x0444, 0x0999, 0x7FFF, 0x4500, 0x0B00, 0x4F00, 0x4F80, 0x0007, 0x100F, 0x106F, 0x1FEA, 0x0000]; % Axeman green, now red too
 [PROMdata] = PRG_Palette_injector(PROMdata,palette_old,palette_new);
 
-% Spearman palette / DISMISSED, pointless
-% disp('-----------------------Spearman palette----------------------')
-% palette_old = [0x002D, 0x4B30, 0x2D80, 0x7FD6, 0x0213, 0x3425, 0x2859, 0x2510, 0x6950, 0x4FD0, 0x4600, 0x0C00, 0x6F40, 0x7CBD, 0x7FFF, 0x0000]; % Spearman red
-% palette_new = [0x002D, 0x4B30, 0x2D80, 0x7FD6, 0x0213, 0x3425, 0x2859, 0x4600, 0x0C00, 0x6F40, 0x2510, 0x6950, 0x4FD0, 0x7CBD, 0x7FFF, 0x0000]; % Spearman red and green inverted
-% [PROMdata] = PRG_Palette_injector(PROMdata,palette_old,palette_new);
-
 disp('------------Swapping Big fish with legs palette------------------')
 palette_old = [0x0055, 0x302A, 0x504F, 0x716F, 0x6430, 0x6980, 0x1DD2, 0x0731, 0x0A53, 0x5D84, 0x0016, 0x7FB7, 0x6FFC, 0x248E, 0x37CF, 0x0000]; % big blue fish
 palette_new = [0x0055, 0x4A10, 0x0E20, 0x2F50, 0x6430, 0x6980, 0x1DD2, 0x0731, 0x0A53, 0x5D84, 0x6610, 0x7FB7, 0x6FFC, 0x6E80, 0x4FB0, 0x0000]; % big blue fish, now red
 [PROMdata] = PRG_Palette_injector(PROMdata,palette_old,palette_new);
 
-disp('------------Swapping Soldier palette-----------------------------')% this one was lucky, I have a free entry in palette !
+disp('------------Swapping Soldier palette-----------------------------')
 palette_old = [0x0065, 0x3941, 0x3E93, 0x4FE7, 0x0140, 0x0480, 0x08C0, 0x0720, 0x4B60, 0x1037, 0x518A, 0x26CF, 0x7EFF, 0x7DF4, 0x20F4, 0x0000]; % Soldier palette 2
 palette_new = [0x0065, 0x3941, 0x3E93, 0x4FE7, 0x0140, 0x0480, 0x08C0, 0x0720, 0x4B60, 0x1037, 0x518A, 0x26CF, 0x7EFF, 0x7DF4, 0x4F00, 0x0000]; % Soldier palette with red injected;
 [PROMdata] = PRG_Palette_injector(PROMdata,palette_old,palette_new);
@@ -200,17 +194,22 @@ fclose(fid);
 
 %% Now dealing directly with the track 1 raw binary
 % A modified payload can be injected two times in different locations, it's not an issue
-disp('Injecting data packets into the NGCD binary')
+disp('Injecting data packets into the NGCD binary and fixing ECC/EDC of modified sectors')
 origDir = '.\NGCD_track_1_files\';
-hackedDir = '.\roms_out\';
 trackFile = '.\NGCD_track_1_binary\Sengoku2_Track_01.bin';
 patchedTrackFile = '.\NGCD_track_1_binary\Sengoku2_track_1_patched.bin';
+% Inject data by packets of 2048 bytes, only for hacked packets
+% The algorithm is basically the same as Tileset_injector.m
+% The only trick is to target a 2048 bytes size to match the CD sector specifications
 modifiedSectors = Binary_file_injector(origDir, hackedDir, trackFile, patchedTrackFile);
+% Now ECC/EDC data are corrupted for the injected packets, must be fixed
 disp('Regenerating ECC/EDC checksums...');
 % system(sprintf('edcre -s 16 "%s"', patchedTrackFile)); old call, for documentation
 % adapted from https://github.com/alex-free/edcre, Alex Free, you saved my day !
-stats = edcre_fix_file(patchedTrackFile, 'Sectors', modifiedSectors, 'Verbose', false); % mode is autodetected, track# is forced for increasing speed
-%% Generate IPF files for all these modifications on individual files
+% mode is autodetected, track number is forced for increasing speed with GNU Octave
+stats = edcre_fix_file(patchedTrackFile, 'Sectors', modifiedSectors, 'Verbose', false); 
+
+%% Generate IPS files for all these modifications on individual files
 disp('Generating IPS script and performing CRC32 checksums')
 %IPS_generator('.\NGCD_track_1_files\P040.PRG','.\roms_out\P040.PRG','.\IPS_scripts\P040.PRG.ips') %not used anymore, targetting the binary directly
 %IPS_generator('.\NGCD_track_1_files\JOUCHU.SPR','.\roms_out\JOUCHU.SPR','.\IPS_scripts\JOUCHU.SPR.ips') %not used anymore, targetting the binary directly

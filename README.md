@@ -66,7 +66,7 @@ As a tinkerer, code disassembly was simply out of the question. On the other han
 
 ## Why using Matlab / GNU Octave instead of Python like everyone ?
 
-First, this is my project, I do what I want in the first place. Converting codes from one programing langage to another in 2026 is a non problem.
+This is my project, I do what I want in the first place. Converting codes from one programing langage to another in 2026 is also a non problem.
 
 That said, Matlab is my everyday go tool for scientific computing at work. It creates efficient and short codes, very readable. It is super fast when used correctly (consider everything as a matrix / vectors and you're good to go). **It has zero dependencies and near zero redundancy between libraries**. It has a ton of fancy functions yet included in the base version. **It has a free and open source version called [GNU Octave](https://octave.org/)** that you can use to run the toolchain, it is fully compatible. Both Matlab and GNU Octave can be installed on any OS.
 
@@ -391,9 +391,9 @@ Aternate palette (puppet 2)
 
 Absolutely not, [for sure](https://www.youtube.com/watch?v=DNVGvQE0vgU). Sengoku 1 is boring as fuck and I cannot imagine myself playing it for more than 20 minutes to debug palette issue and chase rogue pixels. As for Sengoku 3, it does not exist.
 
-## Any plan to release a physical version ?
+## Any plan to sell / release a physical version ?
 
-Certainly not. Apart from the fact that it is ILLEGAL, the reasonable selling price wouldn't even come close to covering my working hours. Looking inside [Aliexpress bootlegs](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros), it must be possible to tinker a reprogramed Sengoku 2 MVS quite easily by owning the correct flasher / adapter. However, the Chinese bootleggers use very baroque chips in their repros (because availability as e-waste I guess) and reprograming them requires very uncommon flashers (good luck to find a cheap one able to flash a MX26L6420 for example). So it's easy, but requires expensive hardware. 
+Certainly not. Apart from the fact that the I.P. belongs to SNK and I have no rights on it, the reasonable selling price for a physical release wouldn't even come close to covering my working hours. Looking inside [Aliexpress bootlegs](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros), it must be possible to tinker a reprogramed Sengoku 2 MVS quite easily by owning the correct flasher / adapter. However, the Chinese bootleggers use very baroque chips in their repros (because availability as e-waste I guess) and reprograming them requires very uncommon flashers (good luck to find a cheap one able to flash a MX26L6420 for example). So it's easy, but requires expensive hardware. 
 
 I would say that your best bet is that Chinese bootleggers find this repository one day. I will maybe try to do an adapter board for more common chips (some big enough MX29LVXXXX in place of the MX26L6420) but they will be difficult to solder in return. I'm still not certain whether it's worth the trouble considering the excellent platform available today for emulation like the MiSTer FPGA.
 

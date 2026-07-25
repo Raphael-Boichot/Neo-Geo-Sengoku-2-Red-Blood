@@ -6,8 +6,8 @@ Go to the dedicated [IPS scripts folder](/Working_toolchain_MVS/IPS_scripts), ge
 
 Summary of CRC32 you should expect before / after patching:
 
-    File: 040-c1.c1 | Original CRC32: FAA8EA99 | Modified CRC32: DD803DD2
-    File: 040-c2.c2 | Original CRC32: 87D0EC65 | Modified CRC32: 5E0E267E
+    File: 040-c1.c1 | Original CRC32: FAA8EA99 | Modified CRC32: 8240F84A
+    File: 040-c2.c2 | Original CRC32: 87D0EC65 | Modified CRC32: 91854639
     File: 040-c3.c3 | Original CRC32: 24B5BA80 | Modified CRC32: 5C4040E5
     File: 040-c4.c4 | Original CRC32: 1C9E9930 | Modified CRC32: 57CA479B
     File: 040-p1.p1 | Original CRC32: 6DDE02C2 | Modified CRC32: 9A8925FE
@@ -20,7 +20,7 @@ Get the CD version compatible with the NeoGeo CD SD Loader, for example [here](h
 
 Summary of CRC32 you should expect before / after patching:
 
-    File: Sengoku2_Track_01.bin | Original CRC32: 6EFBFA46 | Modified CRC32: 72CD3F1D
+    File: Sengoku2_Track_01.bin | Original CRC32: 6EFBFA46 | Modified CRC32: 28AFEB18
 
 Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Neo CD format (.CUE + .BIN for each track) so I won't try targeting any other exotic one (like .ISO + .MP3). Just patching track 1 from other formats may or may not work depending on their CRC32. You can anyway test the hack with [Raine64](https://www.emu-france.com/emulateurs/6-arcades/61-multi-games/7687-raine-64-bits/#google_vignette) before burning a CD or going further with your ODE. Raine64 has glitches on the title screen unrelated to the hack.
 

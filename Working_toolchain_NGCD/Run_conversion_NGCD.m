@@ -201,8 +201,15 @@ fclose(fid);
 %% Now dealing directly with the track 1 raw binary
 % A modified payload can be injected two times in different locations, it's not an issue
 disp('Injecting data packets into the NGCD binary')
-Binary_file_injector(); % also contains the ECC/EDC correction routine
-
+origDir = '.\NGCD_track_1_files\';
+hackedDir = '.\roms_out\';
+trackFile = '.\NGCD_track_1_binary\Sengoku2_Track_01.bin';
+patchedTrackFile = '.\NGCD_track_1_binary\Sengoku2_track_1_patched.bin';
+modifiedSectors = Binary_file_injector(origDir, hackedDir, trackFile, patchedTrackFile);
+disp('Regenerating ECC/EDC checksums...');
+% system(sprintf('edcre -s 16 "%s"', patchedTrackFile)); old call, for documentation
+% adapted from https://github.com/alex-free/edcre, Alex Free, you saved my day !
+stats = edcre_fix_file(patchedTrackFile, 'Sectors', modifiedSectors, 'Verbose', false); % mode is autodetected, track# is forced for increasing speed
 %% Generate IPF files for all these modifications on individual files
 disp('Generating IPS script and performing CRC32 checksums')
 %IPS_generator('.\NGCD_track_1_files\P040.PRG','.\roms_out\P040.PRG','.\IPS_scripts\P040.PRG.ips') %not used anymore, targetting the binary directly

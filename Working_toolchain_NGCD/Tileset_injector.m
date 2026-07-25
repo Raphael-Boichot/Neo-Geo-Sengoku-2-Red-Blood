@@ -68,7 +68,7 @@ for f = 1:length(files)
         found_count = 0;
         unplaced_count = 0;
         total_diffs = numel(diff_indices);
-        fprintf('Set %d: %d differing tiles to place\n', s, total_diffs);
+        %fprintf('Set %d: %d differing tiles to place\n', s, total_diffs);
 
         for idx = diff_indices'
             r_idx = floor((idx-1) / tiles_per_row) * tile_size + 1;

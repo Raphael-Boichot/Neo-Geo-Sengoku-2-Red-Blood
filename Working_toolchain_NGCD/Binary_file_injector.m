@@ -1,12 +1,32 @@
-function Binary_file_injector()
+function modifiedSectors = Binary_file_injector(origDir, hackedDir, trackFile, patchedTrackFile)
+%BINARY_FILE_INJECTOR  Patch PRG/SPR files back into a CD track image.
+%
+%   modifiedSectors = BINARY_FILE_INJECTOR(origDir, hackedDir, trackFile, patchedTrackFile)
+%
+%   modifiedSectors is a sorted vector of 0-based sector indices (i.e.
+%   relative to the start of trackFile, in raw 2352-byte-sector units --
+%   the same convention as EDCRE_FIX_FILE's 'StartSector') that received
+%   at least one injected byte. Feed these straight into the EDC/ECC
+%   corrector instead of rescanning the whole image, e.g.:
+%
+%       fid = fopen(patchedTrackFile, 'r+b');
+%       [~, T] = edcre_encode_sector(1, 0, zeros(1,2352)); % build tables once
+%       for s = modifiedSectors(:)'
+%           fseek(fid, s*2352, 'bof');
+%           sec = fread(fid, 2352, 'uint8=>uint8')';
+%           mode = sec(16); % 1 = Mode1, 2 = Mode2 (check form1/form2 flag too)
+%           sec = edcre_encode_sector(mode, s+150, sec, 'Tables', T, 'Verbose', true);
+%           fseek(fid, s*2352, 'bof');
+%           fwrite(fid, sec, 'uint8');
+%       end
+%       fclose(fid);
 
 %% Parameters
-origDir = '.\NGCD_track_1_files\';
-hackedDir = '.\roms_out\';
-trackFile = '.\NGCD_track_1_binary\Sengoku2_Track_01.bin';
-patchedTrackFile = '.\NGCD_track_1_binary\Sengoku2_track_1_patched.bin';
+
 chunkSize = 2048;
 paddingThreshold = 100;
+sectorSize = 2352;
+modifiedSectors = [];
 
 %% 1. Initialization and Loading
 fprintf('Loading track file into memory...\n');
@@ -88,6 +108,14 @@ for f = 1:length(dataMap)
                 trackDataT(absOffset + 1 : absOffset + length(chunkOrig)) = chunkHacked';
                 trackDataTChar(absOffset + 1 : absOffset + length(chunkOrig)) = char(chunkHacked');
 
+                % Record every raw sector this injection touched (a chunk
+                % can straddle a sector boundary if it isn't aligned to
+                % sectorSize), so the caller can target the ECC/EDC
+                % corrector at exactly these sectors afterwards.
+                firstSector = floor(absOffset / sectorSize);
+                lastSector  = floor((absOffset + length(chunkOrig) - 1) / sectorSize);
+                modifiedSectors = [modifiedSectors, firstSector:lastSector]; %#ok<AGROW>
+
                 % Increment grand total for every individual injection performed
                 grandTotalInjected = grandTotalInjected + 1;
             end
@@ -102,19 +130,15 @@ for f = 1:length(dataMap)
     fprintf('%-20s | %-12d | %-12d | %-12d | %-12d\n', fileName, numChunks, processedCount, ignoredCount, skippedCount);
 end
 
+modifiedSectors = unique(modifiedSectors);
 fprintf('\nGrand Total Injected Instances: %d\n', grandTotalInjected);
+fprintf('Sectors touched: %d\n', numel(modifiedSectors));
 
 %% 3. Output
 fprintf('\nWriting patched track: %s\n', patchedTrackFile);
 fid = fopen(patchedTrackFile, 'wb');
 fwrite(fid, trackData, 'uint8');
 fclose(fid);
-
-% https://github.com/alex-free/edcre
-% Alex Free, you saved my day !
-
-fprintf('\nRegenerating ECC/EDC checksums...\n');
-system(sprintf('edcre -s 16 "%s"', patchedTrackFile));
 
     function data = readbin(path)
         fid = fopen(path, 'rb');

@@ -2,7 +2,7 @@
 
 ## Patching the Neo Geo MVS / AES game (patch 1.13)
 
-Go to the dedicated [IPS scripts folder](/Working_toolchain_MVS/IPS_scripts), get a know good dump of Sengoku 2 for [MAME](https://www.mamedev.org/), unzip, [apply the IPS patch](https://www.marcrobledo.com/RomPatcher.js/) to corresponding files (check the CRC32 just in case), zip the patched files, enjoy !
+Go to the dedicated [IPS scripts folder](/Working_toolchain_MVS/IPS_scripts), get a known good dump of Sengoku 2 for [MAME](https://www.mamedev.org/), unzip, [apply the IPS patch](https://www.marcrobledo.com/RomPatcher.js/) to corresponding files (check the CRC32 just in case), zip the patched files, enjoy !
 
 Summary of CRC32 you should expect before / after patching:
 

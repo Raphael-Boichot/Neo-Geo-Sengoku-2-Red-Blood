@@ -401,9 +401,9 @@ I would say that your best bet is that Chinese bootleggers find this repository 
 
 ## Final words
 
-I made this mod for my own enjoyement. It's not an attempt to mimick the NCI mod from 2023 which, as far as I can tell seing footage of gameplay from Youtubers flexing with the cartridge, took a quite different artistic direction. Changing the credits is also a total disrespect for the franchise, who the fuck are the NCI bootleggers to do this ?. 
+I made this mod for my own enjoyement. It's not an attempt to mimick the NCI mod from 2023, which as far as I can tell seing footage of gameplay from Youtubers flexing with the cartridge, took a quite different artistic direction. Changing the credits on title screen is also a total dick move, who the fuck are these bootleggers to do this ? 
 
-Anyway, in its current version, my hack is precisely what I would have expected from an official red-blood option back in 1994 when I was playing the AES version. I hope you will enjoy that hack as much as I do.
+Anyway, in its current version, my hack is precisely what I would have expected from an official red-blood option back in 1994 when I was playing the AES version. I hope you will enjoy that hack as much as I do. It is made to be easily modified too, be creative !
 
 That said, I am publishing these workflows in a state far from perfection, on purpose. Throughout my career and my hobbies, I have seen too many projects (good or not, this is not the point here) disappear simply because they were never shared before their authors vanished from the face of the Earth, whatever the reason (brutal death, mental illness, boredom, conflict of interests, (D)discord, or just no reason... I've seen all of these). I now operate on the principle that if this is not online, it just does not exist.
 

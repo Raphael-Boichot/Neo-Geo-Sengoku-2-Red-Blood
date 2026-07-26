@@ -38,8 +38,8 @@ Prerequites to build the project "as it":
 - **/Working_toolchain_NGCD/NGCD_track_1_binary/** -> must contain the binary (.bin) of track 1 from Sengoku 2 Neo Neo CD, Neo Geo SD loader compatible version. It must be named **Sengoku2_Track_01.bin** (mandatory, to rename after of course).
 
 Resulting hacked files will be in their respective folders:
-- **/Working_toolchain_MVS/roms_out/** -> AES / MVS ROMs
-- **/Working_toolchain_NGCD/NGCD_track_1_binary/** -> NeoGeo CD binary to substitute to the track 1
+- **/Working_toolchain_MVS/roms_out/** -> patched AES / MVS ROMs
+- **/Working_toolchain_NGCD/NGCD_track_1_binary/** -> patched NeoGeo CD binary to substitute to the track 1
 
 As well as the IPS scripts for sharing but you don't need them anymore:
 - **/Working_toolchain_MVS/IPS_scripts/**

@@ -141,7 +141,7 @@ So I wrote a code to inject my hacked .SPR and .PRG files by chunks of 2048 byte
 
 Cherry on top, for all the hacked chunks reinjected, the following EDC/ECC 288 bytes say that corresponding data are corrupted (of course). So the last step was to regenerate the right EDC/ECC data for each modified chunk with a dedicated tool (adapted from another project, see Acknowledgments section).
 
-Replace the genuine track 1 by hacked one, run it with a Neo Geo CD SD loader because it is the fastest route from hacking to real hardware for testing. Enjoy your bloody version. I guess there must be a possible workflow starting from the individual files but my solution is working. Better is the enemy of good.
+Replace the genuine track 1 by hacked one, run it with a Neo Geo CD SD loader because it is the fastest route from hacking to real hardware for testing. Enjoy your bloody version. I guess there must be a possible workflow starting from scratch with the individual files but my solution is working fine. Better is the enemy of good.
 
 ## Click on image to see bloody action, Neo Geo CD version
 [ ![Click to see gameplay](/Monkey.jpg)](https://www.youtube.com/watch?v=lhKzlUg3lMo)

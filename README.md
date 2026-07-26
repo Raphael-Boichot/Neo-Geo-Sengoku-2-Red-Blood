@@ -395,13 +395,13 @@ Absolutely not, [for sure](https://www.youtube.com/watch?v=DNVGvQE0vgU). Sengoku
 
 Certainly not. Putting aside the fact that the franchise belongs to SNK and not to me, the reasonable selling price for a tinkered physical release wouldn't even come close to covering my working hours.
 
-But the idea would be to start from a mass produced bootleg to avoid damaging genuine hardware. Looking into [Aliexpress bootlegs](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros), it must be possible to tinker a reprogramed Sengoku 2 MVS quite easily by owning the correct flasher / adapter. This is not a simple issue, the Chinese bootleggers use very baroque chips in their repros (because huge availability as e-waste I guess) and reprograming them requires very uncommon flashers (good luck to find a cheap hobby flasher able to burn a MX26L6420 for example). So it's easy on paper, but practically very expensive due to the need for professional hardware.
+But the idea would be to start from a mass produced bootleg to avoid damaging genuine hardware. Looking into [Aliexpress bootlegs](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros), it must be possible to tinker a reprogramed Sengoku 2 MVS by owning the correct flasher / adapter. This is not a simple issue to solve in fact, the Chinese bootleggers use very baroque chips in their repros (because huge availability as e-waste I guess) and reprograming them requires very uncommon flashers (good luck to find a cheap hobby flasher able to burn a 16-bits only MX26L6420 for example). So it's easy on paper, but practically very expensive due to the need for professional hardware.
 
 I would say that your best bet is that Chinese bootleggers find this repository one day. I will maybe try to do an adapter board for more common chips compatible with cheap flashers (some big enough MX29LVXXXX in place of the MX26L6420) but they will be difficult to solder for most people in return. I'm still not certain whether it's worth the trouble considering the excellent platform available today for emulation like the MiSTer FPGA.
 
 ## Final words
 
-I made this mod for my own enjoyement. It's not an attempt to mimick the NCI mod from 2023, which as far as I can tell seing footage of gameplay from Youtubers flexing with the cartridge, took a quite different artistic direction. Changing the credits on title screen is also a total dick move, who the fuck are these bootleggers to do this ? 
+I made this mod for my own enjoyement. It's not an attempt to mimick the NCI mod from 2023, which as far as I can tell seing footage of gameplay from Youtubers flexing with the cartridge, took a quite different artistic direction (which I'm not fan to be honest).
 
 Anyway, in its current version, my hack is precisely what I would have expected from an official red-blood option back in 1994 when I was playing the AES version. I hope you will enjoy that hack as much as I do. It is made to be easily modified too, be creative !
 

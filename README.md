@@ -152,7 +152,7 @@ First time I'm happy to see this little juggling fucker...
 ## Identified flaws
 
 - The 15 colors limit per tile was surprisingly frustrating. The redness of blood may vary depending on the compromises made when juggling with palette swap, yet existing satisfying reds (more or less brown), my artistic perception but most of all, my laziness. My goal is not to redo the entire tileset. Overall, the game is now more reddish. I reused only the existing colors to keep the designer's original vision intact. I think it fits the game really well.
-- Some rare flashing animations during the horse rides are still unexpectedly white among the regular red ones, no idea why for the moment.
+- Some rare flashing animations during the horse rides are still unexpectedly white among the regular red ones, no idea why for the moment. Pretty sure you won't even see it before reading this section.
 
 # List of modifications
 
@@ -390,7 +390,7 @@ Aternate palette (puppet 2)
 
 ## Any plan for uncensoring Sengoku 1 and 3 in the future ?
 
-Absolutely not, [for sure](https://www.youtube.com/watch?v=DNVGvQE0vgU). Sengoku 1 is boring as fuck and I cannot imagine myself playing it for more than 20 minutes to debug palette issue and chase rogue pixels. As for Sengoku 3, it does not exist, it is an insult to the franchise.
+Absolutely not, [for sure](https://www.youtube.com/watch?v=DNVGvQE0vgU). Sengoku 1 is boring as fuck and I cannot imagine myself playing it for more than 20 minutes to debug palette issue and chase rogue pixels. Also blood effects are not convincing at all in the first place. As for Sengoku 3, it does not exist, it's not a Sengoku game.
 
 ## Any plan to sell / release a physical version ?
 

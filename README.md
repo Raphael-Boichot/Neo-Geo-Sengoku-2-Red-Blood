@@ -12,7 +12,7 @@ Summary of CRC32 you should expect before / after patching:
     File: 040-c4.c4 | Original CRC32: 1C9E9930 | Modified CRC32: 57CA479B
     File: 040-p1.p1 | Original CRC32: 6DDE02C2 | Modified CRC32: 9A8925FE
 
-Dev note: I have no plan to support other ROM formats, MAME being the most common and popular. I guess converters between formats must exist but you're on your own to do this on your particular emulator / SD loader.
+Dev note: I have no plan to support other ROM formats, MAME being the most common and popular. I guess converters between formats must exist but you're on your own to do this on your particular emulator / SD loader. Hack has been validated with a complete walktrough in MAME.
 
 ## Patching the Neo Geo CD game (patch 1.14)
 
@@ -22,7 +22,7 @@ Summary of CRC32 you should expect before / after patching:
 
     File: Sengoku2_Track_01.bin | Original CRC32: 6EFBFA46 | Modified CRC32: 42A9B52B
 
-Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Geo CD format (.CUE + .BIN for each track) so I won't try targeting any other exotic one (like .ISO + .MP3). Just patching track 1 from other formats may or may not work depending on their CRC32. You can anyway test the hack with [Raine64](https://www.emu-france.com/emulateurs/6-arcades/61-multi-games/7687-raine-64-bits/#google_vignette) before burning a CD or going further with your ODE. Raine64 has glitches on the title screen unrelated to the hack.
+Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Geo CD format (.CUE + .BIN for each track) so I won't try targeting any other exotic one (like .ISO + .MP3). Just patching track 1 from other formats may or may not work depending on their CRC32. You can anyway test the hack with [Raine64](https://www.emu-france.com/emulateurs/6-arcades/61-multi-games/7687-raine-64-bits/#google_vignette) before burning a CD or going further with your ODE. Raine64 has glitches on the title screen unrelated to the hack. Hack has been validated with a complete walktrough on real hardware.
 
 ## Editing and building the whole project at once
 

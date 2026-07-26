@@ -105,6 +105,7 @@ Final adjustments (sometimes bigger than expected) were made by looking closely 
 - Anything looking (even partly) human has red blood. And yes daemon fishes have human legs...
 - The least effort will always be prefered because I do this on my spare time, and basically my (valuable) spare time is shared between a ton of other projects and non negociable family duties. All the sources been given, more patient people can probably improve the hack. In it's current form, it's very easy to spot an issue and correct it.
 - The game must look gore but most of all, as genuine as possible. The least modification is always prefered. Apart from being a very hardcore fan of Sengoku 2 like me, you will probably not see any obvious palette swap apart from blood of course.
+- gameplay and difficulty balance is yet perfect, I will never touch that. This hack in ONLY about making the blood red, nothing else.
 
 ## Which tools ?
 

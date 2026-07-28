@@ -388,6 +388,8 @@ Aternate palette (puppet 2)
 
 - The sword slashing sound is much more satisfying and violent with AES / MVS version than Neo Geo CD version. It must probably be possible to restore the much better original sound effects. No plan on my side for the moment.
 
+- The first screaming sound from the pedestrians running in level 3 is lacking in the Neo Geo CD version. This is not related to the hack but a pure bug from the genuine version. It shows how probably rushed and careless was the cartridge to CD conversion. Once again, could be interesting to fix in a hack.
+
 ## Any plan for uncensoring Sengoku 1 and 3 in the future ?
 
 Absolutely not, [for sure](https://www.youtube.com/watch?v=DNVGvQE0vgU). Sengoku 1 is boring as fuck and I cannot imagine myself playing it for more than 20 minutes to debug palette issue and chase rogue pixels. Also blood effects are not convincing at all in the first place. As for Sengoku 3, it does not exist, it's not a Sengoku game.

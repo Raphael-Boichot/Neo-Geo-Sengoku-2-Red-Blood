@@ -397,7 +397,7 @@ Absolutely not, [for sure](https://www.youtube.com/watch?v=DNVGvQE0vgU). Sengoku
 
 ## Any plan to sell / release a physical version ?
 
-Certainly not, selling I.P. from SNK when you are not SNK yourself is called piracy for who has forgotten this very slight semantic detail. So putting aside the fact that I do not own the I.P., the reasonable selling price for a tinkered physical release wouldn't even come close to covering my working hours. Because yes, come from a country with expensive working hours.
+Certainly not, selling I.P. from SNK when you are not SNK yourself is called piracy for who has forgotten this very slight semantic detail. So putting aside the fact that I do not own the I.P., the reasonable selling price for a tinkered physical release wouldn't even come close to covering my working hours. Because yes, I come from a country not only respecting licences (or, I guess ?), but also with expensive working hours.
 
 But the idea to get a physical release would be to start from a mass produced bootleg to avoid damaging genuine hardware. Looking into [Aliexpress bootlegs](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros), it must be possible to tinker a reprogramed Sengoku 2 MVS by owning the correct flasher / adapter. This is not a simple issue to solve in fact, the Chinese bootleggers use very baroque chips in their repros (because huge availability as e-waste I guess) and reprograming them requires very uncommon flashers (good luck to find a cheap hobby flasher able to burn a 16-bits only MX26L6420 for example). So it's easy on paper, but practically very expensive due to the need for professional hardware.
 

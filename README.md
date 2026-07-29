@@ -24,14 +24,14 @@ Summary of CRC32 you should expect before / after patching:
 
 Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Geo CD format (.CUE + .BIN for each track) so I won't try targeting any other exotic one (like .ISO + .MP3). Just patching track 1 from other formats may or may not work depending on their CRC32. You can anyway test the hack with [Raine64](https://www.emu-france.com/emulateurs/6-arcades/61-multi-games/7687-raine-64-bits/#google_vignette) before burning a CD or going further with your ODE. Raine64 has glitches on the title screen unrelated to the hack. Hack has been validated with a complete walktrough on real hardware.
 
-## Editing and building the whole project at once
+## Running the complete workflow by yourself
 
 You can also just build directly the patched files from the workflow proposed here. Just open and run this file with Matlab or GNU Octave from the root of the project:
 
     Build_project.m
 
-Prerequites to build the project "as it":
-- You are in a Windows environment, because all directories are formated in Windows style (but any OS can be used after minor editing, just try).
+Prerequites to build the project "as dowloaded":
+- You are in a Windows environment, because all pathways were formated without any particular style (Windows don't care, Linux probably not happy, MacOS no idea, just try / modify).
 - Matlab or [GNU Octave](https://octave.org/) are correctly installed (there is NO dependencies). Versions R2024a of Matlab and 10.1.0 of GNU Octave have been tested. These codes exist on all serious OS. The workflow has been adapted to work on both softwares on purpose.
 - **/Working_toolchain_MVS/roms/** -> must contain all C roms and P rom of Sengoku 2, MAME compatible version.
 - **/Working_toolchain_NGCD/NGCD_track_1_files/** -> must contain all .SPR and .PRG files extracted from Sengoku 2, track 1, Neo Geo SD loader compatible version (with any ISO manipulating tool).
@@ -97,6 +97,7 @@ Here are the main steps used in a nutshell:
 - Then for each character, repeat the process until reaching the final boss puppets.
 - Build the Neo Geo CD version ~~easily and automatically~~ with sweat and blood from the MVS version.
 - Realize that the HUD palette with character face vignettes is no longer synchronized, that it's impossible to modify because of very strong color constraints with player 2 palette, and having to redo part of the work from scratch.
+- Waste an unreasonable amount of time to make a totally cross compatible workflow between Matlab and GNU Octave knowing that basically nobody will reuse the workflow. For Science.
 
 Final adjustments (sometimes bigger than expected) were made by looking closely at gameplay footage during dev, frame by frame to spot any missing tile conversion (only way to see a single pixel missing).
 

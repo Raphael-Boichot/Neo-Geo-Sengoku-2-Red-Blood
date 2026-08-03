@@ -56,17 +56,17 @@ Anything fishy with the hacks ? A bloody tile is missing ? A rogue pixel is givi
 
 Sometimes, as a player, you get pissed. I mean really.
 
-Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's **censored**. The issue is that I could deal with that in my life until I heard the existence of a NCI "red blood hack" from 2023. That’s a pretty good idea, I thought to myself. Let’s download the ROM (sorry, the IPS patch, piracy is bad, very bad) and have fun !
+Sengoku 2 is one of my prefered video game. It's nervous, it's creepy, it's violent. But it's censored. The issue is that I could deal with that in my life until I heard the existence of a "red blood hack" from 2023 issued by NCI (a French bootlegger to what I understand). That’s a pretty good idea, I thought to myself. Let’s download the ROM (sorry, the IPS patch, piracy is bad, very very bad) and have fun !
 
-My fun hit a wall pretty quickly. The "red blood hack" was never released into the public domain — it was an AES-exclusive version (since a MVS cartridge would have been too tempting to open and dump), produced in very small quantities and sold at a steep price for just a bootleg. If you want to track one down in 2026, be prepared to fight hard with scammers. I'm still surprised today that since 2023 these cartridges have just been rotting on shelves instead of being dumped. It seems the collector and hacker communities have no physical connection.
+My fun hit a wall pretty quickly. The "red blood hack" was never released into the public domain — it was an AES-exclusive version (since a MVS cartridge would have been probably too easy to open), produced in very small quantities and sold at a steep price for just a bootleg. If you want to track one down in 2026, be prepared to fight hard with scammers. I'm still surprised today that since 2023 these cartridges have just been rotting on shelves instead of being dumped. It seems that the collector and hacker communities have no physical connection.
 
-Anyway, paying five times the price of a good AliExpress repro for a bootleg with a piece of cardboard isn't for me. I wanted to play the red blood version on the cheap ! So, armed with years of Game Boy hacking experience and hardware tinkering (the Neo Geo is just a bigger, badder, better Game Boy after all), the marvelous Matlab software (that practically makes coffee), and the Neogeodev documentation, it was just a matter of time and effort — honestly, more than I initially expected — to cook up my own version, but releasing it to the public this time. I started taking the hack seriously in June 2026 and managed to drop the first version in early July 2026. Basically, one month from idea to a playable release.
+Anyway, paying five times the price of a good AliExpress repro for a bootleg with a piece of cardboard and a sticker isn't for me. I wanted to play the red blood version on the cheap ! So, armed with years of Game Boy hacking experience and hardware tinkering (the Neo Geo is just a big Game Boy after all), the marvelous Matlab software, and the Neogeodev documentation, it was just a matter of time and effort — honestly, more than I initially expected — to cook up my own version, but releasing it to the public this time. I started taking the hack seriously in June 2026 (heat wave, insomnia, all that shit) and managed to drop the first version in early July 2026. Basically, one month from idea to a playable release.
 
 As a tinkerer, code disassembly was simply out of the question. On the other hand, I'm educated enough to hack video games using a top-down approach — diving into the RAM/ROM structure and leveraging emulator debug modes. Basically just a bootlegger job, nothing too fancy, but more than enough for the task.
 
 ## Why using Matlab / GNU Octave instead of Python like everyone ?
 
-This is my project, I do what I want in the first place. Converting codes from one programing langage to another in 2026 is also a non problem.
+This is my project, I do what I want, and converting codes from one programming langage to another in 2026 is just a non problem.
 
 That said, Matlab is my everyday go tool for scientific computing at work. It creates efficient and short codes, very readable. It is super fast when used correctly (consider everything as a matrix / vectors and you're good to go). **It has zero dependencies and near zero redundancy between default libraries**. It has a ton of fancy functions yet included in the base version. **It has a free and open source version called [GNU Octave](https://octave.org/)** that you can use to run the toolchain, it is fully compatible. Both Matlab and GNU Octave can be installed on any OS.
 
@@ -97,15 +97,15 @@ Here are the main steps used in a nutshell:
 - Then for each character, repeat the process until reaching the final boss puppets.
 - Build the Neo Geo CD version ~~easily and automatically~~ with sweat and blood from the MVS version.
 - Realize that the HUD palette with character face vignettes is no longer synchronized, that it's impossible to modify because of very strong color constraints with player 2 palette, and having to redo part of the work from scratch.
-- Waste an unreasonable amount of time to make a totally cross compatible workflow between Matlab and GNU Octave knowing that basically nobody will reuse the workflow. For Science.
+- Waste an unreasonable amount of time to make a totally cross compatible workflow between Matlab and GNU Octave knowing that basically nobody but me will reuse the workflow. For Science.
 
-Final adjustments (sometimes bigger than expected) were made by looking closely at gameplay footage during dev, frame by frame to spot any missing tile conversion (only way to see a single pixel missing).
+Final adjustments (sometimes bigger than expected) were made by looking closely at gameplay footage during dev, frame by frame to spot any missing tile conversion (only way to see a single pixel missing). There are probably still some to fix, this is and endless process.
 
 ## My rules
 
 - Anything looking (even partly) human has red blood. And yes daemon fishes have human legs...
 - The least effort will always be prefered because I do this on my spare time, and basically my (valuable) spare time is shared between a ton of other projects and non negociable family duties. All the sources been given, more patient people can probably improve the hack. In it's current form, it's very easy to spot an issue and correct it.
-- The game must look gore but most of all, as genuine as possible. The least modification is always prefered. Apart from being a very hardcore fan of Sengoku 2 like me, you will probably not see any obvious palette swap apart from blood of course.
+- The game must look gore but most of all, as genuine as possible. The least modification is always prefered. Apart from being a very hardcore fan of Sengoku 2 like me, you will probably never see any obvious palette swap apart from blood of course.
 - gameplay and difficulty balance is yet perfect, I will never touch that. This hack in ONLY about making the blood red, nothing else.
 
 ## Which tools ?
@@ -123,27 +123,29 @@ Final adjustments (sometimes bigger than expected) were made by looking closely 
 
 As for any project, 10% of the time was taken to edit 90% of the tileset, 90% of the time to find some lone tiles / pixels in the giant tileset.
 
-Some codes or parts of codes were made / polished / optimized with A.I. (Gemini mainly, sometimes Mistral A.I. because I'm beta tester, a pinch of Claude too for the most tricky parts). Basically there is no rocket science here but I must admit that A.I. was precious to accelerate the process and circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a very niche market here. Coding this project without A.I. would have taken me something like 3-4 months of regular coding on free time instead of just one.
+Some codes or parts of codes were made / polished / optimized with A.I. (Gemini mainly, sometimes Mistral A.I. because I'm beta tester, a pinch of Claude too for the most tricky parts). Basically there is no rocket science here but I must admit that A.I. was precious to accelerate the process and circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a very niche market here. Coding this project without A.I. would have taken me something like 3-4 months of regular coding on free time instead of just one. In consequence, most of the time was spent on design and not on spitting code.
 
-The Neo Geo CD hack was made in parallel to the MVS version as it is not more difficult (in fact, it was) to do on any of the systems. Except that the Neo Geo CD is very scarcely documented (The only interesting source is a French [Neo Geo CD World article](https://www.neogeocdworld.info/html/fiche/hard.htm)), so I was basically on my own most of the time for the file formatting details.
+The Neo Geo CD hack was made in parallel to the MVS version because I though it won't be more difficult. In fact, it was. The Neo Geo CD is very scarcely documented (The only interesting source is a French [Neo Geo CD World article](https://www.neogeocdworld.info/html/fiche/hard.htm)), so I was basically on my own most of the time for the file formatting details. If Neo Geo is yet a niche, Neo Geo CD is a niche within the niche.
 
 ## Some notes about (painfully and partially) reverse engineering the NGCD file format
 
-First surprise, the Neo Geo CD .SPR (sprites) and .PRG (program) formats are 16 bit little endian, which required adapting all the conversion tools developped for the MVS ROMs stored in big endian (but converted to little endian at the end in the 68k RAM, do not ask me why). Sprites are not stored de-interlaced compared to the MVS version. They are also stored horizontally flipped compared to MVS but it may be due to my decoder. HUD sprites (.FIX on NGCD, .s1 on MVS), are exactly formatted the same on the other hand (Big endian, 8x8 pixel tiles). No idea if the sound format is different but I do not want to enter that rabbit hole for the moment.
+First surprise, the Neo Geo CD .SPR (sprites) and .PRG (program) formats are 16 bit little endian, which required adapting all the conversion tools developped for the MVS ROMs stored in big endian (but converted to little endian at the end in the 68k RAM, do not ask me why). Sprites are not stored de-interlaced compared to the MVS version. They are also stored horizontally flipped compared to MVS but it may also be due to my decoder so I struggled to find the correct way of organizing sub 8x8 tiles within the 16x16 tiles. HUD sprites (.FIX on NGCD, .s1 on MVS), are exactly formatted the same on the other hand (Big endian, 8x8 pixel tiles). No idea if the sound format is different but I do not want to enter that rabbit hole for the moment.
 
 Starting confident after these little surprises, I initially though hacking individual files of the NGCD version contained in track 1 and rebuilding an iso from any dedicated tool would be enough. As far as I can tell, it does not work. Even the trusty [neogeodev dedicated page](https://wiki.neogeodev.org/index.php/Making_an_ISO_file) was finally not of any help. Any tool gives me an .iso container too small that makes the Neo Geo CD crash. I was clearly missing something like alignement tricks / error correction / padding. Apparently burning the resulting .iso to a real CD and dump it back would fix the format but you have to edit the .CUE file too in return and I do not want wasting time and CDs for testing (I yet wasted enough time searching for that crap of a solution). Anyway, it is impossible to embed the process in an automatic workflow without doing OS sorcery and I want the project to be both multi-OS and self sufficient (no dependencies).
 
 So I took the problem in reverse. Rebuilding from scratch the exact original ISO 9660 structure as expected by the Neo Geo CD was just out of question, so I tried injecting the individual hacked .SPR and .PRG files directly into the original track 1 binary as big data chunks, by searching for some header signatures. Neo Geo CD crashed again with that "rebuilt" binary, damn! The fact is that I had only like 12% matching between .PRG and .SPR injected and the binary data of track 1 on the same address range, which indicated that the files were probably at least partially splitted within the filesystem. Well, partially was an understatement.
 
-Some reader may find the latter approach incredibly naïve but for my defense, I had no idea how Neo Geo CD data tracks were organized before tackling this problem. Let's say that reverse engineering things is becoming for me as fun, if not funnier, than playing video games.
+Some reader may find the latter approach incredibly naïve but for my defense, I had no idea how Neo Geo CD data tracks (and CD tracks in general) were organized before tackling this problem. Let's say that reverse engineering this was part of the fun.
 
-By messing with dedicated tool (and lot of trial and errors), I finally understood the fine data structure: each individual file is splitted in chunks of 2048 bytes (0x800) separated by 304 bytes (0x130) of EDC/ECC data (typically 288 bytes of checksums and other error correction stuff + 16 bytes of header for the next packet). Each sector (header, 16 bytes + payload, 2048 bytes + error correction, 288 bytes) is 2352 bytes long. There is lot of padding sectors too (zero payload but CD sector format) plus alignement / boot sectors. In brief, I should have started by reading the audio CD format specification. Chunks of data seem consecutives for a given file at first glance but at this step I could not trust anything. 
+By messing with dedicated tool (and lot of trial and errors), I finally understood the fine data structure: each individual file is splitted in chunks of 2048 bytes (0x800) separated by 304 bytes (0x130) of EDC/ECC data (typically 288 bytes of checksums and other error correction stuff + 16 bytes of header for the next packet). Each sector (header, 16 bytes + payload, 2048 bytes + error correction, 288 bytes) is 2352 bytes long. There is lot of padding sectors too (zero payload but CD sector format) plus alignement / boot sectors. In brief, I should have started by reading the audio CD format specification first. Chunks of data seem always consecutives for a given file at first glance but at this step I could not trust anything. 
 
-So I wrote a code to inject my hacked .SPR and .PRG files by chunks of 2048 bytes with expected gaps of 304 bytes inbetween. Which was the case, mostly. 2048 bytes is hopefully long enough to have a unique matching in the track 1 binary and target precise address range by comparison, except for redunding padding area. So the trick was to search a sequence in the binary matching a chunk of 2048 bytes from the non hacked original files to build a table of address ranges for each files, then use this address table to inject chunks of the hacked files to their respective range. Of course there is a ton of optimization and tricks to go faster (like dealing with modified chunks only, ignore padding area with low entropy, searching first the next packet 304 bytes further, etc.) but you get the idea: seek and inject 2048 byte chunks at the right place. Some sequences of tiles are redundant in several .SPR files so don't forget to take this into account. Typically most of tiles from AREA2.SPR and TITLE.SPR are redunding so chunks of data may have multiple insertion points without this being a false positive.
+So I wrote a code to inject my hacked .SPR and .PRG files by chunks of 2048 bytes with expected gaps of 304 bytes in between. Which was the case, mostly. 2048 bytes is hopefully long enough to have a unique matching in the track 1 binary and target precise address range by comparison, except for redunding padding area (just ignored here). So the trick was to search for a sequence in the binary matching a chunk of 2048 bytes from the non hacked original files (.SPR and .PRG) to build a table of address ranges for each files, then use this address table to inject chunks of the hacked files to their respective range. As I did only data substitutions while keeping the total file length constant, it works without any issue. Of course there is a ton of optimization and tricks to go faster (like dealing with modified chunks only, ignore padding area with low entropy, searching in priority the next packet 304 bytes further instead of anywhere, etc.) but you get the idea: seek and inject 2048 byte chunks at the right place. Some sequences of tiles are redundant in several .SPR files so don't forget to take this into account, this is not an issue. Typically most of tiles from AREA2.SPR and TITLE.SPR are redunding so chunks of data may have multiple insertion points without this being a false positive.
 
-Cherry on top, for all the hacked chunks reinjected, the following EDC/ECC 288 bytes say that corresponding data are corrupted (of course). So the last step was to regenerate the right EDC/ECC data for each modified chunk with a dedicated tool (adapted from another project, see Acknowledgments section).
+Cherry on top, for all the hacked chunks reinjected, the following EDC/ECC 288 bytes say that corresponding data are now corrupted (of course). So the last step was to regenerate the right EDC/ECC data for each modified chunk with a dedicated tool (adapted from another project, see Acknowledgments section).
 
-Replace the genuine track 1 by hacked one, run it with a Neo Geo CD SD loader because it is the fastest route from hacking to real hardware for testing. Enjoy your bloody version. I guess there must be a possible workflow starting from scratch with the individual files but my solution is working fine. Better is the enemy of good.
+Replace the genuine track 1 by hacked one, run it with a Neo Geo CD SD loader because it is the fastest route from hacking to real hardware for testing. Enjoy your bloody version. 
+
+I guess there must be a possible workflow starting from scratch with the individual files but my solution is working fine. Better is the enemy of good.
 
 ## Click on image to see bloody action, Neo Geo CD version
 [ ![Click to see gameplay](/Monkey.jpg)](https://www.youtube.com/watch?v=lhKzlUg3lMo)
@@ -189,7 +191,7 @@ The HUD has a small vignettes with characters face. It has its own palettes, but
 
 ![](/Palettes/Jack_Stone_Palette.png)
 
-- Mike Walsh green (player 1) and blue (player 2) **--> Tileset editing only**
+- Mike Walsh green (player 1) and blue (player 2) **--> Nothing to do (no blood)**
 
 ![](/Palettes/Mike_Walsh_green_Palette.png)
 
@@ -307,7 +309,7 @@ Alternate palettes
 
 ![](/Palettes/Axeman_green_palette_alternate.png)
 
-- Spearman green and red **--> Nothing to do if I remind**
+- Spearman green and red **--> Nothing to do (no blood)**
 
 ![](/Palettes/Spearman_green_palette.png)
 
@@ -389,27 +391,33 @@ Aternate palette (puppet 2)
 
 - The sword slashing sound is much more satisfying and violent with AES / MVS version than Neo Geo CD version. It must probably be possible to restore the much better original sound effects. No plan on my side for the moment.
 
-- The first screaming sound from the pedestrians running in level 3 is lacking in the Neo Geo CD version. This is not related to the hack but a pure bug from the genuine version. It shows how probably rushed and careless was the cartridge to CD conversion. Once again, could be interesting to fix in a hack.
+- The first screaming sound from the pedestrians running in level 3 is lacking in the Neo Geo CD version. This is not related to the hack but a pure bug from the genuine version.
+
+- The laugh of the main vilain is lacking is attract mode in the Neo Geo CD version.
+
+All of this shows how probably rushed and careless was the cartridge to CD conversion. Once again, could be interesting to fix in a hack.
 
 ## Any plan for uncensoring Sengoku 1 and 3 in the future ?
 
-Absolutely not, [for sure](https://www.youtube.com/watch?v=DNVGvQE0vgU). Sengoku 1 is boring as fuck and I cannot imagine myself playing it for more than 20 minutes to debug palette issue and chase rogue pixels. Also blood effects are not convincing at all in the first place. As for Sengoku 3, it does not exist, it's not a Sengoku game.
+Absolutely not, [for sure](https://www.youtube.com/watch?v=DNVGvQE0vgU). Sengoku 1 is boring as fuck and I cannot imagine myself playing it for more than 20 minutes to debug palette issue and chase rogue pixels. Also blood effects are not convincing at all in the first place and the more ghostly mood fits perfectly with random blood colors. 
+
+As for Sengoku 3, it does not exist, it's not a Sengoku game, it's just a random game stamped with the name.
 
 ## Any plan to sell / release a physical version ?
 
-Certainly not, selling I.P. from SNK when you are not SNK yourself is called piracy for who has forgotten this very slight semantic detail. So putting aside the fact that I do not own the I.P., the reasonable selling price for a tinkered physical release wouldn't even come close to covering my working hours. Because yes, I come from a country not only respecting intellectual property (or, I guess ?), but also with expensive working hours.
+Certainly not, selling I.P. from SNK when you are not SNK yourself is called piracy for who has forgotten this very slight semantic detail. So putting aside the fact that I do not own the I.P., the reasonable selling price for a tinkered physical release wouldn't even come close to covering my working hours. Because yes, I come from a country not only respecting intellectual property (jocking), but also with expensive working hours.
 
-But the idea to get a physical release would be to start from a cheap and mass produced bootleg to avoid damaging genuine hardware. Looking into [Aliexpress bootlegs](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros), it must be possible to tinker a reprogramed Sengoku 2 MVS by owning the correct flasher / adapter. This is not a simple issue to solve in fact, the Chinese bootleggers use very baroque chips in their repros (because huge availability as e-waste I guess) and reprograming them requires very uncommon flashers (good luck to find a cheap hobby flasher able to burn a 16-bits only MX26L6420 for example). So it's easy on paper, but practically very expensive due to the need for professional hardware.
+But the idea to get a physical release would be to start from a cheap and mass produced bootleg to avoid damaging genuine hardware. Looking into [Aliexpress bootlegs](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros), it must be possible to tinker a reprogrammed Sengoku 2 MVS by owning the correct flasher / adapter. This is not a simple issue to solve in fact, the Chinese bootleggers use very baroque chips in their repros (because huge availability as e-waste I guess) and reprogramming them requires very uncommon flashers / adapters (good luck to find a cheap hobby flasher able to burn a 16-bits only MX26L6420 or an adapter / socket for a M27C322 in SDIP package for example). So it's easy on paper, but practically, not for hobbyists.
 
-I would say that your best bet is that Chinese bootleggers find this repository one day. I will maybe try to do an adapter board for more common chips compatible with cheap flashers (some big enough MX29LVXXXX in place of the MX26L6420) but they will be difficult to solder for most people in return. I'm still not certain whether it's worth the trouble considering the excellent platform available today for emulation like the MiSTer FPGA.
+I would say that your best bet is that Chinese bootleggers find this repository one day. I will maybe try to do an adapter board for more common chips compatible with cheap flashers (some big enough MX29LVXXXX in place of the MX26L6420, or some adapter SDIP-to-something-common for M27C322) but they will be probably difficult to solder for most people in return. I'm still not certain whether it's worth the trouble considering the excellent platform available today for emulation like the MiSTer FPGA.
 
 ## Final words
 
-I made this mod for my own enjoyement. It's not an attempt to mimick the NCI mod from 2023, which as far as I can tell seing footage of gameplay from Youtubers flexing with the cartridge, took a quite different artistic direction (which I'm not fan to be honest).
+I made this mod for my own enjoyment only, I hope you will enjoy that hack as much as I do. In its current version, this is precisely what I would have expected from an official red-blood option back in 1994 when I was mastering the AES version.
 
-Anyway, in its current version, my hack is precisely what I would have expected from an official red-blood option back in 1994 when I was playing the AES version. I hope you will enjoy that hack as much as I do. It is made to be easily modified too, be creative !
+I am also publishing these workflows in a state probably far from perfection. 
 
-That said, I am publishing these workflows in a state far from perfection, on purpose. Throughout my career and my hobbies, I have seen too many projects (good or not, this is not the point here) disappear simply because they were never shared before their authors vanished from the face of the Earth, whatever the reason (brutal death, mental illness, boredom, conflict of interests, (D)discord, or just no reason... I've seen all of these). I now operate on the principle that if this is not online, it just does not exist.
+Throughout my career and my hobbies, I have seen too many projects (good or not, this is not the point here) disappear simply because they were never shared before their authors vanished from the face of the Earth, whatever the reason. Unexpected death, mental illness, boredom, conflict of interests, social media drama, or just basic inability to finish something, I've seen all of these. I now operate on the principle that **if this is not online, it just does not exist.**
 
 ## Acknowledgments
 

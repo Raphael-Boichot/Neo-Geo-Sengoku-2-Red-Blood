@@ -14,6 +14,9 @@ Summary of CRC32 you should expect before / after patching:
 
 Dev note: I have no plan to support other ROM formats, MAME being the most common and popular. I guess converters between formats must exist but you're on your own to do this on your particular emulator / SD loader. Hack has been validated with a complete walktrough in MAME.
 
+## Click on image to see footage of the prototype, MVS version
+[ ![Click to see gameplay](/Caption.png)](https://www.youtube.com/watch?v=bVQaettOxyM)
+
 ## Patching the Neo Geo CD game (patch 1.14)
 
 Get the CD version compatible with the NeoGeo CD SD Loader, for example [here](https://archive.org/details/fullset-for-neocd-sd-loader). It must be a .CUE + .BINs version. Patch the track 1 with the [dedicated IPS patch](/Working_toolchain_NGCD/IPS_scripts) and any [good IPS patcher](https://www.marcrobledo.com/RomPatcher.js/). You may of course check the CRC32 just in case.
@@ -23,6 +26,9 @@ Summary of CRC32 you should expect before / after patching:
     File: Sengoku2_Track_01.bin | Original CRC32: 6EFBFA46 | Modified CRC32: 42A9B52B
 
 Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Geo CD format (.CUE + .BIN for each track) so I won't try targeting any other exotic one (like .ISO + .MP3). Just patching track 1 from other formats may or may not work depending on their CRC32. You can anyway test the hack with [Raine64](https://www.emu-france.com/emulateurs/6-arcades/61-multi-games/7687-raine-64-bits/#google_vignette) before burning a CD or going further with your ODE. Raine64 has glitches on the title screen unrelated to the hack. Hack has been validated with a complete walktrough on real hardware.
+
+## Click on image to see footage of the prototype, Neo Geo CD version
+[ ![Click to see gameplay](/Monkey.jpg)](https://www.youtube.com/watch?v=lhKzlUg3lMo)
 
 ## Running the complete workflow by yourself
 
@@ -48,9 +54,6 @@ As well as the IPS scripts for sharing but you don't need them anymore:
 Building the project basically allows you to add / remove features easily and cook your own version. You can follow the comments into the code to understand which section does what. 
 
 Anything fishy with the hacks ? A bloody tile is missing ? A rogue pixel is giving you insomnia ? Need for help ? Open an issue !
-
-## Click on image to see bloody action, MVS version
-[ ![Click to see gameplay](/Caption.png)](https://www.youtube.com/watch?v=bVQaettOxyM)
 
 ## The story so far...
 
@@ -146,11 +149,6 @@ Cherry on top, for all the hacked chunks reinjected, the following EDC/ECC 288 b
 Replace the genuine track 1 by hacked one, run it with a Neo Geo CD SD loader because it is the fastest route from hacking to real hardware for testing. Enjoy your bloody version. 
 
 I guess there must be a possible workflow starting from scratch with the individual files but my solution is working fine. Better is the enemy of good.
-
-## Click on image to see bloody action, Neo Geo CD version
-[ ![Click to see gameplay](/Monkey.jpg)](https://www.youtube.com/watch?v=lhKzlUg3lMo)
-
-First time I'm happy to see this little juggling fucker...
 
 ## Identified flaws
 

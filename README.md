@@ -387,13 +387,13 @@ Aternate palette (puppet 2)
 
 - The Neo Geo CD version seems to contains remnants of codes from Cyber Lip, so I guess that at least some logic from Sengoku 2 P040.PRG was common with that earlier game (probably the logic to split and load levels in the tiny Neo Geo CD memory).
 
-- The sword slashing sound is much more satisfying and violent with AES / MVS version than Neo Geo CD version. It must probably be possible to restore the much better original sound effects. No plan on my side for the moment.
+- The sword slashing sound is much more satisfying and violent with AES / MVS version than Neo Geo CD version. It must probably be possible to restore the much better original sound effects. No plan on my side for the moment. I've rapidly checked, it's not an easy task at all.
 
 - The first screaming sound from the pedestrians running in level 3 is lacking in the Neo Geo CD version. This is not related to the hack but a pure bug from the genuine version.
 
-- The laugh of the main vilain is lacking is attract mode in the Neo Geo CD version.
+- The laugh of the main vilain is lacking is attract mode in the Neo Geo CD version, but only in EU / US mode, not in Japanese.
 
-All of this shows how probably rushed and careless was the cartridge to CD conversion. Once again, could be interesting to fix in a hack.
+All of this shows how probably rushed, careless and untested was the Sengoku 2 cartridge to CD conversion. Not as bad as Magician Lord CD which is simply butchered regarding sound and probably untested, but not a good port anyway.
 
 ## Any plan for uncensoring Sengoku 1 and 3 in the future ?
 

@@ -122,7 +122,7 @@ Crom_to_png(oddRomFile_small,evenRomFile_small,dummy_palette_jet, 'Tileset_MVS_r
 % basically inject the good palette, search for tiles, edit the tiles, save, play, and so on
 % this part has no purpose if you just create the ROMs from my tileset, it's just for editing
 % disp('Swapping palettes of the modified tileset and updating palette.txt')
-% alternative_palette = [0x0010, 0x7810, 0x0C74, 0x5FC9, 0x5409, 0x1A0F, 0x1F9F, 0x0800, 0x0C00, 0x4F93, 0x0666, 0x7AAA, 0x0EEE, 0x7334, 0x4500, 0x7111]; % Claude Yamamoto (player 1)
+% alternative_palette = [0x0078, 0x3720, 0x2B52, 0x3E94, 0x4700, 0x4B00, 0x4F00, 0x3023, 0x3046, 0x2069, 0x0885, 0x6BB9, 0x7FFC, 0x109B, 0x10DF, 0x0000]; % Puppet 2 with reds from puppet 1
 % Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 % Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % You can just run this section and the init section (right click, run section) to edit the tileset
@@ -382,7 +382,6 @@ disp('MVS version fully converted !')
 %2026-07-12 One tile of Claude Yamamoto was missing
 %2026-07-13 Puppet warrior with feathers had one fucking tile missing and ONE fucking white pixel put by error
 %2026-07-14 Bloody sword of puppet warrior with feather, still 2 tiles not converted...
-% Must be over now
 
 %In fact not, due to the very constraint HUB palette, I had to reverse back
 %All main characters come back to initial color
@@ -400,6 +399,16 @@ disp('MVS version fully converted !')
 %2026-07-24 Some Jack Stone tiles still missing...
 %2026-07-25 Crow Tengo god, 3 pixels missing...
 %2026-07-25 Lots of tiles missing in horse ride damage (all Jack Stone, one Claude Yamamoto)
+
+%2026-08-05 one tile and some pixels missing in Giant tileset
+%2026-08-05 Soldiers, some pixels missing
+%2026-08-05 Axeman, some pixels missing
+%2026-08-05 Ninja Monk, some pixels missing
+%2026-08-05 Horse ride, some pixels missing, and I found the head in the small tileset !!!
+%2026-08-05 Yoshitsune, some pixels missing
+%2026-08-05 Dragon last level, some pixels missing
+%2026-08-05 Puppet 1 and 2, sloopy work, redone carefully
+
 
 % This is the dump of the palette RAM during first level. Hopefully the
 % characters palettes do not change much in the different levels contrary

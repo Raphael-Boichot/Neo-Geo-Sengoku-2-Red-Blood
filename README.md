@@ -14,7 +14,7 @@ Summary of CRC32 you should expect before / after patching:
 
 Dev note: there is plethora of rom formats, but MAME format is the most versatile entry point. Converters between formats exist but you're on your own to do this on your particular emulator / SD loader / core / FPGA thing. I cannot cover and maintain all existing way to play Sengoku 2 in 2026. I've just added an experimental .neo generator in the workflow but it is NOT validated for the moment.
 
-Hack has been validated with a complete walktrough in MAME 0.289. You must use MAME in [command line](/Tools/Run_sengoku2.ps1) to force it to run a game not listed in its own database.
+The regular hack itself has been validated with a complete walktrough in MAME 0.289. You must use MAME in [command line](/Tools/Run_sengoku2.ps1) to force it to run a game not listed in its own database.
 
 ## Click on image to see footage of the prototype, MVS version
 [ ![Click to see gameplay](/Caption.png)](https://www.youtube.com/watch?v=bVQaettOxyM)
@@ -47,6 +47,7 @@ Prerequites to build the project "as dowloaded":
 
 Resulting hacked files will be in their respective folders:
 - **/Working_toolchain_MVS/roms_out/** -> patched AES / MVS ROMs
+- **/Working_toolchain_MVS/neo_out/** -> .neo file of Sengoku 2 and Sengoku 2 Red Blood, not validated on my side, just try.
 - **/Working_toolchain_NGCD/NGCD_track_1_binary/** -> patched NeoGeo CD binary to substitute to the track 1
 
 As well as the IPS scripts for sharing but you don't need them anymore:

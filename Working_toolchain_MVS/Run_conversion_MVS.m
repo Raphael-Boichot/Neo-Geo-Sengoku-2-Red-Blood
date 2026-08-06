@@ -123,7 +123,7 @@ Crom_to_png(oddRomFile_small,evenRomFile_small,dummy_palette_jet, 'Tileset_MVS_r
 % basically inject the good palette, search for tiles, edit the tiles, save, play, and so on
 % this part has no purpose if you just create the ROMs from my tileset, it's just for editing
 % disp('Swapping palettes of the modified tileset and updating palette.txt')
-% alternative_palette = [0x0078, 0x3720, 0x2B52, 0x3E94, 0x4700, 0x4B00, 0x4F00, 0x3023, 0x3046, 0x2069, 0x0885, 0x6BB9, 0x7FFC, 0x109B, 0x10DF, 0x0000]; % Puppet 2 with reds from puppet 1
+% alternative_palette = [0x0077, 0x3720, 0x2B52, 0x3E94, 0x4700, 0x4B00, 0x4F00, 0x6320, 0x6640, 0x2960, 0x4599, 0x09CC, 0x3DFF, 0x4B90, 0x4FD0, 0x0000]; % Puppet 1
 % Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 % Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % You can just run this section and the init section (right click, run section) to edit the tileset
@@ -420,6 +420,13 @@ disp('MVS version fully converted !')
 %2026-08-05 Yoshitsune, some pixels missing
 %2026-08-05 Dragon last level, some pixels missing
 %2026-08-05 Puppet 1 and 2, sloopy work, redone carefully
+
+%2026-08-06 Puppet Warriors, 4 pixels bloodified by error, reversed
+%2026-08-06 Ninja Monks, few pixels missing
+%2026-08-06 Soldiers, few pixels missing
+%2026-08-06 Axeman, two pixels bloodified by error, reversed
+%2026-08-06 Puppet 1 minor adjustemnts
+%2026-08-06 Puppet 2 4 pixels bloodified by error, reversed + rogue pixel removal
 
 % This is the dump of the palette RAM during first level. Hopefully the
 % characters palettes do not change much in the different levels contrary

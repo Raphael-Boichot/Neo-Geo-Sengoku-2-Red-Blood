@@ -1,7 +1,7 @@
 clear
 warning off
 
-disp('To test this codes, just run Crom_to_png, Palette_swapper and png_to_Crom')
+disp('To test these codes, just run Crom_to_png, Palette_swapper and png_to_Crom')
 disp('The CRC2 before and after must coincide')
 disp('Just ignore this message in case you''re doing modifications')
 disp('The dummy palette jet is the mandatory exchange palette for NGCD')
@@ -10,8 +10,9 @@ disp('Don''t forget to first place the Sengoku 2 MAME compatible roms in .\roms\
 %% Init section
 
 % general settings
-mkdir('.\roms_out\');
-mkdir('.\IPS_scripts\');
+mkdir('.\roms_out\'); % patched roms
+mkdir('.\neo_out\'); % .neo roms, non patched and patched
+mkdir('.\IPS_scripts\'); % self explanatory
 
 % All ROMs are first just copied
 files = dir('.\roms\');
@@ -323,12 +324,23 @@ palette_old = [0x0078, 0x3720, 0x2B52, 0x3E94, 0x5606, 0x5A0A, 0x5F0F, 0x3023, 0
 palette_new = [0x0078, 0x3720, 0x2B52, 0x3E94, 0x4700, 0x4B00, 0x4F00, 0x3023, 0x3046, 0x2069, 0x0885, 0x6BB9, 0x7FFC, 0x109B, 0x10DF, 0x0000]; % Puppet 2 with reds from puppet 1
 [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
 
-% 5. Save and Final CRC
+% Save and Final CRC
 [~, name, ext] = fileparts(PRomFile);
 newFileName = ['.\roms_out\', name, ext];
 fid = fopen(newFileName, 'wb');
 fwrite(fid, PROMdata, 'uint8');
 fclose(fid);
+
+%% Generate a .neo concatained file (experimental, untested, A.I slop)
+% Converts files in .neo format, Claude adapatation of https://github.com/city41/neosdconv
+disp('Generates .neo file for regular Sengoku 2 for reference (experimental)') % for reference
+opts = struct('name','Sengoku 2','year', 1993,'genre','BeatEmUp','manufacturer','SNK','ngh','40','screenshot',0);
+neosdconv_convert('.\roms\', '.\neo_out\sengoku2.neo', opts);
+neosdconv_dump_header('.\neo_out\sengoku2.neo');
+disp('Generates .neo file for Sengoku 2 Red Blood hack (experimental)') % da real shit here
+opts = struct('name','Sengoku 2 Red Blood','year', 1993,'genre','BeatEmUp','manufacturer','SNK','ngh','40','screenshot',0);
+neosdconv_convert('.\roms_out\', '.\neo_out\sengoku2_Red_Blood.neo', opts);
+neosdconv_dump_header('.\neo_out\sengoku2_Red_Blood.neo');
 
 %% Generate IPF files for all these modifications
 disp('Generating IPS script and performing CRC32 checksums')
@@ -408,7 +420,6 @@ disp('MVS version fully converted !')
 %2026-08-05 Yoshitsune, some pixels missing
 %2026-08-05 Dragon last level, some pixels missing
 %2026-08-05 Puppet 1 and 2, sloopy work, redone carefully
-
 
 % This is the dump of the palette RAM during first level. Hopefully the
 % characters palettes do not change much in the different levels contrary

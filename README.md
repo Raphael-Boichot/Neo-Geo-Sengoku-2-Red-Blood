@@ -1,15 +1,15 @@
 # Red Blood hack for Sengoku 2, Neo Geo AES / MVS and Neo Geo CD
 
-## Patching the Neo Geo MVS / AES game (patch 1.14)
+## Patching the Neo Geo MVS / AES game (patch 1.15)
 
 Go to the dedicated [IPS scripts folder](/Working_toolchain_MVS/IPS_scripts), get a known good dump of Sengoku 2 for [MAME](https://www.mamedev.org/), unzip, [apply the IPS patch](https://www.marcrobledo.com/RomPatcher.js/) to corresponding files (check the CRC32 just in case), zip the patched files, enjoy !
 
 Summary of CRC32 you should expect before / after patching:
 
-    File: 040-c1.c1 | Original CRC32: FAA8EA99 | Modified CRC32: 5740194A
-    File: 040-c2.c2 | Original CRC32: 87D0EC65 | Modified CRC32: DC5A1591
-    File: 040-c3.c3 | Original CRC32: 24B5BA80 | Modified CRC32: 5C4040E5
-    File: 040-c4.c4 | Original CRC32: 1C9E9930 | Modified CRC32: 57CA479B
+    File: 040-c1.c1 | Original CRC32: FAA8EA99 | Modified CRC32: 451CDF68
+    File: 040-c2.c2 | Original CRC32: 87D0EC65 | Modified CRC32: 942D98B8
+    File: 040-c3.c3 | Original CRC32: 24B5BA80 | Modified CRC32: F3992A91
+    File: 040-c4.c4 | Original CRC32: 1C9E9930 | Modified CRC32: 7838143D
     File: 040-p1.p1 | Original CRC32: 6DDE02C2 | Modified CRC32: 9A8925FE
 
 Dev note: I have no plan to support other ROM formats, MAME romset being the most versatile entry point for other formats. Converters between formats exist but you're on your own to do this on your particular emulator / SD loader / core / FPGA thing. I cannot cover and maintain all existing way to play Sengoku 2 in 2026. Hack has been validated with a complete walktrough in MAME 0.289. You must use MAME in [command line](/Tools/Run_sengoku2.ps1) to force it to run a game not listed in its own database.
@@ -17,13 +17,13 @@ Dev note: I have no plan to support other ROM formats, MAME romset being the mos
 ## Click on image to see footage of the prototype, MVS version
 [ ![Click to see gameplay](/Caption.png)](https://www.youtube.com/watch?v=bVQaettOxyM)
 
-## Patching the Neo Geo CD game (patch 1.14)
+## Patching the Neo Geo CD game (patch 1.15)
 
 Get the CD version compatible with the NeoGeo CD SD Loader, for example [here](https://archive.org/details/fullset-for-neocd-sd-loader). It must be a .CUE + .BINs version. Patch the track 1 with the [dedicated IPS patch](/Working_toolchain_NGCD/IPS_scripts) and any [good IPS patcher](https://www.marcrobledo.com/RomPatcher.js/). You may of course check the CRC32 just in case.
 
 Summary of CRC32 you should expect before / after patching:
 
-    File: Sengoku2_Track_01.bin | Original CRC32: 6EFBFA46 | Modified CRC32: 42A9B52B
+    File: Sengoku2_Track_01.bin | Original CRC32: 6EFBFA46 | Modified CRC32: EB00E533
 
 Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Geo CD format (.CUE + .BINs for each track). Patching the track 1 of dumps with music tracks in MP3 will work if original CRC32 matches. **The .CHD version (packed and compressed) is not compatible with this patch.** You can anyway easily test the hack with [Raine64](https://www.emu-france.com/emulateurs/6-arcades/61-multi-games/7687-raine-64-bits/#google_vignette) before burning a CD or going further with your favorite ODE. Raine64 has glitches on the title screen unrelated to the hack. Hack has been validated with a complete walktrough on real hardware (Top loader console + NeoGeo SD Loader rev. E with firmware v0.11).
 

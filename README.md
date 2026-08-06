@@ -1,4 +1,4 @@
-# Red Blood hack for Sengoku 2, Neo Geo AES / MVS and Neo Geo CD
+# Sengoku 2 Red Blood hack, Neo Geo AES / MVS and Neo Geo CD
 
 ## Patching the Neo Geo MVS / AES game (patch 1.15)
 

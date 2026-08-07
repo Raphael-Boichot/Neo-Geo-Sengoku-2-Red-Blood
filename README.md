@@ -16,7 +16,7 @@ Dev note: there is plethora of rom formats, but MAME format is the most versatil
 
 The regular hack itself has been validated with a complete walktrough in MAME 0.289. You must use MAME in [command line](/Tools/Run_sengoku2.ps1) to force it to run a game not listed in its own database.
 
-## Click on image to see footage of the prototype, MVS version
+**Click on image to see footage of the prototype, MVS version**
 [ ![Click to see gameplay](/Caption.png)](https://www.youtube.com/watch?v=bVQaettOxyM)
 
 ## Patching the Neo Geo CD game (patch 1.15)
@@ -29,7 +29,7 @@ Summary of CRC32 you should expect before / after patching:
 
 Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Geo CD format (.CUE + .BINs for each track). Patching the track 1 of dumps with music tracks in MP3 will work if original CRC32 matches. **The .CHD version (packed and compressed) is not compatible with this patch.** You can anyway easily test the hack with [Raine64](https://www.emu-france.com/emulateurs/6-arcades/61-multi-games/7687-raine-64-bits/#google_vignette) before burning a CD or going further with your favorite ODE. Raine64 has glitches on the title screen unrelated to the hack. Hack has been validated with a complete walktrough on real hardware (Top loader console + NeoGeo SD Loader rev. E with firmware v0.11).
 
-## Click on image to see footage of the prototype, Neo Geo CD version
+**Click on image to see footage of the prototype, Neo Geo CD version**
 [ ![Click to see gameplay](/Monkey.jpg)](https://www.youtube.com/watch?v=lhKzlUg3lMo)
 
 ## Running the complete workflow by yourself

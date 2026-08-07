@@ -422,6 +422,8 @@ I am also publishing these workflows in a state probably far from perfection.
 
 Throughout my career and my hobbies, I have seen too many projects (good or not, this is not the point here) disappear simply because they were never shared before their authors vanished from the face of the Earth, whatever the reason. Unexpected death, mental illness, boredom, conflict of interests, social media drama, or just basic inability to finish something, I've seen all of these. I now operate on the principle that **if this is not online, it just does not exist.**
 
+![](/Public_release.jpg)
+
 ## Acknowledgments
 
 - The [neogeodev community](https://wiki.neogeodev.org//index.php/Main_Page) in general and [Furrtek](https://github.com/furrtek) in particular. This project made on spare time was only possible because I stood on the shoulders of giants. The Neo Geo was one of my first consoles and Sengoku 2 AES one of my first games (both sold to buy a Neo Geo CD, nobody is perfect...) and I still have a special soft spot for this system, even though the community around has now become completely insane.

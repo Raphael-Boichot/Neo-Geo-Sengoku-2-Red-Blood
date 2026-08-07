@@ -1,5 +1,7 @@
 # Sengoku 2 Red Blood hack for AES/MVS and NGCD
 
+Because that should have been done since 1993 !
+
 ## Patching the Neo Geo MVS / AES game (patch 1.15)
 
 Go to the dedicated [IPS scripts folder](/Working_toolchain_MVS/IPS_scripts), get a known good dump of Sengoku 2 for [MAME](https://www.mamedev.org/), unzip, [apply the IPS patch](https://www.marcrobledo.com/RomPatcher.js/) to corresponding files (check the CRC32 just in case), zip the patched files, enjoy !

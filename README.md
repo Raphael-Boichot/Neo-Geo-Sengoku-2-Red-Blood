@@ -131,9 +131,9 @@ Final adjustments (sometimes bigger than expected) were made by looking closely 
 
 As for any project, 10% of the time was taken to edit 90% of the tileset, 90% of the time to find some lone tiles / pixels in the giant tileset.
 
-Some codes or parts of codes were made / polished / optimized with A.I. (Gemini mainly, sometimes Mistral A.I. because I'm beta tester, a pinch of Claude too for the most tricky parts). Basically there is no rocket science here but I must admit that A.I. was precious to accelerate the process and circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a very niche market here. Coding this project without A.I. would have taken me something like 3-4 months of regular coding on free time instead of just one. In consequence, most of the time was spent on design and not on spitting code.
+Some codes or parts of codes were made / polished / optimized with A.I. (Gemini mainly, sometimes Mistral A.I. because I'm beta tester, a pinch of Claude too for the most tricky parts). Basically there is no rocket science here but I must admit that A.I. was precious to accelerate the process and circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a very niche market here. Coding this project without A.I. would have taken me something like 3-4 months of regular coding on free time instead of just one. In consequence, most of the time was spent on design and not on spitting (quite boring) code. In any case I have nothing to prove regarding coding skills.
 
-The Neo Geo CD hack was made in parallel to the MVS version because I though it won't be more difficult. In fact, it was. The Neo Geo CD is very scarcely documented (The only interesting source is a French [Neo Geo CD World article](https://www.neogeocdworld.info/html/fiche/hard.htm)), so I was basically on my own most of the time for the file formatting details. If Neo Geo is yet a niche, Neo Geo CD is a niche within the niche.
+The Neo Geo CD hack was made in parallel to the MVS version because I though it won't be very difficult. In fact, it was. The Neo Geo CD is very scarcely documented (The only interesting source is a French [Neo Geo CD World article](https://www.neogeocdworld.info/html/fiche/hard.htm)), so I was basically on my own most of the time for the file formatting details. If Neo Geo is yet a niche, Neo Geo CD is a niche within the niche. But I like this system.
 
 ## Some notes about (painfully and partially) reverse engineering the NGCD file format
 
@@ -143,7 +143,7 @@ Starting confident after these little surprises, I initially though hacking indi
 
 So I took the problem in reverse. Rebuilding from scratch the exact original ISO 9660 structure as expected by the Neo Geo CD was just out of question, so I tried injecting the individual hacked .SPR and .PRG files directly into the original track 1 binary as big data chunks, by searching for some header signatures. Neo Geo CD crashed again with that "rebuilt" binary, damn! The fact is that I had only like 12% matching between .PRG and .SPR injected and the binary data of track 1 on the same address range, which indicated that the files were probably at least partially splitted within the filesystem. Well, partially was an understatement.
 
-Some reader may find the latter approach incredibly naïve but for my defense, I had no idea how Neo Geo CD data tracks (and CD tracks in general) were organized before tackling this problem. Let's say that reverse engineering this was part of the fun.
+Some reader may find the latter approach incredibly naive but for my defense, I had no idea how Neo Geo CD data tracks (and CD tracks in general) were organized before tackling this problem. Let's say that reverse engineering this was part of the fun.
 
 By messing with dedicated tool (and lot of trial and errors), I finally understood the fine data structure: each individual file is splitted in chunks of 2048 bytes (0x800) separated by 304 bytes (0x130) of EDC/ECC data (typically 288 bytes of checksums and other error correction stuff + 16 bytes of header for the next packet). Each sector (header, 16 bytes + payload, 2048 bytes + error correction, 288 bytes) is 2352 bytes long. There is lot of padding sectors too (zero payload but CD sector format) plus alignement / boot sectors. In brief, I should have started by reading the audio CD format specification first. Chunks of data seem always consecutives for a given file at first glance but at this step I could not trust anything. 
 
@@ -418,9 +418,7 @@ I would say that your best bet is that Chinese bootleggers find this repository 
 
 I made this mod for my own enjoyment only, I hope you will enjoy that hack as much as I do. In its current version, this is precisely what I would have expected from an official red-blood option back in 1994 when I was mastering the AES version.
 
-I am also publishing these workflows in a state probably far from perfection. 
-
-Throughout my career and my hobbies, I have seen too many projects (good or not, this is not the point here) disappear simply because they were never shared before their authors vanished from the face of the Earth, whatever the reason. Unexpected death, mental illness, boredom, conflict of interests, social media drama, or just basic inability to finish something, I've seen all of these. I now operate on the principle that **if this is not online, it just does not exist.**
+I am also publishing these workflows in a state probably far from perfection. Indeed, throughout my career and my hobbies, I have seen too many projects (good or not, this is not the point here) disappear simply because they were never shared before their authors vanished from the face of the Earth, whatever the reason. Unexpected death, mental illness, boredom, conflict of interests, social media drama, or just basic inability to stop improving and finishing something, I've seen all of these. I now operate on the principle that **if this is not public, it just does not exist.**
 
 ![](/Public_release.jpg)
 

@@ -415,7 +415,7 @@ But the idea to get a physical release would be to start from a cheap and mass p
 I would say that your best bet is that Chinese bootleggers find this repository one day. I will maybe try to do an adapter board for more common chips compatible with cheap flashers (some big enough MX29LVXXXX in place of the MX26L6420, or some adapter SDIP-to-something-common for M27C322) but they will be probably difficult to solder for most people in return. I'm still not certain whether it's worth the trouble considering the excellent platform available today for emulation like the MiSTer FPGA.
 
 ## Final words: make it simple, publish early
-I made this mod for my own enjoyment only, I hope you will enjoy that hack as much as I do. In its current version, this is precisely what I would have expected from an official red-blood option back in 1994 when I was mastering the AES version.
+I made this mod for my own enjoyment only, I hope you will enjoy that hack as much as I do. In its current version, this is precisely what I would have expected from an official red-blood option back in 1994 when I was mastering the AES version, the hack has no other purpose.
 
 I am also publishing these workflows in a state probably far from perfection. Indeed, throughout my career and my hobbies, I have seen too many projects (good or not, this is not the point here) disappear simply because they were never shared before their authors vanished from the face of the Earth, whatever the reason. Unexpected death, mental illness, boredom, conflict of interests, social media drama, or just basic inability to stop improving and finishing something, I've seen all of these. I now operate on the principle that **if this is not public, it just does not exist.**
 

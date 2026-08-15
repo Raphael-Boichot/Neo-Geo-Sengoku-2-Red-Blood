@@ -1,4 +1,4 @@
-# Sengoku 2 Red Blood hack for AES/MVS and NGCD
+# Sengoku 2 (戦国伝承2) Red Blood hack for AES/MVS and NGCD
 
 Because that should have been done since 1993 !
 

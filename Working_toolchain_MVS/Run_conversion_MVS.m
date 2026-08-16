@@ -122,10 +122,10 @@ Crom_to_png(oddRomFile_small,evenRomFile_small,dummy_palette_jet, 'Tileset_MVS_r
 %% Neo Geo new palette hex values for testing, this was my main tool to retrieve blood tiles
 % basically inject the good palette, search for tiles, edit the tiles, save, play, and so on
 % this part has no purpose if you just create the ROMs from my tileset, it's just for editing
-% disp('Swapping palettes of the modified tileset and updating palette.txt')
-% alternative_palette = [0x0077, 0x3720, 0x2B52, 0x3E94, 0x4700, 0x4B00, 0x4F00, 0x6320, 0x6640, 0x2960, 0x4599, 0x09CC, 0x3DFF, 0x4B90, 0x4FD0, 0x0000]; % Puppet 1
-% Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
-% Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
+disp('Swapping palettes of the modified tileset and updating palette.txt')
+alternative_palette = [0x002E, 0x2730, 0x2951, 0x2CA3, 0x7555, 0x0BBB, 0x7FFF, 0x0044, 0x0077, 0x3099, 0x00CC, 0x4500, 0x0B00, 0x4F00, 0x5FF5, 0x0000]; % Axeman red (old), red hairs, blue clothes
+Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
+Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 % You can just run this section and the init section (right click, run section) to edit the tileset
 
 %% Prepare tileset for NGCD injection (use of a dummy jet palette)
@@ -139,16 +139,16 @@ Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 %% Check image file sanity, remove rogue pixels put over transparent layer, check differences
 % this is just for me as I sometimes do shit with MS Paint, clicking by error
 % a rogue pixel far from a group of modified tiles is always an error
-% disp('Checking image sanity (must be 16 colors)');
-% count_unique_colors('Tileset_MVS_reference_big.png');
-% count_unique_colors('Tileset_MVS_reference_small.png');
-% count_unique_colors(outpng_big);
-% count_unique_colors(outpng_small);
-% %This sometimes happens with MS Paint when you're not careful...
-% repair_transparent_pixels('Tileset_MVS_modified_big.png', 'Tileset_MVS_reference_big.png', 'Tileset_MVS_modified_big.png');
-% repair_transparent_pixels('Tileset_MVS_modified_small.png', 'Tileset_MVS_reference_small.png', 'Tileset_MVS_modified_small.png');
-% image_differential('Tileset_MVS_reference_big.png', outpng_big, 'Tileset_big_modifications.png');
-% image_differential('Tileset_MVS_reference_small.png', outpng_small, 'Tileset_small_modifications.png');
+disp('Checking image sanity (must be 16 colors)');
+count_unique_colors('Tileset_MVS_reference_big.png');
+count_unique_colors('Tileset_MVS_reference_small.png');
+count_unique_colors(outpng_big);
+count_unique_colors(outpng_small);
+%This sometimes happens with MS Paint when you're not careful...
+repair_transparent_pixels('Tileset_MVS_modified_big.png', 'Tileset_MVS_reference_big.png', 'Tileset_MVS_modified_big.png');
+repair_transparent_pixels('Tileset_MVS_modified_small.png', 'Tileset_MVS_reference_small.png', 'Tileset_MVS_modified_small.png');
+image_differential('Tileset_MVS_reference_big.png', outpng_big, 'Tileset_big_modifications.png');
+image_differential('Tileset_MVS_reference_small.png', outpng_small, 'Tileset_small_modifications.png');
 
 %% Transforms the png back to pair of C ROMS based on current palette.txt
 % after this step, graphics are packed in C ROMs, now time to edit the P ROM
@@ -277,11 +277,19 @@ palette_new = [0x0083, 0x0A40, 0x6D86, 0x6FCA, 0x2040, 0x30A1, 0x25F5, 0x7FFF, 0
 [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
 
 disp('------------Swapping Axeman palette------------------------------')
+% Old, dismissed, too conspicuous palette swap, too much red
+% palette_old = [0x002E, 0x2730, 0x2951, 0x2CA3, 0x7555, 0x0BBB, 0x7FFF, 0x4410, 0x4920, 0x0F40, 0x4F60, 0x0044, 0x0077, 0x00CC, 0x5FF5, 0x0000]; % Axeman red
+% palette_new = [0x002E, 0x2730, 0x2951, 0x2CA3, 0x7555, 0x0BBB, 0x7FFF, 0x4500, 0x0B00, 0x4F00, 0x4F80, 0x0044, 0x0077, 0x00CC, 0x5FF5, 0x0000]; % Axeman red, more vibrant
+% [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
+% palette_old = [0x006F, 0x0631, 0x1962, 0x1DA5, 0x0444, 0x0999, 0x7FFF, 0x3220, 0x4461, 0x6682, 0x58B2, 0x0007, 0x100F, 0x106F, 0x1FEA, 0x0000]; % Axeman green
+% palette_new = [0x006F, 0x0631, 0x1962, 0x1DA5, 0x0444, 0x0999, 0x7FFF, 0x4500, 0x0B00, 0x4F00, 0x4F80, 0x0007, 0x100F, 0x106F, 0x1FEA, 0x0000]; % Axeman green, now red too
+% [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
+% new, blood is inherited by hairs, red Axeman becomes cyan
 palette_old = [0x002E, 0x2730, 0x2951, 0x2CA3, 0x7555, 0x0BBB, 0x7FFF, 0x4410, 0x4920, 0x0F40, 0x4F60, 0x0044, 0x0077, 0x00CC, 0x5FF5, 0x0000]; % Axeman red
-palette_new = [0x002E, 0x2730, 0x2951, 0x2CA3, 0x7555, 0x0BBB, 0x7FFF, 0x4500, 0x0B00, 0x4F00, 0x4F80, 0x0044, 0x0077, 0x00CC, 0x5FF5, 0x0000]; % Axeman red, more vibrant
+palette_new = [0x002E, 0x2730, 0x2951, 0x2CA3, 0x7555, 0x0BBB, 0x7FFF, 0x0044, 0x0077, 0x3099, 0x00CC, 0x4500, 0x0B00, 0x4F00, 0x5FF5, 0x0000]; % Axeman red (old), red hairs, blue clothes
 [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
 palette_old = [0x006F, 0x0631, 0x1962, 0x1DA5, 0x0444, 0x0999, 0x7FFF, 0x3220, 0x4461, 0x6682, 0x58B2, 0x0007, 0x100F, 0x106F, 0x1FEA, 0x0000]; % Axeman green
-palette_new = [0x006F, 0x0631, 0x1962, 0x1DA5, 0x0444, 0x0999, 0x7FFF, 0x4500, 0x0B00, 0x4F00, 0x4F80, 0x0007, 0x100F, 0x106F, 0x1FEA, 0x0000]; % Axeman green, now red too
+palette_new = [0x006F, 0x0631, 0x1962, 0x1DA5, 0x0444, 0x0999, 0x7FFF, 0x3220, 0x4461, 0x6682, 0x58B2, 0x4500, 0x0B00, 0x4F00, 0x1FEA, 0x0000]; % Axeman green, red hairs
 [PROMdata] = Prom_Palette_injector(PROMdata,palette_old,palette_new);
 
 % Spearman palette / DISMISSED, pointless
@@ -427,6 +435,8 @@ disp('MVS version fully converted !')
 %2026-08-06 Axeman, two pixels bloodified by error, reversed
 %2026-08-06 Puppet 1 minor adjustemnts
 %2026-08-06 Puppet 2 4 pixels bloodified by error, reversed + rogue pixel removal
+
+%2026-08-16 Axeman, change the palette swap (clothes to hair) and the tileset
 
 % This is the dump of the palette RAM during first level. Hopefully the
 % characters palettes do not change much in the different levels contrary

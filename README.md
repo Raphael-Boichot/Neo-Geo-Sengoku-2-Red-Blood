@@ -312,7 +312,7 @@ Alternate palettes
 
 ![](/Palettes/Axeman_green_palette_alternate.png)
 
-- Spearman green and red **--> Nothing to do (no blood)**
+- Spearman green and red **--> Nothing to do (no blood assigned to this palette)**
 
 ![](/Palettes/Spearman_green_palette.png)
 

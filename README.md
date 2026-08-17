@@ -2,7 +2,7 @@
 
 Because that should have been done since 1993 !
 
-## Patching the Neo Geo MVS / AES game (patch 1.15)
+## Patching the Neo Geo MVS / AES game (patch 1.16)
 
 Go to the dedicated [IPS scripts folder](/Working_toolchain_MVS/IPS_scripts), get a known good dump of Sengoku 2 for [MAME](https://www.mamedev.org/), unzip, [apply the IPS patch](https://www.marcrobledo.com/RomPatcher.js/) to corresponding files (check the CRC32 just in case), zip the patched files, enjoy !
 
@@ -21,7 +21,7 @@ The regular hack itself has been validated with a complete walktrough in MAME 0.
 **Click on image to see footage of the prototype, MVS version**
 [ ![Click to see gameplay](/Caption.png)](https://www.youtube.com/watch?v=bVQaettOxyM)
 
-## Patching the Neo Geo CD game (patch 1.15)
+## Patching the Neo Geo CD game (patch 1.16)
 
 Get the CD version compatible with the NeoGeo CD SD Loader, for example [here](https://archive.org/details/fullset-for-neocd-sd-loader). It must be a .CUE + .BINs version. Patch the track 1 with the [dedicated IPS patch](/Working_toolchain_NGCD/IPS_scripts) and any [good IPS patcher](https://www.marcrobledo.com/RomPatcher.js/). You may of course check the CRC32 just in case.
 

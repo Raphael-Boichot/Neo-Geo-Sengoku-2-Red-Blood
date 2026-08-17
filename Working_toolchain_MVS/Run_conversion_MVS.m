@@ -13,6 +13,7 @@ disp('Don''t forget to first place the Sengoku 2 MAME compatible roms in .\roms\
 mkdir('.\roms_out\'); % patched roms
 mkdir('.\neo_out\'); % .neo roms, non patched and patched
 mkdir('.\IPS_scripts\'); % self explanatory
+mkdir('.\EPROM_out\'); % self explanatory
 
 % All ROMs are first just copied
 files = dir('.\roms\');
@@ -363,12 +364,12 @@ IPS_generator(evenRomFile_small,evenRomOut_small,ipsFile)
 ipsFile='.\IPS_scripts\040-p1.p1.ips';
 IPS_generator(original_prog,modified_prog,ipsFile)
 
-%% Prepare merged roms for burning EPROMs / DISMISSED
-% disp('Prepare ROMs for burning EPROMs to a bootleg MVS cartridge')
-% EPROM_merger(oddRomOut_big, evenRomOut_big, '.\EPROM_out\MX29LV320.C1') % chip is 4 MBytes, ROM is 4 MBytes, filled at 100% OK
-% EPROM_merger(oddRomOut_small, evenRomOut_small, '.\EPROM_out\MX29LV320.C2') % chip is 4 MBytes, ROM is 1 MBytes
-% File_merger('.\EPROM_out\MX29LV320.C2','.\EPROM_out\MX29LV320.C2',4) %Fills 4 times instead of just padding, chip is 4 MBytes, ROM is 1 MBytes
-% File_merger(modified_prog,'.\EPROM_out\MX29F1615.P1',2) %Fills two times instead of just padding, P1 is 1 MByte, chip is 2 MBytes
+%% Prepare merged roms for burning EPROMs / experimental
+disp('Prepare ROMs for burning EPROMs to a bootleg MVS cartridge (experimental)')
+EPROM_merger(oddRomOut_big, evenRomOut_big, '.\EPROM_out\MX29L3211.C1') % chip is 4 MBytes, ROM is 4 MBytes, filled at 100% OK
+EPROM_merger(oddRomOut_small, evenRomOut_small, '.\EPROM_out\MX29L3211.C2') % chip is 4 MBytes, ROM is 1 MBytes
+File_merger('.\EPROM_out\MX29L3211.C2','.\EPROM_out\MX29L3211.C2',4) %Fills 4 times instead of just padding, chip is 4 MBytes, ROM is 1 MBytes
+File_merger(modified_prog,'.\EPROM_out\MX29F1615.P1',2) %Fills two times instead of just padding, P1 is 1 MByte, chip is 2 MBytes
 disp('MVS version fully converted !')
 
 %% Changelog

@@ -57,7 +57,11 @@ numTiles = floor(h/16) * floor(w/16);
 oddData  = zeros(numTiles*64, 1, 'uint8');
 evenData = zeros(numTiles*64, 1, 'uint8');
 
-weights = (2.^(7:-1:0))';   % 8x1 column of bit weights (MSB first), for packing a row of 8 bits into a byte
+% Per the Neo Geo C-ROM tile format, bit0 (LSB, weight 1) of each packed
+% byte is the LEFTMOST of its 8 pixels and bit7 (MSB, weight 128) is the
+% RIGHTMOST, so column 0 (leftmost) packs to weight 1 ... column 7
+% (rightmost) packs to weight 128.
+weights = (2.^(0:7))';     % 8x1 column of bit weights (LSB first), for packing a row of 8 bits into a byte
 oddOffsets  = (1:2:15)';    % positions within a 16-byte block that hold "byte1" of each row
 evenOffsets = (2:2:16)';    % positions within a 16-byte block that hold "byte2" of each row
 
@@ -68,34 +72,36 @@ for tile = 0:numTiles-1
     left  = tileIdx(:, 1:8);   % x = 0..7   (16 rows)
     right = tileIdx(:, 9:16);  % x = 8..15  (16 rows)
 
-    % Pack each row's 8 bits (col 0 -> MSB ... col 7 -> LSB) into a byte, for all 4 bitplanes at once.
+    % Pack each row's 8 bits (col 0 -> weight 1/LSB ... col 7 -> weight 128/MSB)
+    % into a byte, for all 4 bitplanes at once.
     b1L = uint8(bitget(left,  1) * weights);  b2L = uint8(bitget(left,  2) * weights);
     b3L = uint8(bitget(left,  3) * weights);  b4L = uint8(bitget(left,  4) * weights);
     b1R = uint8(bitget(right, 1) * weights);  b2R = uint8(bitget(right, 2) * weights);
     b3R = uint8(bitget(right, 3) * weights);  b4R = uint8(bitget(right, 4) * weights);
 
     base = tile*64;
-    % Block layout matches blockX=[0 0 8 8], blockY=[0 8 0 8]:
-    %   b=0 -> left,  rows 1:8   (top-left)
-    %   b=1 -> left,  rows 9:16  (bottom-left)
-    %   b=2 -> right, rows 1:8   (top-right)
-    %   b=3 -> right, rows 9:16  (bottom-right)
+    % Per the Neo Geo C-ROM tile format (MAME's convention and
+    % https://wiki.neogeodev.org/index.php/Sprite_graphics_format):
+    %   b=0 -> right, rows 1:8   (top-right)    -- first 32 bytes of the chunk
+    %   b=1 -> right, rows 9:16  (bottom-right)
+    %   b=2 -> left,  rows 1:8   (top-left)     -- last 32 bytes of the chunk
+    %   b=3 -> left,  rows 9:16  (bottom-left)
     base0 = base;      % b=0
     base1 = base + 16; % b=1
     base2 = base + 32; % b=2
     base3 = base + 48; % b=3
 
-    oddData(base0 + oddOffsets)  = b1L(1:8);   oddData(base0 + evenOffsets)  = b2L(1:8);
-    evenData(base0 + oddOffsets) = b3L(1:8);   evenData(base0 + evenOffsets) = b4L(1:8);
+    oddData(base0 + oddOffsets)  = b1R(1:8);   oddData(base0 + evenOffsets)  = b2R(1:8);
+    evenData(base0 + oddOffsets) = b3R(1:8);   evenData(base0 + evenOffsets) = b4R(1:8);
 
-    oddData(base1 + oddOffsets)  = b1L(9:16);  oddData(base1 + evenOffsets)  = b2L(9:16);
-    evenData(base1 + oddOffsets) = b3L(9:16);  evenData(base1 + evenOffsets) = b4L(9:16);
+    oddData(base1 + oddOffsets)  = b1R(9:16);  oddData(base1 + evenOffsets)  = b2R(9:16);
+    evenData(base1 + oddOffsets) = b3R(9:16);  evenData(base1 + evenOffsets) = b4R(9:16);
 
-    oddData(base2 + oddOffsets)  = b1R(1:8);   oddData(base2 + evenOffsets)  = b2R(1:8);
-    evenData(base2 + oddOffsets) = b3R(1:8);   evenData(base2 + evenOffsets) = b4R(1:8);
+    oddData(base2 + oddOffsets)  = b1L(1:8);   oddData(base2 + evenOffsets)  = b2L(1:8);
+    evenData(base2 + oddOffsets) = b3L(1:8);   evenData(base2 + evenOffsets) = b4L(1:8);
 
-    oddData(base3 + oddOffsets)  = b1R(9:16);  oddData(base3 + evenOffsets)  = b2R(9:16);
-    evenData(base3 + oddOffsets) = b3R(9:16);  evenData(base3 + evenOffsets) = b4R(9:16);
+    oddData(base3 + oddOffsets)  = b1L(9:16);  oddData(base3 + evenOffsets)  = b2L(9:16);
+    evenData(base3 + oddOffsets) = b3L(9:16);  evenData(base3 + evenOffsets) = b4L(9:16);
 end
 
 % Save files directly to provided paths
@@ -106,4 +112,5 @@ for i = 1:2
     fid = fopen(fileNames{i}, 'wb');
     fwrite(fid, dataSets{i}, 'uint8');
     fclose(fid);
+end
 end

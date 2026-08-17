@@ -40,11 +40,11 @@ You can also just build directly the patched files from the workflow proposed he
 
     Build_project.m
 
-Prerequites to build the project "as dowloaded":
-- You are in a Windows environment, because all pathways were formated without any particular style (Windows don't care, Linux probably not happy, MacOS no idea, just try / modify).
+Prerequites to build the project "as downloaded":
+- You are in a Windows environment, because all pathways were formated without any particular style (Windows don't care, Linux probably does care, MacOS no idea, just try / modify).
 - Matlab or [GNU Octave](https://octave.org/) are correctly installed (there is NO dependencies). Versions R2024a of Matlab and 10.1.0 of GNU Octave have been tested. These codes exist on all serious OS. The workflow has been adapted to work on both softwares on purpose.
 - **/Working_toolchain_MVS/roms/** -> must contain all C roms and P rom of Sengoku 2, MAME compatible version.
-- **/Working_toolchain_NGCD/NGCD_track_1_files/** -> must contain all .SPR and .PRG files extracted from Sengoku 2, track 1, Neo Geo SD loader compatible version (with any ISO manipulating tool).
+- **/Working_toolchain_NGCD/NGCD_track_1_files/** -> must contain all .SPR and .PRG files extracted from Sengoku 2, track 1, Neo Geo SD loader compatible version (mount the .bin with any ISO manipulating tool).
 - **/Working_toolchain_NGCD/NGCD_track_1_binary/** -> must contain the binary (.bin) of track 1 from Sengoku 2 Neo Neo CD, Neo Geo SD loader compatible version. It must be named **Sengoku2_Track_01.bin** (mandatory, to rename after of course).
 
 Resulting hacked files will be in their respective folders:
@@ -59,6 +59,8 @@ As well as the IPS scripts for sharing but you don't need them anymore:
 Building the project basically allows you to add / remove features easily and cook your own version. You can follow the comments into the code to understand which section does what. 
 
 Anything fishy with the hacks ? A bloody tile is missing ? A rogue pixel is giving you insomnia ? Need for help ? Open an issue !
+
+Want to add or remove some feature ? Open a thread in the Discussion section !
 
 ## The story so far...
 

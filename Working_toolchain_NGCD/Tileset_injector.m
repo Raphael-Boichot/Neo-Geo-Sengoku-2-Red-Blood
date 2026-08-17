@@ -67,38 +67,14 @@ for f = 1:length(files)
             source_tile = mod_img(r_idx:r_idx+15, c_idx:c_idx+15, :);
             ref_tile = ref(r_idx:r_idx+15, c_idx:c_idx+15, :);
 
-            candidates_ref = {ref_tile, flip(ref_tile, 2)};
-            candidates_mod = {source_tile, flip(source_tile, 2)};
+            bytes_ref = ref_tile(:);
+            key_ref = tile_hash(ref_tile);
 
-            bytes1 = candidates_ref{1}(:);
-            bytes2 = candidates_ref{2}(:);
-            key1 = tile_hash(candidates_ref{1});
-            key2 = tile_hash(candidates_ref{2});
+            [pos, src, cidx] = find_tile(sorted_hashes, sort_order, base_row, base_col, base_bytes, base_used, dyn_hash, dyn_row, dyn_col, dyn_bytes, dyn_used, key_ref, bytes_ref);
 
-            [pos1, src1, cidx1] = find_tile(sorted_hashes, sort_order, base_row, base_col, base_bytes, base_used, dyn_hash, dyn_row, dyn_col, dyn_bytes, dyn_used, key1, bytes1);
-            [pos2, src2, cidx2] = find_tile(sorted_hashes, sort_order, base_row, base_col, base_bytes, base_used, dyn_hash, dyn_row, dyn_col, dyn_bytes, dyn_used, key2, bytes2);
-
-            has1 = ~isempty(pos1);
-            has2 = ~isempty(pos2);
-
-            chosen_k = 0;
-            pos = [];
-
-            if has1 && has2
-                if (pos1(1) < pos2(1)) || (pos1(1) == pos2(1) && pos1(2) <= pos2(2))
-                    pos = pos1; chosen_k = 1; src = src1; cidx = cidx1;
-                else
-                    pos = pos2; chosen_k = 2; src = src2; cidx = cidx2;
-                end
-            elseif has1
-                pos = pos1; chosen_k = 1; src = src1; cidx = cidx1;
-            elseif has2
-                pos = pos2; chosen_k = 2; src = src2; cidx = cidx2;
-            end
-
-            if chosen_k > 0
+            if ~isempty(pos)
                 row = pos(1); col = pos(2);
-                ngcd_modified(row:row+15, col:col+15, :) = candidates_mod{chosen_k};
+                ngcd_modified(row:row+15, col:col+15, :) = source_tile;
                 found_count = found_count + 1;
 
                 if strcmp(src, 'base')
@@ -107,8 +83,8 @@ for f = 1:length(files)
                     dyn_used(cidx) = true;
                 end
 
-                newBytes = candidates_mod{chosen_k}(:);
-                newKey = tile_hash(candidates_mod{chosen_k});
+                newBytes = source_tile(:);
+                newKey = tile_hash(source_tile);
                 dyn_hash(end+1,1)  = newKey;
                 dyn_row(end+1,1)   = row;
                 dyn_col(end+1,1)   = col;

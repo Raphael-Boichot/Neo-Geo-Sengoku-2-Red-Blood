@@ -124,7 +124,7 @@ Final adjustments (sometimes bigger than expected) were made by looking closely 
 - Custom codes to turn C ROMs to png and the inverse. Tileset is edited by hand from a png image with the current character palette, then turned back to C ROM.
 - Custom codes to swap palettes in P ROMs.
 - Custom codes to convert RGB color to 16 bits Neo Geo colors.
-- MS Paint to edit tilesets because this is the best tool ever created on Earth (and it manages transparent layers). About 370 tiles have been painfully bloodified by hand, pixel per pixel, in the conversion. 
+- MS Paint to edit tilesets because this is the best tool ever created on Earth (and it manages transparent layers). About 540 tiles have been painfully bloodified by hand, pixel per pixel, in the conversion. 
 - Spriter ressources to check for inconsistencies in colors and planning the quantity of work.
 - Custom NGCD converters, tileset to png and png to tileset, because encoding is different from AES / MVS.
 - Custom codes to inject the MVS tileset modifications into the NGCD tileset automatically.

@@ -14,7 +14,7 @@ Summary of CRC32 you should expect before / after patching:
     File: 040-c4.c4 | Original CRC32: 1C9E9930 | Modified CRC32: 15EBA55E
     File: 040-p1.p1 | Original CRC32: 6DDE02C2 | Modified CRC32: AD8F774E
 
-Dev note: there is plethora of rom formats, but MAME format is the most versatile entry point. Converters between formats exist but you're on your own to do this on your particular emulator / SD loader / core / FPGA thing. I cannot cover and maintain all existing way to play Sengoku 2 in 2026. I've just added an experimental .neo generator in the workflow but it is NOT validated for the moment.
+Dev note: there is plethora of old exotic rom formats / rev for Sengoku 2 (typically found in romsets of Nebula or NeorageX from the mid 2000s), but MAME format is the most versatile entry point, so it is the only supported by this project. Converters between formats may exist or not but you're on your own to do this on your particular emulator / SD loader / outdated core / FPGA thing. I cannot cover and maintain all existing way to play Sengoku 2 in 2026. I've just added an experimental .neo generator in the workflow but it is NOT validated for the moment as I do not own any way to test it physically.
 
 The regular hack itself has been validated with a complete walktrough in MAME 0.289. You must use MAME in [command line](/Tools/Run_sengoku2.ps1) to force it to run a game not listed in its own database.
 
@@ -29,7 +29,7 @@ Summary of CRC32 you should expect before / after patching:
 
     File: Sengoku2_Track_01.bin | Original CRC32: 6EFBFA46 | Modified CRC32: 9EBAB85F
 
-Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Geo CD format (.CUE + .BINs for each track). Patching the track 1 of dumps with music tracks in MP3 will work if original CRC32 matches. **The .CHD version (packed and compressed) is not compatible with this patch.** You can anyway easily test the hack with [Raine64](https://www.emu-france.com/emulateurs/6-arcades/61-multi-games/7687-raine-64-bits/#google_vignette) before burning a CD or going further with your favorite ODE. Raine64 has glitches on the title screen unrelated to the hack. Hack has been validated with a complete walktrough on real hardware (Top loader console + NeoGeo SD Loader rev. E with firmware v0.11).
+Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Geo CD format (.CUE + .BINs for each track). Patching the track 1 of dumps with music tracks in MP3 will work if original CRC32 matches. **The .CHD version (packed and compressed) is not compatible with this patch.** You can anyway easily test the hack with [Raine64](https://www.emu-france.com/emulateurs/6-arcades/61-multi-games/7687-raine-64-bits/#google_vignette) before burning a CD or going further with your favorite ODE. Raine64 has glitches on the title screen unrelated to the hack. Hack has been validated with a complete walktrough on real hardware (Neo Geo Top loader + NeoGeo SD Loader rev. E with firmware v0.11).
 
 **Click on image to see footage of the prototype, Neo Geo CD version**
 [ ![Click to see gameplay](/Monkey.jpg)](https://www.youtube.com/watch?v=lhKzlUg3lMo)

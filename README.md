@@ -1,6 +1,6 @@
 # Sengoku 2 (戦国伝承2) Red Blood hack for AES/MVS and NGCD
 
-Because that should have been done since 1993 !
+The project proposes a highly reusable workflow to uncensor Sengoku 2 on Neo Geo as well as easy to use IPS patches for all know versions of the game.
 
 ## Patching the Neo Geo MVS / AES game (patch 1.16)
 
@@ -426,7 +426,7 @@ I am also publishing these workflows in a state probably far from perfection. In
 
 ## Acknowledgments
 
-- The [neogeodev community](https://wiki.neogeodev.org//index.php/Main_Page) in general and [Furrtek](https://github.com/furrtek) in particular. This project made on spare time was only possible because I stood on the shoulders of giants. The Neo Geo was one of my first consoles and Sengoku 2 AES one of my first games (both sold to buy a Neo Geo CD, nobody is perfect...) and I still have a special soft spot for this system, even though the community around has now become completely insane.
+- The [neogeodev community](https://wiki.neogeodev.org//index.php/Main_Page) in general and [Furrtek](https://github.com/furrtek) in particular. This project made on spare time was only possible because I stood on the shoulders of giants. The Neo Geo AES was one of my first consoles and Sengoku 2 one of my first games (both sold to buy a Neo Geo CD, nobody is perfect...) and I still have a special soft spot for these systems, even though the community around has now become completely insane.
 - [Matt Greer](https://www.mattgreer.dev/about/) for sharing [hacks and usefull codes](https://github.com/city41/rotary-bobble) about Neo Geo hacking and the very usefull [sprite viewer](https://neospriteviewer.mattgreer.dev/) that helped me a lot configuring the ROM and SPR decoders and [neosdconv](https://github.com/city41/neosdconv) tool included in the workflow.
 - [Spriter ressources](https://www.spriters-resource.com/neo_geo_ngcd/sengoku2/) for the incredible dataset that helped me a lot figuring out which tiles was where within the giant game tileset.
 - [Alex Free and EDCRE](https://github.com/alex-free/edcre), which basically saved the Neo Geo CD port!

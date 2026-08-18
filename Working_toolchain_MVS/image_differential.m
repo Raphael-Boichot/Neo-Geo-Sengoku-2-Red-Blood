@@ -55,13 +55,34 @@ function diff_img = image_differential(img1_path, img2_path, output_path)
     %% ---- Build white-on-black output image ----
     diff_img = uint8(diff_mask) * 255;
 
-    %% ---- Report to console ----
-    num_diff_pixels  = nnz(diff_mask);
-    total_pixels     = numel(diff_mask);
-    pct_diff         = 100 * num_diff_pixels / total_pixels;
+    %% ---- Report to console (tile-based, 16x16 tiles) ----
+    tile_size = 16;
+    [h, w] = size(diff_mask);
 
-    fprintf('%s vs %s: %d/%d pixels differ (%.2f%%)\n', ...
-        img1_path, img2_path, num_diff_pixels, total_pixels, pct_diff);
+    if mod(h, tile_size) ~= 0 || mod(w, tile_size) ~= 0
+        error('Image dimensions must be a multiple of %d. Got %dx%d.', ...
+              tile_size, h, w);
+    end
+
+    tiles_y = h / tile_size;
+    tiles_x = w / tile_size;
+
+    diff_tile_mask = false(tiles_y, tiles_x);
+    for ty = 1:tiles_y
+        row_range = (ty-1)*tile_size + 1 : ty*tile_size;
+        for tx = 1:tiles_x
+            col_range = (tx-1)*tile_size + 1 : tx*tile_size;
+            block = diff_mask(row_range, col_range);
+            diff_tile_mask(ty, tx) = any(block(:));
+        end
+    end
+
+    num_diff_tiles = nnz(diff_tile_mask);
+    total_tiles    = tiles_y * tiles_x;
+    pct_diff       = 100 * num_diff_tiles / total_tiles;
+
+    fprintf('%s vs %s: %d/%d tiles differ (%.2f%%)\n', ...
+        img1_path, img2_path, num_diff_tiles, total_tiles, pct_diff);
 
     %% ---- Save if output path given ----
     if ~isempty(output_path)

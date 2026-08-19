@@ -412,7 +412,7 @@ As for Sengoku 3, it does not exist, it's not a Sengoku game, it's just a random
 
 ## Any plan to sell / release a physical version ?
 
-Selling ? Surely not. Regardless of the fact that it's the surest way to totally screw my online reputation (because yes, it's illegal), the reasonable selling price for a tinkered physical release wouldn't even come close to covering my working hours. I don't work for peanuts.
+Selling ? Surely not. Regardless of the fact that it's a good way to totally screw my online reputation (because yes, it's illegal), the reasonable selling price for a tinkered physical release wouldn't even come close to covering my working hours (I don't work for peanuts).
 
 But the idea to get a physical release would be to start from a cheap and mass produced bootleg to avoid damaging genuine hardware. Looking into [Aliexpress bootlegs](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros), it must be possible to tinker a reprogrammed Sengoku 2 MVS by owning the correct flasher / adapter. This is not a simple issue to solve in fact, the Chinese bootleggers use very baroque chips in their repros (because huge availability as e-waste I guess) and reprogramming them requires very uncommon flashers / adapters (good luck to find a cheap hobby flasher able to burn a 16-bits only MX26L6420 or an adapter / socket for a M27C322 in SDIP package for example). So it's easy on paper, but practically, not for hobbyists.
 

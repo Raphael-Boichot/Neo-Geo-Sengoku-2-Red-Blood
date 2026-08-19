@@ -2,7 +2,7 @@
 
 The project proposes a highly reusable workflow to uncensor Sengoku 2 on Neo Geo as well as easy to use IPS patches for all know versions of the game. It can be used as a general framework to edit and hack Neo Geo games.
 
-No bullshit code modifications, just red blood.
+No bullshit code modifications, just red blood. Because the guys at SNK knew what they were doing.
 
 ## Patching the Neo Geo MVS / AES game (patch 1.16)
 
@@ -135,7 +135,7 @@ Final adjustments (sometimes bigger than expected) were made by looking closely 
 
 As for any project, 10% of the time was taken to edit 90% of the tileset, 90% of the time to find some lone tiles / pixels in the giant tileset.
 
-Some codes or parts of codes were made / polished / optimized with A.I. (Gemini mainly, sometimes Mistral A.I. because I'm beta tester, a pinch of Claude too for the most tricky parts). Basically there is no rocket science here but I must admit that A.I. was precious to accelerate the process and circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a very niche market here. Coding this project without A.I. would have taken me something like 3-4 months of regular coding on free time instead of just one. In consequence, most of the time was spent on design and not on spitting (quite boring) code. In any case I have nothing to prove regarding coding skills.
+Some codes or parts of codes were made / polished / optimized with A.I. (Gemini mainly, sometimes Mistral A.I. because I'm beta tester, a pinch of Claude too for the most tricky parts). Basically there is no rocket science here but I must admit that A.I. was precious to accelerate the process and circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a very niche market here. Coding this project without A.I. would have taken me something like 3-4 months of regular coding on free time instead of just one. In consequence, most of the time was spent on "fixing" graphics and not on spitting trivial code. In any case I have nothing to prove regarding coding skills, I'm not here to engage in a pissing contest.
 
 The Neo Geo CD hack was made in parallel to the MVS version because I though it won't be very difficult. In fact, it was. The Neo Geo CD is very scarcely documented (The only interesting source is a French [Neo Geo CD World article](https://www.neogeocdworld.info/html/fiche/hard.htm)), so I was basically on my own most of the time for the file formatting details. If Neo Geo is yet a niche, Neo Geo CD is a niche within the niche. But I like this system.
 

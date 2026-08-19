@@ -2,7 +2,7 @@
 
 The project proposes a highly reusable workflow to uncensor Sengoku 2 on Neo Geo as well as easy to use IPS patches for all know versions of the game. It can be used as a general framework to edit and hack Neo Geo games.
 
-No bullshit gameplay modifications, just red blood.
+No bullshit code modifications, just red blood.
 
 ## Patching the Neo Geo MVS / AES game (patch 1.16)
 

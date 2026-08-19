@@ -406,17 +406,17 @@ All of this shows how probably rushed, careless and untested was the Sengoku 2 c
 
 ## Any plan for uncensoring Sengoku 1 and 3 in the future ?
 
-Absolutely not, [for sure](https://www.youtube.com/watch?v=DNVGvQE0vgU). Sengoku 1 is boring as fuck and I cannot imagine myself playing it for more than 20 minutes to debug palette issue and chase rogue pixels. Also blood effects are not convincing at all in the first place and the more ghostly mood fits perfectly with random blood colors. 
+Nope. Sengoku 1 is boring as fuck and I cannot imagine myself playing it for more than 20 minutes to debug palette issue and chase rogue pixels. Also blood effects are not convincing at all in the first place and the more ghostly mood fits perfectly with random blood colors. 
 
 As for Sengoku 3, it does not exist, it's not a Sengoku game, it's just a random game stamped with the name.
 
 ## Any plan to sell / release a physical version ?
 
-Certainly not, selling I.P. from SNK when you are not SNK yourself is called piracy for who has forgotten this very slight semantic detail. So putting aside the fact that I do not own the I.P., the reasonable selling price for a tinkered physical release wouldn't even come close to covering my working hours. Because yes, I come from a country not only respecting intellectual property (Or I guess ?), but also with expensive working hours.
+Selling ? Surely not. Regardless of the fact that it's the surest way to totally screw my online reputation (because yes, it's illegal), the reasonable selling price for a tinkered physical release wouldn't even come close to covering my working hours. I don't work for peanuts.
 
 But the idea to get a physical release would be to start from a cheap and mass produced bootleg to avoid damaging genuine hardware. Looking into [Aliexpress bootlegs](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros), it must be possible to tinker a reprogrammed Sengoku 2 MVS by owning the correct flasher / adapter. This is not a simple issue to solve in fact, the Chinese bootleggers use very baroque chips in their repros (because huge availability as e-waste I guess) and reprogramming them requires very uncommon flashers / adapters (good luck to find a cheap hobby flasher able to burn a 16-bits only MX26L6420 or an adapter / socket for a M27C322 in SDIP package for example). So it's easy on paper, but practically, not for hobbyists.
 
-I would say that your best bet is that Chinese bootleggers find this repository one day. I will maybe try to assess if some MX29L3211 EPROM (the only one I can burn with my GQ 4x4 EPROM programmer) in place of the MX26L6420 can do the job with some trace cutting and some bodge wires, pinout being quite similar. I'm still not certain whether it's worth the trouble considering the excellent platform available today for emulation like the MiSTer FPGA.
+I would say that your best bet is that Chinese bootleggers find this repository one day because spoiler: They aren't super enthusiastic when you ask them how to reverse engineer their cartridges. I will maybe try to assess if some MX29L3211 EPROM (the only one I can burn with my GQ 4x4 EPROM programmer) in place of the MX26L6420 can do the job with some trace cutting and some bodge wires, pinout being quite similar. I'm still not certain whether it's worth the trouble. Indeed, the internal structure of bootleg cartridges is not always a simple one file = one chip. There is a certain number of educated guesses to do to merge files and probably some trial and errors with soldering / desoldering SOP chips.
 
 ## Final words: make it simple, publish fast, always better than nothing
 I made this mod for my own enjoyment only, I hope you will enjoy that hack as much as I do. In its current version, this is precisely what I would have expected from an official red-blood option back in 1994 when I was mastering the AES version, the hack has no other purpose.

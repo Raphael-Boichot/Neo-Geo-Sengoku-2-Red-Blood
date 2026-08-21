@@ -156,15 +156,17 @@ By messing with dedicated tool (and lot of trial and errors), I finally understo
 
 So I wrote a code to inject my hacked .SPR and .PRG files by chunks of 2048 bytes with expected gaps of 304 bytes in between. Which was the case, mostly. 2048 bytes is hopefully long enough to have a unique matching in the track 1 binary and target precise address range by comparison, except for redunding padding area (just ignored here). So the trick was to search for a sequence in the binary matching a chunk of 2048 bytes from the non hacked original files (.SPR and .PRG) to build a table of address ranges for each files, then use this address table to inject chunks of the hacked files to their respective range. As I did only data substitutions while keeping the total file length constant, it works without any issue. Of course there is a ton of optimization and tricks to go faster (like dealing with modified chunks only, ignore padding area with low entropy, searching in priority the next packet 304 bytes further instead of anywhere, etc.) but you get the idea: seek and inject 2048 byte chunks at the right place. Some sequences of tiles are redundant in several .SPR files so multiple chunk insertion points are possible. Typically most of tiles from AREA2.SPR and TITLE.SPR are redunding.
 
-Last quirk, for all the hacked chunks reinjected, the following EDC/ECC 288 bytes say that corresponding data are now corrupted (of course). So the last step was to regenerate the right EDC/ECC data for each modified chunk with a dedicated tool (adapted from another project, see Acknowledgments section).
+Last issue, for all the hacked chunks reinjected, the following EDC/ECC 288 bytes say that corresponding data are now corrupted (of course). The real Neo Geo CD does not like that at all. So the last step was to regenerate the right EDC/ECC data for each modified chunk with a dedicated tool (adapted from another project, see Acknowledgments section).
 
-Replace the genuine track 1 by hacked one, run it with a Neo Geo CD SD loader because it is the fastest route from hacking to real hardware for testing. Enjoy your bloody version. 
+Et voilà !
 
 I guess there must be a possible workflow starting from scratch with the individual files but my solution is working fine. Better is the enemy of good.
 
+Interesting property of the Neo Geo CD version: as it is fully compiled from the MVS version and at the end of the toolchain, if the CD version works on real hardware, the MVS version works too.
+
 ## Identified flaws
 
-- The 15 colors limit per tile was surprisingly frustrating. The redness of blood may vary depending on the compromises made when juggling with palette swap, yet existing satisfying reds (more or less brown), my artistic perception but most of all, my laziness. My goal is not to redo the entire tileset. Overall, the game is now more reddish. I reused only the existing colors to keep the designer's original vision intact. I think it fits the game really well.
+- The 15 colors limit per tile and one palette per character was surprisingly frustrating. The redness of blood may vary depending on the compromises made when juggling with palette swap, yet existing satisfying reds (more or less brown), my artistic perception but most of all, my laziness. My goal is not to redo the entire tileset. Overall, the game is now more reddish. I reused only the existing colors to keep the designer's original vision intact. I think it fits the game really well.
 - Some rare flashing animations during the horse rides are still unexpectedly white among the regular red ones, no idea why for the moment. Pretty sure you won't even see it before reading this section.
 
 # List of modifications
@@ -399,7 +401,7 @@ Aternate palette (puppet 2)
 
 - The Neo Geo CD version seems to contains remnants of codes from Cyber Lip, so I guess that at least some logic from Sengoku 2 P040.PRG was common with that earlier game (probably the logic to split and load levels in the tiny Neo Geo CD memory).
 
-- The sword slashing sound is much more satisfying and violent with AES / MVS version than Neo Geo CD version. It must probably be possible to restore the much better original sound effects. No plan on my side for the moment. I've rapidly checked, it's not an easy task at all.
+- The sword slashing sound is much more satisfying and violent with AES / MVS version than Neo Geo CD version. It must probably be possible to restore the much better original sound effects. No plan on my side for the moment. I've rapidly checked, it's not an easy task at all as samples do not have the same lenght.
 
 - The first screaming sound from the pedestrians running in level 3 is lacking in the Neo Geo CD version. This is not related to the hack but a pure bug from the genuine version.
 
@@ -411,20 +413,23 @@ All of this shows how probably rushed, careless and untested was the Sengoku 2 c
 
 Nope. Sengoku 1 is boring as fuck and I cannot imagine myself playing it for more than 20 minutes to debug palette issue and chase rogue pixels. Also blood effects are not convincing at all in the first place and the more ghostly mood fits perfectly with random blood colors. 
 
-As for Sengoku 3, it does not exist, it's not a Sengoku game, it's just a random game stamped with the name.
+As for Sengoku 3, it does not exist, it's not a Sengoku game, it's just a random brawler stamped with the name.
 
 ## Any plan to sell / release a physical version ?
 
-Selling ? Surely not. Regardless of the fact that it's a good way to totally screw my online reputation (because yes, it's illegal), the reasonable selling price for a tinkered physical release wouldn't even come close to covering my working hours (I don't work for peanuts).
+Selling ? Surely not. Regardless of the fact that it's a good way to totally screw my online reputation (because yes, it's illegal), the reasonable selling price for a tinkered physical release wouldn't even come close to covering my working hours (because yes, I don't work for peanuts).
 
-But the idea to get a physical release would be to start from a cheap and mass produced bootleg to avoid damaging genuine hardware. Looking into [Aliexpress bootlegs](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros), it must be possible to tinker a reprogrammed Sengoku 2 MVS by owning the correct flasher / adapter. This is not a simple issue to solve in fact, the Chinese bootleggers use very baroque chips in their repros (because huge availability as e-waste I guess) and reprogramming them requires very uncommon flashers / adapters (good luck to find a cheap hobby flasher able to burn a 16-bits only MX26L6420 or an adapter / socket for a M27C322 in SDIP package for example). So it's easy on paper, but practically, not for hobbyists.
+But the easy way to get a physical release would be to start from a cheap and mass produced bootleg to avoid damaging genuine hardware. Looking into [Aliexpress bootlegs](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros), it must be possible to tinker a reprogrammed Sengoku 2 MVS by owning the correct flasher / adapter. This is not that of a simple issue to solve in fact, the Chinese bootleggers use very baroque chips in their repros (because huge availability as e-waste I guess) and reprogramming them requires very uncommon flashers / adapters (good luck to find a cheap hobby flasher able to burn a 16-bits only MX26L6420 or an adapter / socket for a M27C322 in SDIP package for example). So it's easy on paper, but practically, not for hobbyists.
 
-I would say that your best bet is that Chinese bootleggers find this repository one day because spoiler: they aren't super enthusiastic when you ask them directly how to reverse engineer their cartridges. I will maybe try to assess if some MX29L3211 EPROM (the only one I can burn with my GQ 4x4 EPROM programmer) in place of the MX26L6420 can do the job with some trace cutting and some bodge wires, pinout being quite similar. I'm still not certain whether it's worth the trouble. Indeed, the internal structure of bootleg cartridges is not always a simple one ROM file = one EPROM chip. There is a certain number of educated guesses to do to correctly merge files and probably some trial and errors with mandatory desoldering / resoldering different types of EPROM. Not exactly a pleasure to be honest.
+I would say that your best bet is that Chinese bootleggers find this repository one day and produce the hack themselves because spoiler: they weren't super enthusiastic when I asked them directly how to reverse engineer their cartridges... Indeed, the internal structure of bootleg cartridges is not always a simple one ROM file = one EPROM chip. There is a certain number of educated guesses to do to correctly merge files and probably some trial and errors with mandatory desoldering / resoldering different types of EPROM. Not exactly a pleasure to be honest.
+
+I will maybe try to assess if some MX29L3211 EPROM (the only one I can burn with my GQ 4x4 EPROM programmer) in place of the MX26L6420 can do the job with some trace cutting and some bodge wires, pinout being quite similar. I'm still not certain whether it's worth the trouble.
 
 ## Final words: make it simple, publish fast, always better than nothing
-I made this mod for my own enjoyment only, I hope you will enjoy that hack as much as I do. In its current version, this is precisely what I would have expected from an official red-blood option back in 1994 when I was mastering the AES version, the hack has no other purpose.
 
-I am also publishing these workflows in a state probably far from perfection. Indeed, throughout my career and my hobbies, I have seen too many projects (good or not, this is not the point here) disappear simply because they were never shared before their authors vanished from the face of the Earth, whatever the reason. Unexpected death, mental illness, boredom, conflict of interests, social media drama, over inflated ego, or just basic inability to finish something, I've seen all of these. I now operate on the principle that **if this is not public, it just does not exist.**
+I made this mod for my own enjoyment only. So I considered the hack finished when I was pleased enough with the result. In its current version, this is precisely what I would have expected from an official red-blood option back in 1994 when I was mastering the AES version.
+
+The workflow published here is probably far from being perfect. But I have seen too many projects disappearing because they were never shared before their authors vanished from the face of the Earth, whatever the reason. I now operate on the principle that **if this is not public, it just does not exist.**
 
 **The best way to never release a project**
 ![](/Public_release.jpg)

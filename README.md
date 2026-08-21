@@ -114,7 +114,7 @@ Here are the main steps used in a nutshell:
 - Build the Neo Geo CD version ~~easily and automatically~~ with sweat and blood from the MVS version.
 - Realize that the HUD palette with character face vignettes is no longer synchronized, that it's impossible to modify because of very strong color constraints with player 2 palette, and having to redo part of the work for main characters.
 - Waste an unreasonable amount of time to make a totally cross compatible workflow between Matlab and GNU Octave knowing that basically nobody but me will reuse the workflow. For Science.
--Waste another unreasonable amount of time to watch game footages frame by frame and fix the last missing tiles, sometimes for just one pixel.
+- Waste another unreasonable amount of time to watch game footages frame by frame and fix the last missing tiles, sometimes for just one pixel.
 
 ## My rules
 

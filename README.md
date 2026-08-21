@@ -2,7 +2,7 @@
 
 The project proposes a multi-OS, highly reusable workflow to uncensor Sengoku 2 on Neo Geo as well as IPS patches for all know versions of the game. This hack has only one purpose: turn the blood red. Nothing else.
 
-You can consider the romhack as finished from release 1.16. Further releases will just deal with polishing the workflow and fixing minor compatibility issues.
+You can consider the romhack as finished from release 1.16. Further releases will just deal with workflow modifications, not the game itself.
 
 ## Patching the Neo Geo MVS / AES game (patch 1.16)
 

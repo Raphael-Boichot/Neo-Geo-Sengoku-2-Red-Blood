@@ -121,7 +121,7 @@ Here are the main steps used in a nutshell:
 - Anything looking (even partly) human has red blood. And yes daemon fishes have human legs...
 - The least effort will always be prefered because I do this on my spare time. All the sources been given, the hack is very easy to improve if necessary.
 - The game must look gore but most of all, as genuine as possible. The least modification is always prefered. Apart from being a very hardcore fan of Sengoku 2 like me, you will probably never spot any obvious palette swap apart from blood of course.
-- gameplay and difficulty balance is yet perfect, I will never touch that. This hack in ONLY about making the blood red, nothing else.
+- gameplay and difficulty balance is yet perfect, I will never touch that. This hack in ONLY about making the blood red.
 
 ## Which tools ?
 
@@ -129,7 +129,7 @@ Here are the main steps used in a nutshell:
 - Custom codes to turn C ROMs to png and the inverse. Tileset is edited by hand from a png image with the current character palette, then turned back to C ROM.
 - Custom codes to swap palettes in P ROMs.
 - Custom codes to convert RGB color to 16 bits Neo Geo colors.
-- MS Paint to edit tilesets because this is the best tool ever created on Earth (and it manages transparent layers). About 540 tiles have been painfully bloodified by hand, pixel per pixel, in the conversion. 
+- MS Paint to edit tilesets because this is the best tool ever created on Earth (and it manages transparent layers). About 540 tiles (less than 1.5% of the whole tileset) have been painfully bloodified by hand, pixel per pixel, in the conversion. 
 - Spriter ressources to check for inconsistencies in colors and planning the quantity of work.
 - Custom NGCD converters, tileset to png and png to tileset, because encoding is different from AES / MVS.
 - Custom codes to inject the MVS tileset modifications into the NGCD tileset automatically.
@@ -413,7 +413,7 @@ All of this shows how probably rushed, careless and untested was the Sengoku 2 c
 
 Nope. Sengoku 1 is much too annoying to justify spending unreasonable time on it. Also blood effects are not convincing at all in the first place and the more ghostly mood fits perfectly with random blood colors.
 
-As for Sengoku 3, it does not exist, it's not a Sengoku game. I still do not understand how players can appreciate this game. It's slow, repetitive, uninspired, bland. Yuk.
+As for Sengoku 3, it does not exist, it's not a Sengoku game. I still do not understand how players can appreciate this game. It's slow, repetitive, uninspired, bland. Yuck.
 
 ## Any plan to sell / release a physical version ?
 
@@ -427,7 +427,7 @@ I will maybe try to assess if some MX29L3211 EPROM (the only one I can burn with
 
 ## Final words: make it simple, publish fast, always better than nothing
 
-I made this mod for my own enjoyment only. So I considered the hack finished when I was pleased enough with the result. In its current version, this is precisely what I would have expected from an official red-blood option back in 1994 when I was mastering the AES version.
+I made this mod for my own enjoyment mainly. So I considered the hack finished when I was pleased enough with the result. In its current version, this is precisely what I would have expected from an official red-blood option back in 1994 when I was mastering the AES version.
 
 The workflow published here is probably far from being perfect. But I have seen too many projects disappearing because they were never shared before their authors vanished from the face of the Earth, whatever the reason. I now operate on the principle that **if this is not public, it just does not exist.**
 

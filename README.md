@@ -1,6 +1,6 @@
 # Sengoku 2 (戦国伝承2) Red Blood hack for AES/MVS and NGCD
 
-The project proposes a multi-OS, highly reusable workflow to uncensor Sengoku 2 on Neo Geo as well as IPS patches for all know versions of the game. This hack has only one purpose: turn the blood red. Nothing else.
+The project proposes a multi-OS, highly reusable workflow to uncensor Sengoku 2 on Neo Geo as well as ready-to-use IPS patches for all know versions of the game. This hack has only one purpose: turn the blood red. Nothing else.
 
 You can consider the romhack as finished from release 1.16. Further release, if any, will just deal with improving workflow and documentation, not the game itself.
 
@@ -16,7 +16,7 @@ Summary of CRC32 you should expect before / after patching:
     File: 040-c4.c4 | Original CRC32: 1C9E9930 | Modified CRC32: 15EBA55E
     File: 040-p1.p1 | Original CRC32: 6DDE02C2 | Modified CRC32: AD8F774E
 
-Dev note: there is plethora of old exotic rom formats / rev for Sengoku 2 (typically questionable dumps found in romsets of Nebula or NeorageX from the mid 2000s), but MAME format is the most reliable and versatile entry point, so this is (and will be) the only supported by this project. Converters between formats may or may not exist but you're on your own to build the game for your particular emulator / SD loader / antediluvian Raspberry Pi core / FPGA thing. The fact is that Sengoku 2 is generally not that well supported by emulators and fullsets are polluted with bad dumps. It's not a very coveted game of the Neo Geo library so it seems that nobody cares. In consequence, apart from the MAME version (good dump), I've just added an experimental .neo generator in the workflow but it is NOT validated for the moment as I do not own any way to test .neo files on real hardware.
+Dev note: there is plethora of old exotic rom formats / rev for Sengoku 2 (typically questionable dumps found in romsets of Nebula or NeorageX from the mid 2000s), but MAME format is the most reliable and versatile entry point, so this is (and will be) the only supported by this project. Converters between formats may or may not exist but you're on your own to build the game for your particular emulator / SD loader / antediluvian Raspberry Pi core / FPGA thing. The fact is that Sengoku 2 is generally not that well supported by emulators and fullsets are polluted with bad dumps. It's not a very coveted game of the Neo Geo library so it seems that nobody cares. In consequence, apart from the MAME version (known good dump), I've just added an experimental .neo generator in the workflow but it is NOT validated for the moment as I do not own any way to test .neo files on real hardware.
 
 The regular hack itself has been validated with a complete walktrough in MAME 0.289. You must use MAME in [command line](/Tools/Run_sengoku2.ps1) to force it to run a game not listed in its own database.
 

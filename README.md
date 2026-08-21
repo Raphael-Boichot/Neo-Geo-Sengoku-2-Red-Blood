@@ -411,9 +411,9 @@ All of this shows how probably rushed, careless and untested was the Sengoku 2 c
 
 ## Any plan for uncensoring Sengoku 1 and 3 in the future ?
 
-Nope. Sengoku 1 is boring as fuck and I cannot imagine myself playing it for more than 20 minutes to debug palette issue and chase rogue pixels. Also blood effects are not convincing at all in the first place and the more ghostly mood fits perfectly with random blood colors. 
+Nope. Sengoku 1 is much too annoying to justify spending unreasonable time on it. Also blood effects are not convincing at all in the first place and the more ghostly mood fits perfectly with random blood colors.
 
-As for Sengoku 3, it does not exist, it's not a Sengoku game, it's just a random brawler stamped with the name.
+As for Sengoku 3, it does not exist, it's not a Sengoku game. I still do not understand how players can appreciate this game. It's slow, repetitive, uninspired, bland. Yuk.
 
 ## Any plan to sell / release a physical version ?
 

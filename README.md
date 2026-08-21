@@ -162,7 +162,7 @@ Et voilà !
 
 I guess there must be a possible workflow starting from scratch with the individual files but my solution is working fine. Better is the enemy of good.
 
-Interesting property of the Neo Geo CD version: as it is fully compiled from the MVS version and at the end of the toolchain, if the CD version works on real hardware, the MVS version works too.
+Interesting property of the Neo Geo CD version: as it is fully derived from the MVS version and assembled at the very end of the workflow, if the CD version works on real hardware (which is the case), the MVS version works too.
 
 ## Identified flaws
 

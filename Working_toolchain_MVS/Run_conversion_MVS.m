@@ -10,6 +10,7 @@ disp('Don''t forget to first place the Sengoku 2 MAME compatible roms in .\roms\
 %% Init section
 
 % general settings
+edit_mode=0; %workflow stops at first palette swapping, 0 = full process
 mkdir('.\roms_out\'); % patched roms
 mkdir('.\neo_out\'); % .neo roms, non patched and patched
 mkdir('.\IPS_scripts\'); % self explanatory
@@ -124,9 +125,13 @@ Crom_to_png(oddRomFile_small,evenRomFile_small,dummy_palette_jet, 'Tileset_MVS_r
 % basically inject the good palette, search for tiles, edit the tiles, save, play, and so on
 % this part has no purpose if you just create the ROMs from my tileset, it's just for editing
 disp('Swapping palettes of the modified tileset and updating palette.txt')
-alternative_palette = [0x002E, 0x2730, 0x2951, 0x2CA3, 0x7555, 0x0BBB, 0x7FFF, 0x0044, 0x0077, 0x3099, 0x00CC, 0x4500, 0x0B00, 0x4F00, 0x5FF5, 0x0000]; % Axeman red (old), red hairs, blue clothes
+alternative_palette = [0x004A, 0x0660, 0x6AA0, 0x6FF0, 0x0157, 0x029D, 0x14FF, 0x6600, 0x0A10, 0x4F20, 0x3115, 0x6348, 0x558B, 0x59BC, 0x7FFF, 0x0000]; % Puppet Warrior blue, helmet with feather
 Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
+if edit_mode
+    disp('Code terminated: edit mode is active.');
+    return; % Exits the function/script cleanly without throwing an error
+end
 % You can just run this section and the init section (right click, run section) to edit the tileset
 
 %% Prepare tileset for NGCD injection (use of a dummy jet palette)
@@ -438,6 +443,8 @@ disp('MVS version fully converted !')
 %2026-08-06 Puppet 2 4 pixels bloodified by error, reversed + rogue pixel removal
 
 %2026-08-16 Axeman, change the palette swap (clothes to hair) and the tileset
+
+%2026-08-22 Jack Stone, some pixels missing revealed thanks to the tiles flipping
 
 % This is the dump of the palette RAM during first level. Hopefully the
 % characters palettes do not change much in the different levels contrary

@@ -2,8 +2,6 @@
 
 The project proposes a multi-OS, highly reusable workflow to uncensor Sengoku 2 on Neo Geo as well as ready-to-use IPS patches for all know versions of the game. This hack has only one purpose: turn the blood red. Nothing else.
 
-You can consider the romhack as finished from release 1.16. Further release, if any, will just deal with improving workflow and documentation, not the game itself.
-
 ## Patching the Neo Geo MVS / AES game (patch 1.16)
 
 Go to the dedicated [IPS scripts folder](/Working_toolchain_MVS/IPS_scripts), get a known good dump of Sengoku 2 for [MAME](https://www.mamedev.org/), unzip, [apply the IPS patch](https://www.marcrobledo.com/RomPatcher.js/) to corresponding files (check the CRC32 just in case), zip the patched files, enjoy !

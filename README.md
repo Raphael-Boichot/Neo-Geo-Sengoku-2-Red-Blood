@@ -128,7 +128,7 @@ Here are the main steps used in a nutshell:
 - Custom codes to swap palettes in P ROMs.
 - Custom codes to convert RGB color to 16 bits Neo Geo colors.
 - MS Paint to edit tilesets because this is the best tool ever created on Earth (and it manages transparent layers). About 540 tiles (less than 1.5% of the whole tileset) have been painfully bloodified by hand, pixel per pixel, in the conversion. 
-- Spriter ressources to check for inconsistencies in colors and planning the quantity of work.
+- [The Spriters ressource](https://www.spriters-resource.com/neo_geo_ngcd/sengoku2/) to check for inconsistencies in colors and planning the quantity of work.
 - Custom NGCD converters, tileset to png and png to tileset, because encoding is different from AES / MVS.
 - Custom codes to inject the MVS tileset modifications into the NGCD tileset automatically.
 - Custom codes to rebuild the NGCD binary from individual .SPR and .PRG files (this was a pain, see next section).

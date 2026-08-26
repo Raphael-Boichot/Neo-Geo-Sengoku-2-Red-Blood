@@ -3,11 +3,23 @@ function outPath = neosdconv_convert(srcDir, outPath, opts)
 %
 %   outPath = NEOSDCONV_CONVERT(srcDir, outPath, opts)
 %
-%   Faithfully reproduces, byte for byte, the open source tool
-%   city41/neosdconv (src/buildNeoFile.ts + src/convertRom.ts, MIT license,
-%   https://github.com/city41/neosdconv). The .neo format (TerraOnion NeoSD)
-%   is a single container for the chips of a Neo Geo cartridge: a
-%   4096-byte header followed by the concatenated P + S + M + V + C data.
+%   Reproduces, byte for byte, the open source tool city41/neosdconv
+%   (src/buildNeoFile.ts + src/convertRom.ts, MIT license,
+%   https://github.com/city41/neosdconv), WITH ONE DELIBERATE CORRECTION:
+%   the C-ROM (sprite) layout for chip pairs whose physical files are
+%   larger than 1MB (0x100000 bytes) each -- e.g. Sengoku 2's 2MB
+%   040-c1.c1 / 040-c2.c2 -- now uses the real Neo Geo "split bank"
+%   sprite ROM addressing instead of a naive flat interleave. Plain
+%   upstream neosdconv gets this wrong for any game with C1/C2 (or
+%   C3/C4, etc.) chips bigger than 1MB: it produces a .neo with the
+%   right total size but scrambled sprite data. See getCData() below
+%   for the details; this was verified byte-for-byte (MD5-identical)
+%   against a known-good Sengoku 2 .neo file and against MAME's own
+%   hash/neogeo.xml <dataarea name="sprites"> ROM layout for sengoku2.
+%
+%   The .neo format (TerraOnion NeoSD) is a single container for the
+%   chips of a Neo Geo cartridge: a 4096-byte header followed by the
+%   concatenated P + S + M + V + C data.
 %
 %   INPUTS
 %     srcDir  : folder containing the raw ROM files for A SINGLE game
@@ -258,17 +270,101 @@ end
 function data = getCData(files)
 % C ROM pairs (c1/c2, c3/c4, c5/c6, c7/c8) are interleaved byte by
 % byte -- this is what the Neo Geo bus actually sees.
-    data = uint8([]);
+%
+% CORRECTION vs upstream neosdconv: any pair whose physical chip files
+% are bigger than ONE_MEG (0x100000 bytes) does NOT simply get its
+% interleaved bytes appended after the previous pair. Real Neo Geo
+% hardware (and MAME's <dataarea name="sprites"> ROM loading, see
+% hash/neogeo.xml) splits such a chip into 1MB "slices": slice 0 sits
+% at the pair's own base offset in the sprite address space (packed
+% back-to-back with the low/first slice of every other pair, in the
+% usual c1/c2, c3/c4, ... order); slice 1 (i.e. the chip's 2nd megabyte)
+% is placed a full FOUR_MEG (0x400000) further along from that SAME
+% pair's base offset -- not simply after slice 0, and not relative to
+% any other pair. If nothing else occupies the bytes in between, they
+% are left as zero (verified: the gap is 0x00-filled, not 0xFF).
+%
+% This was reverse-engineered and verified byte-for-byte against a
+% known-good Sengoku 2 .neo file, whose C1/C2 chips are 2MB each (i.e.
+% exactly 2 slices). It's generalized here to N slices (chips of any
+% size that's a whole multiple of 1MB) using the same base-offset +
+% FOUR_MEG*sliceIndex rule, but that generalization beyond 2 slices is
+% NOT independently verified against real hardware or another game --
+% if you convert a game with C-ROM chips bigger than 2MB each, cross
+% check the result against MAME's hash/neogeo.xml <dataarea
+% name="sprites"> entry for that game before trusting the output.
+%
+% For every chip pair that is 1MB or smaller (the common case for most
+% homebrew and many commercial games, e.g. Sengoku 2's C3/C4), behavior
+% is unchanged from upstream neosdconv: a single, flat interleave.
+
+    ONE_MEG  = 1024*1024;
+    FOUR_MEG = 4*1024*1024;
+
+    % ---- gather all c1/c2, c3/c4, ... pairs, in order ----------------
+    pairs = {};
     idx = 1;
     oddData  = getData(files, sprintf('c%d', idx),   true);
     evenData = getData(files, sprintf('c%d', idx+1), true);
     while ~isempty(oddData)
-        pairData    = [oddData, evenData];
-        interleaved = interleaveBytes(pairData, 1);
-        data = [data, interleaved]; %#ok<AGROW>
+        pairs{end+1} = struct('odd', oddData, 'even', evenData); %#ok<AGROW>
         idx = idx + 2;
         oddData  = getData(files, sprintf('c%d', idx),   true);
         evenData = getData(files, sprintf('c%d', idx+1), true);
+    end
+
+    if isempty(pairs)
+        data = uint8([]);
+        return;
+    end
+
+    nPairs = numel(pairs);
+
+    % ---- lay out each pair's base offset (low/first slice only) ------
+    baseOffsets = zeros(1, nPairs);
+    nSlices     = zeros(1, nPairs);
+    running     = 0;
+    for i = 1:nPairs
+        sz = numel(pairs{i}.odd);   % odd/even chips assumed equal size
+        baseOffsets(i) = running;
+        nSlices(i)     = ceil(sz / ONE_MEG);
+        sliceSz        = min(sz, ONE_MEG);
+        running        = running + sliceSz*2;   % interleaved -> x2
+    end
+    lowBankSize = running;
+
+    % ---- total region size: extra slices push the extent out to
+    %      baseOffset + FOUR_MEG*(slice-1) + (that slice's interleaved size)
+    maxExtent = lowBankSize;
+    for i = 1:nPairs
+        if nSlices(i) > 1
+            extent = baseOffsets(i) + FOUR_MEG*(nSlices(i)-1) + 2*ONE_MEG;
+            maxExtent = max(maxExtent, extent);
+        end
+    end
+
+    data = zeros(1, maxExtent, 'uint8');   % zero-filled gaps (verified)
+
+    % ---- write each pair's slices into place --------------------------
+    for i = 1:nPairs
+        odd  = pairs{i}.odd;
+        even = pairs{i}.even;
+        sz   = numel(odd);
+        for s = 0:(nSlices(i)-1)
+            sliceStart = s*ONE_MEG;
+            sliceLen   = min(ONE_MEG, sz - sliceStart);
+            oddSlice   = odd(sliceStart+1  : sliceStart+sliceLen);
+            evenSlice  = even(sliceStart+1 : sliceStart+sliceLen);
+            interleaved = interleaveBytes([oddSlice, evenSlice], 1);
+
+            if s == 0
+                offset = baseOffsets(i);
+            else
+                offset = baseOffsets(i) + FOUR_MEG*s;
+            end
+
+            data(offset+1 : offset+numel(interleaved)) = interleaved;
+        end
     end
 end
 

@@ -347,12 +347,13 @@ fclose(fid);
 
 %% Generate a .neo concatained file (experimental, untested, A.I slop)
 % Converts files in .neo format, Claude adapatation of https://github.com/city41/neosdconv
+screenshot=149; % to adapt tp your own case
 disp('Generates .neo file for regular Sengoku 2 for reference (experimental)') % for reference
-opts = struct('name','Sengoku 2','year', 1993,'genre','BeatEmUp','manufacturer','SNK','ngh','40','screenshot',0);
+opts = struct('name','Sengoku 2','year', 1993,'genre','BeatEmUp','manufacturer','SNK','ngh','40','screenshot',screenshot);
 neosdconv_convert('.\roms\', '.\neo_out\sengoku2.neo', opts);
 neosdconv_dump_header('.\neo_out\sengoku2.neo');
 disp('Generates .neo file for Sengoku 2 Red Blood hack (experimental)') % da real shit here
-opts = struct('name','Sengoku 2 Red Blood','year', 1993,'genre','BeatEmUp','manufacturer','SNK','ngh','40','screenshot',0);
+opts = struct('name','Sengoku 2 Red Blood','year', 1993,'genre','BeatEmUp','manufacturer','SNK','ngh','40','screenshot',screenshot);
 neosdconv_convert('.\roms_out\', '.\neo_out\sengoku2_Red_Blood.neo', opts);
 neosdconv_dump_header('.\neo_out\sengoku2_Red_Blood.neo');
 

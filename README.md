@@ -14,7 +14,7 @@ Summary of CRC32 you should expect before / after patching:
     File: 040-c4.c4 | Original CRC32: 1C9E9930 | Modified CRC32: 15EBA55E
     File: 040-p1.p1 | Original CRC32: 6DDE02C2 | Modified CRC32: AD8F774E
 
-Dev note: there is plethora of old exotic rom formats / rev for Sengoku 2 (typically questionable dumps found in romsets of Nebula or NeorageX from the mid 2000s), but MAME format is the most reliable and versatile entry point, so this is (and will be) the only supported by this project. Converters between formats may or may not exist but you're on your own to build the game for your particular emulator / SD loader / antediluvian Raspberry Pi core / FPGA thing. The fact is that Sengoku 2 is generally not that well supported by emulators and fullsets are polluted with bad dumps. It's not a very coveted game of the Neo Geo library so it seems that nobody cares. In consequence, apart from the MAME version (known good dump), I've just added an experimental .neo generator in the workflow but it is NOT validated for the moment as I'm too cheap to test .neo files on real hardware.
+Dev note: there is plethora of old ROM formats for Sengoku 2 (typically found in romsets of Nebula or NeorageX from the mid 2000s), but current MAME format is the only supported by this project. I've just added an experimental .neo generator in the workflow (without IPS script as source CRC32 can vary), it should work.
 
 The regular hack itself has been validated with a complete walktrough in MAME 0.289. You must use MAME in [command line](/Tools/Run_sengoku2.ps1) to force it to run a game not listed in its own database.
 

@@ -49,7 +49,7 @@ Prerequites to build the project "as downloaded":
 
 Resulting hacked files will be in their respective folders:
 - **/Working_toolchain_MVS/roms_out/** -> patched AES / MVS ROMs
-- **/Working_toolchain_MVS/neo_out/** -> .neo files of Sengoku 2 and Sengoku 2 Red Blood, not validated on my side, just try.
+- **/Working_toolchain_MVS/neo_out/** -> .neo files of Sengoku 2 and Sengoku 2 Red Blood
 - **/Working_toolchain_NGCD/NGCD_track_1_binary/** -> patched NeoGeo CD binary to substitute to the track 1
 
 As well as the IPS scripts for sharing but you don't need them anymore:

@@ -125,7 +125,7 @@ Crom_to_png(oddRomFile_small,evenRomFile_small,dummy_palette_jet, 'Tileset_MVS_r
 % basically inject the good palette, search for tiles, edit the tiles, save, play, and so on
 % this part has no purpose if you just create the ROMs from my tileset, it's just for editing
 disp('Swapping palettes of the modified tileset and updating palette.txt')
-alternative_palette = [0x004A, 0x0660, 0x6AA0, 0x6FF0, 0x0157, 0x029D, 0x14FF, 0x6600, 0x0A10, 0x4F20, 0x3115, 0x6348, 0x558B, 0x59BC, 0x7FFF, 0x0000]; % Puppet Warrior blue, helmet with feather
+alternative_palette =[0x004A, 0x0660, 0x6AA0, 0x6FF0, 0x0157, 0x029D, 0x14FF, 0x6600, 0x0A10, 0x4F20, 0x3115, 0x6348, 0x558B, 0x59BC, 0x7FFF, 0x0000]; % Puppet Warrior blue, helmet with feather
 Palette_swapper(alternative_palette,outpng_big,txt_exchange_palette_big)
 Palette_swapper(alternative_palette,outpng_small,txt_exchange_palette_small)
 if edit_mode
@@ -447,6 +447,8 @@ disp('MVS version fully converted !')
 %2026-08-16 Axeman, change the palette swap (clothes to hair) and the tileset
 
 %2026-08-22 Jack Stone, some pixels missing revealed thanks to the tiles flipping
+
+%2026-08-31 Puppet warrior, restoring some coloration errors
 
 % This is the dump of the palette RAM during first level. Hopefully the
 % characters palettes do not change much in the different levels contrary

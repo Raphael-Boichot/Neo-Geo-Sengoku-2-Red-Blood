@@ -421,7 +421,7 @@ But the easy way to get a physical release would be to start from a cheap and ma
 
 I would say that your best bet is that Chinese bootleggers find this repository one day and produce the hack themselves because spoiler: they weren't super enthusiastic when I asked them directly how to reverse engineer their cartridges... Indeed, the internal structure of bootleg cartridges is not always a simple one ROM file = one EPROM chip. There is a certain number of educated guesses to do to correctly merge files and probably some trial and errors with mandatory desoldering / resoldering different types of EPROM. Not exactly a pleasure to be honest.
 
-I'm currently trying to assess if some MX29L3211 EPROM (the only 4Mbytes SOP44 chip I can (in theory) burn with my GQ 4x4 EPROM programmer) in place of the MX26L6420 can do the job with some trace cutting and some bodge wires, pinout being nearly similar. For the moment, I'm just sitting on a pile of dodgy chips from Aliexpress and an outdated flasher, so the "bootleg out of a bootleg" project is currently stuck in dev. Investing in a custom adapter PCB for newer TSOP48 chips simply isn't worth the effort.
+I'm currently trying to assess if some MX29L3211 EPROM (the only 4Mbytes SOP44 chip I can (in theory) burn with my GQ 4x4 EPROM programmer) in place of the MX26L6420 can do the job with some trace cutting and some bodge wires, pinout being nearly similar. For the moment, I'm just sitting on a pile of dodgy chips from Aliexpress and an outdated flasher, so the "bootleg out of a bootleg" project is currently stuck in dev, maybe forever. Investing in a custom adapter PCB for newer TSOP48 chips simply isn't worth the effort.
 
 ## Final words: make it simple, publish fast, always better than nothing
 

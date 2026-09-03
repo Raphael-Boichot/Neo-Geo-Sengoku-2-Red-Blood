@@ -18,6 +18,10 @@ mkdir('.\IPS_scripts\'); % Self explanatory
 dummy_palette_jet =[0x1005, 0x1008, 0x100D, 0x303F, 0x308F, 0x30DF, 0xF3FB, 0xF7F7, 0xFCF2, 0xEFF0, 0xEFA0, 0xEF50, 0xEF00, 0xCB00, 0xC700, 0xC400]; % MANDATORY !
 disp('Initialization completed')
 
+%% Extract NGCD files from raw binary
+disp('Extracting files from raw binary')
+extract_NGCD_files_from_Bin('.\NGCD_track_1_binary\Sengoku2_Track_01.bin', 'NGCD_track_1_files')
+
 %% Transforms the pair of roms in png tileset + palette image to check
 % Cspt_to_png is aggressively using matrix/vector formalism
 % some .SPR files do not contain modified tiles but I let them just in case

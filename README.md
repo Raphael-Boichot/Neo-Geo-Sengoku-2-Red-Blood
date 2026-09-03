@@ -29,7 +29,7 @@ Summary of CRC32 you should expect before / after patching:
 
     File: Sengoku2_Track_01.bin | Original CRC32: 6EFBFA46 | Modified CRC32: E340C620
 
-Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Geo CD format (.CUE + .BINs for each track). Patching the track 1 of dumps with music tracks in MP3 will work if original CRC32 matches. **The .CHD version (packed and compressed) is not compatible with this patch.** You can anyway easily test the hack with [Raine64](https://www.emu-france.com/emulateurs/6-arcades/61-multi-games/7687-raine-64-bits/#google_vignette) before burning a CD or going further with your favorite ODE. Raine64 has glitches on the title screen unrelated to the hack. Hack has been validated with a complete walktrough on real hardware this time (Neo Geo CD Top loader + NeoGeo SD Loader rev. E with firmware v0.11).
+Dev note: the NeoGeo SD Loader has imposed *de facto* the default "good" Neo Geo CD format (.CUE + .BINs for each track). Patching the track 1 of dumps with music tracks in MP3 will work if original CRC32 matches. **The .CHD version (packed and compressed) is not compatible with this patch, as well as any .ISO image.** You can anyway easily test the hack with [Raine64](https://www.emu-france.com/emulateurs/6-arcades/61-multi-games/7687-raine-64-bits/#google_vignette) before burning a CD or going further with your favorite ODE. Raine64 has glitches on the title screen unrelated to the hack. Hack has been validated with a complete walktrough on real hardware this time (Neo Geo CD Top loader + NeoGeo SD Loader rev. E with firmware v0.11).
 
 **Click on image to see gameplay footage of the first public release, Neo Geo CD version**
 [ ![Click to see gameplay](/Monkey.jpg)](https://www.youtube.com/watch?v=lhKzlUg3lMo)
@@ -44,7 +44,6 @@ Prerequites to build the project "as downloaded":
 - You are in a Windows environment, because all pathways were formated without any particular style (Windows don't care, Linux probably does care, MacOS no idea, just try / modify).
 - Matlab or [GNU Octave](https://octave.org/) are correctly installed (there is NO dependencies). Versions R2024a of Matlab and 10.1.0 of GNU Octave have been tested. These codes exist on all serious OS. The workflow has been adapted to work on both softwares on purpose.
 - **/Working_toolchain_MVS/roms/** -> must contain all C roms and P rom of Sengoku 2, MAME compatible version.
-- **/Working_toolchain_NGCD/NGCD_track_1_files/** -> must contain all .SPR and .PRG files extracted from Sengoku 2, track 1, Neo Geo SD loader compatible version (mount the .bin with any ISO manipulating tool).
 - **/Working_toolchain_NGCD/NGCD_track_1_binary/** -> must contain the binary (.bin) of track 1 from Sengoku 2 Neo Neo CD, Neo Geo SD loader compatible version. It must be named **Sengoku2_Track_01.bin** (mandatory, to rename after of course).
 
 Resulting hacked files will be in their respective folders:

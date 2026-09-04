@@ -21,6 +21,8 @@ disp('Initialization completed')
 %% Extract NGCD files from raw binary
 disp('Extracting files from raw binary')
 extract_NGCD_files_from_Bin('.\NGCD_track_1_binary\Sengoku2_Track_01.bin', 'NGCD_track_1_files')
+copyfile('NGCD_track_1_files',hackedDir,'f');%first copy the original files for later
+delete([hackedDir,'Readme.txt']);
 
 %% Transforms the pair of roms in png tileset + palette image to check
 % Cspt_to_png is aggressively using matrix/vector formalism
@@ -215,6 +217,11 @@ disp('Regenerating ECC/EDC checksums...');
 % mode is autodetected, track number is forced for increasing speed with GNU Octave
 stats = edcre_fix_file(patchedTrackFile, 'Sectors', modifiedSectors, 'Verbose', false); 
 
+%% Trying to recreate the raw .bin from scratch
+disp('Recreating directly the raw binary of track 1 from scratch')
+binFile = '.\NGCD_track_1_binary\Sengoku2_Track_01_built_from_scratch.bin';
+build_Raw_Bin_from_Folder(hackedDir, binFile);
+
 %% Generate IPS files for all these modifications on individual files
 disp('Generating IPS script and performing CRC32 checksums')
 %IPS_generator('.\NGCD_track_1_files\P040.PRG','.\roms_out\P040.PRG','.\IPS_scripts\P040.PRG.ips') %not used anymore, targetting the binary directly
@@ -225,7 +232,7 @@ disp('Generating IPS script and performing CRC32 checksums')
 %IPS_generator('.\NGCD_track_1_files\AREA4.SPR','.\roms_out\AREA4.SPR','.\IPS_scripts\AREA4.SPR.ips') %not used anymore, targetting the binary directly
 %IPS_generator('.\NGCD_track_1_files\STAFF.SPR','.\roms_out\STAFF.SPR','.\IPS_scripts\STAFF.SPR.ips') %not used anymore, targetting the binary directly
 %IPS_generator('.\NGCD_track_1_files\TITLE.SPR','.\roms_out\TITLE.SPR','.\IPS_scripts\TITLE.SPR.ips') %not used anymore, targetting the binary directly
-IPS_generator('.\NGCD_track_1_binary\Sengoku2_Track_01.bin','.\NGCD_track_1_binary\Sengoku2_track_1_patched.bin','.\IPS_scripts\Sengoku2_Track_01.bin.ips')
+IPS_generator(trackFile,patchedTrackFile,'.\IPS_scripts\Sengoku2_Track_01.bin.ips')
 
 disp('Neo Geo CD version converted !')
 

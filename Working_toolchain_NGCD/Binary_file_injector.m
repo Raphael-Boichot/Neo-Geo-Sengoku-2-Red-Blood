@@ -1,4 +1,4 @@
-function modifiedSectors = Binary_file_injector_v2(origDir, hackedDir, trackFile, patchedTrackFile)
+function modifiedSectors = Binary_file_injector(origDir, hackedDir, trackFile, patchedTrackFile)
 %BINARY_FILE_INJECTOR_V2  Patch PRG/SPR files back into a CD track image,
 %   using a single "anchor chunk" per file to locate its start offset on
 %   the track, then computing every other chunk's position directly by

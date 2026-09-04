@@ -218,9 +218,12 @@ disp('Regenerating ECC/EDC checksums...');
 stats = edcre_fix_file(patchedTrackFile, 'Sectors', modifiedSectors, 'Verbose', false); 
 
 %% Trying to recreate the raw .bin from scratch
-disp('Recreating directly the raw binary of track 1 from scratch')
+disp('Recreating directly the iso of track 1 from scratch')
 binFile = '.\NGCD_track_1_binary\Sengoku2_Track_01_built_from_scratch.bin';
-build_Raw_Bin_from_Folder(hackedDir, binFile);
+isoFile = '.\NGCD_track_1_binary\Sengoku2_Track_01_built_from_scratch.iso';
+build_ISO_from_Folder(hackedDir, isoFile);
+disp('Recreating the raw binary of track 1 from the .iso')
+build_Raw_Bin_from_Folder(isoFile, binFile);
 
 %% Generate IPS files for all these modifications on individual files
 disp('Generating IPS script and performing CRC32 checksums')

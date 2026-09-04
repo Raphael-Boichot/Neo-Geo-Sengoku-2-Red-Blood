@@ -1,28 +1,48 @@
-function build_Raw_Bin_from_Folder(inputDir, binFile)
-%BUILDRAWBINFROMFOLDER Build a raw CD-ROM Mode1 .bin image (2352
-%bytes/sector, with correct sync/header/EDC/ECC) from a folder of
-%files. This is the raw-sector counterpart of build_ISO_from_Folder: it
-%first lays out a standard ISO9660 filesystem (same directory tree,
-%same file placement) and then wraps every 2048-byte logical sector
-%into a full Mode1 raw sector, computing:
-%   - 12-byte sync pattern
-%   - 4-byte header (MM:SS:FF in BCD, mode = 1)
-%   - 2048 bytes of user data
-%   - 4-byte EDC  (CRC-32 variant used by the Red Book / ECMA-130,
-%                  polynomial 0xD8018001)
-%   - 8 reserved zero bytes
-%   - 276-byte Reed-Solomon P/Q ECC (product code, per ECMA-130)
+function build_Raw_Bin_from_Folder(isoFile, binFile, opts)
+%BUILD_RAW_BIN_FROM_FOLDER Wrap a plain ISO9660 image into a raw
+%CD-ROM Mode1 .bin image (2352 bytes/sector, with correct sync/
+%header/EDC/ECC). This is the raw-sector counterpart of
+%build_ISO_from_Folder: it does NOT scan a folder itself -- build the
+%.iso first with build_ISO_from_Folder, then wrap it here. Splitting
+%the two steps lets you reuse each independently (e.g. inspect/patch
+%the .iso by hand before wrapping, or wrap a .iso that came from
+%somewhere else entirely).
 %
-%   buildRawBinFromFolder(inputDir, binFile)
+%   build_Raw_Bin_from_Folder(isoFile, binFile)
+%   build_Raw_Bin_from_Folder(isoFile, binFile, opts)
 %
-%   inputDir - folder containing the files/folders to pack (e.g. the
-%              output of extractISOFromBin).
+%   isoFile  - path to an existing plain ISO9660 image (2048
+%              bytes/sector), typically produced by build_ISO_from_Folder.
 %   binFile  - path of the .bin file to create (2352 bytes/sector,
 %              Mode1). A matching .cue file with the same base name
 %              is also written alongside it.
+%   opts     - optional struct of advanced settings, all optional:
 %
-%   Example:
-%       buildRawBinFromFolder('extracted_files', 'rebuilt.bin')
+%     opts.TotalSectors - pad the output with extra zero-data Mode1
+%                       sectors (valid sync/header/EDC/ECC, continuing
+%                       the MSF sequence) until the raw image reaches
+%                       exactly this many 2352-byte sectors. Useful
+%                       when the ISO9660 filesystem doesn't use the
+%                       disc's full declared track length (common on
+%                       original mastered discs -- there can be a
+%                       large gap of empty sectors after the last file
+%                       before the track's nominal end).
+%
+%     opts.ReferenceBin - path to an existing .bin (or .iso) image.
+%                       If opts.TotalSectors isn't given explicitly,
+%                       the total raw sector count is taken from this
+%                       reference file instead (its size / 2352, or
+%                       size / 2048 if it's a plain .iso -- in which
+%                       case no raw padding is applicable and this is
+%                       ignored).
+%
+%   Example (generic use):
+%       build_Raw_Bin_from_Folder('rebuilt.iso', 'rebuilt.bin')
+%
+%   Example (matching an original disc's exact raw length):
+%       opts = struct();
+%       opts.ReferenceBin = 'original.bin';
+%       build_Raw_Bin_from_Folder('rebuilt.iso', 'rebuilt.bin', opts);
 %
 %   The EDC/ECC algorithm was verified byte-for-byte against a real
 %   CD-ROM Mode1 image before being used here: recomputing EDC/ECC
@@ -30,26 +50,35 @@ function build_Raw_Bin_from_Folder(inputDir, binFile)
 %   the image's actual stored EDC/ECC bytes gave 0 mismatches.
 
     if nargin < 2
-        error('buildRawBinFromFolder:nargin', ...
-            'Usage: buildRawBinFromFolder(inputDir, binFile)');
+        error('build_Raw_Bin_from_Folder:nargin', ...
+            'Usage: build_Raw_Bin_from_Folder(isoFile, binFile [, opts])');
     end
-    if ~isfolder(inputDir)
-        error('buildRawBinFromFolder:noDir', 'Input folder not found: %s', inputDir);
+    if ~isfile(isoFile)
+        error('build_Raw_Bin_from_Folder:noIso', 'ISO file not found: %s', isoFile);
+    end
+    if nargin < 3
+        opts = struct();
+    end
+    if ~isfield(opts, 'TotalSectors')
+        opts.TotalSectors = [];
+    end
+    if ~isfield(opts, 'ReferenceBin')
+        opts.ReferenceBin = '';
     end
 
-    [binDir, binBaseName] = fileparts(binFile);
-    if isempty(binDir)
-        binDir = pwd;
+    targetTotalSectors = opts.TotalSectors;
+    if isempty(targetTotalSectors) && ~isempty(opts.ReferenceBin)
+        [refSectorSize, ~] = detectLayout(opts.ReferenceBin);
+        if refSectorSize == 2352
+            info = dir(opts.ReferenceBin);
+            targetTotalSectors = floor(info(1).bytes / 2352);
+            fprintf('Using total sector count from reference "%s": %d sectors\n', ...
+                opts.ReferenceBin, targetTotalSectors);
+        end
     end
-    tmpIso = fullfile(binDir, [binBaseName '_temp.iso']);
-    % Kept (not deleted) after the build so it's available alongside
-    % the .bin/.cue for testing/inspection.
 
-    fprintf('--- Step 1: building ISO9660 layout ---\n');
-    build_ISO_from_Folder(inputDir, tmpIso);
-
-    fprintf('--- Step 2: wrapping into raw 2352-byte/sector Mode1 image ---\n');
-    wrapPlainISOToRawBin(tmpIso, binFile);
+    fprintf('Wrapping "%s" into raw 2352-byte/sector Mode1 image ...\n', isoFile);
+    wrapPlainISOToRawBin(isoFile, binFile, targetTotalSectors);
 
     % Write a matching .cue file
     [cueDir, cueName] = fileparts(binFile);
@@ -61,46 +90,89 @@ function build_Raw_Bin_from_Folder(inputDir, binFile)
     fprintf(fid, '    INDEX 01 00:00:00\n');
     fclose(fid);
 
-    fprintf('Done. Wrote %s, %s and %s\n', binFile, cueFile, tmpIso);
+    fprintf('Done. Wrote %s and %s\n', binFile, cueFile);
 end
 
 % ===================================================================
-function safeDelete(f)
-    if isfile(f)
-        delete(f);
+function [sectorSize, dataOffset] = detectLayout(path)
+    fid = fopen(path, 'rb');
+    fseek(fid, 0, 'eof');
+    fileSize = ftell(fid);
+    fseek(fid, 0, 'bof');
+    header = fread(fid, 16, 'uint8=>uint8')';
+    fclose(fid);
+
+    sectorSize = 2048;
+    dataOffset = 0;
+    if mod(fileSize, 2352) == 0
+        syncPattern = uint8([0 255 255 255 255 255 255 255 255 255 255 0]);
+        if numel(header) == 16 && isequal(header(1:12), syncPattern)
+            sectorSize = 2352;
+            dataOffset = 16;
+        end
     end
 end
 
 % ===================================================================
-function wrapPlainISOToRawBin(isoFile, binFile)
+function wrapPlainISOToRawBin(isoFile, binFile, targetTotalSectors)
     [edcLut, fLut, bLut] = buildTables();
 
     ifid = fopen(isoFile, 'rb');
     fseek(ifid, 0, 'eof');
     isoSize = ftell(ifid);
     fseek(ifid, 0, 'bof');
-    numSectors = ceil(isoSize / 2048);
+    numIsoSectors = ceil(isoSize / 2048);
+
+    if isempty(targetTotalSectors)
+        totalSectors = numIsoSectors;
+    else
+        totalSectors = targetTotalSectors;
+        if totalSectors < numIsoSectors
+            warning('build_Raw_Bin_from_Folder:tooSmall', ...
+                ['Requested TotalSectors (%d) is smaller than the ISO itself ' ...
+                 '(%d sectors); writing %d sectors, no padding applied.'], ...
+                totalSectors, numIsoSectors, numIsoSectors);
+            totalSectors = numIsoSectors;
+        end
+    end
 
     ofid = fopen(binFile, 'wb');
     if ofid == -1
-        error('buildRawBinFromFolder:openFail', 'Could not create file: %s', binFile);
+        error('build_Raw_Bin_from_Folder:openFail', 'Could not create file: %s', binFile);
     end
 
     sync = uint8([0 255 255 255 255 255 255 255 255 255 255 0])';
 
-    fprintf('Encoding %d sectors ...\n', numSectors);
+    fprintf('Encoding %d sectors (%d from ISO content, %d zero-padded) ...\n', ...
+        totalSectors, numIsoSectors, totalSectors - numIsoSectors);
 
     chunkSize = 4000; % bounds memory use for large images
     n0 = 0;
-    while n0 < numSectors
-        thisChunk = min(chunkSize, numSectors - n0);
+    while n0 < totalSectors
+        thisChunk = min(chunkSize, totalSectors - n0);
 
-        userData = fread(ifid, [2048, thisChunk], 'uint8=>uint8');
-        if size(userData, 1) < 2048 || size(userData, 2) < thisChunk
-            padded = zeros(2048, thisChunk, 'uint8');
-            padded(1:size(userData,1), 1:size(userData,2)) = userData;
-            userData = padded;
+        isoRemaining = max(0, numIsoSectors - n0);
+        fromIso = min(thisChunk, isoRemaining);
+        fromPad = thisChunk - fromIso;
+
+        if fromIso > 0
+            userDataIso = fread(ifid, [2048, fromIso], 'uint8=>uint8');
+            if size(userDataIso, 1) < 2048 || size(userDataIso, 2) < fromIso
+                padded = zeros(2048, fromIso, 'uint8');
+                padded(1:size(userDataIso,1), 1:size(userDataIso,2)) = userDataIso;
+                userDataIso = padded;
+            end
+        else
+            userDataIso = zeros(2048, 0, 'uint8');
         end
+
+        if fromPad > 0
+            userDataPad = zeros(2048, fromPad, 'uint8');
+        else
+            userDataPad = zeros(2048, 0, 'uint8');
+        end
+
+        userData = [userDataIso, userDataPad]; % 2048 x thisChunk
 
         n = (n0:n0+thisChunk-1)';
         frameTotal = n + 150; % LBA 0 == MSF 00:02:00
@@ -125,7 +197,7 @@ function wrapPlainISOToRawBin(isoFile, binFile)
         fwrite(ofid, allSectors, 'uint8'); % column-major write = sector-by-sector
 
         n0 = n0 + thisChunk;
-        fprintf('  %d / %d sectors\n', n0, numSectors);
+        fprintf('  %d / %d sectors\n', n0, totalSectors);
     end
 
     fclose(ifid);

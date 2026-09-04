@@ -21,7 +21,7 @@ disp('Initialization completed')
 %% Extract NGCD files from raw binary
 disp('Extracting files from raw binary')
 extract_NGCD_files_from_Bin('.\NGCD_track_1_binary\Sengoku2_Track_01.bin', 'NGCD_track_1_files')
-copyfile('NGCD_track_1_files',hackedDir,'f');%first copy the original files for later
+copyfile('.\NGCD_track_1_files\*.*',hackedDir,'f');%first copy the original files for later
 delete([hackedDir,'Readme.txt']);
 
 %% Transforms the pair of roms in png tileset + palette image to check
@@ -205,7 +205,7 @@ fclose(fid);
 disp('Injecting data packets into the NGCD binary and fixing ECC/EDC of modified sectors')
 origDir = '.\NGCD_track_1_files\';
 trackFile = '.\NGCD_track_1_binary\Sengoku2_Track_01.bin';
-patchedTrackFile = '.\NGCD_track_1_binary\Sengoku2_track_1_patched.bin';
+patchedTrackFile = '.\NGCD_track_1_binary\Sengoku2_track_01_patched.bin';
 % Inject data by packets of 2048 bytes, only for hacked packets
 % The algorithm is basically the same as Tileset_injector.m
 % The only trick is to target a 2048 bytes size to match the CD sector specifications
@@ -215,10 +215,27 @@ disp('Regenerating ECC/EDC checksums...');
 % system(sprintf('edcre -s 16 "%s"', patchedTrackFile)); old call, for documentation
 % adapted from https://github.com/alex-free/edcre, Alex Free, you saved my day !
 % mode is autodetected, track number is forced for increasing speed with GNU Octave
-stats = edcre_fix_file(patchedTrackFile, 'Sectors', modifiedSectors, 'Verbose', false); 
+stats = edcre_fix_file(patchedTrackFile, 'Sectors', modifiedSectors, 'Verbose', false);
 
-%% Trying to recreate the raw .bin from scratch
-disp('Recreating directly the iso of track 1 from scratch')
+%% Trying to recreate the raw .bin from scratch, Byte identical
+% disp('Recreating directly the track 1 from scratch, byte identical')
+% referenceBin = '.\NGCD_track_1_binary\Sengoku2_Track_01.bin'; % original disc, for exact metadata
+% binFile = '.\NGCD_track_1_binary\Sengoku2_Track_01_built_from_scratch.bin';
+% isoFile = '.\NGCD_track_1_binary\Sengoku2_Track_01_built_from_scratch.iso';
+% isoOpts = struct();
+% isoOpts.SortMode = 'alpha';           % also available: 'type','size_asc','size_desc','none'
+% isoOpts.ReferenceBin = referenceBin;  % harvests PVD strings/dates, per-file dates,
+%                                       % Apple System-Use extension bytes, and
+%                                       % whether ";1" version suffixes are used
+% build_ISO_from_Folder(hackedDir, isoFile, isoOpts);
+% rawOpts = struct();
+% rawOpts.ReferenceBin = referenceBin;  % also harvests the total raw sector count,
+%                                       % so any trailing zero-padded sectors on the
+%                                       % original disc are reproduced too
+% build_Raw_Bin_from_Folder(isoFile, binFile, rawOpts);
+
+%% Trying to recreate the raw .bin from scratch, without the old Apple system qirks, bare minimum
+disp('Recreating directly the track 1 from scratch, bare minimum filesystem')
 binFile = '.\NGCD_track_1_binary\Sengoku2_Track_01_built_from_scratch.bin';
 isoFile = '.\NGCD_track_1_binary\Sengoku2_Track_01_built_from_scratch.iso';
 build_ISO_from_Folder(hackedDir, isoFile);

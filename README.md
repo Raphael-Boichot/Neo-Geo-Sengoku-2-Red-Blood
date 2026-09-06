@@ -396,7 +396,7 @@ Aternate palette (puppet 2)
 
 ## Fun facts
 
-- The Neo Geo CD version seems to contains remnants of codes from Cyber Lip, so I guess that at least some logic from Sengoku 2 P040.PRG was common with that earlier game (probably the logic to split and load levels in the tiny Neo Geo CD memory).
+- The Neo Geo CD version seem to contains remnants of codes from Cyber Lip, so I guess that at least some logic from Sengoku 2 P040.PRG was common with that earlier game (probably the logic to split and load levels in the tiny Neo Geo CD memory).
 
 - The sword slashing sound is much more satisfying and violent with AES / MVS version than Neo Geo CD version. It must probably be possible to restore the much better original sound effects. No plan on my side for the moment. I've rapidly checked, it's not an easy task at all as samples do not have the same lenght.
 

@@ -437,7 +437,7 @@ The workflow published here is probably far from being perfect. But I have seen 
 - [Matt Greer](https://www.mattgreer.dev/about/) for sharing [hacks and usefull codes](https://github.com/city41/rotary-bobble) about Neo Geo hacking and the very usefull [sprite viewer](https://neospriteviewer.mattgreer.dev/) that helped me a lot configuring the ROM and SPR decoders and [neosdconv](https://github.com/city41/neosdconv) tool included in the workflow.
 - [Spriter ressources](https://www.spriters-resource.com/neo_geo_ngcd/sengoku2/) for the incredible dataset that helped me a lot figuring out which tiles was where within the giant game tileset.
 - [Alex Free and EDCRE](https://github.com/alex-free/edcre), which basically saved the Neo Geo CD port!
-- Claude A.I. saving me from loosing my time with the présent Neo Geo online community, its fake experts, turf wars, and other bitter programmers.
+- Claude A.I. for saving me from loosing my time with the present online community searching infos among fake experts and bitter people.
 
 In brief, all the people / communities that rendered this project possible ! 
 

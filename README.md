@@ -59,7 +59,7 @@ Building the project basically allows you to add / remove features easily and co
 
 Anything fishy with the hacks ? A bloody tile is missing ? A rogue pixel is giving you insomnia ? Need for help ? Open an issue !
 
-Want to add or remove some feature ? Open a thread in the Discussion section !
+Want to add or remove some feature, want to contact me ? Open a thread in the Discussion section !
 
 ## The story so far...
 

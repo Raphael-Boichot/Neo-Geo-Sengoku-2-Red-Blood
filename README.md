@@ -426,9 +426,9 @@ I'm currently trying to assess if some MX29L3211 EPROM (the only 4Mbytes SOP44 c
 
 ## Final words: make it simple, publish fast, always better than nothing
 
-I made this mod for my own enjoyment mainly. So I considered the hack finished when I was pleased enough with the result. In its current version, this is precisely what I would have expected from an official red-blood option back in 1994 when I was mastering the AES version.
+I made this mod for my own enjoyment mainly. So I considered the hack finished when I was pleased enough with the result. In its current version, this is precisely what I would have expected from an official red-blood option back in 1994 when I was mastering the AES version. I wanted nothing else but the feeling to play a genuine version made by SNK.
 
-The workflow published here is probably far from being perfect. But I have seen too many projects disappearing because they were never shared before their authors vanished from the face of the Earth, whatever the reason. I now operate on the principle that **if this is not public, it just does not exist.**
+The workflow published here is probably far from being perfect. See it as a sandbox opened to anybody. Indeed, I have seen too many projects disappearing because they were never shared before their authors vanished from the face of the Earth, whatever the reason. I now operate on the principle that **if this is not public, it just does not exist.**
 
 **The best way to never release a project**
 ![](/Public_release.jpg)

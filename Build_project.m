@@ -1,5 +1,6 @@
 clc
 clear
+tic
 flag = 1;
 if not(isfile('.\Working_toolchain_MVS\roms\040-c1.c1') &...
         isfile('.\Working_toolchain_MVS\roms\040-c2.c2') &...
@@ -15,12 +16,10 @@ if not(isfile('.\Working_toolchain_MVS\roms\040-c1.c1') &...
 end
 
 if flag==1
-    tic
     disp('####################################################################')
     disp('##################### Building the MVS version #####################')
     disp('####################################################################')
     run('Working_toolchain_MVS/Run_conversion_MVS.m')
-    toc
 else
     warndlg('At least one necessary file is missing for the MVS version !', 'Warning');
     disp('Code termination, MVS version not done !')
@@ -33,17 +32,16 @@ if not(isfile('.\Working_toolchain_NGCD\NGCD_track_1_binary\Sengoku2_Track_01.bi
 end
 
 if flag==1
-    tic
     disp('#####################################################################')
     disp('##################### Building the NGCD version #####################')
     disp('#####################################################################')
     copyfile('.\Working_toolchain_MVS\*.png', '.\working_toolchain_NGCD\MVS_hack\');
     run('Working_toolchain_NGCD/Run_conversion_NGCD.m')
-    toc
 else
     warndlg('At least one necessary file is missing for the NGCD version !', 'Warning');
     disp('Code termination, NGCD version not done !')
 end
+toc
 
-% Full conversion in about 24 seconds with Matlab
-% Full conversion in about 149 seconds with GNU Octave
+% Full conversion in about 43 seconds with Matlab
+% Full conversion in about 320 seconds with GNU Octave

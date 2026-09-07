@@ -2,7 +2,7 @@
 
 The project proposes a multi-OS, highly reusable workflow to uncensor Sengoku 2 on Neo Geo as well as ready-to-use IPS patches for all know versions of the game. This hack has only one purpose: turn the blood red. Nothing else.
 
-The hack is basically finished now and further modifications will just consist in polishing the toolchain / adding more way to play with it.
+The hack is basically finished now and further modifications will just consist in polishing the toolchain / adding more output formats.
 
 ## Patching the Neo Geo MVS / AES version (patch 1.18)
 
@@ -115,11 +115,17 @@ Here are the main steps used in a nutshell:
 - Waste an unreasonable amount of time to make a totally cross compatible workflow between Matlab and GNU Octave knowing that basically nobody but me will reuse the workflow. For Science.
 - Waste another unreasonable amount of time to watch game footages frame by frame and fix the last missing tiles, sometimes for just one pixel.
 
+That was basically it.
+
 ## My rules
 
-- Anything looking (even partly) human has red blood. And yes daemon fishes have human legs...
-- The least effort will always be prefered because I do this on my spare time. All the sources been given, the hack is very easy to improve if necessary.
-- The game must look gore but most of all, as genuine as possible. The least modification is always prefered. Apart from being a very hardcore fan of Sengoku 2 like me, you will probably never spot any obvious palette swap apart from blood of course.
+There is a scholarly debate about the fact that Sengoku 2 blood was though to be red or not from the begining. To be honest, I just don't give a shit. I want the game to be pleasant, and when I see flashing blue or yellow splats of something that is blood without a debate, I just want it to be vivid red.
+
+So:
+
+- Anything looking (even partly) human has red blood. And yes daemon fishes have human legs.
+- The least effort will always be prefered because I do this on my spare time and I'm pretty sure this is also what SNK would have done in a final rush before release. All the sources been given, the hack is very easy to modify if necessary. Feel free to dive into the code.
+- The game must look gore but most of all, **as genuine as possible**. The **least modification is always prefered**. Apart from being a very hardcore fan of Sengoku 2 like me, you will probably never spot any obvious palette swap apart from blood of course.
 - gameplay and difficulty balance is yet perfect, I will never touch that. This hack in ONLY about making the blood red.
 
 ## Which tools ?
@@ -135,21 +141,21 @@ Here are the main steps used in a nutshell:
 - Custom codes to rebuild the NGCD binary from individual .SPR and .PRG files (this was a pain, see next section).
 - IPS script generator for sharing the hack easily.
 
-As for any project, 10% of the time was taken to edit 90% of the tileset, 90% of the time to find some lone tiles / pixels in the giant tileset.
+As for any project, 10% of the time was taken to edit 90% of the tileset, 90% of the time to find some lone tiles / pixels in the giant tileset. Playing the game from start to end credits to ensure the total absence of bugs was also a big part of the job.
 
-Some codes or parts of codes were made / polished / optimized with A.I. (Gemini for easy parts and Claude for tricky ones). Basically there is no rocket science here but I must admit that A.I. was precious to accelerate the process and circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a very niche market here. Coding this project without A.I. would have taken me something like 3-4 months of regular coding on free time instead of just one. In consequence, most of the time was spent on editing graphics and testing.
+Some codes or parts of codes were made / polished / optimized with A.I. (the dumbest possible Gemini for easy parts and Claude for tricky ones). Basically there is no rocket science here but I must admit that A.I. was precious to accelerate the process and circumvent the scarcity of Neo Geo dedicated editing tool. We are clearly addressing a very niche market here. Coding this project without A.I. would have taken me something like 3-4 months of regular coding on free time instead of just one. In consequence, most of the time was spent on editing graphics and testing. Oh, and I'm not engaged in a pissing contest with other hackers just to precise.
 
 The Neo Geo CD hack was made in parallel to the MVS version because I though it won't be very difficult. In fact, it was. The Neo Geo CD is quite scarcely documented (The only interesting source is a French [Neo Geo CD World article](https://www.neogeocdworld.info/html/fiche/hard.htm)), so I was basically on my own most of the time. If Neo Geo is yet a niche, Neo Geo CD is a niche within the niche. But it deserves being supported.
 
 ## Some notes about (painfully and partially) reverse engineering the NGCD file format
 
-First surprise, the Neo Geo CD .SPR (sprites) and .PRG (program) formats are 16 bit little endian, which required adapting all the conversion tools developped for the MVS ROMs stored in big endian (but converted to little endian at the end in the 68k RAM). Sprites are not stored de-interlaced (split into rom pairs) compared to the MVS version and there are some documented differences of sub-tiles organization too. HUD sprites (.FIX on NGCD, .s1 on MVS), are exactly formatted the same on the other hand (Big endian, 8x8 pixel tiles). 
+First surprise, the Neo Geo CD .SPR (sprites) and .PRG (program) formats are 16 bit little endian, which required adapting all the conversion tools developped for the MVS ROMs stored in big endian (but converted to little endian at the end in the 68k RAM). Sprites are not stored de-interlaced (split into rom pairs of odd and even bytes) compared to the MVS version. HUD sprites (.FIX on NGCD, .s1 on MVS), are exactly formatted the same on the other hand (Big endian, 8x8 pixel tiles). 
 
-Due to very strict memory limitations, the tilesets in Sengoku 2 are completely reorganized in "chapters" separated by loadings. They are also sorted very differently at local scale (I would say in a more rational manner, the MVS giant tileset is just a mess). This implies that tiles substitution with the MVS version must be an automated process, it would be too tedious to do this by hand. Hopefully, there is enough entropy in Neo Geo graphics to not have two identical tiles and the tilesets are exactly the same apart from redundancy in NGCD version. Problem solved.
+Due to the very strict memory limitations, the tilesets in Sengoku 2 are completely reorganized in "chapters" separated by loadings. They are also sorted very differently at local scale (I would say in a more rational manner, one character = a stream of continuous tiles while the MVS giant tileset is overall just a mess). This implies that tiles substitution with the MVS version must be an automated process, it would be too tedious to substitute tiles by hand. Hopefully, there is enough entropy in Neo Geo graphics to not have two identical tiles and the tilesets are exactly the same apart from redundancy in NGCD version. Problem solved, no false positives.
 
-Starting confident after these little surprises, I initially though hacking individual files of the NGCD version contained in track 1 and rebuilding an iso from any dedicated tool would be enough. As far as I can tell, it does not work. Even the trusty [neogeodev dedicated page](https://wiki.neogeodev.org/index.php/Making_an_ISO_file) was finally not of any help. Any tool gives me an .iso container too small that makes the Neo Geo CD crash without warning. I was clearly missing something. Apparently burning the resulting .iso to a real CD and dump it back as binary would fix the format but you have to edit the .CUE file too in return and I do not want wasting time and CDs for testing. Anyway, it is impossible to embed that process in an automatic workflow without a hell of dependencies different for each OS. I want a multi-OS compatible workflow (*edit September 2026: the code can now rebuild functional .iso and .bin track 1 from scratch but I still need the next section method to generate the IPS patch targeting the obsolete original filesystem*).
+Starting confident after these little surprises, I initially though hacking individual files of the NGCD version contained in track 1 and rebuilding an iso from any dedicated tool would be enough to play with the Neo Geo SD Loader. As far as I can tell, it does not work. Even the trusty [neogeodev dedicated page](https://wiki.neogeodev.org/index.php/Making_an_ISO_file) was finally not of any help. Any tool gives me an .iso container and not the raw binary I need. I was clearly missing something. Apparently burning the resulting .iso to a real CD and dump it back as binary would fix the format but you have to edit the .CUE file too in return and I do not want wasting time and CDs for testing. Anyway, it is impossible to embed that process in an automatic workflow without a hell of dependencies different for each OS. I want a multi-OS compatible workflow (*edit September 2026: the code can now rebuild Neo Geo SD Loader compatible .bin track 1 from scratch, but I still need the next section method to generate and release the IPS patch targeting the exact original file*).
 
-So I took the problem in reverse. Rebuilding from scratch the exact original ISO 9660 structure as expected by the Neo Geo CD without dependencies was just out of question, so I tried injecting the individual hacked .SPR and .PRG files directly into the original track 1 binary as big data chunks, by searching for some header signatures. Neo Geo CD crashed again with that "rebuilt" binary, damn! The fact is that I had only like 12% matching between .PRG and .SPR injected and the binary data of track 1 on the same address range, which indicated that the files were probably at least partially splitted within the filesystem. Well, partially was an understatement.
+So I took the problem in reverse. Rebuilding from scratch the exact original ISO 9660 structure as expected by the Neo Geo CD without dependencies was just out of question (*at that time*), so I tried injecting the individual hacked .SPR and .PRG files directly into the original track 1 binary as big data chunks, by searching for some header signatures. Neo Geo CD crashed again with that "rebuilt" binary, damn! The fact is that I had only like 12% matching between .PRG and .SPR injected and the binary data of track 1 on the same address range, which indicated that the files were probably at least partially splitted within the filesystem. Well, partially was an understatement.
 
 Some reader may find the latter approach incredibly naive but for my defense, I had no idea how Neo Geo CD data tracks (and CD tracks in general) were organized before tackling this problem. Let's say that reverse engineering this was part of the fun.
 
@@ -159,11 +165,9 @@ So I wrote a code to inject my hacked .SPR and .PRG files by chunks of 2048 byte
 
 Last issue, for all the hacked chunks reinjected, the following EDC/ECC 288 bytes say that corresponding data are now corrupted (of course). The real Neo Geo CD does not like that at all. So the last step was to regenerate the right EDC/ECC data for each modified chunk with a dedicated tool (adapted from another project, see Acknowledgments section).
 
-Et voilà !
+Et voilà ! My tinkering works. Better is the enemy of good.
 
-I guess there must be a possible workflow starting from scratch with the individual files but my solution is working fine. Better is the enemy of good.
-
-Interesting property of the Neo Geo CD version: as it is fully derived from the MVS version and assembled at the very end of the workflow, if the CD version works on real hardware (which is the case), the MVS version works too.
+Interesting property of the Neo Geo CD version: as it is fully derived from the MVS version and assembled at the very end of the workflow, if the CD version works on real hardware (which is the case), the MVS version works too, no need to always check both.
 
 ## Identified flaws
 
@@ -406,9 +410,9 @@ Aternate palette (puppet 2)
 
 - The first screaming sound from the pedestrians running in level 3 is lacking in the Neo Geo CD version. This is not related to the hack but a pure bug from the genuine version.
 
-- The laugh of the main vilain is lacking is attract mode in the Neo Geo CD version, but only in EU / US mode, not in Japanese.
+- The laugh of the main vilain is lacking is attract mode in the Neo Geo CD version, but only in EU / US mode, not in Japanese. There is no technical reason for that as the assets and sounds loaded in memory are exactly the same.
 
-All of this shows how probably rushed, careless and untested was the Sengoku 2 cartridge to CD conversion. Not as bad as Magician Lord CD which is simply butchered regarding sound and probably untested, but not a good port anyway.
+All of this shows how probably rushed was the Sengoku 2 cartridge to CD conversion (at least the EU / US versions, clearly untested). Not as bad as Magician Lord CD which is simply butchered regarding sound levels, but not a good port anyway.
 
 ## Any plan for uncensoring Sengoku 1 and 3 in the future ?
 

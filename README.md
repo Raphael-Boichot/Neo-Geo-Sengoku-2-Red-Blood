@@ -412,7 +412,7 @@ Aternate palette (puppet 2)
 
 - The laugh of the main vilain is lacking is attract mode in the Neo Geo CD version, but only in EU / US mode, not in Japanese. There is no technical reason for that as the assets and sounds loaded in memory are exactly the same.
 
-All of this shows how probably rushed was the Sengoku 2 cartridge to CD conversion (at least the EU / US versions, clearly untested). Not as bad as Magician Lord CD which is simply butchered regarding sound levels, but not a good port anyway.
+All of this shows how probably rushed was the Sengoku 2 cartridge to CD conversion (at least the EU / US versions, clearly untested). Not as bad as Magician Lord CD which is simply butchered regarding sound mixing, but not a good port anyway.
 
 ## Any plan for uncensoring Sengoku 1 and 3 in the future ?
 

@@ -7,9 +7,29 @@
  * Contact: mingzo@gmail.com
  */
 #include "MegaBurner.h"
-#include "MX29L3211.h"
 
-MX29L3211 mx29l3211 = MX29L3211();
+// ---- Chip selection (compile-time) ----
+// Uncomment exactly ONE of the two blocks below for the chip this
+// build targets, then reflash. Both chips share the exact same host
+// <-> Arduino protocol (check/read/erase/write commands) - only the
+// low-level chip driver differs, so nothing else in this file needs
+// to change when switching.
+
+#define CHIP_MX29LV320E
+// #define CHIP_MX29L3211
+
+#if defined(CHIP_MX29L3211)
+  #include "MX29L3211.h"
+  MX29L3211 mx29l3211 = MX29L3211();
+#elif defined(CHIP_MX29LV320E)
+  // Covers both Top-Boot (MX29LV320ET...) and Bottom-Boot
+  // (MX29LV320EB...) variants - see MX29LV320E.h for why one
+  // firmware class covers both.
+  #include "MX29LV320E.h"
+  MX29LV320E mx29l3211 = MX29LV320E();
+#else
+  #error "Uncomment exactly one CHIP_... #define above."
+#endif
 
 // LED activity indicators
 // D13 lights up whenever data is being WRITTEN TO the chip (write + erase)

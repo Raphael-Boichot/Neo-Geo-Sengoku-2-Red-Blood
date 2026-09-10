@@ -30,8 +30,10 @@ from megaburner.progress import ProgressBar, Spinner
 # CONFIGURATION - edit these, then just run the script.
 # ============================================================
 
-COM_PORT = "COM6"              # e.g. "COM5" on Windows, "/dev/ttyACM0" on Linux
-CHIP_NAME = "MX29L3211"        # must match a chip in megaburner/chips.py
+COM_PORT = "COM7"              # e.g. "COM5" on Windows, "/dev/ttyACM0" on Linux
+CHIP_NAME = "MX29LV320ET"        # must match a chip in megaburner/chips.py
+# CHIP_NAME = "MX29L3211"        # another example, must match a chip in megaburner/chips.py
+# CHIP_NAME = "MX26L6420"        # another example, must match a chip in megaburner/chips.py 
 
 # --- Test data source ---------------------------------------
 # If True: generate random test data instead of using an existing ROM file.

@@ -284,8 +284,12 @@ class MegaBurner:
             self._wait_for_signal(self.SIGNAL_BEGIN, self.timeouts.write_signal)
 
             assert self._ser is not None
-            self._ser.write(data[i : i + write_count])
+            t0 = time.monotonic()
+            n_sent = self._ser.write(data[i : i + write_count])
             self._ser.flush()
+            if self.debug:
+                print(f"[DEBUG TX] sent {n_sent}/{write_count} data bytes for block at "
+                      f"offset {i} in {time.monotonic() - t0:.3f}s")
 
             self._wait_for_signal(self.SIGNAL_END, self.timeouts.write_signal)
 

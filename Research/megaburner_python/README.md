@@ -74,32 +74,36 @@ mb.disconnect()
 
 `MegaBurner` is also a context manager: `with MegaBurner("MX29L3211") as mb: ...` closes the port automatically.
 
-## Adding another chip (MX29LV320E, MX26LV6420, ...)
+## Supported chips
 
-The chip table in `megaburner/chips.py` is deliberately generalized —
-add another entry to the `CHIPS` dict there:
+| Chip | Host `CHIP_NAME` | Arduino `#define` (in `MegaBurner_arduino.ino`) | Notes |
+|------|-------------------|--------------------------------------------------|-------|
+| MX29L3211 | `"MX29L3211"` | `CHIP_MX29L3211` | Has a real page-buffer program feature; `page_size=128`. |
+| MX29LV320E Top-Boot | `"MX29LV320ET"` | `CHIP_MX29LV320E` | Standard single-word program only; `page_size=2` is load-bearing, don't change it. |
+| MX29LV320E Bottom-Boot | `"MX29LV320EB"` | `CHIP_MX29LV320E` (same build as Top-Boot) | Same firmware as Top-Boot — only the expected id differs. |
 
-```python
-"MX29LV320E": Chip(
-    name="MX29LV320E",
-    display_name="   MX29LV320E",
-    id="...",           # 4-char ASCII id the firmware's check() returns
-    type="3.3v/32MBit/4MiB SOP44",
-    capacity=4 * 1024 * 1024,
-    page_size=...,
-    read_block=4096,
-    write_block=4096,
-),
-```
+The Arduino side needs a matching firmware build for whichever chip is
+physically connected (one `#define` at the top of
+`MegaBurner_arduino.ino`, reflash after switching) — the two chips
+aren't command-compatible (different unlock addresses, different
+program/status-polling behavior), so this isn't just a host-side table
+edit for a new chip in general. See `MX29LV320E.h` for the specific
+differences from MX29L3211 and why each one was necessary.
 
-**This is architecture-only for now.** The actual command sequences
-(unlock bytes, program/erase timing, page-write behavior) still live
-in the *Arduino firmware*, which currently only implements the
-MX29L3211's variant of them — adding a chip here doesn't make new
-hardware work yet. As discussed, the firmware update to actually
-support MX29LV320E/MX26LV6420 is a separate next step; this table is
-just ready to receive the right numbers once that's done, one chip at
-a time.
+## Adding another chip (e.g. MX26LV6420)
+
+1. Get the chip's actual command-set table from its datasheet — don't
+   assume it matches MX29L3211 or MX29LV320E. Confirm at minimum:
+   unlock addresses, whether it has a page-buffer program feature or
+   only single-word program, and how busy/done status is polled
+   (fixed address vs. the address being written).
+2. Add a chip driver (`.h`/`.ino` pair) on the Arduino side implementing
+   whatever that chip's sequences actually are — `MX29LV320E.h`/`.ino`
+   are the template to copy and adjust.
+3. Add a `#define CHIP_...` block to `MegaBurner_arduino.ino`.
+4. Add a `Chip(...)` entry to `megaburner/chips.py` with the right id,
+   capacity, and `page_size` (this must match what the chip driver
+   actually implements, not be picked independently).
 
 ## Protocol reference (unchanged from the Java app)
 

@@ -422,13 +422,31 @@ As for Sengoku 3, it does not exist, it's not a Sengoku game. I still do not und
 
 ## Any plan to sell / release a physical version ?
 
-Selling ? Surely not. Regardless of the fact that it's a good way to totally screw my online reputation (because yes, it's illegal), the reasonable selling price for a tinkered physical release wouldn't even come close to covering my working hours (because yes, I don't work for peanuts).
+I will do better than that, I will show you how to build one. First buy an [Aliexpress bootlegs](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros). You will probably get that: 
 
-But the easy way to get a physical release would be to start from a cheap and mass produced bootleg to avoid damaging genuine hardware. Looking into [Aliexpress bootlegs](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros), it must be possible to tinker a reprogrammed Sengoku 2 MVS by owning the correct flasher / adapter. This is not that of a simple issue to solve in fact, the Chinese bootleggers use very baroque chips in their repros (because huge availability as e-waste I guess) and reprogramming them requires very uncommon flashers / adapters (good luck to find a cheap hobby flasher able to burn a 16-bits only MX26L6420 or an adapter / socket for a M27C322 in SDIP package for example). So it's easy on paper, but practically, not for hobbyists.
+![](/MVS_bootleg_convert/Sengoku2_bootleg_PRG_top.jpg)
+![](/MVS_bootleg_convert/Sengoku2_bootleg_CHA_top.jpg)
 
-I would say that your best bet is that Chinese bootleggers find this repository one day and produce the hack themselves because spoiler: they weren't super enthusiastic when I asked them directly how to reverse engineer their cartridges... Indeed, the internal structure of bootleg cartridges is not always a simple one ROM file = one EPROM chip. There is a certain number of educated guesses to do to correctly merge files and probably some trial and errors with mandatory desoldering / resoldering different types of EPROM. Not exactly a pleasure to be honest.
+You will have to reprogram P1 which is a MX29f1615PC10 DIP42 2 Mbytes EPROM. Best is to add a socket after desoldering it in order to ease any further flashing. The chip can contain 2 times the P ROM so better is just to merge two files together in order to fill the chip. From factory it came with P1 on the lower bank and padding with 0xFF in the upper bank. Format is big endian, like the MAME file.
 
-I'm currently trying to assess if some MX29L3211 EPROM (the only 4Mbytes SOP44 chip I can (in theory) burn with my GQ 4x4 EPROM programmer) in place of the MX26L6420 can do the job with some trace cutting and some bodge wires, pinout being nearly similar. For the moment, I'm just sitting on a pile of dodgy chips from Aliexpress and a finicky flasher which refuses to burn them without errors, so the "bootleg out of a bootleg" project is currently stuck in dev, maybe forever. Investing in more expensive custom adapter PCBs for newer TSOP48 chips simply isn't worth the effort, at least for me as I own a Neo Geo CD to play and test the hack on real hardware.
+![](/MVS_bootleg_convert/P1_on_socket.png)
+
+C1 and C2 chips contain C1, C2, C3 and C4 ROMs in a way that is not trivial. I initially though it was byte interleaving or just ROM files merging. I've asked the Chinese seller to send me an example file so that I can reverse-engineer the format. Of course, he kept me waiting whilst trying to get hold of the project’s ROM before realising that it wasn’t the NCI hack and then stopped speaking to me altogether. I hope that arsehole chokes on it before he sells any cartridges featuring my hack.
+
+Well, C1 and C2 are MX26LV6420, a 8 Mbytes 16 bits only very annoying chip that most of the hobby flash programmers are even not able to read. So I had to build one from an Arduino Mega 2560 (yes, I was pissed enough by the seller to build my own custom flasher!). The format is rom files stacked together but by parts of 1 Mbytes, odd CROMS on C1, even CROMS on C2. The project generates the [good ROM format ready to burn for you](/Working_toolchain_MVS/Run_conversion_MVS.m#L374). Also, it's practical to get rid of the MX26L6420 as only the 4 Mbytes lower bank is used and shift to some more common chip. It appears that as connected on the CHA board, you can nearly just replace the MX26L6420 by MX29L3211 or MX29LV320. The only pin to care about is pin 1 (A21 on the MX26L6420) which is WE on the MX29L3211 or MX29LV320 (same chip basically). It must be pulled HIGH to allow the chip to be in read mode. Pin A21 is unused in Sengoku 2 so you can just cut the trace and wire a resistor from VCC (3.3V) to pin 1. I chose two MX29LV320 here because they were in another life Pachinko ROMs and I find cool to recycle them in MVS cartridges.
+
+![](/MVS_bootleg_convert/CROM_replacement.png)
+
+I've used a GG 4x4 programmer for P1 and my custom flasher for C1 / C2. Sadly, despite the MX29L3211 in SOP44 being listed as compatible with the GQ 4x4, it is not (which costed me an ADP-019 for nothing), and MX29LV320 is only supported is TSOP48 package at the moment.
+
+![](/MVS_bootleg_convert/Harware_necessary.jpg)
+
+At least the custom programmer with the Arduino Mega was quite cheap (made only from second hand parts).
+
+![](/MVS_bootleg_convert/Sengoku2_bootleg_PRG_top_modified.jpg)
+![](/MVS_bootleg_convert/Sengoku2_bootleg_CHA_top_modified.jpg)
+
+Now I can tell: I own the MVS version !
 
 ## Final words: make it simple, publish fast, always better than nothing
 

@@ -439,7 +439,7 @@ Well, C1 and C2 are MX26LV6420, SOP44 8 Mbytes 16 bits only, very annoying chip 
 
 ![](/MVS_bootleg_convert/CROM_replacement.png)
 
-I've used a GG 4x4 programmer for P1 and my custom Arduino flasher for C1 / C2. Sadly, despite the MX29L3211 in SOP44 being listed as compatible with the GQ 4x4, it is not (which costed me an ADP-019 adapter for nothing), and the MX29LV320 is only supported is TSOP48 package at the moment. You can maybe find one programmer with adapters to rule them all but on my side, this whole business has cost me quite a lot, so there was no way I was going to buy another programmer with more of those equally useless adaptors.
+I've used a GG 4x4 programmer for P1 and my custom Arduino flasher for C1 / C2. Sadly, despite the MX29L3211 in SOP44 being listed as compatible with the GQ 4x4, it is not (which costed me an ADP-019 adapter for nothing), and the MX29LV320 is only supported is TSOP48 package at the moment. You can maybe find one programmer with adapters to rule them all but on my side, this whole business has cost me quite a lot, so there was no way I was going to buy another programmer with more of those equally useless adaptors. Anyway, with the combo shown here, you must be able to rule any MVS bootleg.
 
 ![](/MVS_bootleg_convert/Harware_necessary.jpg)
 

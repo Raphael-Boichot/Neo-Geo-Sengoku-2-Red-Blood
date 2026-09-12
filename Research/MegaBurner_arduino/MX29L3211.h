@@ -9,8 +9,9 @@
 #define MX29L3211_h
 
 #include "Arduino.h"
+#include "FlashChip.h"
 
-class MX29L3211 {
+class MX29L3211 : public FlashChip {
 
   public:
 	char id[4];

@@ -1,16 +1,16 @@
 /**
- * MX29LV320E T/B
+ * MX26L6420
  *
- * See MX29LV320E.h for the differences from MX29L3211 and why they
- * were made (unlock addresses, address-aware busy check).
+ * See MX26L6420.h for the datasheet-verified details and how this
+ * differs from MX29LV320E (mainly: single-cycle reset, different ID).
  */
-#include "MX29LV320E.h"
+#include "MX26L6420.h"
 
-MX29LV320E::MX29LV320E()
+MX26L6420::MX26L6420()
 {
 }
 
-void MX29LV320E::init()
+void MX26L6420::init()
 {
 	  // Set Address Pins to Output
 	  //A0-A7
@@ -31,6 +31,9 @@ void MX29LV320E::init()
 	  PORTA = 0x00;
 
 	  // Setting OE(PH1) BYTE(PH3) WE(PH4) HIGH
+	  // (BYTE has no effect on this chip - it has no BYTE# pin at all -
+	  // but leaving it driven high is harmless and keeps this init()
+	  // identical in shape to the other chip drivers.)
 	  PORTH |= (1 << 1) | (1 << 3) | (1 << 4);
 	  // Setting CE(PH6) LOW
 	  PORTH &= ~(1 << 6);
@@ -42,11 +45,11 @@ void MX29LV320E::init()
 	  reset();
 }
 
-void MX29LV320E::readId() {
+void MX26L6420::readId() {
   // Set data pins to output
   dataOut();
 
-  // Automatic Select command sequence (Table 3)
+  // Autoselect / Silicon-ID-Read command sequence (Table 4)
   writeWord(UNLOCK_ADDR_1, 0xaa);
   writeWord(UNLOCK_ADDR_2, 0x55);
   writeWord(UNLOCK_ADDR_1, 0x90);
@@ -54,12 +57,10 @@ void MX29LV320E::readId() {
   // Set data pins to input again
   dataIn();
 
-  // Manufacturer ID (address 0) then device ID low byte (address 1).
-  // Device ID is a full word (22A7h Top / 22A8h Bottom) but only the
-  // low byte is read here to keep the same 4-hex-char id format the
-  // host protocol already expects (matches MX29L3211.ino's readId()).
-  // The low byte alone (A7h/A8h) is already enough to tell the two
-  // variants apart.
+  // Manufacturer ID (address 0, expect C2h) then device ID low byte
+  // (address 1, expect FCh - full device code is 22FCh, but only the
+  // low byte is read to keep the same 4-hex-char id format the host
+  // protocol already expects, matching MX29L3211/MX29LV320E's readId()).
   // Zero-pad each byte to exactly 2 hex characters (Serial.print(b, HEX)
   // drops leading zeros, e.g. 0x0F prints as "F" and 0x00 prints as
   // nothing at all - the host always expects exactly 4 characters total
@@ -75,14 +76,15 @@ void MX29LV320E::readId() {
   }
 }
 
-void MX29LV320E::reset() {
+void MX26L6420::reset() {
   // Set data pins to output
   dataOut();
 
-  // Reset command sequence
-  writeWord(UNLOCK_ADDR_1, 0xaa);
-  writeWord(UNLOCK_ADDR_2, 0x55);
-  writeWord(UNLOCK_ADDR_1, 0xf0);
+  // Reset is a SINGLE bus cycle for this chip - no unlock prefix,
+  // don't-care address (Table 4: "Reset | 1 cycle | XXX | F0"). This
+  // is different from MX29L3211/MX29LV320E, which both need a 3-cycle
+  // unlock+F0 sequence - do not "fix" this to match them.
+  writeWord(0x0000, 0xf0);
 
   // Set data pins to input again
   dataIn();
@@ -90,23 +92,10 @@ void MX29LV320E::reset() {
   delay(500);
 }
 
-void MX29LV320E::read8(long block_id, long block_size) {
+void MX26L6420::read16(long block_id, long block_size) {
 
 	long start = (block_id * block_size)/2;
 
-	//less than 2MB, use 8bit mode
-	for (long i = start; i < (start+block_size); i++) {
-		byte b = readByte(i);
-		Serial.write(b);
-	}
-
-}
-
-void MX29LV320E::read16(long block_id, long block_size) {
-
-	long start = (block_id * block_size)/2;
-
-	//larger than 2MB, use 16bit mode
 	for (long i = start; i < start+block_size/2; i++) {
 	    word aword = readWord(i);
 
@@ -115,11 +104,11 @@ void MX29LV320E::read16(long block_id, long block_size) {
 	}
 }
 
-void MX29LV320E::erase() {
+void MX26L6420::erase() {
   // Set data pins to output
   dataOut();
 
-  // Chip Erase command sequence
+  // Chip Erase command sequence (Table 4) - identical to MX29LV320E's.
   writeWord(UNLOCK_ADDR_1, 0xaa);
   writeWord(UNLOCK_ADDR_2, 0x55);
   writeWord(UNLOCK_ADDR_1, 0x80);
@@ -136,54 +125,14 @@ void MX29LV320E::erase() {
   busyCheck(0, 0xFFFF);
 }
 
-void MX29LV320E::write8(long offset, long page_size, long block_size, byte data[]) {
-
-	// Set data pins to output
-	dataOut();
-
-	long lastAddress = offset;
-	byte lastData = 0xFF; // nothing written yet (erased state)
-
-	//less than 2MB, use 8bit mode
-	for (long bi = 0; bi < block_size; bi+=page_size) {
-		// Check if write is complete - poll at the address actually
-		// being programmed (the last byte written), against the value
-		// actually written there (not a fixed address/value).
-		delayMicroseconds(100);
-		busyCheck(lastAddress, lastData);
-
-		// Write command sequence
-		writeWord(UNLOCK_ADDR_1, 0xaa);
-		writeWord(UNLOCK_ADDR_2, 0x55);
-		writeWord(UNLOCK_ADDR_1, 0xa0);
-
-		// Write one full page at a time
-		for (long pi = 0; pi < page_size; pi++) {
-			long a = offset + bi + pi;
-			long b = bi + pi;
-			writeByte(a, data[b]);
-			lastAddress = a;
-			lastData = data[b];
-		}
-	}
-
-	// Check if write is complete
-	delayMicroseconds(100);
-	busyCheck(lastAddress, lastData);
-	// Set data pins to input again
-	dataIn();
-}
-
-void MX29LV320E::write16(long offset, long page_size, long block_size, byte data[]) {
+void MX26L6420::write16(long offset, long page_size, long block_size, byte data[]) {
 
 	// Set data pins to output
 	dataOut();
 
 	long lastAddress = offset/2;
-	word lastData = 0xFFFF; // nothing written yet (erased state) - any
-	                        // address trivially reads "not busy" against this
+	word lastData = 0xFFFF; // nothing written yet (erased state)
 
-	//larger than 2MB, use 16bit mode
 	for (long bi = 0; bi < block_size/2; bi+=page_size/2) {
 		// Check if write is complete - poll at the address actually
 		// being programmed (the last word written), against the value
@@ -191,7 +140,8 @@ void MX29LV320E::write16(long offset, long page_size, long block_size, byte data
 		delayMicroseconds(100);
 		busyCheck(lastAddress, lastData);
 
-		// Write command sequence
+		// Write command sequence (Table 4) - single-word program,
+		// identical structure to MX29LV320E.
 		writeWord(UNLOCK_ADDR_1, 0xaa);
 		writeWord(UNLOCK_ADDR_2, 0x55);
 		writeWord(UNLOCK_ADDR_1, 0xa0);

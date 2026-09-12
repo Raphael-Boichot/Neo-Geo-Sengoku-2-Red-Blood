@@ -25,8 +25,9 @@
 #define MX29LV320E_h
 
 #include "Arduino.h"
+#include "FlashChip.h"
 
-class MX29LV320E {
+class MX29LV320E : public FlashChip {
 
   public:
 	char id[4];

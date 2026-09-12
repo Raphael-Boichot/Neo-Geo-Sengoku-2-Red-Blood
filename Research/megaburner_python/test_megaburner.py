@@ -30,10 +30,12 @@ from megaburner.progress import ProgressBar, Spinner
 # CONFIGURATION - edit these, then just run the script.
 # ============================================================
 
-COM_PORT = "COM7"              # e.g. "COM5" on Windows, "/dev/ttyACM0" on Linux
-CHIP_NAME = "MX29LV320ET"        # must match a chip in megaburner/chips.py
-# CHIP_NAME = "MX29L3211"        # another example, must match a chip in megaburner/chips.py
-# CHIP_NAME = "MX26L6420"        # another example, must match a chip in megaburner/chips.py 
+COM_PORT = "COM5"              # e.g. "COM5" on Windows, "/dev/ttyACM0" on Linux
+# Uncomment exactly ONE of the lines below (must match megaburner/chips.py)
+CHIP_NAME = "MX29L3211"        # 32Mbit, 3.3V flash, page-buffer program
+# CHIP_NAME = "MX29LV320ET"      # 32Mbit, 3V flash, SOP44, Top-Boot
+# CHIP_NAME = "MX29LV320EB"      # 32Mbit, 3V flash, SOP44, Bottom-Boot
+# CHIP_NAME = "MX26L6420"        # 64Mbit, 3V MTP EPROM, SOP44, ~100 cycles max - see README.md
 
 # --- Test data source ---------------------------------------
 # If True: generate random test data instead of using an existing ROM file.
@@ -65,6 +67,13 @@ READBACK_FILE = "readback.bin"
 # for diagnosing communication issues (e.g. an operation timing out) -
 # leave False for normal use, the output is very verbose.
 DEBUG = False
+
+# Set True to abort if the chip's id doesn't match CHIP_NAME. Leave
+# True unless you specifically know why the chip reports an
+# unexpected id (e.g. a suspected non-genuine part) and want to
+# proceed anyway - this test still ERASES AND WRITES, so overriding
+# this is a real risk, not just a formality.
+REQUIRE_ID_MATCH = True
 
 # ============================================================
 # End of configuration - no need to edit below this line.
@@ -130,12 +139,20 @@ def main() -> None:
         matched, chip_id = mb.is_chip_matched()
         print(f"Chip replied with id: {chip_id!r}")
         if not matched:
-            fail(
+            message = (
                 f"Chip id mismatch: expected '{mb.chip.id}' ({mb.chip.name}), "
                 f"got {chip_id!r}. Is the chip seated correctly / is this the "
                 "right CHIP_NAME?"
             )
-        print(f"OK - chip id matches {mb.chip.name} ({mb.chip.type}).")
+            if REQUIRE_ID_MATCH:
+                fail(message)
+            print(f"WARNING: {message} Continuing anyway (REQUIRE_ID_MATCH is False).")
+        else:
+            print(f"OK - chip id matches {mb.chip.name} ({mb.chip.package}).")
+        if mb.chip.max_cycles is not None:
+            print()
+            print(f"*** WARNING: {mb.chip.name} is rated for only ~{mb.chip.max_cycles} "
+                  "erase/program cycles. This test run will consume ONE of them. ***")
 
         # ------------------------------------------------------------------
         # Step 3: erase

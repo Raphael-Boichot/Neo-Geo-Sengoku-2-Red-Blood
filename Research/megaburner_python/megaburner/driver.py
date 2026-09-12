@@ -44,6 +44,8 @@ class Timeouts:
     erase_signal: float = 300.0      # waiting for '%' after erase (chip erase can be slow -
                                       # bump further if your chip genuinely needs longer)
     write_signal: float = 20.0       # waiting for '&' or '%' around each write block
+    select_signal: float = 10.0      # waiting for '%' after selecting a chip (runs that
+                                      # chip's init(), which includes an id-read + reset)
 
 
 class MegaBurner:
@@ -54,6 +56,7 @@ class MegaBurner:
     READ_COMMAND = "R"
     ERASE_COMMAND = b"E"
     WRITE_COMMAND = "W"
+    SELECT_COMMAND = "S"
     SIGNAL_BEGIN = ord("&")
     SIGNAL_END = ord("%")
 
@@ -105,6 +108,27 @@ class MegaBurner:
         # bytes contaminate the first real command.
         time.sleep(self.timeouts.connect_settle)
         self._drain_until_quiet()
+
+        # Tell the firmware which physical chip is connected. The
+        # Arduino has all supported chip drivers built in and switches
+        # between them at runtime - no reflash needed. This runs that
+        # chip's init() on the device (id-read + reset), so it's worth
+        # doing even for the default chip (MX29L3211) to make sure the
+        # driver is talking to a freshly-reset chip.
+        self.select_chip()
+
+    def select_chip(self) -> None:
+        """Tell the firmware to switch to this driver's chip (self.chip).
+
+        Normally you don't need to call this yourself - connect() does
+        it automatically. Call it again directly if you physically
+        swap the chip in the socket without reconnecting the port.
+        """
+        self._assert_connected()
+        self._flush_input()
+
+        self._write_cmd(f"{self.SELECT_COMMAND}{self.chip.firmware_id}")
+        self._wait_for_signal(self.SIGNAL_END, self.timeouts.select_signal)
 
     def _drain_until_quiet(self, quiet_period: float = 0.3, max_total: float = 3.0) -> None:
         """Keep discarding incoming bytes until the line has been

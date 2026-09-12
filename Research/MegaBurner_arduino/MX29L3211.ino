@@ -56,8 +56,18 @@ void MX29L3211::readId() {
   // Set data pins to input again
   dataIn();
 
+  // Zero-pad each byte to exactly 2 hex characters (Serial.print(b, HEX)
+  // drops leading zeros, e.g. 0x0F prints as "F" and 0x00 prints as
+  // nothing at all - the host always expects exactly 4 characters total
+  // for the id, so a chip whose id bytes happen to be < 0x10 would
+  // otherwise send fewer than 4 characters and the host would time out
+  // waiting for bytes that are never coming.
   for (int i=0; i<2; i++) {
-	  Serial.print(readByte(i), HEX);
+	  byte b = readByte(i);
+	  if (b < 0x10) {
+		  Serial.print('0');
+	  }
+	  Serial.print(b, HEX);
   }
 }
 

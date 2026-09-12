@@ -7,29 +7,47 @@
  * Contact: mingzo@gmail.com
  */
 #include "MegaBurner.h"
+#include "FlashChip.h"
+#include "MX29L3211.h"
+#include "MX29LV320E.h"
+#include "MX26L6420.h"
 
-// ---- Chip selection (compile-time) ----
-// Uncomment exactly ONE of the two blocks below for the chip this
-// build targets, then reflash. Both chips share the exact same host
-// <-> Arduino protocol (check/read/erase/write commands) - only the
-// low-level chip driver differs, so nothing else in this file needs
-// to change when switching.
+// ---- Chip selection (runtime) ----
+// All supported chip drivers are instantiated up front; the host
+// selects which one is physically connected with the "S<name>"
+// command (see selectChip() below) instead of needing a firmware
+// reflash per chip. activeChip defaults to MX29L3211 so existing
+// host code that never sends "S" keeps working unchanged.
+//
+// MX29LV320E covers BOTH Top-Boot (MX29LV320ET...) and Bottom-Boot
+// (MX29LV320EB...) variants - see MX29LV320E.h for why one firmware
+// class covers both; the host selects "MX29LV320E" for either.
+MX29L3211  mx29l3211  = MX29L3211();
+MX29LV320E mx29lv320e = MX29LV320E();
+MX26L6420  mx26l6420  = MX26L6420();
 
-#define CHIP_MX29LV320E
-// #define CHIP_MX29L3211
+FlashChip* activeChip = &mx29l3211;
 
-#if defined(CHIP_MX29L3211)
-  #include "MX29L3211.h"
-  MX29L3211 mx29l3211 = MX29L3211();
-#elif defined(CHIP_MX29LV320E)
-  // Covers both Top-Boot (MX29LV320ET...) and Bottom-Boot
-  // (MX29LV320EB...) variants - see MX29LV320E.h for why one
-  // firmware class covers both.
-  #include "MX29LV320E.h"
-  MX29LV320E mx29l3211 = MX29LV320E();
-#else
-  #error "Uncomment exactly one CHIP_... #define above."
-#endif
+// Command is "S<name>", e.g. "SMX29LV320E". Replies with '%' when
+// the newly-selected chip driver has finished its init() (which
+// itself does an id-read + reset against whatever chip is now
+// physically present). Unknown names are ignored (activeChip is left
+// unchanged) rather than silently picking something - a wrong guess
+// here could mean issuing another chip's command sequence.
+void selectChip(String name) {
+	if (name == "MX29L3211") {
+		activeChip = &mx29l3211;
+	} else if (name == "MX29LV320E") {
+		activeChip = &mx29lv320e;
+	} else if (name == "MX26L6420") {
+		activeChip = &mx26l6420;
+	} else {
+		return;
+	}
+
+	activeChip->init();
+	Serial.println('%');
+}
 
 // LED activity indicators
 // D13 lights up whenever data is being WRITTEN TO the chip (write + erase)
@@ -45,8 +63,8 @@
  * Command is "C"
  */
 void check() {
-	mx29l3211.readId();
-	mx29l3211.reset();
+	activeChip->readId();
+	activeChip->reset();
 }
 
 /*
@@ -62,8 +80,8 @@ void read(String param) {
 
 	digitalWrite(READ_LED_PIN, HIGH);
 
-	mx29l3211.reset();
-	mx29l3211.read16(block_id, block_size);
+	activeChip->reset();
+	activeChip->read16(block_id, block_size);
 
 	digitalWrite(READ_LED_PIN, LOW);
 }
@@ -76,8 +94,8 @@ void read(String param) {
 void erase() {
 	digitalWrite(WRITE_LED_PIN, HIGH);
 
-	mx29l3211.reset();
-	mx29l3211.erase();
+	activeChip->reset();
+	activeChip->erase();
 
 	Serial.println('%');
 
@@ -111,11 +129,11 @@ void write(String param) {
 	if (block_size < page_size)
 		page_size = block_size;
 
-    mx29l3211.write16(offset, page_size, block_size, buffer);
+    activeChip->write16(offset, page_size, block_size, buffer);
     Serial.println('%');
 
 	delay(100);
-	mx29l3211.reset();
+	activeChip->reset();
 
 	digitalWrite(WRITE_LED_PIN, LOW);
 }
@@ -139,9 +157,9 @@ void setup() {
 		delay(STARTUP_FLASH_MS);
 	}
 
-	mx29l3211.init();
+	activeChip->init();
 
-	// mx29l3211.init() unconditionally sends the chip's id over serial
+	// init() unconditionally sends the chip's id over serial
 	// (readId(), unsolicited - not a response to any host command). Any
 	// bytes a host sent while we were still booting are also sitting in
 	// the input buffer at this point. Discard everything now so the
@@ -174,6 +192,9 @@ void loop() {
 				break;
 			case 'W':
 				write(COMMAND_DATA.substring(1));
+				break;
+			case 'S':
+				selectChip(COMMAND_DATA.substring(1));
 				break;
 			default:
 				break;

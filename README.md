@@ -422,18 +422,20 @@ As for Sengoku 3, it does not exist, it's not a Sengoku game. I still do not und
 
 ## Any plan to sell / release a physical version ?
 
-I will do better than that, I will show you how to build one. First buy an [Aliexpress bootlegs](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros). You will probably get that: 
+I will do better than that, I will show you how to build a custom MVS cartridge. First buy an [Aliexpress Sengoku 2 bootleg](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros). You will probably get that: 
 
 ![](/MVS_bootleg_convert/Sengoku2_bootleg_PRG_top.jpg)
 ![](/MVS_bootleg_convert/Sengoku2_bootleg_CHA_top.jpg)
+
+(if you receive a different configuration of CHA board, just mimick the jumper configuration and remove the ROM chips before starting from fresh).
 
 You will have to reprogram P1 which is a MX29f1615PC10 DIP42 2 Mbytes EPROM. Best is to add a socket after desoldering it in order to ease any further flashing. The chip can contain 2 times the P ROM so better is just to merge two files together in order to fill the chip. From factory it came with P1 on the lower bank and padding with 0xFF in the upper bank. Format is big endian, like the MAME file.
 
 ![](/MVS_bootleg_convert/P1_on_socket.png)
 
-C1 and C2 chips contain C1, C2, C3 and C4 ROMs in a way that is not trivial. I initially though it was byte interleaving or just ROM files merging. I've asked the Chinese seller to send me an example file so that I can reverse-engineer the format. Of course, he kept me waiting whilst trying to get hold of the project’s ROM before realising that it wasn’t the NCI hack and then stopped speaking to me altogether. I hope that arsehole chokes on it before he sells any cartridges featuring my hack.
+C1 and C2 chips contain C1, C2, C3 and C4 ROMs in a way that is not trivial at all. I initially though it was byte interleaving or just ROM files merging. I've asked the Chinese seller to send me an example file so that I can reverse-engineer the format. Of course, he kept me waiting whilst trying to get hold of the project’s ROM before realising that it wasn’t the NCI hack and then stopped speaking to me altogether. I hope that arsehole chokes on it before he sells any cartridges featuring my hack.
 
-Well, C1 and C2 are MX26LV6420, a 8 Mbytes 16 bits only very annoying chip that most of the hobby flash programmers are even not able to read. So I had to build one from an [Arduino Mega 2560](https://github.com/maximaas/MegaBurner) (yes, I was pissed enough by the seller to build my own custom flasher!). The format is rom files stacked together but by parts of 1 Mbytes, odd C ROMs on C1, even C ROMs on C2. The project generates the [good ROM format ready to burn for you](/Working_toolchain_MVS/Run_conversion_MVS.m#L374). Also, it's practical to get rid of the MX26L6420 as only the 4 Mbytes lower bank is used and shift to some more common chip. It appears that as connected on the CHA board, you can nearly just replace the MX26L6420 by MX29L3211 or MX29LV320. The only pin to care about is pin 1 (A21 on the MX26L6420) which is WE on the MX29L3211 or MX29LV320 (same chip basically). It must be pulled HIGH to allow the chip to be in read mode. Pin A21 is unused in Sengoku 2 so you can just cut the trace and wire a resistor from VCC (3.3V) to pin 1. I chose two MX29LV320 here because they were in another life Pachinko ROMs and I find cool to recycle them in MVS cartridges.
+Well, C1 and C2 are MX26LV6420, a 8 Mbytes 16 bits only very annoying chip that most of the hobby flash programmers are even not able to read. So I had to build one from an [Arduino Mega 2560](https://github.com/maximaas/MegaBurner) (yes, I was pissed enough by the seller to build my own custom flasher!). The format is rom files stacked together but by parts of 1 Mbytes, odd C ROMs on C1, even C ROMs on C2. The project generates the [good ROM format ready to burn for you](/Working_toolchain_MVS/Run_conversion_MVS.m#L374). Also, it's practical to get rid of the MX26L6420 as only the 4 Mbytes lower bank is used and shift to some more common chip. It appears that as connected on the CHA board, you can just replace the MX26L6420 by MX29L3211 or MX29LV320, they are pin compatible. The only pin to care about is pin 1 (A21 on the MX26L6420) which is WE on the MX29L3211 or MX29LV320. It must be pulled HIGH to allow the chip to be in read mode. Pin A21 is unused in this Sengoku 2 bootleg so you can just cut the trace and wire a resistor from VCC (3.3V) to pin 1. I chose two MX29LV320 here because they were in another life Pachinko ROMs and I find cool to recycle them in MVS cartridges.
 
 ![](/MVS_bootleg_convert/CROM_replacement.png)
 

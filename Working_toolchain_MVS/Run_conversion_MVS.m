@@ -373,6 +373,10 @@ IPS_generator(original_prog,modified_prog,ipsFile)
 
 %% Prepare merged roms for burning EPROMs / experimental
 disp('Prepare ROMs for burning EPROMs to a bootleg MVS cartridge (experimental)')
+% Chip 1 = 040-c1.c1 + 040-c3.c3
+% Chip 2 = 040-c2.c2 + 040-c4.c4
+% EPROM_merger('040-c1.c1', '040-c3.c3', 'Chip_1_4MB.bin');
+% EPROM_merger('040-c2.c2', '040-c4.c4', 'Chip_2_4MB.bin');
 EPROM_merger(oddRomOut_big, oddRomOut_small, '.\EPROM_out\MX29L3211.C1') % chip is 4 MBytes, ROM is 4 MBytes, filled at 100% OK
 EPROM_merger(evenRomOut_big, evenRomOut_small, '.\EPROM_out\MX29L3211.C2') % chip is 4 MBytes, ROM is 4 MBytes, filled at 100% OK
 File_merger(modified_prog,'.\EPROM_out\MX29F1615.P1',2) %Fills two times instead of just padding, P1 is 1 MByte, chip is 2 MBytes

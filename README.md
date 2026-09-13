@@ -462,6 +462,9 @@ I've used a GQ 4x4 programmer with ADP-054 adapter for P1 and my custom Arduino 
 At least the custom programmer with the Arduino Mega was quite cheap if I do not count my time trying to resurrect the JAVA code going with it...
 
 ![](/MVS_bootleg_convert/Sengoku2_bootleg_PRG_top_modified.jpg)
+
+Please note the dicrete set of 47 pF caps on SDROE, SDRMPX, SDPOE, SDPMPX that help suppressing sound glitches on these bootleg cartridges.
+
 ![](/MVS_bootleg_convert/Sengoku2_bootleg_CHA_top_modified.jpg)
 
 Now I can tell: I own the MVS version !

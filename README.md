@@ -463,7 +463,7 @@ At least the custom programmer with the Arduino Mega was quite cheap if I do not
 
 ![](/MVS_bootleg_convert/Sengoku2_bootleg_PRG_top_modified.jpg)
 
-Please note the dicrete set of 47 pF caps on SDROE, SDRMPX, SDPOE, SDPMPX that help suppressing sound glitches on these bootleg cartridges.
+Please note the dicrete set of 47 pF caps on SDROE, SDRMPX, SDPOE, SDPMPX that helps suppressing sound glitches on these bootleg cartridges. Not mandatory for Sengoku 2 but if we’re going to do all that fiddly soldering anyway, we might as well see it through to the end.
 
 ![](/MVS_bootleg_convert/Sengoku2_bootleg_CHA_top_modified.jpg)
 

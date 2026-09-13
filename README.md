@@ -438,7 +438,7 @@ In the other hand, "C1" and "C2" chips contain C1, C2, C3 and C4 ROMs in a way t
 
 In order to not waste my time / money, I've directly (and politely) asked the Chinese seller if hé could send me an example file so that I can reverse-engineer the format, clearly indicating that in any case I would do it, soon or later. He kept me waiting whilst trying to get hold of the project ROM before realising that it was not the NCI hack and then stopped speaking to me altogether. I hope that arsehole chokes on it before he sells any cartridges featuring my hack.
 
-Well, that said, "C1" and "C2" are MX26LV6420, SOP44 8 Mbytes 16 bits only, very annoying chip, that most of the hobby flash programmers are even not recognizing. So I had to build one from an [Arduino Mega 2560](https://github.com/maximaas/MegaBurner) (yes, I was pissed enough by the seller to build my own custom flasher). After dumping, the format consists in ROM files stacked together but by slices of 1 Mbytes, odd C ROMs on C1, even C ROMs on C2. It was impossible to find this by trial and error.
+Well, that said, "C1" and "C2" are MX26LV6420, SOP44 8 Mbytes 16 bits only, very annoying chip, that most of the hobby flash programmers are even not recognizing. So I had to build one from an [Arduino Mega 2560](https://github.com/Raphael-Boichot/Arduino_Mega_Burner) (yes, I was pissed enough by the seller to adapt my own custom flasher). After dumping, the format consists in ROM files stacked together but by slices of 1 Mbytes, odd C ROMs on C1, even C ROMs on C2. It was impossible to find this by trial and error.
 
 The MX26LV6420 dumps show that each 4 MiB useful bank is organized as follows (addresses are byte offsets in the EPROM):
 

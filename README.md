@@ -428,13 +428,13 @@ I will do better than that, I will show you how to build a custom MVS cartridge.
 ![](/MVS_bootleg_convert/Sengoku2_bootleg_PRG_top.jpg)
 ![](/MVS_bootleg_convert/Sengoku2_bootleg_CHA_top.jpg)
 
-(if you receive a different configuration of CHA board, just mimick the jumper configuration and remove the ROM chips before starting from fresh).
+If you receive a different configuration of CHA board regarding C chips (like C5 and C6 populated), just mimick the jumper configuration of the picture above and remove the C ROM chips before starting from fresh.
 
 You will have to reprogram P1 which is a MX29F1615PC10 DIP42 2 Mbytes EPROM. Best is to add a socket after desoldering it in order to ease any further flashing. The chip can contain 2 times the P ROM so better is just to merge two files together in order to fill the chip. From factory it came with P1 on the lower bank and padding with 0xFF in the upper bank. Format is big endian, like the MAME file.
 
 ![](/MVS_bootleg_convert/P1_on_socket.png)
 
-C1 and C2 chips contain C1, C2, C3 and C4 ROMs in a way that is not trivial at all. I initially though it was byte interleaving or just ROM files merging. I've asked the Chinese seller to send me an example file so that I can reverse-engineer the format. Of course, he kept me waiting whilst trying to get hold of the project’s ROM before realising that it wasn’t the NCI hack and then stopped speaking to me altogether. I hope that arsehole chokes on it before he sells any cartridges featuring my hack.
+"C1" and "C2" chips contain C1, C2, C3 and C4 ROMs in a way that is not trivial at all. I initially though it was byte interleaving or just ROM files merging. I've asked the Chinese seller to send me an example file so that I can reverse-engineer the format. Of course, he kept me waiting whilst trying to get hold of the project’s ROM before realising that it wasn’t the NCI hack and then stopped speaking to me altogether. I hope that arsehole chokes on it before he sells any cartridges featuring my hack.
 
 Well, C1 and C2 are MX26LV6420, SOP44 8 Mbytes 16 bits only, very annoying chip that most of the hobby flash programmers are even not able to read. So I had to build one from an [Arduino Mega 2560](https://github.com/maximaas/MegaBurner) (yes, I was pissed enough by the seller to build my own custom flasher!). The format consists in ROM files stacked together but by slices of 1 Mbytes, odd C ROMs on C1, even C ROMs on C2. 
 

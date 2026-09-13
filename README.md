@@ -470,7 +470,7 @@ Please note the dicrete set of 47 pF caps on SDROE, SDRMPX, SDPOE, SDPMPX that h
 
 ![](/MVS_bootleg_convert/Sengoku2_bootleg_CHA_top_modified.jpg)
 
-Now I can tell: I own the MVS version !
+Sengoku 2 Red Blood in action on a MV1FZS slot. Mission complete !
 
 ![](/MVS_bootleg_convert/MVS_bootleg_in_action.jpg)
 

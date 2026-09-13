@@ -51,6 +51,7 @@ Prerequites to build the project "as downloaded":
 Resulting hacked files will be in their respective folders:
 - **/Working_toolchain_MVS/roms_out/** -> patched AES / MVS ROMs
 - **/Working_toolchain_MVS/neo_out/** -> .neo files of Sengoku 2 and Sengoku 2 Red Blood
+- **/Working_toolchain_MVS/EPROM_out/** -> EPROM files ready to burn to convert an Aliexptress bootleg
 - **/Working_toolchain_NGCD/NGCD_track_1_binary/** -> patched NeoGeo CD binary to substitute to the track 1 plus some other surprises as a binary built from scratch with faster loading time thanks to CD format cleaning compared to the original version (tested with the NeoGeo SD Loader rev. E).
 
 As well as the IPS scripts for sharing but you don't need them anymore:
@@ -468,6 +469,8 @@ Please note the dicrete set of 47 pF caps on SDROE, SDRMPX, SDPOE, SDPMPX that h
 ![](/MVS_bootleg_convert/Sengoku2_bootleg_CHA_top_modified.jpg)
 
 Now I can tell: I own the MVS version !
+
+![](/MVS_bootleg_convert/MVS_bootleg_in_action.jpg)
 
 ## Final words: make it simple, publish fast, always better than nothing
 

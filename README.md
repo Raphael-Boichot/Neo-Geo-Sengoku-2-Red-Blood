@@ -440,14 +440,16 @@ Well, C1 and C2 are MX26LV6420, SOP44 8 Mbytes 16 bits only, very annoying chip 
 The MX26LV6420 dumps show that each 4 MiB useful bank is organized as follows (addresses are byte offsets in the EPROM):
 
     000000-0FFFFF : first 1 MiB of the 2 MiB C-ROM
-    100000-1FFFFF : 512 KiB C-ROM repeated twice
+    100000-1FFFFF : 512 KiB C-ROM repeated twice (padding ?)
     200000-2FFFFF : second 1 MiB of the 2 MiB C-ROM
-    300000-3FFFFF : 512 KiB C-ROM repeated twice
+    300000-3FFFFF : 512 KiB C-ROM repeated twice (padding ?)
 
 Therefore:
 
     Chip 1 = 040-c1.c1 + 040-c3.c3
     Chip 2 = 040-c2.c2 + 040-c4.c4
+
+This makes sense retrospectively (I means the 1 MBytes slices), as the CPLD driving the board acting as mapper can use any data organization and this one is not more stupid than another one, it is just totally undocumented...
 
 The toolchain generates the [good ROM format ready to burn for you](/Working_toolchain_MVS/Run_conversion_MVS.m#L374). Also, it's practical to get rid of the MX26L6420 as only the 4 Mbytes lower bank is used and shift to some more common chip. It appears that as connected on the CHA board, you can just replace the MX26L6420 by MX29L3211 or MX29LV320, they are nearly pin compatible. The only pin to care about is pin 1 (A21 on the MX26L6420) which is WE on the MX29L3211 or MX29LV320. It must be pulled HIGH to allow the chip to be in read mode. Pin A21 is unused in this Sengoku 2 bootleg so you can just cut the trace and wire a resistor from VCC (3.3V) to pin 1. I chose two MX29LV320 here because they were in another life Pachinko ROMs and I find cool to recycle them in MVS cartridges. All pin 1 are tied together electrically.
 

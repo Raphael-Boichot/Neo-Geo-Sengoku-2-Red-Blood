@@ -466,6 +466,8 @@ At least the custom programmer with the Arduino Mega was quite cheap if I do not
 
 Please note the dicrete set of 47 pF caps on SDROE, SDRMPX, SDPOE, SDPMPX that helps suppressing sound glitches on these bootleg cartridges. Not mandatory for Sengoku 2 but if we’re going to do all that fiddly soldering anyway, we might as well see it through to the end. Also electrolytic caps have been added anywhere there were holes for them (something like 50-100 µF will do the job).
 
+![](/MVS_bootleg_convert/Fixing_sound_issues.png)
+
 ![](/MVS_bootleg_convert/Sengoku2_bootleg_CHA_top_modified.jpg)
 
 Now I can tell: I own the MVS version !

@@ -430,13 +430,15 @@ I will do better than that, I will show you how to build a custom MVS cartridge.
 
 If you receive a different configuration of CHA board regarding C chips (like C5 and C6 populated), just mimick the jumper configuration of the picture above and remove the C ROM chips before starting from fresh.
 
-You will have to reprogram P1 which is a MX29F1615PC10 DIP42 2 Mbytes EPROM. Best is to add a socket after desoldering it in order to ease any further flashing. The chip can contain 2 times the P ROM so better is just to merge two files together in order to fill the chip. From factory it came with P1 on the lower bank and padding with 0xFF in the upper bank. Format is big endian, like the MAME file.
+You will have to reprogram P1 which is a MX29F1615PC10 DIP42 2 Mbytes EPROM. Best is to add a socket after desoldering it, in order to ease any further modifications. The chip capacity is 2 times the P ROM size, so better is just to merge two files together in order to fill the whole chip. From factory it came with P1 on the lower bank and padding with 0xFF in the upper bank. Format is big endian, like the MAME file, nothing complicated.
 
 ![](/MVS_bootleg_convert/P1_on_socket.png)
 
-"C1" and "C2" chips contain C1, C2, C3 and C4 ROMs in a way that is not trivial at all. I initially though it was byte interleaving or just ROM files merging. I've asked the Chinese seller to send me an example file so that I can reverse-engineer the format. Of course, he kept me waiting whilst trying to get hold of the project’s ROM before realising that it wasn’t the NCI hack and then stopped speaking to me altogether. I hope that arsehole chokes on it before he sells any cartridges featuring my hack.
+In the other hand, "C1" and "C2" chips contain C1, C2, C3 and C4 ROMs in a way that is not trivial at all. I initially though it was byte interleaving or just ROM files merging. But as it is SOP44, you have no possibility to use a socket, so testing ROM configuration is basically a nightmare as it could be anything. 
 
-Well, C1 and C2 are MX26LV6420, SOP44 8 Mbytes 16 bits only, very annoying chip that most of the hobby flash programmers are even not able to read. So I had to build one from an [Arduino Mega 2560](https://github.com/maximaas/MegaBurner) (yes, I was pissed enough by the seller to build my own custom flasher!). The format consists in ROM files stacked together but by slices of 1 Mbytes, odd C ROMs on C1, even C ROMs on C2. 
+In order to not waste my time / money, I've directly (and politely) asked the Chinese seller if hé could send me an example file so that I can reverse-engineer the format, clearly indicating that in any case I would do it, soon or later. He kept me waiting whilst trying to get hold of the project ROM before realising that it was not the NCI hack and then stopped speaking to me altogether. I hope that arsehole chokes on it before he sells any cartridges featuring my hack.
+
+Well, that said, "C1" and "C2" are MX26LV6420, SOP44 8 Mbytes 16 bits only, very annoying chip, that most of the hobby flash programmers are even not recognizing. So I had to build one from an [Arduino Mega 2560](https://github.com/maximaas/MegaBurner) (yes, I was pissed enough by the seller to build my own custom flasher). After dumping, the format consists in ROM files stacked together but by slices of 1 Mbytes, odd C ROMs on C1, even C ROMs on C2. It was impossible to find this by trial and error.
 
 The MX26LV6420 dumps show that each 4 MiB useful bank is organized as follows (addresses are byte offsets in the EPROM):
 
@@ -445,22 +447,22 @@ The MX26LV6420 dumps show that each 4 MiB useful bank is organized as follows (a
     200000-2FFFFF : second 1 MiB of the 2 MiB C-ROM
     300000-3FFFFF : 512 KiB C-ROM repeated twice (padding ?)
 
-Therefore:
+With:
 
     Chip 1 = 040-c1.c1 + 040-c3.c3
     Chip 2 = 040-c2.c2 + 040-c4.c4
 
-This makes sense retrospectively (I means the 1 MBytes slices), as the CPLD driving the board acting as mapper can use any data organization and this one is not more stupid than another one, it is just totally undocumented...
+This makes sense retrospectively (I mean the slicing in 1 MBytes banks), as the CPLD driving the board acting as mapper can use any data organization and this one is not more stupid than another one, it is just totally undocumented and unexpected...
 
-The toolchain generates the [good ROM format ready to burn for you](/Working_toolchain_MVS/Run_conversion_MVS.m#L374). Also, it's practical to get rid of the MX26L6420 as only the 4 Mbytes lower bank is used and shift to some more common chip. It appears that as connected on the CHA board, you can just replace the MX26L6420 by MX29L3211 or MX29LV320, they are nearly pin compatible. The only pin to care about is pin 1 (A21 on the MX26L6420) which is WE on the MX29L3211 or MX29LV320. It must be pulled HIGH to allow the chip to be in read mode. Pin A21 is unused in this Sengoku 2 bootleg so you can just cut the trace and wire a resistor from VCC (3.3V) to pin 1. I chose two MX29LV320 here because they were in another life Pachinko ROMs and I find cool to recycle them in MVS cartridges. All pin 1 are tied together electrically.
+The toolchain generates the [good ROM format ready to burn for you](/Working_toolchain_MVS/Run_conversion_MVS.m#L374). Also, it's practical to get rid of the MX26L6420 as only the 4 Mbytes lower bank is used and shift to some more common and versatile chips. It appears that as wired on the CHA board, you can just replace the MX26L6420 by MX29L3211 or MX29LV320, they are nearly pin compatible. The only pin to care about is pin 1 (A21 on the MX26L6420) which is WE on the MX29L3211 or MX29LV320. It must be pulled HIGH to allow the chip to be in read mode. All other pins are at the good level. Pin A21 is unused in this Sengoku 2 bootleg so you can just cut the trace and wire a resistor from VCC (3.3V) to pin 1. I chose two MX29LV320 here because they were in another life Pachinko ROMs and I find cool to recycle them in MVS cartridges. All pin 1 are tied together electrically.
 
 ![](/MVS_bootleg_convert/CROM_replacement.png)
 
-I've used a GQ 4x4 programmer with ADP-054 adapter for P1 and my custom Arduino flasher for C1 / C2. Sadly, despite the MX29L3211 in SOP44 being listed as compatible with the GQ 4x4, it is not (which costed me an ADP-019 adapter for nothing), and the MX29LV320 is only supported is TSOP48 package at the moment. You can maybe find one programmer with adapters to rule them all but on my side, this whole business has cost me quite a lot, so there was no way I was going to buy another programmer with more of those equally useless adaptors. Anyway, with the combo shown here, you must be able to rule any MVS bootleg.
+I've used a GQ 4x4 programmer with ADP-054 adapter for P1 and my custom Arduino flasher for "C1" / "C2". Sadly, despite the MX29L3211 in SOP44 being listed as compatible with the GQ 4x4, it is barely the case in fact (which costed me an ADP-019 adapter for nothing), and the MX29LV320 is only supported in TSOP48 package at the moment. You can maybe find one programmer with adapters to rule them all but on my side, this whole business has cost me quite a lot, so there was no way I was going to buy another programmer with more of those equally useless adaptors. Anyway, with the combo shown here, you must be able to rule any MVS bootleg.
 
 ![](/MVS_bootleg_convert/Harware_necessary.jpg)
 
-At least the custom programmer with the Arduino Mega was quite cheap if I do not count my time trying to resurrect the JAVA code going with it...
+At least the custom programmer with the Arduino Mega was quite cheap if I do not count my time trying to resurrect the JAVA code going with it and its hell of dependencies.
 
 ![](/MVS_bootleg_convert/Sengoku2_bootleg_PRG_top_modified.jpg)
 

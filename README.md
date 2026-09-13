@@ -1,8 +1,8 @@
 # Sengoku 2 (戦国伝承2) Red Blood hack for AES/MVS and NGCD
 
-The project proposes a multi-OS, highly reusable workflow to uncensor Sengoku 2 on Neo Geo as well as ready-to-use IPS patches for all know versions of the game. This hack has only one purpose: turn the blood red. Nothing else.
+The project proposes a multi-OS, highly reusable workflow to uncensor Sengoku 2 on Neo Geo as well as ready-to-use IPS patches for all know versions of the game. This hack has only one purpose: turn the blood red. Nothing else. A guide to convert a MVS bootleg is also given here.
 
-The hack is basically finished now and further modifications will just consist in polishing the toolchain / adding more output formats / explain how to convert cartridges.
+The hack is basically finished now and further modifications will just consist in polishing the toolchain.
 
 ## Patching the Neo Geo MVS / AES version (patch 1.18)
 

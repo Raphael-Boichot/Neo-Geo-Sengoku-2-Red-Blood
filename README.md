@@ -4,7 +4,7 @@ The project proposes a multi-OS, highly reusable workflow to uncensor Sengoku 2 
 
 A guide to **convert a MVS bootleg** is also given here.
 
-The hack is basically finished now and further modifications will just consist in polishing the toolchain.
+The hack is basically finished now and further modifications will just consist in polishing the toolchain / documentation.
 
 ## Patching the Neo Geo MVS / AES version (patch 1.18)
 

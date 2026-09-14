@@ -495,9 +495,6 @@ The workflow published here is probably far from being perfect. See it as a sand
 - [Matt Greer](https://www.mattgreer.dev/about/) for sharing [hacks and usefull codes](https://github.com/city41/rotary-bobble) about Neo Geo hacking and the very usefull [sprite viewer](https://neospriteviewer.mattgreer.dev/) that helped me a lot configuring the ROM and SPR decoders and [neosdconv](https://github.com/city41/neosdconv) tool included in the workflow.
 - [Spriter ressources](https://www.spriters-resource.com/neo_geo_ngcd/sengoku2/) for the incredible dataset that helped me a lot figuring out which tiles was where within the giant game tileset.
 - [Alex Free and EDCRE](https://github.com/alex-free/edcre), which basically saved the Neo Geo CD port!
+- [maximaas](https://github.com/maximaas/MegaBurner) for the MegaBurner, which basically saved the MVS cartridge port!
 
-In brief, all the people / communities that rendered this project possible ! 
-
-Below, my very first notes taken around mid june 2026, because every project starts with a scratchpad.
-
-![](/Pen_and_paper.jpg)
+In brief, all the people / communities that rendered this project possible in a reasonable amount of time! 

@@ -449,8 +449,8 @@ The [MX26LV6420 dumps](/MVS_bootleg_convert) show that each 4 MiB useful bank is
 
 With:
 
-    Chip 1 or "C1" = 040-c1.c1 + 040-c3.c3
-    Chip 2 or "C2" = 040-c2.c2 + 040-c4.c4
+    Chip 1 or "C1" = 040-c1.c1 (2 MiB) + 040-c3.c3 (512 KiB)
+    Chip 2 or "C2" = 040-c2.c2 (2 MiB) + 040-c4.c4 (512 KiB)
 
 This kind of makes sense retrospectively (I mean the slicing in 1 MBytes banks), as the CPLD driving the board acting as mapper can use any data organization and this one is not more stupid than another one, it is just totally undocumented (as far as I know) and unexpected... For bigger game, I have no idea how this principle can be generalized and if the high bank is sometimes used (I guess yes, just a matter of tearing down a big bootleg to see). I just know that "C1" / "C5" and "C2" / "C6" are wired on the same bus, "C1"/"C2" for 3.3V chips, "C5"/"C6" for 5V OTP EPROMs, in order to maximize chip recycling rate for the bootleggers.
 

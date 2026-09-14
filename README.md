@@ -60,7 +60,7 @@ As well as the IPS scripts for sharing but you don't need them anymore:
 - **/Working_toolchain_MVS/IPS_scripts/**
 - **/Working_toolchain_NGCD/IPS_scripts/**
 
-Building the project basically allows you to add / remove features easily and cook your own version. You can follow the comments into the code to understand which section does what. The whole toolchain uses on purpose a common exchange palette with high contrast, it's just for me to ease programming.
+Building the project basically allows you to add / remove features easily and cook your own version. You can follow the comments into the code to understand which section does what. The whole toolchain uses on purpose a common exchange palette with high contrast, it's just for me to ease programming / see issues in exchange PNG files.
 
 ![](/Palettes/Exchange_palette.png)
 

@@ -415,15 +415,9 @@ Aternate palette (puppet 2)
 
 All of this shows how probably rushed was the Sengoku 2 cartridge to CD conversion (at least the EU / US versions, clearly untested). Not as bad as Magician Lord CD which is simply butchered regarding sound mixing, but not a good port anyway.
 
-## Any plan for uncensoring Sengoku 1 and 3 in the future ?
+## Making a MVS cartridge version for cheap (or near)
 
-Nope. Sengoku 1 is much too annoying to justify spending unreasonable time on it. Also blood effects are not convincing at all in the first place and the more ghostly mood fits perfectly with random blood colors.
-
-As for Sengoku 3, it does not exist, it's not a Sengoku game. I still do not understand how players can appreciate this game. It's slow, repetitive, uninspired, bland. Yuck.
-
-## Any plan to sell / release a physical version ?
-
-I will do better than that, I will show you how to build a custom MVS cartridge. First buy an [Aliexpress Sengoku 2 bootleg](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros). You will probably get that: 
+I will show you how to build a custom MVS cartridge. First buy an [Aliexpress Sengoku 2 bootleg](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros). You will probably get that: 
 
 ![](/MVS_bootleg_convert/Sengoku2_bootleg_PRG_top.jpg)
 ![](/MVS_bootleg_convert/Sengoku2_bootleg_CHA_top.jpg)
@@ -436,7 +430,7 @@ You will have to reprogram P1 which is a MX29F1615PC10 DIP42 2 Mbytes EPROM. Bes
 
 In the other hand, "C1" and "C2" chips contain C1, C2, C3 and C4 ROMs in a way that is not documented anywhere. I initially though it was byte interleaving or just ROM files merging. But as it is PSOP44, you have no possibility to use a socket, so blindly testing ROM configuration is basically a nightmare (soldering, testing, desoldering, soldering, testing, etc.). 
 
-In order to not waste my time / money, I've directly (and politely) asked the Chinese seller if he could send me an example ROM file so that I can reverse-engineer the format, clearly indicating that in any case I would do it, soon or later. He kept me waiting whilst trying to get hold of the project ROM before realising that it was not the NCI hack and then stopped speaking to me altogether. I hope that arsehole chokes on it before he sells any cartridges featuring my hack.
+In order to not waste my time / money, I've directly (and politely) asked the Chinese seller if he could send me an example ROM file so that I can reverse-engineer the format, clearly indicating that in any case I would do it, soon or later. He kept me waiting whilst trying to get hold of the project ROM before realising that it was not the NCI hack and then stopped speaking to me altogether. I hope that arsehole chokes on it before he sells any cartridges featuring my hack. Discussing with this fucker was the most time consuming part of the cartridge conversion project.
 
 Well, that said, "C1" and "C2" are MX26LV6420, SOP44 8 Mbytes 16 bits only, very annoying chip, that most of the hobby flash programmers are even not recognizing. So I had to build one from an [Arduino Mega 2560](https://github.com/Raphael-Boichot/Arduino_Mega_Burner) (yes, I was pissed enough by the seller to adapt my own custom flasher). After dumping, the format consists in ROM files stacked together but by slices of 1 Mbytes, odd C ROMs on C1, even C ROMs on C2. It was impossible to find this by trial and error. Only the lower 4 MBytes bank is populated for each chip (at least for this game).
 
@@ -477,6 +471,8 @@ This "audio" mod is well known in the NeoGeo community although reported with wr
 Sengoku 2 Red Blood in action on a MV1FZS slot. Mission complete !
 
 ![](/MVS_bootleg_convert/MVS_bootleg_in_action.jpg)
+
+Guide for cooking a bootleg AES version not planned as I do not own the system to test, but you see the idea.
 
 ## Final words: make it simple, publish fast, always better than nothing
 

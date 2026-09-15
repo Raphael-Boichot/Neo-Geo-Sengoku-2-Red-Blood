@@ -442,15 +442,15 @@ Well, that said, "C1" and "C2" are MX26LV6420, SOP44 8 Mbytes 16 bits only, very
 
 The [MX26LV6420 dumps](/MVS_bootleg_convert) show that each 4 MiB useful bank is organized as follows (addresses are byte offsets in the EPROM):
 
-    000000-0FFFFF : first 1 MiB of the 2 MiB C-ROM
-    100000-1FFFFF : 512 KiB C-ROM repeated twice (padding ?)
-    200000-2FFFFF : second 1 MiB of the 2 MiB C-ROM
-    300000-3FFFFF : 512 KiB C-ROM repeated twice (padding ?)
+    000000-0FFFFF : first 1 MByte of the 2 MBytes C-ROM
+    100000-1FFFFF : 512 kBytes C-ROM repeated twice (second for padding ?)
+    200000-2FFFFF : second 1 MByte of the 2 MBytes C-ROM
+    300000-3FFFFF : 512 kBytes C-ROM repeated twice (second for padding ?)
 
 With:
 
-    Chip 1 or "C1" = 040-c1.c1 (2 MiB) + 040-c3.c3 (512 KiB)
-    Chip 2 or "C2" = 040-c2.c2 (2 MiB) + 040-c4.c4 (512 KiB)
+    Chip 1 or "C1" = 040-c1.c1 (2 MBytes) + 040-c3.c3 (512 kBytes)
+    Chip 2 or "C2" = 040-c2.c2 (2 MBytes) + 040-c4.c4 (512 kBytes)
 
 This kind of makes sense retrospectively (I mean the slicing in 1 MBytes banks), as the CPLD driving the board acting as mapper can use any data organization and this one is not more stupid than another one, it is just totally undocumented (as far as I know) and unexpected... For bigger game, I have no idea how this principle can be generalized and if the high bank is sometimes used (I guess yes, just a matter of tearing down a big bootleg to see). I just know that "C1" / "C5" and "C2" / "C6" are wired on the same bus, "C1"/"C2" for 3.3V chips, "C5"/"C6" for 5V OTP EPROMs, in order to maximize chip recycling rate for the bootleggers.
 

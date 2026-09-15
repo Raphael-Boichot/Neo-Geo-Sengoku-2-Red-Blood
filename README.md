@@ -460,11 +460,11 @@ The toolchain proposed here generates the [good C ROM format ready to burn for y
 
 ![](/MVS_bootleg_convert/CROM_replacement.png)
 
-I've used a GQ 4x4 programmer with ADP-054 adapter for P1 and my custom Arduino flasher for "C1" / "C2". Indeed, despite the MX29L3211 in PSOP44 being listed as compatible with the GQ 4x4, it is barely the case in fact (which costed me an ADP-019 adapter for nothing and hours wasting my time following snake oil mods for the adapter), and the MX29LV320 is only supported in TSOP48 package at the moment. You can maybe find one programmer with adapters to rule them all (XGecu maybe ?) but on my side, this whole business has cost me quite a lot, so there was no way I was going to buy another programmer with more of those expensive and possibly useless adaptors. Anyway, with the combo shown here, you must be able to rule any MVS bootleg.
+I've used a GQ 4x4 programmer with ADP-054 adapter for P1 and my custom Arduino flasher for "C1" / "C2". Indeed, despite the MX29L3211 in PSOP44 being listed as compatible with the GQ 4x4, it is barely the case in fact (which costed me an ADP-019 adapter for nothing and hours wasting my time following snake oil mods for the adapter), and the MX29LV320 is only supported in TSOP48 package at the moment. The MX26L6420 is just not supported. You can maybe find one programmer with adapters to rule them all (XGecu maybe ?) but on my side, this whole business has yet cost me quite a lot, so there was no way I was going to buy another programmer with more of those expensive and possibly useless adaptors. Anyway, with the combo shown here, you must be able to rule any MVS bootleg.
 
 ![](/MVS_bootleg_convert/Harware_necessary.jpg)
 
-At least the custom programmer with the Arduino Mega was quite cheap if I do not count my time trying to resurrect the Java code driving it and its hell of dependencies.
+At least the custom programmer with the Arduino Mega was quite cheap if I do not count my time trying to resurrect the initial Java code driving it and its hell of outdated dependencies.
 
 ![](/MVS_bootleg_convert/Sengoku2_bootleg_PRG_top_modified.jpg)
 

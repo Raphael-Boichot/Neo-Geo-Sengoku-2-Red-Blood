@@ -372,7 +372,7 @@ ipsFile='.\IPS_scripts\040-p1.p1.ips';
 IPS_generator(original_prog,modified_prog,ipsFile)
 
 %% Prepare merged roms for burning EPROMs / experimental
-disp('Prepare ROMs for burning EPROMs to a bootleg MVS cartridge (experimental)')
+disp('Prepare ROMs for burning EPROMs to a bootleg MVS cartridge (verified)')
 % Chip 1 = 040-c1.c1 + 040-c3.c3
 % Chip 2 = 040-c2.c2 + 040-c4.c4
 % EPROM_merger('040-c1.c1', '040-c3.c3', 'Chip_1_4MB.bin');
@@ -448,9 +448,7 @@ disp('MVS version fully converted !')
 %2026-08-06 Puppet 2 4 pixels bloodified by error, reversed + rogue pixel removal
 
 %2026-08-16 Axeman, change the palette swap (clothes to hair) and the tileset
-
 %2026-08-22 Jack Stone, some pixels missing revealed thanks to the tiles flipping
-
 %2026-08-31 Puppet warrior, restoring some coloration errors
 
 % This is the dump of the palette RAM during first level. Hopefully the

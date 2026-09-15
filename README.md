@@ -480,7 +480,7 @@ Sengoku 2 Red Blood in action on a MV1FZS slot. Mission complete !
 
 ![](/MVS_bootleg_convert/MVS_bootleg_in_action.jpg)
 
-Guide for cooking a bootleg AES version not planned as I do not own the system to test, but you see the idea.
+Guide for cooking a bootleg AES version not planned as I do not own the system to test, but you see the idea. I suppose that the AES bootlegs have the same internal chips anyway.
 
 ## Final words: make it simple, publish fast, always better than nothing
 

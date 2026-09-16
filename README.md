@@ -421,7 +421,7 @@ All of this shows how probably rushed was the Sengoku 2 cartridge to CD conversi
 
 ## Making a MVS cartridge version for cheap (or near)
 
-*Foreword: You are fairly good at soldering and you have got all the necessary equipment and the attention to detail required to solder and desolder SMD and through-hole components. You know how to program EPROMs. In that case, it will be easy, I have sorted out all the hassle beforehand.*
+*Foreword: You are fairly good at soldering and you have got all the necessary equipment and the attention to detail required to solder and desolder SMD and through-hole components. You know how to program EPROMs. You think that butchering a genuine MVS game is not an option, especially if it's a Sengoku 2 MVS. In that case, it will be easy, I have sorted out all the hassle beforehand.*
 
 I will show you how to build a custom MVS cartridge. First buy an [Aliexpress Sengoku 2 bootleg](https://github.com/Raphael-Boichot/Teardown-of-Neo-Geo-MVS-repros). You will probably get that: 
 

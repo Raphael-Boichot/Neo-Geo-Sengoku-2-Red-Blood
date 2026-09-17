@@ -6,6 +6,8 @@ A guide to **convert a MVS bootleg** is also given here.
 
 The hack is basically finished now and further modifications will just consist in polishing the toolchain / documentation.
 
+![](/MVS_bootleg_convert/Sengoku_2_Red_Blood.jpg)
+
 ## Patching the Neo Geo MVS / AES version (patch 1.18)
 
 Go to the dedicated [IPS scripts folder](/Working_toolchain_MVS/IPS_scripts), get a known good dump of Sengoku 2 for [MAME](https://www.mamedev.org/), unzip, [apply the IPS patch](https://www.marcrobledo.com/RomPatcher.js/) to corresponding files (check the CRC32 just in case), zip the patched files, enjoy !

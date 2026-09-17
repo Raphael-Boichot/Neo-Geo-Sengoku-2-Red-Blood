@@ -482,7 +482,7 @@ This "audio" mod is well known in the NeoGeo community although reported with wr
 
 Sengoku 2 Red Blood in action on a MV1FZS slot. Mission complete !
 
-![](/MVS_bootleg_convert/MVS_bootleg_in_action.jpg)
+![](/MVS_bootleg_convert/MVS_bootleg_in_action_1.jpg)
 
 Guide for cooking a bootleg AES version not planned as I do not own the system to test, but you see the idea. I suppose that the AES bootlegs have the same internal chips anyway.
 

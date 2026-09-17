@@ -8,7 +8,7 @@ The hack is basically finished now and further modifications will just consist i
 
 ![](/MVS_bootleg_convert/Sengoku_2_Red_Blood.jpg)
 
-(this is a real cartridge version)
+(this is a real cartridge version, not A.I. slop)
 
 ## Patching the Neo Geo MVS / AES version (patch 1.18)
 

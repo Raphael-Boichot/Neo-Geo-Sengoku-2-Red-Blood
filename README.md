@@ -440,7 +440,7 @@ You will have to reprogram P1 which is a MX29F1615PC10 DIP42 2 Mbytes EPROM. Bes
 
 In the other hand, "C1" and "C2" chips contain C1, C2, C3 and C4 ROMs in a way that is not documented anywhere. I initially though it was byte interleaving or just ROM files merging. But as it is PSOP44, you have no possibility to use a socket, so blindly testing ROM configuration is basically a nightmare (soldering, testing, desoldering, soldering, testing, etc.). 
 
-Just to precise, I had initially no device able to read a 16 bits only MX26L6420, so my doubts.
+Just to precise, I had initially no reliable way to just read the two 16 bits only MX26L6420 used as C ROMs, so my trouble.
 
 In order to not waste my time / money, I've directly (and politely) asked the Chinese seller if he could send me an example ROM file so that I can reverse-engineer the format, clearly indicating that in any case I would do it, soon or later. He kept me waiting whilst trying to get hold of the project ROM before realising that it was not the NCI hack and then stopped speaking to me altogether. I hope that arsehole chokes on it before he sells any cartridges featuring my hack. Discussing with this fucker was the most time consuming part of the cartridge conversion project.
 

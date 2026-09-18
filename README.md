@@ -128,13 +128,13 @@ That was basically it.
 
 ## My rules
 
-There is a scholarly debate about the fact that Sengoku 2 blood was though to be red or not from the begining. To be honest, I just don't give a shit. I want the game to be pleasant, and when I see flashing blue or yellow splats of something that is blood without a debate, I just want it to be vivid red. You see, gore but not vulgarily gore.
+There is a scholarly debate about the fact that Sengoku 2 was though to be red blood or not from the begining. To be honest, I just don't give a shit. I want the game to be pleasant, and when I see flashing blue or yellow splats of something that is blood without a debate, I just want it to be vivid red.
 
 So:
 
 - Anything looking (even partly) human has red blood. And yes daemon fishes have human legs.
 - The least effort will always be prefered because I do this on my spare time and I'm pretty sure this is also what SNK would have done in a final rush before release. All the sources been given, the hack is very easy to modify if necessary. Feel free to dive into the code.
-- The game must look gore but most of all, **as genuine as possible**. The **least modification is always prefered**. Apart from being a very hardcore fan of Sengoku 2 like me, you will probably never spot any obvious palette swap apart from blood of course.
+- The game must look gore but most of all, **as genuine as possible**, so not *vulgarly* gore. The **least modification is always prefered**. Apart from being a very hardcore fan of Sengoku 2 like me, you will probably never spot any obvious palette swap apart from blood of course.
 - gameplay and difficulty balance is yet perfect, I will never touch that. This hack in ONLY about making the blood red.
 
 ## Which tools ?

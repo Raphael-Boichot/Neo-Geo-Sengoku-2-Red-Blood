@@ -478,7 +478,7 @@ Please note the dicrete set of 47 pF caps on SDROE, SDRMPX, SDPOE, SDPMPX that h
 
 ![](/MVS_bootleg_convert/Fixing_sound_issues.png)
 
-This "audio" mod is well known in the NeoGeo community although reported with wrong pinout sometimes. Follow mine, it's the good one.
+This "audio" mod is well known in the Neo Geo community although reported with wrong pinout sometimes. Follow mine, it's the good one.
 
 ![](/MVS_bootleg_convert/Sengoku2_bootleg_CHA_top_modified.jpg)
 

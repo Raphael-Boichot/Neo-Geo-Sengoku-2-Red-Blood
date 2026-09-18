@@ -128,7 +128,7 @@ That was basically it.
 
 ## My rules
 
-There is a scholarly debate about the fact that Sengoku 2 blood was though to be red or not from the begining. To be honest, I just don't give a shit. I want the game to be pleasant, and when I see flashing blue or yellow splats of something that is blood without a debate, I just want it to be vivid red.
+There is a scholarly debate about the fact that Sengoku 2 blood was though to be red or not from the begining. To be honest, I just don't give a shit. I want the game to be pleasant, and when I see flashing blue or yellow splats of something that is blood without a debate, I just want it to be vivid red. You see, gore but not vulgarily gore.
 
 So:
 

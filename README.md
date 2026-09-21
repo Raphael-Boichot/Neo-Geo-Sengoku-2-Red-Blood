@@ -451,7 +451,7 @@ The [MX26LV6420 dumps](/MVS_bootleg_convert) show that each 4 MiB useful bank is
     000000-0FFFFF : first 1 MByte of the 2 MBytes C-ROM
     100000-1FFFFF : 512 kBytes C-ROM repeated twice (second for padding ?)
     200000-2FFFFF : second 1 MByte of the 2 MBytes C-ROM
-    300000-3FFFFF : 512 kBytes C-ROM repeated twice (second for padding ?)
+    300000-3FFFFF : 512 kBytes C-ROM repeated twice (padding ?)
 
 With:
 

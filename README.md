@@ -446,7 +446,7 @@ In order to not waste my time / money, I've directly (and politely) asked the Ch
 
 Well, as said, "C1" and "C2" are MX26LV6420, SOP44 8 Mbytes 16 bits only, very annoying chip, that most of the hobby flash programmers are even not recognizing. So I had to build one from an [Arduino Mega 2560](https://github.com/Raphael-Boichot/Arduino_Mega_Burner) (yes, I was pissed enough by the seller to make my own custom flasher). After dumping, the format consists in ROM files stacked together but by slices of 1 Mbytes, odd C ROMs on C1, even C ROMs on C2. It was impossible to find this by trial and error. Only the lower 4 MBytes bank is populated for each chip (at least for this game).
 
-The [MX26LV6420 dumps](/MVS_bootleg_convert) show that each 4 MiB useful bank is organized as follows (addresses are byte offsets in the EPROM):
+The [MX26LV6420 dumps](/MVS_bootleg_convert/MX29LV320_convert.png) show that each 4 MiB useful bank is organized as follows (addresses are byte offsets in the EPROM):
 
     000000-0FFFFF : first 1 MByte of the 2 MBytes C-ROM
     100000-1FFFFF : 512 kBytes C-ROM repeated twice (second for padding ?)

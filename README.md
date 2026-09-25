@@ -493,6 +493,8 @@ Sengoku 2 Red Blood in action on a MV1FZS slot. Mission complete !
 
 Guide for cooking a bootleg AES version not planned as I do not own the system to test, but you see the idea. I suppose that the AES bootlegs have the same internal chips anyway.
 
+Best way to get a "real" convert from SNK PCBs is to butcher Puzzle de Pon! which is both a cheap, compatible, common and forgetable game but as I said, this is not an option and you never red that.
+
 ## Final words: make it simple, publish fast, always better than nothing
 
 I made this mod for my own enjoyment mainly. So I considered the hack finished when I was pleased enough with the result. In its current version, this is precisely what I would have expected from an official red-blood option back in 1994 when I was mastering the AES version. I wanted nothing else but the feeling to play a genuine version made by SNK.

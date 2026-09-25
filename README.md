@@ -493,7 +493,7 @@ Sengoku 2 Red Blood in action on a MV1FZS slot. Mission complete !
 
 Guide for cooking a bootleg AES version not planned as I do not own the system to test, but you see the idea. I suppose that the AES bootlegs have the same internal chips anyway.
 
-Best way to get a "real" convert from SNK PCBs is to butcher Puzzle de Pon! which is both a cheap, compatible, common and forgetable game but as I said, this is not an option and you never red that.
+Best way to get a "real" convert from SNK PCBs is to butcher [Puzzle de Pon!](https://www.mvs-scans.com/index.php/Puzzle_de_Pon!) or [Puzzle de Pon! R](https://www.mvs-scans.com/index.php/Puzzle_de_Pon!_R) which are both a cheap, [compatible](https://www.mvs-scans.com/index.php/Sengoku_2), common and forgetable games but as I said in the intro of this section, this is not an option and you never read that.
 
 ## Final words: make it simple, publish fast, always better than nothing
 

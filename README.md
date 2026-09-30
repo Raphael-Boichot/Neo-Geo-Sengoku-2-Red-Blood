@@ -51,16 +51,16 @@ You can also just build directly the patched files from the workflow proposed he
 Prerequites to build the project "as downloaded":
 - You are in a Windows environment, because all pathways were formated without any particular style (Windows don't care, Linux probably does care, MacOS no idea, just try / modify).
 - Matlab or [GNU Octave](https://octave.org/) are correctly installed (there is NO dependencies). Versions R2024a of Matlab and 10.1.0 of GNU Octave have been tested. These codes exist on all serious OS. The workflow has been adapted to work on both softwares on purpose.
-- **/Working_toolchain_MVS/roms/** -> must contain all C roms and P rom of Sengoku 2, MAME compatible version.
+- **/Working_toolchain_MVS/roms/** -> must contain all file ROMs of Sengoku 2, MAME compatible version, unzipped.
 - **/Working_toolchain_NGCD/NGCD_track_1_binary/** -> must contain the binary (.bin) of track 1 from Sengoku 2 Neo Neo CD, Neo Geo SD loader compatible version. It must be named **Sengoku2_Track_01.bin** (mandatory, to rename after of course).
 
 Resulting hacked files will be in their respective folders:
-- **/Working_toolchain_MVS/roms_out/** -> patched AES / MVS ROMs
+- **/Working_toolchain_MVS/roms_out/** -> patched AES / MVS file ROMs
 - **/Working_toolchain_MVS/neo_out/** -> .neo files of Sengoku 2 and Sengoku 2 Red Blood
 - **/Working_toolchain_MVS/EPROM_out/** -> EPROM files ready to burn to convert an Aliexptress bootleg
-- **/Working_toolchain_NGCD/NGCD_track_1_binary/** -> patched NeoGeo CD binary to substitute to the track 1 plus some other surprises as a binary built from scratch with faster loading time thanks to CD format cleaning compared to the original version (tested with the NeoGeo SD Loader rev. E).
+- **/Working_toolchain_NGCD/NGCD_track_1_binary/** -> patched NeoGeo CD binary to substitute to the track 1 plus some other surprises as iso and binary built from scratch with faster loading time thanks to CD format cleaning compared to the original obsolete filesystem (tested with the NeoGeo SD Loader rev. E).
 
-As well as the IPS scripts for sharing but you don't need them anymore:
+As well as the IPS scripts for sharing but you don't need them anymore at this step:
 - **/Working_toolchain_MVS/IPS_scripts/**
 - **/Working_toolchain_NGCD/IPS_scripts/**
 

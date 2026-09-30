@@ -2,11 +2,9 @@
 
 The project proposes a multi-OS, open source and highly reusable workflow to uncensor Sengoku 2 on Neo Geo as well as ready-to-use IPS patches for **all know versions of the game.** This hack has only one purpose: turn the blood red. Nothing else. 
 
+A guide to **convert cheap MVS bootlegs by yourself** is also included. The hack is basically finished now and further modifications will just consist in polishing the toolchain / documentation.
+
 Too lazy to apply a patch or in urgent need to test ? Go directly [there](https://drive.google.com/drive/folders/1_E2PSxCnzueGtRAnfYtBRfdsbCZpBlHQ?usp=sharing).
-
-A guide to **convert cheap MVS bootlegs by yourself** is also included.
-
-The hack is basically finished now and further modifications will just consist in polishing the toolchain / documentation.
 
 ![](/MVS_bootleg_convert/Sengoku_2_Red_Blood.jpg)
 

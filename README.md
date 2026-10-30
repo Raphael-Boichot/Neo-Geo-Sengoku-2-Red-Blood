@@ -451,7 +451,7 @@ The [MX26LV6420 dumps](/MVS_bootleg_convert/MX29LV320_convert.png) show that eac
     000000-0FFFFF : first 1 MByte of the 2 MBytes C-ROM
     100000-1FFFFF : 512 kBytes C-ROM repeated twice (second for padding ?)
     200000-2FFFFF : second 1 MByte of the 2 MBytes C-ROM
-    300000-3FFFFF : 512 kBytes C-ROM repeated twice (padding ?)
+    300000-3FFFFF : 512 kBytes C-ROM repeated twice (both for padding ?)
     400000-7FFFFF : second bank, not used
 
 With:

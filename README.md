@@ -174,7 +174,7 @@ So I wrote a code to inject my hacked .SPR and .PRG files by chunks of 2048 byte
 
 Last issue, for all the hacked chunks reinjected, the following EDC/ECC 288 bytes say that corresponding data are now corrupted (of course). The real Neo Geo CD does not like that at all. So the last step was to regenerate the right EDC/ECC data for each modified chunk with a dedicated tool (adapted from another project, see Acknowledgments section).
 
-Et voilà ! My tinkering works. Better is the enemy of good.
+Et voilà ! My tinkering works. Better is the enemy of good, so problem solved on my side.
 
 Interesting property of the Neo Geo CD version: as it is fully derived from the MVS version and assembled at the very end of the workflow, if the CD version works on real hardware (which is the case), the MVS version works too, no need to always check both.
 
@@ -440,9 +440,9 @@ You will have to reprogram P1 which is a MX29F1615PC10 DIP42 2 Mbytes EPROM. Bes
 
 In the other hand, "C1" and "C2" chips contain C1, C2, C3 and C4 ROMs in a way that is not documented anywhere. I initially though it was byte interleaving or just ROM files merging. But as it is PSOP44, you have no possibility to use a socket, so blindly testing ROM configuration is basically a nightmare (soldering, testing, desoldering, soldering, testing, etc.). 
 
-Just to precise, I had initially no reliable way to just read the two 16 bits only MX26L6420 used as C ROMs, so my trouble. Because yes, that chip is a well known bitch in the arcade tinkerer community.
+Just to precise, I had initially no reliable way to just read the two 16 bits only MX26L6420 used as C ROMs, so my trouble. Because yes, that chip is a well known bitch in the arcade tinkerer community. My plan was to replace them with more common chips.
 
-In order to not waste my time / money, I've directly (and politely) asked the Chinese seller if he could send me an example ROM file so that I can reverse-engineer the format without reading the chip, clearly indicating that in any case I would do it, soon or later. He kept me waiting whilst trying to get hold of the project ROM before realising that it was not the NCI hack and then stopped speaking to me altogether. I hope that arsehole chokes on it before he sells any cartridges featuring my hack. Discussing with this fucker was the most time consuming part of the cartridge conversion project.
+In order to not waste my time / money, I've directly (and to precise, politely) asked the Chinese seller if he could send me an example ROM file so that I can reverse-engineer the format without reading the chip, clearly indicating that in any case I would do it, soon or later. He kept me waiting whilst trying to get hold of the project ROM before realising that it was not the NCI hack and then stopped speaking to me altogether. I hope that arsehole chokes on it before he sells any cartridges featuring my hack. Discussing with this fucker was the most time consuming part of the cartridge conversion project.
 
 Well, as said, "C1" and "C2" are MX26LV6420, SOP44 8 Mbytes 16 bits only, very annoying chip, that most of the hobby flash programmers are even not recognizing. So I had to build one from an [Arduino Mega 2560](https://github.com/Raphael-Boichot/Arduino_Mega_Burner) (yes, I was pissed enough by the seller to make my own custom flasher). After dumping, the format consists in ROM files stacked together but by slices of 1 Mbytes, odd C ROMs on C1, even C ROMs on C2. It was impossible to find this by trial and error. Only the lower 4 MBytes bank is populated for each chip (at least for this game).
 
@@ -459,11 +459,11 @@ With:
     Chip 1 or "C1" = 040-c1.c1 (2 MBytes) / 040-c3.c3 (512 kBytes)
     Chip 2 or "C2" = 040-c2.c2 (2 MBytes) / 040-c4.c4 (512 kBytes)
 
-This kind of makes sense retrospectively (I mean at least the slicing in 1 MBytes banks and the pairing by chip), as the CPLD driving the board acting as mapper can use any data organization and this one is not more stupid than another one, it is just totally undocumented (as far as I know) and unexpected for me. For bigger game, I have no idea how this principle can be generalized and if the high bank is ever used (I guess yes, just a matter of tearing down a big bootleg to see). I just know that "C1" / "C5" and "C2" / "C6" are wired on the same bus, "C1" / "C2" for 3.3V chips, "C5" / "C6" for 5V OTP EPROMs, in order to maximize chip use rate for the bootleggers.
+This kind of makes sense retrospectively (I mean at least the slicing in 1 MBytes banks and the pairing by chip), as the CPLD driving the board acting as mapper can use any data organization and this one is not more stupid than another one, it is just totally undocumented (as far as I know) and unexpected for me. For bigger game, I have no idea how this principle can be generalized and if the high bank is ever used (I guess yes, just a matter of tearing down a big bootleg to see). I just know that "C1" / "C5" and "C2" / "C6" are wired on the same bus, "C1" / "C2" for 3.3V chips, "C5" / "C6" for 5V OTP EPROMs, in order to maximize chip recycling rate for the bootleggers.
 
 V ROMS are also crammed in a single 4 MBytes chip so I guess some desoldering is necessary to decipher how. As I do not target voices and sound effects, it will be for a future project / release / later.
 
-The toolchain proposed here generates the [good C ROM format ready to burn for you](/Working_toolchain_MVS/Run_conversion_MVS.m#L374). Also, it's practical to get rid of the MX26L6420 as only the 4 Mbytes lower bank is used and shift to some more common and versatile chips (although you can just reflash the MX26L6420 with the [MegaBurner](https://github.com/Raphael-Boichot/Arduino_Mega_Burner) and ignore next steps). It appears that as wired on the CHA board, you can just replace the MX26L6420 by easier to handle MX29L3211 or MX29LV320, they are nearly pin compatible. The only pin to care about is pin 1 (A21 on the MX26L6420) which is WE on the MX29L3211 or MX29LV320. It must be pulled HIGH to allow the chip to be in read mode. All other pins are at the good level. Pin A21 is unused in this Sengoku 2 bootleg so you can just cut the trace and wire a resistor from VCC (3.3V) to pin 1. I chose two MX29LV320 here because they were in another life Pachinko ROMs and I find cool to recycle them into MVS cartridges. All pin 1 are tied together electrically on this board. As said, some MX29L3211 chip also fits the bill here, it is completely pinout similar to the MX29LV320.
+The toolchain proposed here generates the [good C ROM format ready to burn for you](/Working_toolchain_MVS/Run_conversion_MVS.m#L374). Also, it's practical to get rid of the MX26L6420 as only the 4 Mbytes lower bank is used and shift to some more common and versatile chips (although you can just reflash the MX26L6420 with the [MegaBurner](https://github.com/Raphael-Boichot/Arduino_Mega_Burner) and ignore next steps). It appears that as wired on the CHA board, you can just replace the MX26L6420 by easier to handle MX29L3211 or MX29LV320, they are nearly pin compatible and also usable in SNES cartmod projects. The only pin to care about is pin 1 (A21 on the MX26L6420) which is WE on the MX29L3211 or MX29LV320. It must be pulled HIGH to allow the chip to be in read mode. All other pins are at the good level. Pin A21 is unused in this Sengoku 2 bootleg so you can just cut the trace and wire a resistor from VCC (3.3V) to pin 1. I chose two MX29LV320 here because they were in another life Pachinko ROMs and I find cool to recycle them into MVS cartridges for a second life. All pin 1 are tied together electrically on this board. As said, some MX29L3211 chip also fits the bill here, it is completely pinout similar to the MX29LV320.
 
 ![](/MVS_bootleg_convert/Swap_principle.png)
 
@@ -471,11 +471,11 @@ The swap with a 4 Mbytes chip is quite straightforward.
 
 ![](/MVS_bootleg_convert/CROM_replacement.png)
 
-I've used a GQ 4x4 programmer with ADP-054 adapter for P1 and my custom Arduino flasher for "C1" / "C2". Indeed, despite the MX29L3211 in PSOP44 being listed as compatible with the GQ 4x4, it is barely the case in fact (which costed me an ADP-019 adapter for nothing and hours wasting my time following snake oil mods for the adapter), and the MX29LV320 is only supported in TSOP48 package at the moment. The MX26L6420 is just not supported. You can maybe find one programmer with adapters to rule them all (XGecu maybe ?) but on my side, this whole business has yet cost me quite a lot, so there was no way I was going to buy another programmer with more of those expensive and possibly useless adaptors. Anyway, with the combo shown here (GQ 4x4 and MegaBurner), you must be able to tame any chip on MVS bootleg.
+I've used a GQ 4x4 programmer with ADP-054 adapter for P1 and my custom Arduino flasher for "C1" / "C2". Indeed, despite the MX29L3211 in PSOP44 being listed as compatible with the GQ 4x4, it is barely the case in fact (which costed me an ADP-019 adapter for nothing and hours wasting my time following snake oil mods for the adapter), and the MX29LV320 is only supported in TSOP48 package at the moment. The MX26L6420 is just not supported. You can maybe find one programmer with adapters to rule them all (XGecu maybe ?) but on my side, this whole business has yet cost me quite a lot of time and money, so there was no way I was going to buy another programmer with more of those expensive and possibly useless adaptors. Anyway, with the combo shown here (GQ 4x4 plus the el cheapo MegaBurner), you must be able to tame any chip on current Chinese MVS bootleg.
 
 ![](/MVS_bootleg_convert/Harware_necessary.jpg)
 
-At least the custom programmer with the Arduino Mega was quite cheap if I do not count my time trying to resurrect the initial Java code driving it and its hell of outdated dependencies.
+At least the custom programmer with the Arduino Mega was quite cheap if I do not count my time trying to resurrect the initial Java code driving it and its hell of outdated dependencies. Hopefully the author was quite supportive with my attempts.
 
 ![](/MVS_bootleg_convert/Sengoku2_bootleg_PRG_top_modified.jpg)
 
@@ -497,7 +497,7 @@ Best way to get a "real" convert from SNK PCBs is to butcher [Puzzle de Pon!](ht
 
 I made this mod for my own enjoyment mainly. So I considered the hack finished when I was pleased enough with the result. In its current version, this is precisely what I would have expected from an official red-blood option back in 1994 when I was mastering the AES version. I wanted nothing else but the feeling to play a genuine version made by SNK.
 
-The workflow published here is probably far from being perfect. See it as a sandbox opened to anybody. Indeed, I have seen too many projects disappearing because they were never shared before their authors vanished from the face of the Earth, whatever the reason. I now operate on the principle that **if this is not public, it just does not exist.**
+The workflow published here is probably far from being perfect. See it as a sandbox opened to anybody. Indeed, I have seen too many projects disappearing because they were never shared before their authors vanished from the face of the Earth, whatever the reason. I now operate on the principle that **if this is not open-source and public, it just does not exist.**
 
 **The best way to never release a project**
 ![](/Public_release.jpg)
